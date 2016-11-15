@@ -2,6 +2,7 @@
 // Setup your Ghost install for various [environments](http://support.ghost.org/config/#about-environments).
 
 // Ghost runs in `development` mode by default. Full documentation can be found at http://support.ghost.org/config/
+// DATABASE_URL='postgres://anfqfozkwyaftr:lrUjBU4LUSrDE_6cLlSymaFz3Q@ec2-54-243-59-15.compute-1.amazonaws.com:5432/da8t3o9g5j6gem'
 
 var path = require('path'),
     config;
@@ -16,10 +17,14 @@ config = {
         url: 'http://acm-hack-dev.herokuapp.com/blog',
         mail: {},
         database: {
-            client: 'sqlite3',
+            client: 'postgresql',
             connection: {
-                filename: path.join(__dirname, '/content/data/ghost.db')
-            },
+				host: 'ec2-54-243-59-15.compute-1.amazonaws.com',
+				user: 'anfqfozkwyaftr',
+				password: 'lrUjBU4LUSrDE_6cLlSymaFz3Q',
+				database: 'da8t3o9g5j6gem',
+				port: '5432'
+			},
             debug: false
         },
 
