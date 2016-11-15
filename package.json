@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "The UCLA ACM Hack Website",
   "main": "index.js",
+  "engines": {
+	"node": "6.9.0"
+  },
   "scripts": {
 	"preinstall": "scripts/preinstall",
 	"start": "node index",
