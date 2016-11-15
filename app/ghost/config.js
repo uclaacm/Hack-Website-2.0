@@ -17,16 +17,8 @@ config = {
         url: 'http://acm-hack-dev.herokuapp.com/blog',
         mail: {},
         database: {
-            client: 'pg',
-			connection: process.env.DATABASE_URL,
-    /*        connection: {
-				host: 'ec2-54-243-59-15.compute-1.amazonaws.com',
-				user: 'anfqfozkwyaftr',
-				password: 'lrUjBU4LUSrDE_6cLlSymaFz3Q',
-				database: 'da8t3o9g5j6gem',
-				port: '5432',
-				ssl: true
-			},*/
+            client: 'postgres',
+			connection: process.env.DATABASE_URL + "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory",
             debug: false
         },
 
