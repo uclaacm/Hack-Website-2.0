@@ -17,7 +17,7 @@ config = {
         url: 'http://acm-hack-dev.herokuapp.com/blog',
         mail: {},
         database: {
-            client: 'postgres',
+            client: 'pg',
 			connection: process.env.DATABASE_URL,
     /*        connection: {
 				host: 'ec2-54-243-59-15.compute-1.amazonaws.com',
