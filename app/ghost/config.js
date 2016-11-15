@@ -18,7 +18,7 @@ config = {
         mail: {},
         database: {
             client: 'postgresql',
-			connection: process.env.DATABASE_URL,
+			connection: { database: process.env.DATABASE_URL },
     /*        connection: {
 				host: 'ec2-54-243-59-15.compute-1.amazonaws.com',
 				user: 'anfqfozkwyaftr',
