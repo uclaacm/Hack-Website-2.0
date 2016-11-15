@@ -23,7 +23,8 @@ config = {
 				user: 'anfqfozkwyaftr',
 				password: 'lrUjBU4LUSrDE_6cLlSymaFz3Q',
 				database: 'da8t3o9g5j6gem',
-				port: '5432'
+				port: '5432',
+				ssl: true
 			},
             debug: false
         },
