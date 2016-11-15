@@ -6,12 +6,14 @@
 var path = require('path'),
     config;
 
+var PORT = process.env.PORT || 3000;
+
 config = {
     // ### Production
     // When running Ghost in the wild, use the production environment.
     // Configure your URL and mail settings here
     production: {
-        url: 'http://my-ghost-blog.com',
+        url: 'http://acm-hack-dev.herokuapp.com/blog',
         mail: {},
         database: {
             client: 'sqlite3',
@@ -23,7 +25,7 @@ config = {
 
         server: {
             host: '127.0.0.1',
-            port: '2368'
+            port: PORT
         }
     },
 
@@ -31,7 +33,7 @@ config = {
     development: {
         // The url to use when providing links to the site, E.g. in RSS and email.
         // Change this to your Ghost blog's published URL.
-        url: 'http://localhost:6510/blog',
+        url: 'http://localhost:' + PORT + '/blog',
 
         // Example refferer policy
         // Visit https://www.w3.org/TR/referrer-policy/ for instructions
@@ -68,7 +70,7 @@ config = {
             // Host to be passed to node's `net.Server#listen()`
             host: '127.0.0.1',
             // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
-            port: '6510'
+            port: PORT
         },
         // #### Paths
         // Specify where your content directory lives
