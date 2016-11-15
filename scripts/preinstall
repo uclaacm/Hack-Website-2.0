@@ -1,0 +1,7 @@
+#! /bin/bash
+
+echo "Set up ghost..."
+cd app/ghost/
+npm install --production
+cd ../../
+echo "Set up Hack website..."

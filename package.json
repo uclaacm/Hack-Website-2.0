@@ -1,0 +1,25 @@
+{
+  "name": "acm-hack-website",
+  "version": "1.0.0",
+  "description": "The UCLA ACM Hack Website",
+  "main": "index.js",
+  "scripts": {
+	"preinstall": "scripts/preinstall",
+	"start": "node index",
+	"test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackucla/Hack-Website-2.0.git"
+  },
+  "author": "Nikhil Kansal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hackucla/Hack-Website-2.0/issues"
+  },
+  "homepage": "https://github.com/hackucla/Hack-Website-2.0#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "hbs": "^4.0.1"
+  }
+}
