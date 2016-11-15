@@ -1,3 +1,3 @@
 module.exports = {
-	ghost: require('./ghost/index.js')
+	ghost: require('./ghost')
 };

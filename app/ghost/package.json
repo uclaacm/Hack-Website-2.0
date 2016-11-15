@@ -16,10 +16,9 @@
   "bugs": "https://github.com/TryGhost/Ghost/issues",
   "contributors": "https://github.com/TryGhost/Ghost/graphs/contributors",
   "license": "MIT",
-  "main": "./core/index",
+  "main": "index",
   "scripts": {
     "preinstall": "node core/server/utils/npm/preinstall.js",
-    "start": "node index",
     "test": "grunt validate --verbose"
   },
   "engines": {
