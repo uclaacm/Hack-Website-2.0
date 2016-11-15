@@ -1,6 +1,6 @@
 const express = require('express');
 const app = require('./app');
-const port = process.env.port || 3000;
+const port = process.env.PORT || 5000;
 
 let server = express();
 app.ghost(server);
