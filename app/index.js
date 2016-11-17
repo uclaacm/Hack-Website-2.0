@@ -1,3 +1,4 @@
 module.exports = {
-	ghost: require('./ghost')
+	ghost: require('./ghost'),
+	signIn: require('./signin')
 };
