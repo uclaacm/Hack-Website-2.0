@@ -9,13 +9,7 @@
     <body> 
         <div id="main">
             <h1>Sign In</h1>
-            <h2>{{ event.title }}</h2>
-            <h3>{{ event.organization }}</h3>
-
-            <form class="center" method="POST" action="/signin/{{ event.code }}/signin">
-                <input type="text" class="big" name="uid" placeholder="Enter your UID..."/><br />
-                <button class="big main">Sign In</button>
-            </form>
+            <p>There was an error processing your request: {{ error }}.</p>
         </div>
     </body>
 </html>
