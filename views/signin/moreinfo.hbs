@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ACM | Sign In</title>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300,400,400i|Trirong" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="/css/signin/index.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body> 
+        <div id="main">
+            <h1>Sign In</h1>
+            <h2>{{ event.title }}</h2>
+            <h3>{{ event.organization }}</h3>
+
+            <form class="center" method="POST" action="/signin/{{ event.code }}/adduser">
+                <input type="text" class="big disabled" onFocus="this.blur()" name="uid" value="{{ uid }}"/>
+
+                <div class="hr"></div>
+
+                <p>Welcome to ACM! This seems to be your first ACM event this year. Please fill out some additional information.</p>
+                <label for="firstName">First Name:</label><br />
+                <input type="text" name="firstName" value="{{#if user.firstName }} {{user.firstName}} {{/if}}"/><br />
+
+                <label for="lastName">Last Name:</label><br />
+                <input type="text" name="lastName" value="{{#if user.lastName }} {{user.lastName}} {{/if}}" /><br />
+
+                <label for="email">Email Address:</label><br />
+                <input type="text" name="email" value="{{#if user.email }} {{user.email}} {{/if}}" /><br />
+
+                <label for="year">Major</label><br />
+                <input type="text" name="major" value="{{#if user.major }} {{user.major}} {{/if}}" /><br />
+
+                <label for="year">Year (1, 2, 3, 4, etc.)</label><br />
+                <input type="text" class="short" name="year" value="{{#if user.year }} {{user.year}} {{/if}}" /><br />
+
+                <br />
+                <button class="main" type="submit">Sign In</button>
+                <button class="secondary" formmethod="GET" formaction="/signin/{{ event.code }}">Reset</button>
+                <br /><br /><br />
+            </form>
+        </div>
+    </body>
+</html>
