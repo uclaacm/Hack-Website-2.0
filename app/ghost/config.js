@@ -17,7 +17,7 @@ config = {
         mail: {},
         database: {
             client: 'pg',
-			connection: process.env.DATABASE_URL,
+			connection: process.env.PG_DATABASE_URI,
             debug: false
         },
 
