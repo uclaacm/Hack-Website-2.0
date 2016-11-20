@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ACM | Sign In</title>
+        <title>ACM | Sign In | Success</title>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300,400,400i|Trirong" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="/css/signin/index.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
             <h2>{{ event.title }}</h2>
             <h3>{{ event.organization }}</h3>
 
-            <p>Welcome, <b>{{user.firstName}}</b>. You have signed into the event.</p>
+            <p>Welcome, <b>{{ attendee.firstName }}</b>. You have signed into the event.</p>
             <center><button class="big main" onclick="window.location.href='/signin/{{ event.code }}'">Another One</button></center>
         </div>
     </body>
