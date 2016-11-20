@@ -17,4 +17,11 @@ Event.statics.findByCode = function (code, callback) {
     });
 };
 
+Event.statics.findAllInProgress = function(callback) {
+    let now = new Date();
+    return this.find({ "date.start" : { $lt : now }, "date.end" : { $gt : now }}, (err, events) => {
+        callback(err || events.length === 0, events);
+    });
+};
+
 module.exports = Event;

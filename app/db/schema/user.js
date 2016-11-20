@@ -1,45 +1,35 @@
+const bcrypt = require('bcrypt');
 let Schema = require('mongoose').Schema;
 let ObjectId = Schema.ObjectId;
 
-let Event = require('./event');
 let User = new Schema({
-    firstName: { type: String, minLength: 1, required: true },
-    lastName: { type: String, minLength: 1, required: true },
-    email:  { type: String, minLength: 1, required: true },
-    major: { type: String, minLength: 1, required: true },
-    year: { type: String, minLength: 1, required: true },
-    uid: { type: String, minLength: 1, required: true, unique: true },
-
-    lastSignIn: Date,
-    eventsAttended: [Event]
+    id: { type: String, required: true, minLength: 4, unique: true },
+    username: { type: String, required: true, minLength: 4, unique: true },
+    password: { type: String, required: true, minLength: 4 },
+    salt: { type: String, required: true, minLength: 4 },
+    lastSignIn: { type: Date }
 });
 
-User.statics.findByUID = function(uid, callback) {
-    return this.findOne({ uid: uid }, (err, user) => {
-        callback(err || !user, user);
+User.statics.findUser = function(username, password, callback) {
+    return this.findOne({ username: username }, (err, user) => {
+        if (err || !user)
+            return callback(err || !user, user);
+        bcrypt.hash(password, user.salt, (err, hash) => {
+            const valid = !err && user.password === hash;
+            return callback(!valid, valid ? user : null);
+        });
     });
 };
 
-User.statics.findByEventAttendedCode = function(eventCode, callback) {
-    return this.find({ "eventsAttended.code " : eventCode }, (err, users) => {
-        callback(err || users.length === 0, users);
+User.statics.findUserById = function(id, callback) {
+    return this.findOne({ id: id }, (err, user) => {
+        return callback(err || !user, user);
     });
 };
 
-User.methods.addEvent = function(event, callback) {
-    // check if event exists
-    if (!this.didAttendEvent(event))
-        this.eventsAttended.push(event);
-    this.lastSignIn = Date.now();
+User.methods.updateLastSignIn = function(callback) {
+    this.lastSignIn = new Date();
     this.save(callback);
-};
-
-User.methods.didAttendEvent = function(event) {
-    // determine whether user attended event
-    for (let i = 0; i < this.eventsAttended.length; i++)
-        if (this.eventsAttended[i].code === event.code)
-            return true;
-    return false;
 };
 
 module.exports = User;
