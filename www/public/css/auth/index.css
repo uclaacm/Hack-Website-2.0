@@ -1,0 +1,83 @@
+body {
+    background-color: #E6E6E6;
+    background-image: url(/images/auth/bg.jpg);
+}
+
+#main {
+    height: 260px;
+    width: 320px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -130px;
+    margin-left: -160px;
+    background: white;
+    border-radius: 3px;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0px 0px 12px #D2D2D2;
+}
+
+#main h1 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #666666;
+    font-size: 1.8em;
+}
+
+form {
+    text-align: center;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    border: 2px solid #EEEEEE;
+    height: 40px;
+    font-size: 1em;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    margin: 5px 0px;
+    outline: none;
+    width: 100%;
+    max-width: 260px;
+    border-radius: 3px;
+    text-align: center;
+    /*font-family: 'Open Sans', serif;*/
+    font-family: 'Trirong', serif;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    background-color: #F8F8F8;
+    border: 2px solid #1E88E5;
+}
+
+button {
+    height: 40px;
+    padding: 0px 20px;
+    margin: 5px 0px;
+    line-height: 38px;
+    font-size: 1.0em;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: #AAAAAA;
+    text-align: center;
+    outline: none;
+    border-radius: 3px;
+    border: 2px solid #EEEEEE;
+    display: inline-block;
+    background-color: white;
+    cursor: pointer;
+    width: 100%;
+    max-width: 260px;
+}
+
+button:hover {
+    color: white;
+    background-color: #2196F3;
+    border-color: #1E88E5;
+}
+
+button:active {
+    background-color: #1E88E5;
+    border-color: #1976D2;
+}
