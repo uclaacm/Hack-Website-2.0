@@ -1,0 +1,104 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+div#top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 100;
+    background-color: #01579B;
+}
+
+div#top-bar div#top-left-bar {
+    background-color: #1E4B87;
+    height: 100%;
+    width: 240px;
+    float: left;
+    border-right: 1px solid #1E4B87;
+}
+
+div#top-bar div#top-left-bar div#logo {
+    height: 50px;
+    width: 50px;
+    margin: 5px 10px;
+    background: url(/images/auth/logo.png);
+    background-size: cover;
+    float: left;
+}
+
+div#top-bar div#top-left-bar span#logo-title {
+    line-height: 60px;
+    color: #F2F2F2;
+    padding: 0px 10px;
+    font-weight: 300;
+}
+
+div#left-pane {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100%;
+    padding-top: 60px;
+    box-sizing: border-box;
+    background-color: #EEEEEE;
+    border-right: 1px solid #E2E2E2;
+}
+
+div#left-pane div.pane-section div.pane-section-title {
+    color: #444444;
+    font-size: 1.0em;
+    font-weight: 600;
+    padding: 10px 20px 5px 20px;
+    text-transform: uppercase;
+}
+
+div#left-pane div.pane-section div.pane-section-item {
+    padding: 4px 0px 4px 40px;
+    font-size: 0.9em;
+    color: #666666;
+}
+
+div#left-pane div.pane-section div.pane-section-item span.fa {
+    width: 20px;
+}
+
+div#left-pane div.pane-section div.pane-section-item span.title {
+    padding-left: 5px;
+}
+
+div#left-pane div.pane-section div.pane-section-item div.arrow {
+    float: right;
+}
+
+div#left-pane div.pane-section div.pane-section-item:hover {
+    border-left: 5px solid #1E4B87;
+    padding-left: 35px;
+    cursor: pointer;
+    background-color: #D4DEE4;
+}
+
+div#left-pane div.pane-section div.pane-section-item.pane-section-item-selected {
+    font-weight: 600;
+    color: #1E4B87;
+    border-left: 5px solid #1E4B87;
+    padding-left: 35px;
+    background-color: #D4DEE4;
+}
+
+div#content {
+    min-height: 2000px;
+    padding-left: 240px;
+    width: 100%;
+    box-sizing: border-box;
+}
