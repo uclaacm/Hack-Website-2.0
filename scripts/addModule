@@ -1,0 +1,19 @@
+#! /bin/bash
+
+if [ $# -eq 0 ]; then
+	echo "Usage: addModule [moduleName]"
+	exit 1
+fi
+
+mkdir www/public/css/$1
+mkdir www/public/js/$1
+mkdir www/public/images/$1
+
+mkdir www/private/css/$1
+mkdir www/private/js/$1
+mkdir www/private/images/$1
+
+mkdir views/$1
+mkdir app/$1
+
+echo "Created module $1."
