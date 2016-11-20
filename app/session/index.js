@@ -1,9 +1,15 @@
 const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 const config = require('../config');
 
-module.exports = session({
+let opts = {
     resave: true,
-    secret: config.sessionSecret,
+    secret: config.session.secret,
     cookie: { secure: config.isProduction },
     saveUninitialized: true
-});
+};
+
+if (config.session.uri)
+    opts.store = new RedisStore({ url: config.session.uri });
+
+module.exports = session(opts);
