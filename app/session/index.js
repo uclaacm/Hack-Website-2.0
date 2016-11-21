@@ -5,7 +5,7 @@ const config = require('../config');
 let opts = {
     resave: true,
     secret: config.session.secret,
-    cookie: { secure: config.isProduction },
+    cookie: { secure: 'auto' },
     saveUninitialized: true
 };
 
