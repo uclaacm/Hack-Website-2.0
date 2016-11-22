@@ -3,27 +3,28 @@
 
 // Ghost runs in `development` mode by default. Full documentation can be found at http://support.ghost.org/config/
 
+let config = require('../config');
 var path = require('path'),
-    config;
+    conf;
 
 var PORT = process.env.PORT || 5000;
 
-config = {
+conf = {
     // ### Production
     // When running Ghost in the wild, use the production environment.
     // Configure your URL and mail settings here
     production: {
-        url: 'http://acm-hack-dev.herokuapp.com/blog',
+        url: config.ghost.url,
         mail: {},
         database: {
             client: 'pg',
-			connection: process.env.PG_DATABASE_URI,
+			connection: config.ghost.database.uri,
             debug: false
         },
 
         server: {
             host: '0.0.0.0',
-            port: PORT
+            port: config.port
         }
     },
 
@@ -31,7 +32,7 @@ config = {
     development: {
         // The url to use when providing links to the site, E.g. in RSS and email.
         // Change this to your Ghost blog's published URL.
-        url: 'http://localhost:' + PORT + '/blog',
+        url: config.ghost.url
 
         // Example refferer policy
         // Visit https://www.w3.org/TR/referrer-policy/ for instructions
@@ -57,7 +58,7 @@ config = {
         // Ghost supports sqlite3 (default), MySQL & PostgreSQL
         database: {
             client: 'pg',
-            connection: process.env.DATABASE_URL,
+            connection: config.ghost.database.uri,
 			debug: true
         },
         // #### Server
@@ -66,7 +67,7 @@ config = {
             // Host to be passed to node's `net.Server#listen()`
             host: '127.0.0.1',
             // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
-            port: PORT
+            port: config.port
         },
         // #### Paths
         // Specify where your content directory lives
@@ -147,4 +148,4 @@ config = {
     }
 };
 
-module.exports = config;
+module.exports = conf;
