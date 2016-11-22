@@ -6,12 +6,15 @@ let db = require('../db');
 router.param('eventCode', (req, res, next, eventCode) => {
     if (!req.session.user)
         req.session.user = {};
-    db.Event.findByCode(eventCode, (err, event) => {
-        if (err)
-            return res.render('signin/error', { error: "The event '" + eventCode + "' was not found" });
-        req.session.user.event = event;
-        next();
-    });
+    if (!req.session.user.event || req.session.user.event.code !== eventCode) {
+        db.Event.findByCode(eventCode, (err, event) => {
+            if (err)
+                return res.render('signin/error', { error: "The event '" + eventCode + "' was not found" });
+            req.session.user.event = event;
+            next();
+        });
+    } else next();
+    
 });
 
 router.get('/', (req, res) => {
