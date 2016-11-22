@@ -7,7 +7,7 @@ if (env === "production") {
     config.session.secret = process.env.SESSION_SECRET;
     config.database.uri = process.env.MONGODB_URI;
     config.session.uri = process.env.REDIS_URL;
-    config.ghost.database.uri = process.env.PG_DATABASE_URL;
+    config.ghost.database.uri = process.env.DATABASE_URL;
 } else {
     config.post = 5000;
     config.host = "http://localhost:" + config.port;
