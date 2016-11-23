@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000;
 let server = express();
 
 // Start the Ghost blog component
-app.ghost(server);
+// app.ghost(server);
 
 // Set the view engine to handlebars
 server.set('view engine', 'hbs');
