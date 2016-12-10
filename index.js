@@ -13,8 +13,9 @@ if (process.env.NODE_ENV === "production")
 server.set('view engine', 'hbs');
 // Expose public resources
 server.use(express.static('www/public'));
-// Parse POST data as urlencoded
+// Parse urlencoded and json POST data
 server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
 // Use sessions
 server.use(app.session);
 
