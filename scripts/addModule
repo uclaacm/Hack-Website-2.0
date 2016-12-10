@@ -5,13 +5,16 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
-mkdir www/public/css/$1
-mkdir www/public/js/$1
-mkdir www/public/images/$1
+mkdir www/public/$1
+mkdir www/private/$1
 
-mkdir www/private/css/$1
-mkdir www/private/js/$1
-mkdir www/private/images/$1
+mkdir www/public/$1/css
+mkdir www/public/$1/js
+mkdir www/public/$1/images
+
+mkdir www/private/$1/css
+mkdir www/private/$1/js
+mkdir www/private/$1/images
 
 mkdir views/$1
 mkdir app/$1

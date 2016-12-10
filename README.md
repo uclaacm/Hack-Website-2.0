@@ -6,11 +6,19 @@ Welcome to the revamp of the UCLA ACM Hack website. Now featuring the Ghost blog
 
 ### Prerequisites
 
-You must have Node.js 6.9.0.
+You must have Node.js 6.9.0 and MongoDB installed.
 
-You must also have PostgreSQL installed.
+If you want to run the Ghost server locally, Postgres must be installed and you must set the environment variable `DATABASE_URL` which has the complete `postgres://` URI for the database, containing the username, password, host, port, and database. To run the ghost server, the app must be run in production mode.
 
-You must also have set the environment variable `DATABASE_URL` which has the complete `postgres://` URI for the database, containing the username, password, host, port, and database.
+
+
+### Setup
+
+Make sure the mongo server is running
+
+```shell
+$ mongod --dbpath ~/.mongodb
+```
 
 
 
