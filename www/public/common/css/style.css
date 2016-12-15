@@ -1,3 +1,18 @@
+@font-face {
+	font-family: 'Open Sans';
+	src: url('../fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../fonts/Montserrat-Regular.ttf');
+}
+
+@font-face{
+	font-family: 'Source Code Pro';
+	src: url('../fonts/SourceCodePro-Regular.ttf');
+}
+
 /*=================BASE-STYLES=====================*/
 :root{
 	--hack-purp: #694873;
@@ -10,13 +25,14 @@
 	--comp-deep: #229CB8;
 	--comp-pastel: #A2E1F4;
 
-	--fam1: 'open sans', sans-serif;
-	--fam2: 'montserrat', sans-serif;
-	--fam3: 'source code pro', sans-serif;
+	--fam1: 'Open Sans', sans-serif;
+	--fam2: 'Montserrat', sans-serif;
+	--fam3: 'Source Code Pro', sans-serif;
 }
 
 body{
 	background: #222;
+	height: 200vh;
 }
 
 *{
@@ -53,8 +69,9 @@ ul{
 }
 
 a{
-	text-decoration: none;
+	font-family: var(--fam2);
 	color: var(--hack-black);
+	text-decoration: none;
 }
 
 .title{
@@ -72,29 +89,74 @@ a{
 	opacity: 1 !important;
 }
 
+.mobile{
+	display: none;
+}
+
 /*====================TOP MENU====================*/
 
 .menu{
 	height: 70px;
+	width: 100vw;
 	background: #fff;
 	box-shadow: 0px 3px 3px #000;
+	position: fixed;
+	z-index: 1000;
 }
 
 .menu > *{
 	float: right;
 }
 
+.menu img{
+	height: 70px;
+}
+
+.logo{
+	float: left;
+	font-size: 40px;
+}
+
+.logo-inner > *{
+	position: relative;
+	float: left;
+}
+
+.logo img{
+	height: 50px;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.logo-words{
+	position: absolute;
+	z-index: 100;
+	color: var(--hack-purp);
+	margin-left: 10px;
+	font-size: 30px;
+
+	top:50%;
+	-webkit-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+}
+
 .menu-inner{
 	padding: 25px;
+	padding-right: 0px;
 }
 
 .menu-inner li{
 	display: inline-block;
 	text-transform: uppercase;
 	font-family: var(--fam2);
-	margin-right: 25px;
+	margin-right: 35px;
 	letter-spacing: 2px;
-	opacity: 0.5;
+}
+
+.menu-inner a:hover{
+	color: var(--hack-purp);
+	opacity: 0.8;
 }
 
 .login-wrapper{
@@ -103,12 +165,107 @@ a{
 	background: var(--hack-purp);
 }
 
-.logo{
-	float: left;
+.login-wrapper > *{
+	position: absolute;
+	-webkit-transition: all 0.4s cubic-bezier(0.76,-0.38, 0.32, 1.36);
+    transition: all 0.4s cubic-bezier(0.76,-0.38, 0.32, 1.36);
 }
 
-.menu img{
-	height: 70px;
+.login-wrapper span{
+	text-align: center;
+	margin-top: 16px;
+	color: #fff;
+	opacity: 1;
+	pointer-events: none;
+	opacity: 0;
+	-webkit-transform: translate(-100%);
+	-ms-transform: translate(-100%);
+	transform: translate(-100%);
+}
+
+.login-wrapper:hover span{
+	-webkit-transform: translate(0);
+	-ms-transform: translate(0);
+	transform: translate(0);
+	opacity: 1;
+}
+
+.login-wrapper:hover img{
+	-webkit-transform: translate(100%);
+	-ms-transform: translate(100%);
+	transform: translate(100%);
+}
+
+/*for mobile*/
+
+.hamburger-inner{
+	height: 50px;
+	width: 50px;
+	float: left;
+	padding: 16px 10px;
+	-webkit-transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
+    transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
+    transform-origin: 50% 43%;
+}
+
+.hamburg-line{
+	background: var(--hack-purp);
+	margin-bottom: 10px;
+	height: 6px;
+	border-radius: 2px;
+}
+
+.hamburg-over{
+	position: fixed;
+	z-index: 1001;
+	height: 100vh;
+	width: 100vw;
+	background: rgba(0,0,0,0.8);
+
+	-webkit-transform: translate(0, -100%);
+	-ms-transform: translate(0, -100%);
+	transform: translate(0, -100%);
+
+	-webkit-transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
+    transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
+}
+
+.hamburg-over ul{
+	position: absolute;
+	height: 300px;
+	width: 100%;
+	top: 50%;
+	margin-top: -150px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;
+}
+
+.hamburg-over li{
+	opacity: 0;
+	margin-top: 50px;
+	-webkit-transition: all 0.8s cubic-bezier(0.68,-0.12, 0.59, 0.98);
+    transition: all 0.8s cubic-bezier(0.68,-0.12, 0.59, 0.98);
+}
+
+.hamburg-over a{
+	color: #fff;
+}
+
+
+.hamburger:hover .hamburg-over{
+	-webkit-transform: translate(0%);
+	-ms-transform: translate(0%);
+	transform: translate(0%);
+}
+
+.hamburger:hover .hamburg-over li{
+	opacity: 1;
+	margin-top: 0;
+}
+
+.hamburger:hover .hamburger-inner{
+	transform: rotate(90deg);
 }
 
 /*===================TEXT OVER====================*/
@@ -129,8 +286,17 @@ a{
 
 @media only screen and (max-width: 700px) {
 
-	.menu-inner{
+	.mobile{
+		display: block;
+	}
+
+	.logo img, .menu-inner{
 		display: none;
+	}
+
+	.logo-inner{
+		display: inline;
+		height: 0px;
 	}
 
 }
