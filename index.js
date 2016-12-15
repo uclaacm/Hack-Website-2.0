@@ -22,10 +22,12 @@ server.use(bodyParser.json());
 // Use sessions
 server.use(app.session);
 
-// Add authentication here
+// Use authentication
+app.auth.configAuth(server);
+server.use('/auth', app.auth.router);
 
 // Hack School routes
-server.use('/hackschool', app.hackschool.router);
+server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
 
 server.listen(port, () => {
 	console.log("started server on port", port);
