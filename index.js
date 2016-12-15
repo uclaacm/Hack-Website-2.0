@@ -11,13 +11,21 @@ if (process.env.NODE_ENV === "production")
 
 // Set the view engine to handlebars
 server.set('view engine', 'hbs');
+
 // Expose public resources
 server.use(express.static('www/public'));
+
 // Parse urlencoded and json POST data
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
+
 // Use sessions
 server.use(app.session);
+
+// Add authentication here
+
+// Hack School routes
+server.use('/hackschool', app.hackschool.router);
 
 server.listen(port, () => {
 	console.log("started server on port", port);

@@ -1,4 +1,5 @@
 module.exports = {
 	ghost: require('./ghost'),
-	session: require('./session')
+	session: require('./session'),
+	hackschool: require('./hack-school')
 };
