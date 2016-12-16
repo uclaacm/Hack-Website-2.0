@@ -143,14 +143,13 @@ a{
 
 .menu-inner{
 	padding: 25px;
-	padding-right: 0px;
 }
 
 .menu-inner li{
 	display: inline-block;
 	text-transform: uppercase;
 	font-family: var(--fam2);
-	margin-right: 35px;
+	margin-left: 35px;
 	letter-spacing: 2px;
 }
 
@@ -198,14 +197,17 @@ a{
 
 /*for mobile*/
 
+.hamburger:hover{
+	cursor: pointer;
+}
+
 .hamburger-inner{
+	position: fixed;
+	z-index: 1002;
 	height: 50px;
 	width: 50px;
 	float: left;
 	padding: 16px 10px;
-	-webkit-transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
-    transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
-    transform-origin: 50% 43%;
 }
 
 .hamburg-line{
@@ -213,6 +215,10 @@ a{
 	margin-bottom: 10px;
 	height: 6px;
 	border-radius: 2px;
+
+	-webkit-transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
+    transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
+    transform-origin: 50% 43%;
 }
 
 .hamburg-over{
@@ -243,7 +249,7 @@ a{
 
 .hamburg-over li{
 	opacity: 0;
-	margin-top: 50px;
+	margin-top: 20px;
 	-webkit-transition: all 0.8s cubic-bezier(0.68,-0.12, 0.59, 0.98);
     transition: all 0.8s cubic-bezier(0.68,-0.12, 0.59, 0.98);
 }
@@ -252,20 +258,31 @@ a{
 	color: #fff;
 }
 
-
-.hamburger:hover .hamburg-over{
+.active .hamburg-over{
 	-webkit-transform: translate(0%);
 	-ms-transform: translate(0%);
 	transform: translate(0%);
 }
 
-.hamburger:hover .hamburg-over li{
+.active .hamburg-over li{
 	opacity: 1;
 	margin-top: 0;
 }
 
-.hamburger:hover .hamburger-inner{
-	transform: rotate(90deg);
+.active .hamburg-line{
+	background: #fff;
+}
+
+.active .hamburg-line:first-child{
+	transform: rotate(45deg) translate(11px, 11px);
+}
+
+.active .hamburg-line:nth-child(2){
+	transform: rotate(-45deg);
+}
+
+.active .hamburg-line:nth-child(3){
+	opacity: 0;
 }
 
 /*===================TEXT OVER====================*/
@@ -284,6 +301,14 @@ a{
 
 /*==================MEDIA QUERIES=================*/
 
+@media only screen and (max-width: 850px){
+
+	.menu-inner li{
+		margin-left: 10px;
+		font-size: 14px;
+	}
+}
+
 @media only screen and (max-width: 700px) {
 
 	.mobile{
@@ -297,6 +322,11 @@ a{
 	.logo-inner{
 		display: inline;
 		height: 0px;
+	}
+
+	.logo-words{
+		margin-left: 70px;
+		pointer-events: none;
 	}
 
 }
