@@ -11,7 +11,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="common/images/favicon.png" />
 </head>
 <body>
-	<div class="menu">
+	<div class="menu inactive">
 		<div class="logo">
 			<a class="logo-inner" href="">
 				<img src="common/images/Hack-Logo-Purple.png"/>
@@ -48,25 +48,74 @@
 			<li><a href="">team</a></li>
 		</ul>
 	</div>
-	<div class="main-bg">
+
+	<div class="opening-logo">
+		<img id="gear" class="inactive" src="common/images/gear.png"/>
+		<img id="wrench" class="inactive" src="common/images/wrench.png"/>
+		<div class="square">
+			<div class="line inactive" id="line1"></div>
+			<div class="line inactive" id="line2"></div>
+			<div class="line inactive" id="line3"></div>
+			<div class="line inactive" id="line4"></div>
+		</div>
+	</div>
+
+	<div class="main-bg inactive">
 		<div class="text-over">
-			<h1 class="title">MOVE FAST</h1>
-			<h1 class="title">BUILD THINGS</h1>
-			<div class="btn-enter">
+			<h1 class="title inactive">MOVE FAST</h1>
+			<h1 class="title inactive">BUILD THINGS</h1>
+			<div class="btn-enter inactive">
 				<a href="">START HACKING</a>
 			</div>
 		</div>
 	</div>
 <script>
+
+const lines = document.querySelectorAll('.line');
+const square = document.querySelector('.square');
+const gear = document.getElementById('gear');
+const wrench = document.getElementById('wrench');
+
+const menu = document.querySelector('.menu');
+const bg = document.querySelector('.main-bg');
+const text = document.querySelectorAll('.text-over > *');
+
+const menuMobile = document.querySelector('.hamburger');
+const menuMobileInner = document.querySelector('.hamburger-inner');
+
 function toggleMenu(e){
-	menu.classList.toggle('active');
+	menuMobile.classList.toggle('active');
 	e.preventDefault();
 }
 
-const menu = document.querySelector('.hamburger');
-const menuInner = document.querySelector('.hamburger-inner');
+function triggerAllAnimateIn(){
+	let stagger = 0;
+	menu.classList.remove('inactive');
+	setTimeout(() => bg.classList.remove('inactive'), 800);
+	setTimeout(() => text.forEach( title => {
+			setTimeout(() => title.classList.remove('inactive'), stagger);
+			stagger += 200;
+		}), 1200);
+}
 
-menuInner.addEventListener('click', toggleMenu);
+function rotate(transition){
+	if(transition.srcElement.id != 'line4' || transition.propertyName != 'transform')
+		return;
+	square.style.transform = 'rotate(90deg)';
+	gear.classList.remove('inactive');
+	wrench.classList.remove('inactive');
+}
+
+function triggerInitial(){
+	lines.forEach(line => {
+		line.classList.remove('inactive');
+		line.addEventListener('transitionend', rotate);
+	});
+}
+
+menuMobileInner.addEventListener('click', toggleMenu);
+setTimeout(triggerInitial, 200);
+setTimeout(triggerAllAnimateIn, 1000);
 
 </script>
 </body>
