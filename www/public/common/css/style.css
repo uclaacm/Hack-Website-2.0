@@ -1,16 +1,16 @@
 @font-face {
 	font-family: 'Open Sans';
-	src: url('../fonts/OpenSans-Regular.ttf');
+	src: url('/common/fonts/OpenSans-Regular.ttf');
 }
 
 @font-face {
 	font-family: 'Montserrat';
-	src: url('../fonts/Montserrat-Regular.ttf');
+	src: url('/common/fonts/Montserrat-Regular.ttf');
 }
 
 @font-face{
 	font-family: 'Source Code Pro';
-	src: url('../fonts/SourceCodePro-Regular.ttf');
+	src: url('/common/fonts/SourceCodePro-Regular.ttf');
 }
 
 /*=================BASE-STYLES=====================*/
@@ -32,14 +32,14 @@
 	--fam3: 'Source Code Pro', sans-serif;
 }
 
-body{
-	background: var(--grey-light);
-	height: 100vh;
-}
-
 *{
 	margin: 0;
 	padding: 0;
+}
+
+body{
+	background: var(--grey-light);
+	height: 100vh;
 }
 
 h1{
@@ -109,8 +109,8 @@ a{
 	-webkit-transform: translate(0, 0px);
 			transform: translate(0, 0px);
 
-	-webkit-transition: all 0.4s cubic-bezier(0.88, 0.04, 0.23, 0.99);;
-			transition: all 0.4s cubic-bezier(0.88, 0.04, 0.23, 0.99);;
+	-webkit-transition: all 0.4s cubic-bezier(0.88, 0.04, 0.23, 0.99);
+			transition: all 0.4s cubic-bezier(0.88, 0.04, 0.23, 0.99);
 }
 
 .inactive.menu{
@@ -376,7 +376,7 @@ a{
 .main-bg{
 	height: 100%;
 	width: 100%;
-	background-image: url('../images/HackSchool-gradientmap.jpg');
+	background-image: url('/common/images/HackSchool-gradientmap.jpg');
 	opacity: 1;
 	-webkit-transition: all 0.5s ease;
     		transition: all 0.5s ease;
