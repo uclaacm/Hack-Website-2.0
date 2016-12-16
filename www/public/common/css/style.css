@@ -25,14 +25,16 @@
 	--comp-deep: #229CB8;
 	--comp-pastel: #A2E1F4;
 
+	--highlight: #FF9700;
+
 	--fam1: 'Open Sans', sans-serif;
 	--fam2: 'Montserrat', sans-serif;
 	--fam3: 'Source Code Pro', sans-serif;
 }
 
 body{
-	background: #222;
-	height: 200vh;
+	background: var(--grey-light);
+	height: 100vh;
 }
 
 *{
@@ -72,11 +74,13 @@ a{
 	font-family: var(--fam2);
 	color: var(--hack-black);
 	text-decoration: none;
+	letter-spacing: 2px;
 }
 
 .title{
 	font-family: var(--fam2);
-	font-size: 48px;
+	font-size: 60px;
+	letter-spacing: 5px;
 }
 
 .caption, .quote{
@@ -85,8 +89,8 @@ a{
 
 
 .current{
-	color: var(--hack-black);
-	opacity: 1 !important;
+	color: var(--hack-purp);
+	opacity: 0.5;
 }
 
 .mobile{
@@ -99,7 +103,7 @@ a{
 	height: 70px;
 	width: 100vw;
 	background: #fff;
-	box-shadow: 0px 3px 3px #000;
+	box-shadow: 0px 4px 3px rgba(0,0,0,0.2);
 	position: fixed;
 	z-index: 1000;
 }
@@ -109,7 +113,10 @@ a{
 }
 
 .menu img{
-	height: 70px;
+	margin-top: 10px;
+	padding-left: 10px;
+	height: 50px;
+	margin-left: 10px;
 }
 
 .logo{
@@ -122,17 +129,11 @@ a{
 	float: left;
 }
 
-.logo img{
-	height: 50px;
-	margin-top: 10px;
-	margin-left: 20px;
-}
-
 .logo-words{
 	position: absolute;
 	z-index: 100;
 	color: var(--hack-purp);
-	margin-left: 10px;
+	margin-left: 80px;
 	font-size: 30px;
 
 	top:50%;
@@ -143,6 +144,7 @@ a{
 
 .menu-inner{
 	padding: 25px;
+	padding-right: 30px;
 }
 
 .menu-inner li{
@@ -153,26 +155,29 @@ a{
 	letter-spacing: 2px;
 }
 
-.menu-inner a:hover{
+.menu-inner li:hover{
 	color: var(--hack-purp);
-	opacity: 0.8;
+	opacity: 0.5;
 }
 
 .login-wrapper{
 	height: 70px;
-	width: 70px;
+	width: 90px;
 	background: var(--hack-purp);
 }
 
-.login-wrapper > *{
-	position: absolute;
+.login-wrapper, .login-wrapper > *{
 	-webkit-transition: all 0.4s cubic-bezier(0.76,-0.38, 0.32, 1.36);
     transition: all 0.4s cubic-bezier(0.76,-0.38, 0.32, 1.36);
 }
 
+.login-wrapper > *{
+	position: absolute;
+}
+
 .login-wrapper span{
 	text-align: center;
-	margin-top: 16px;
+	margin-top: 14px;
 	color: #fff;
 	opacity: 1;
 	pointer-events: none;
@@ -180,6 +185,10 @@ a{
 	-webkit-transform: translate(-100%);
 	-ms-transform: translate(-100%);
 	transform: translate(-100%);
+}
+
+.login-wrapper:hover{
+	background: var(--highlight);
 }
 
 .login-wrapper:hover span{
@@ -190,9 +199,9 @@ a{
 }
 
 .login-wrapper:hover img{
-	-webkit-transform: translate(100%);
-	-ms-transform: translate(100%);
-	transform: translate(100%);
+	-webkit-transform: translate(150%);
+	-ms-transform: translate(150%);
+	transform: translate(150%);
 }
 
 /*for mobile*/
@@ -285,7 +294,13 @@ a{
 	opacity: 0;
 }
 
-/*===================TEXT OVER====================*/
+/*===================MAIN-BG====================*/
+
+.main-bg{
+	height: 100%;
+	width: 100%;
+	background-image: url('../images/HackSchool-gradientmap.jpg');
+}
 
 .text-over{
 	position: absolute;
@@ -296,6 +311,24 @@ a{
 
 .text-over h1{
 	color: #fff;
+}
+
+.btn-enter{
+	margin-top: 40px;
+}
+
+.btn-enter a{
+	color: var(--highlight);
+	padding: 20px;
+	border: 2px solid var(--highlight);
+
+	-webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.btn-enter a:hover{
+	color: #fff;
+	background: var(--highlight);
 }
 
 
