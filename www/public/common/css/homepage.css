@@ -129,4 +129,8 @@
 		-webkit-transform: scale(0.6);
 				transform: scale(0.6);
 	}
+
+	.text-over{
+		margin-top: -5vh;
+	}
 }
