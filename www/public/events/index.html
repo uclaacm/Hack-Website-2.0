@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width" />
+	<title>ACM Hack | Events</title>
+
+	<link rel="stylesheet" type="text/css" href="/common/css/main.css"/>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/common/images/favicon.png" />
+</head>
+<body>
+	<div class="menu">
+		<div class="logo">
+			<a class="logo-inner" href="">
+				<img src="/common/images/Hack-Logo-Purple.png"/>
+				<span class="logo-words">
+					<span>ACM</span><span>hack</span>
+				</span>
+			</a>
+			<div class="mobile hamburger">
+				<div class="hamburger-inner">
+					<div class="hamburg-line"></div>
+					<div class="hamburg-line"></div>
+					<div class="hamburg-line"></div>
+				</div>
+				<div class="hamburg-over">
+					<ul>
+						<li><a href="/">home</a></li>
+						<li><a href="/events">events</a></li>	
+						<li><a href="">blog</a></li>
+						<li><a href="">showcase</a></li>
+						<li><a href="">team</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<a class="login-wrapper" href="">
+			<img src="/common/images/School-Logo-White.png"/>
+			<span>HACK LOGIN</span>
+		</a>
+		<ul class="menu-inner">
+			<li><a href="/">home</a></li>
+			<li class="current"><a href="/events">events</a></li>
+			<li><a href="">blog</a></li>
+			<li><a href="">showcase</a></li>
+			<li><a href="">team</a></li>
+		</ul>
+	</div>
+
+
+<script>
+function toggleMenu(e){
+	menu.classList.toggle('active');
+	e.preventDefault();
+}
+
+const menu = document.querySelector('.hamburger');
+const menuInner = document.querySelector('.hamburger-inner');
+
+menuInner.addEventListener('click', toggleMenu);
+
+</script>
+</body>
+</html>
