@@ -14,13 +14,14 @@ let configAuth = (server) => {
 			enableProof: true
 		}, (accessToken, refreshToken, profile, callback) => {
 			db.User.findById(profile.id, (err, user) => {
-				if (err) throw err;
+				if (err) 
+					return callack(err, null);
 				if (!user) {
 					user = new db.User({
 						id: profile.id,
 						accessToken: accessToken,
-						name: profile.name.givenName + ' ' + profile.name.familyName,
 						email: profile.emails[0].value,
+						name: profile.name.givenName + ' ' + profile.name.familyName,
 						profilePicture: 'https://graph.facebook.com/v2.8/' + profile.id + '/picture'
 					});
 				}
