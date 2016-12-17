@@ -143,6 +143,10 @@ a{
 	float: left;
 }
 
+.logo-inner img{
+	position: fixed;
+}
+
 .logo-words{
 	position: absolute;
 	z-index: 100;
@@ -322,11 +326,6 @@ a{
 
 	.logo img, .menu-inner{
 		display: none;
-	}
-
-	.logo-inner{
-		display: inline;
-		height: 0px;
 	}
 
 	.logo-words{

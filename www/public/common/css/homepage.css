@@ -32,6 +32,15 @@
 	margin-top: -8px;
 }
 
+#square{
+	opacity: 1 !important;
+}
+
+#square.inactive{
+	-webkit-transform: rotate(90deg);
+			transform: rotate(-90deg);
+}
+
 #line1{
 	-webkit-transform: rotate(-45deg) translate(0, -142px);
 			transform: rotate(-45deg) translate(0, -142px);

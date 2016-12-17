@@ -53,7 +53,7 @@
 	<div class="opening-logo">
 		<img id="gear" class="inactive" src="/common/images/gear.png"/>
 		<img id="wrench" class="inactive" src="/common/images/wrench.png"/>
-		<div class="square">
+		<div id="square" class="inactive">
 			<div class="line inactive" id="line1"></div>
 			<div class="line inactive" id="line2"></div>
 			<div class="line inactive" id="line3"></div>
@@ -73,9 +73,7 @@
 <script>
 
 const lines = Array.from(document.querySelectorAll('.line'));
-const square = document.querySelector('.square');
-const gear = document.getElementById('gear');
-const wrench = document.getElementById('wrench');
+const logoChildren = Array.from(document.querySelectorAll('.opening-logo > *'));
 
 const menu = document.querySelector('.menu');
 const bg = document.querySelector('.main-bg');
@@ -107,9 +105,10 @@ function triggerAllAnimateIn(){
 function rotate(transition){
 	if(transition.propertyName != 'transform')
 		return;
-	square.style.transform = 'rotate(90deg)';
-	gear.classList.remove('inactive');
-	wrench.classList.remove('inactive');
+
+	logoChildren.forEach(function(child){
+		child.classList.remove('inactive');
+	});
 }
 
 function triggerInitial(){
