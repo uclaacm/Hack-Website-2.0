@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width" />
 	<title>ACM Hack</title>
-	
+
 	<link rel="stylesheet" type="text/css" href="/common/css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="/common/css/homepage.css"/>
 
@@ -28,12 +28,16 @@
 				</div>
 				<div class="hamburg-over">
 					<ul>
+						<li><img src="/common/images/Hack-Logo-White.png"/></li>
 						<li><a href="/">home</a></li>
-						<li><a href="/events">events</a></li>	
+						<li><a href="/events">events</a></li>
 						<li><a href="">blog</a></li>
 						<li><a href="">showcase</a></li>
-						<li><a href="">team</a></li>
+						<li><a href="/team">team</a></li>
 					</ul>
+				</div>
+				<div class="mobile-login">
+					<a href=""><h1 class="hack-mobile-login">LOGIN</h1></a>
 				</div>
 			</div>
 		</div>
@@ -46,14 +50,14 @@
 			<li><a href="/events">events</a></li>
 			<li><a href="">blog</a></li>
 			<li><a href="">showcase</a></li>
-			<li><a href="">team</a></li>
+			<li><a href="/team">team</a></li>
 		</ul>
 	</div>
 
 	<div class="opening-logo">
 		<img id="gear" class="inactive" src="/common/images/gear.png"/>
 		<img id="wrench" class="inactive" src="/common/images/wrench.png"/>
-		<div class="square">
+		<div id="square" class="inactive">
 			<div class="line inactive" id="line1"></div>
 			<div class="line inactive" id="line2"></div>
 			<div class="line inactive" id="line3"></div>
@@ -71,15 +75,12 @@
 		</div>
 	</div>
 <script>
-
-const lines = document.querySelectorAll('.line');
-const square = document.querySelector('.square');
-const gear = document.getElementById('gear');
-const wrench = document.getElementById('wrench');
+const lines = Array.from(document.querySelectorAll('.line'));
+const logoChildren = Array.from(document.querySelectorAll('.opening-logo > *'));
 
 const menu = document.querySelector('.menu');
 const bg = document.querySelector('.main-bg');
-const text = document.querySelectorAll('.text-over > *');
+const text = Array.from(document.querySelectorAll('.text-over > *'));
 
 const menuMobile = document.querySelector('.hamburger');
 const menuMobileInner = document.querySelector('.hamburger-inner');
@@ -88,36 +89,37 @@ function toggleMenu(e){
 	menuMobile.classList.toggle('active');
 	e.preventDefault();
 }
-
 function triggerAllAnimateIn(){
-	let stagger = 0;
+	var stagger = 1100;
 	menu.classList.remove('inactive');
-	setTimeout(() => bg.classList.remove('inactive'), 700);
-	setTimeout(() => text.forEach( title => {
-			setTimeout(() => title.classList.remove('inactive'), stagger);
-			stagger += 300;
-		}), 1100);
-}
+	setTimeout(function(){
+		bg.classList.remove('inactive');
+	}, 700);
 
+	text.forEach(function(title){
+		setTimeout(function(){
+			title.classList.remove('inactive');
+		}, stagger);
+		stagger += 300;
+	});
+}
 function rotate(transition){
-	if(transition.srcElement.id != 'line4' || transition.propertyName != 'transform')
+	if(transition.propertyName != 'transform')
 		return;
-	square.style.transform = 'rotate(90deg)';
-	gear.classList.remove('inactive');
-	wrench.classList.remove('inactive');
-}
 
+	logoChildren.forEach(function(child){
+		child.classList.remove('inactive');
+	});
+}
 function triggerInitial(){
-	lines.forEach(line => {
+	lines.forEach(function(line){
 		line.classList.remove('inactive');
 		line.addEventListener('transitionend', rotate);
 	});
 }
-
 menuMobileInner.addEventListener('click', toggleMenu);
 setTimeout(triggerInitial, 200);
 setTimeout(triggerAllAnimateIn, 1100);
-
 </script>
 </body>
 </html>
