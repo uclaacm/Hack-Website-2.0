@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width" />
 	<title>ACM Hack</title>
-	
+
 	<link rel="stylesheet" type="text/css" href="/common/css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="/common/css/homepage.css"/>
 
@@ -29,11 +29,14 @@
 				<div class="hamburg-over">
 					<ul>
 						<li><a href="/">home</a></li>
-						<li><a href="/events">events</a></li>	
+						<li><a href="/events">events</a></li>
 						<li><a href="">blog</a></li>
 						<li><a href="">showcase</a></li>
 						<li><a href="">team</a></li>
 					</ul>
+					<div class="mobile-login">
+						<h1 class="hack-mobile-login">HACKLOGIN</h1>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -71,24 +74,19 @@
 		</div>
 	</div>
 <script>
-
 const lines = document.querySelectorAll('.line');
 const square = document.querySelector('.square');
 const gear = document.getElementById('gear');
 const wrench = document.getElementById('wrench');
-
 const menu = document.querySelector('.menu');
 const bg = document.querySelector('.main-bg');
 const text = document.querySelectorAll('.text-over > *');
-
 const menuMobile = document.querySelector('.hamburger');
 const menuMobileInner = document.querySelector('.hamburger-inner');
-
 function toggleMenu(e){
 	menuMobile.classList.toggle('active');
 	e.preventDefault();
 }
-
 function triggerAllAnimateIn(){
 	let stagger = 0;
 	menu.classList.remove('inactive');
@@ -98,7 +96,6 @@ function triggerAllAnimateIn(){
 			stagger += 300;
 		}), 1100);
 }
-
 function rotate(transition){
 	if(transition.srcElement.id != 'line4' || transition.propertyName != 'transform')
 		return;
@@ -106,18 +103,15 @@ function rotate(transition){
 	gear.classList.remove('inactive');
 	wrench.classList.remove('inactive');
 }
-
 function triggerInitial(){
 	lines.forEach(line => {
 		line.classList.remove('inactive');
 		line.addEventListener('transitionend', rotate);
 	});
 }
-
 menuMobileInner.addEventListener('click', toggleMenu);
 setTimeout(triggerInitial, 200);
 setTimeout(triggerAllAnimateIn, 1100);
-
 </script>
 </body>
 </html>
