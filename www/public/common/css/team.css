@@ -1,0 +1,35 @@
+.content{
+	width: 70vw;
+	left: 50%;
+	-webkit-transform: translate(-50%, 0);
+			transform: translate(-50%, 0);
+}
+
+.header, .card-wrapper > *{
+	box-shadow: var(--shad);
+}
+
+/*==================HEADER==================*/
+
+.header{
+	background: #fff;
+	height: 250px;
+	margin-top: 20px;
+}
+
+
+/*================INFO-CARDS==================*/
+
+.card-wrapper{
+	margin-top: 2vw;
+}
+
+.card{
+	background: #fff;
+	width: 34vw;
+	float: left;
+}
+
+.card:first-child{
+	margin-right: 2vw;
+}
