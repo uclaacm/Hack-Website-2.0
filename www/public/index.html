@@ -72,14 +72,14 @@
 	</div>
 <script>
 
-const lines = document.querySelectorAll('.line');
+const lines = Array.from(document.querySelectorAll('.line'));
 const square = document.querySelector('.square');
 const gear = document.getElementById('gear');
 const wrench = document.getElementById('wrench');
 
 const menu = document.querySelector('.menu');
 const bg = document.querySelector('.main-bg');
-const text = document.querySelectorAll('.text-over > *');
+const text = Array.from(document.querySelectorAll('.text-over > *'));
 
 const menuMobile = document.querySelector('.hamburger');
 const menuMobileInner = document.querySelector('.hamburger-inner');
@@ -90,17 +90,22 @@ function toggleMenu(e){
 }
 
 function triggerAllAnimateIn(){
-	let stagger = 0;
+	var stagger = 1100;
 	menu.classList.remove('inactive');
-	setTimeout(() => bg.classList.remove('inactive'), 700);
-	setTimeout(() => text.forEach( title => {
-			setTimeout(() => title.classList.remove('inactive'), stagger);
-			stagger += 300;
-		}), 1100);
+	setTimeout(function(){
+		bg.classList.remove('inactive');
+	}, 700);
+
+	text.forEach(function(title){
+		setTimeout(function(){
+			title.classList.remove('inactive');
+		}, stagger);
+		stagger += 300;
+	});
 }
 
 function rotate(transition){
-	if(transition.srcElement.id != 'line4' || transition.propertyName != 'transform')
+	if(transition.propertyName != 'transform')
 		return;
 	square.style.transform = 'rotate(90deg)';
 	gear.classList.remove('inactive');
@@ -108,7 +113,7 @@ function rotate(transition){
 }
 
 function triggerInitial(){
-	lines.forEach(line => {
+	lines.forEach(function(line){
 		line.classList.remove('inactive');
 		line.addEventListener('transitionend', rotate);
 	});
