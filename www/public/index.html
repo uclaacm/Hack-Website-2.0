@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width" />
 	<title>ACM Hack</title>
-	
+
 	<link rel="stylesheet" type="text/css" href="/common/css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="/common/css/homepage.css"/>
 
@@ -28,12 +28,16 @@
 				</div>
 				<div class="hamburg-over">
 					<ul>
+						<li><img src="/common/images/Hack-Logo-White.png"/></li>
 						<li><a href="/">home</a></li>
-						<li><a href="/events">events</a></li>	
+						<li><a href="/events">events</a></li>
 						<li><a href="">blog</a></li>
 						<li><a href="">showcase</a></li>
 						<li><a href="">team</a></li>
 					</ul>
+				</div>
+				<div class="mobile-login">
+					<a href=""><h1 class="hack-mobile-login">LOGIN</h1></a>
 				</div>
 			</div>
 		</div>
@@ -71,7 +75,6 @@
 		</div>
 	</div>
 <script>
-
 const lines = Array.from(document.querySelectorAll('.line'));
 const logoChildren = Array.from(document.querySelectorAll('.opening-logo > *'));
 
@@ -86,7 +89,6 @@ function toggleMenu(e){
 	menuMobile.classList.toggle('active');
 	e.preventDefault();
 }
-
 function triggerAllAnimateIn(){
 	var stagger = 1100;
 	menu.classList.remove('inactive');
@@ -101,7 +103,6 @@ function triggerAllAnimateIn(){
 		stagger += 300;
 	});
 }
-
 function rotate(transition){
 	if(transition.propertyName != 'transform')
 		return;
@@ -110,18 +111,15 @@ function rotate(transition){
 		child.classList.remove('inactive');
 	});
 }
-
 function triggerInitial(){
 	lines.forEach(function(line){
 		line.classList.remove('inactive');
 		line.addEventListener('transitionend', rotate);
 	});
 }
-
 menuMobileInner.addEventListener('click', toggleMenu);
 setTimeout(triggerInitial, 200);
 setTimeout(triggerAllAnimateIn, 1100);
-
 </script>
 </body>
 </html>

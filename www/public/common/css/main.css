@@ -218,6 +218,10 @@ a{
 			transform: translate(150%);
 }
 
+.logo-mobile{
+	display: none;
+}
+
 /*=====================MOBILE-HAMBURGER======================*/
 
 .hamburger:hover{
@@ -237,8 +241,7 @@ a{
 	background: var(--hack-purp);
 	margin-bottom: 10px;
 	height: 6px;
-	border-radius: 2px;
-	transform-origin: 50% 43%;
+	
 
 	-webkit-transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
     		transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
@@ -249,10 +252,10 @@ a{
 	z-index: 1001;
 	height: 100vh;
 	width: 100vw;
-	background: rgba(0,0,0,0.8);
+	background: rgb(105,72,117);
 
-	-webkit-transform: translate(0, -100%);
-			transform: translate(0, -100%);
+	-webkit-transform: translate(-100%, 0);
+			transform: translate(-100%, 0);
 
 	-webkit-transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
     		transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
@@ -263,21 +266,40 @@ a{
 	height: 300px;
 	width: 100%;
 	top: 50%;
-	margin-top: -150px;
-	text-align: center;
+	margin-top: -200px;
+	margin-left: 8vw;
 	text-transform: uppercase;
 	color: #fff;
 }
 
-.hamburg-over li{
-	opacity: 0;
-	margin-top: 20px;
-	-webkit-transition: all 0.8s cubic-bezier(0.68,-0.12, 0.59, 0.98);
-    		transition: all 0.8s cubic-bezier(0.68,-0.12, 0.59, 0.98);
-}
-
 .hamburg-over a{
 	color: #fff;
+}
+
+.hamburg-over img{
+	margin-left: -10px;
+    margin-bottom: 10px;
+}
+
+.mobile-login{
+	z-index: 1005;
+	height: 70px;
+	width: 100vw;
+	background: #fff;
+	position: fixed;
+	top: 100vh;
+    margin-top: -70px;
+}
+
+.mobile-login h1{
+	font-size: 24px;
+}
+
+.hack-mobile-login{
+	font-family: var(--fam2);
+	text-align: center;
+	color: var(--hack-purp);
+	margin-top: 20px;
 }
 
 .active .hamburg-over{
@@ -285,23 +307,22 @@ a{
           	transform: translate(0);
 }
 
-.active .hamburg-over li{
-	opacity: 1;
-	margin-top: 0;
-}
-
 .active .hamburg-line{
 	background: #fff;
 }
 
+.hamburg-line:first-child{
+	transform-origin: 20%;
+}
+
 .active .hamburg-line:first-child{
-	-webkit-transform: rotate(45deg) translate(11px, 11px);
-          	transform: rotate(45deg) translate(11px, 11px);
+	-webkit-transform: rotate(45deg) translate(17px, 0px);
+          	transform: rotate(45deg) translate(17px, 0px);
 }
 
 .active .hamburg-line:nth-child(2){
-	-webkit-transform: rotate(-45deg);
-          	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg) translate(0, 10px);
+          	transform: rotate(-45deg) translate(0, 10px);;
 }
 
 .active .hamburg-line:nth-child(3){
@@ -324,26 +345,43 @@ a{
 		display: block;
 	}
 
-	.logo img, .menu-inner{
+	.menu-inner{
 		display: none;
 	}
 
+	.logo img{
+		display: block;
+	}
+
+	.logo-inner{
+		display: inline;
+		height: 0px;
+	}
+
 	.logo-words{
-		margin-left: 70px;
 		pointer-events: none;
+		letter-spacing: 0px;
 	}
 
 	.login-wrapper{
 		width: 70px;
+		left: 0px;
+		display: none;
 	}
 
 	.login-wrapper img{
 		margin-left: 0px;
+		display: none;
+	}
+
+	.hamburger-inner {
+		right: 0px;
+		margin-right: 10px;
+	}
+
+	.logo-mobile{
+		display: block;
+		left: 0px
 	}
 
 }
-
-
-/*================================================*/
-
-
