@@ -93,6 +93,10 @@ a{
 	opacity: 0.5;
 }
 
+.inactive{
+	opacity: 0;
+}
+
 .mobile{
 	display: none;
 }
@@ -299,132 +303,6 @@ a{
 .active .hamburg-line:nth-child(3){
 	opacity: 0;
 }
-/*================OPENING-LOGO-ANIMATION====================*/
-
-.opening-logo{
-	position: absolute;
-	z-index: -1;
-	top: 50%;
-	left: 50%;
-}
-
-.opening-logo > *{
-	position: absolute;
-}
-
-.opening-logo > img{
-	height: 200px;
-	margin-left: -100px;
-	margin-top: -100px;
-}
-
-.opening-logo > *, .line{
-	position: absolute;
-	-webkit-transition: all 0.4s cubic-bezier(0.71,-0.12, 0.37, 1.84);
-    		transition: all 0.4s cubic-bezier(0.71,-0.12, 0.37, 1.84);
-}
-
-.opening-logo .line{
-	height: 16px;
-	width: 350px;
-	background: var(--hack-purp);
-	margin-left: -175px;
-	margin-top: -8px;
-}
-
-#line1{
-	-webkit-transform: rotate(-45deg) translate(0, -168px);
-			transform: rotate(-45deg) translate(0, -168px);
-}
-
-#line2{
-	-webkit-transform: rotate(-45deg) translate(0, 168px);
-			transform: rotate(-45deg) translate(0, 168px);
-}
-
-#line3{
-	-webkit-transform: rotate(45deg) translate(0, 168px);
-			transform: rotate(45deg) translate(0, 168px);
-}
-
-#line4{
-	-webkit-transform: rotate(45deg) translate(0, -168px);
-			transform: rotate(45deg) translate(0, -168px);
-}
-
-.inactive{
-	opacity: 0;
-}
-
-#line1.inactive, #line2.inactive{
-	-webkit-transform: rotate(-45deg);
-			transform: rotate(-45deg);
-}
-
-#wrench.inactive{
-	-webkit-transform: rotate(135deg);
-			transform: rotate(135deg);
-}
-
-#line3.inactive, #line4.inactive, #gear.inactive{
-	-webkit-transform: rotate(45deg);
-			transform: rotate(45deg);
-}
-
-/*===================MAIN-BG====================*/
-
-.main-bg{
-	height: 100%;
-	width: 100%;
-	background-image: url('/common/images/HackSchool-gradientmap.jpg');
-	opacity: 1;
-	-webkit-transition: all 0.5s ease;
-    		transition: all 0.5s ease;
-}
-
-.inactive.main-bg{
-	opacity: 0;
-}
-
-.text-over{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
-}
-
-.text-over > *{
-	-webkit-transition: all 0.5s ease;
-    		transition: all 0.5s ease;
-}
-
-.text-over h1{
-	color: #fff;
-}
-
-.text-over h1.inactive{
-	transform: translateX(100px);
-}
-
-.btn-enter{
-	margin-top: 40px;
-}
-
-.btn-enter a{
-	color: var(--highlight);
-	padding: 20px;
-	border: 2px solid var(--highlight);
-
-	-webkit-transition: all 0.2s;
-    		transition: all 0.2s;
-}
-
-.btn-enter a:hover{
-	color: #fff;
-	background: var(--highlight);
-}
-
 
 /*==================MEDIA QUERIES=================*/
 
@@ -440,11 +318,6 @@ a{
 
 	.mobile{
 		display: block;
-	}
-
-	.opening-logo{
-		-webkit-transform: scale(0.5);
-				transform: scale(0.5);
 	}
 
 	.logo img, .menu-inner{
