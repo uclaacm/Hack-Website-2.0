@@ -3,7 +3,7 @@ let config = { database: {}, session: {}, ghost: { database: {} }, facebook: {} 
 
 if (env === "production") {
     config.port = process.env.PORT;
-    config.host = process.env.host;
+    config.host = process.env.HOST;
     config.session.secret = process.env.SESSION_SECRET;
     config.database.uri = process.env.MONGODB_URI;
     config.session.uri = process.env.REDIS_URL;

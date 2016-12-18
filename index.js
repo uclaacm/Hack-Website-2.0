@@ -26,6 +26,9 @@ server.use(app.session);
 app.auth.configAuth(server);
 server.use('/auth', app.auth.router);
 
+// Hack Data API
+server.use('/api', app.api.router);
+
 // Hack School routes
 server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
 
