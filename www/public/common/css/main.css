@@ -89,12 +89,6 @@ a{
 	font-style: italic;
 }
 
-
-.current{
-	color: var(--hack-purp);
-	opacity: 0.5;
-}
-
 .inactive{
 	opacity: 0;
 }
@@ -172,6 +166,12 @@ a{
 	font-family: var(--fam2);
 	margin-left: 35px;
 	letter-spacing: 2px;
+	opacity: 0.5;
+}
+
+.current{
+	color: var(--hack-purp);
+	opacity: 1 !important;
 }
 
 .menu-inner li:hover{
