@@ -78,7 +78,7 @@ Note that the response is still an array, and you need to access `events[0]`.
 
 #### `POST /api/v1/event`
 
-This API will let you create an event, provided you have the correct permission and the event data is not malformed.
+Create an event, provided you have the correct permission and the event data is not malformed.
 
 The request body must follow the following schema:
 
@@ -120,3 +120,65 @@ Where `token` is a valid token, and the remaining fields contain the event infor
 ```
 
 If the request was successful, the `success` field will be set to true and you'll receive a copy of the newly-created event.
+
+
+
+#### `PUT /api/v1/event/:eventID`
+
+Update an existing event, provided you have the correct permission, a valid event format, and an existing event ID. The schema for the request is the same as the `POST` request on this route, except the `id` field is ignored and you **only need to specify the fields that you wish to update**. To specify which event to update, specify its ID as `:eventID` in the URL. For example, a request `PUT /api/v1/event/a2c715f0-c66d-11e6-b91b-658ec3ef27fe` (note that this is the newly-created event from the `POST` request above) with the following body:
+
+```json
+{
+  "token": "[Authorization token here]",
+  "event": {
+    "desc": "Learn Android in 7 weeks. This week's topic: Java."
+  }
+}
+```
+
+would be applied to the object shown in the `POST` request above. In response, you might expect something in the form of:
+
+```json
+{
+  "success": true,
+  "event": {
+    "id": "a2c715f0-c66d-11e6-b91b-658ec3ef27fe",
+    "date": {
+      "start": "2016-12-18T19:10:33.251Z",
+      "end": "2016-12-18T19:12:07.770Z"
+    },
+    "desc": "Learn Android in 7 weeks. This week's topic: Java.",
+    "title": "Hack School Session 3",
+    "location": "PAB 1425",
+    "category": "Hack School",
+    "tagline": "From Zero to Hero"
+  }
+}
+```
+
+
+
+#### `DELETE /api/v1/event`
+
+Deletes all events currently in the database. Requires a token in the body:
+
+```json
+{
+  "token": "[Authorization Token here]"
+}
+```
+
+You'll receive a response in the following format:
+
+```json
+{
+  "success": true,
+  "removed": 7
+}
+```
+
+Where `success` indicates whether or not the request was successful, and `removed` indicates how many records were removed.
+
+#### `DELETE /api/v1/event/:eventID`
+
+This request is identical to the previous `DELETE` request, except it specifies and event ID to delete through the URL (in place of `:eventID`), and only removes that event.
