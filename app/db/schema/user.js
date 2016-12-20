@@ -4,7 +4,11 @@ let ObjectId = Schema.ObjectId;
 let Score = require('./score');
 let User = new Schema({
     id: { type: String, required: true, minLength: 4, unique: true },
-	state: { type: String, default: 'PENDING', enum: [ 'PENDING', 'ACTIVE', 'BLOCKED' ] },
+	state: {
+		type: String,
+		default: 'PENDING',
+		enum: [ 'PENDING', 'ACTIVE', 'BLOCKED' ]
+	},
 	name: { type: String, required: true},
 	profilePicture: { type: String },
 	scores: { type: [Score] },

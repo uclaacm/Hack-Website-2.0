@@ -6,6 +6,7 @@ let db = require('../db');
 let router = express.Router();
 
 let configAuth = (server) => {
+	// Load the Facebook Passport Strategy
 	passport.use(new FacebookStrategy({
 			clientID: config.facebook.appId,
 			clientSecret: config.facebook.secret,
@@ -13,6 +14,9 @@ let configAuth = (server) => {
 			profileFields: ['id', 'name', 'emails'],
 			enableProof: true
 		}, (accessToken, refreshToken, profile, callback) => {
+			// Find the use by facebook profile id
+			// If found, updated the access token and continue authentication
+			// If not found, create the user and continue authentication
 			db.User.findById(profile.id, (err, user) => {
 				if (err) 
 					return callack(err, null);
@@ -35,20 +39,25 @@ let configAuth = (server) => {
 		}
 	));
 	
+	// Serializing users: a user is represented by their ID
 	passport.serializeUser((user, done) => {
 		done(null, user.id);
 	});
 
+	// Deserializing users: lookup a user by id (how we serialized) and find the 
+	//   rest of the user info
 	passport.deserializeUser((id, done) => {
 		db.User.findById(id, (err, user) => {
 			done(err, user);
 		});
 	});
 
+	// Let the express server use the passport.
 	server.use(passport.initialize());
 	server.use(passport.session());
 };
 
+// middleware to determine whether a user is authenticated
 let authenticated = (req, res, next) => {
 	if (req.user) {
 		next();
@@ -67,7 +76,10 @@ router.get('/', (req, res) => {
 	res.render('auth/login');
 });
 
+// Route to visit to initiate a Facebook authentication
 router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+// Callback for Facebook authentication (Facebook gives us public profile and token)
 router.get('/facebook/callback',
 	passport.authenticate('facebook', {
 		failureRedirect: '/auth'
@@ -82,6 +94,7 @@ router.get('/facebook/callback',
 	}
 );
 
+// Logout route
 router.get('/logout', (req, res) => {
 	req.logout();
 	res.redirect('/auth');
