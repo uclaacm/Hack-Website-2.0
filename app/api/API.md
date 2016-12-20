@@ -50,7 +50,7 @@ Each `date.start` and `date.end` can be converted into Javascript Date objects (
 
 #### `GET /api/v1/event/:eventID`
 
-Find an return all events matching the given event ID. An example request to `GET /api/v1/event/307e6d30-c556-11e6-9cb8-bb15b01c6e55` would yield a response in the following format:
+Find and return all events matching the given event ID. An example request to `GET /api/v1/event/307e6d30-c556-11e6-9cb8-bb15b01c6e55` would yield a response in the following format:
 
 ```JSON
 {
