@@ -84,17 +84,17 @@ The request body must follow the following schema:
 
 ```json
 {
-  token: { type: String, required: true },
-  event: {
-    date: {
-        start: { type: Date, required: true },
-        end: { type: Date, required: true },
+  "token": { "type": String, "required": true },
+  "event": {
+    "date": {
+        "start": { "type": Date, "required": true },
+        "end": { "type": Date, "required": true },
     },
-    desc: { type: String },
-    title: { type: String, required: true },
-    location: { type: String, required: true },
-    category: { type: String, required: true },
-    tagline: { type: String }
+    "desc": { "type": String },
+    "title": { "type": String, "required": true },
+    "location": { "type": String, "required": true },
+    "category": { "type": String, "required": true },
+    "tagline": { "type": String }
   }
 }
 ```
