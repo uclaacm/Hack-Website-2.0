@@ -16,6 +16,7 @@ if (env === "production") {
     config.ghost.database.uri = "postgres://localhost/acm-hack-dev-db";
 }
 
+config.apiSecret = "akhilissuchaballer";
 config.ghost.url = config.host + "/blog";
 config.facebook.appId = "229762920785401";
 config.facebook.secret = "a6e3b6dee5c7424fd0605a6679052739";

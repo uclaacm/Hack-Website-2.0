@@ -2,6 +2,6 @@ const express = require('express');
 let router = express.Router();
 
 // Route each API
-router.use('/events', require('./events').router);
+router.use('/event', require('./event').router);
 
 module.exports = { router };
