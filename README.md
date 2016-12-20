@@ -30,4 +30,10 @@ Installing the new website is easy. Simply clone this repository and run:
 $ npm install --production
 $ npm start
 ```
+To run the webpack dev server:
+
+```shell
+$ npm run webpack
+```
+
 
