@@ -3,8 +3,7 @@ module.exports = {
     './www/public/index.js'
   ],
   output: {
-    path: '/common/js',
-    publicPath: '/common/js',
+    path: 'www/public/common/js',
     filename: 'bundle.js'
   },
   watch: true,

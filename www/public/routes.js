@@ -8,8 +8,8 @@ import Showcase from './components/showcase';
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={MainIndex} />
-		<Route path="/events" component={Events} />
-		<Route path="/showcase" component={Showcase} />
+		<Route path="/events.html" component={Events} />
+		<Route path="/showcase.html" component={Showcase} />
 	</Route>
 );
 
