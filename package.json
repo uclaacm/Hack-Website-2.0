@@ -4,7 +4,7 @@
   "description": "The UCLA ACM Hack Website",
   "main": "index.js",
   "engines": {
-    "node": "6.9.0"
+    "node": ">=6.9.0 <=6.9.2"
   },
   "scripts": {
     "preinstall": "scripts/preinstall",
