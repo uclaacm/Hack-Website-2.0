@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const FETCH_ALL_EVENTS = 'FETCH_ALL_EVENTS';
+export const FILTER_EVENTS = 'FILTER_EVENTS';
 export const FETCH_CAT_EVENTS = 'FETCH_CAT_EVENTS';
 
 export function fetchAllEvents(){
@@ -41,6 +42,13 @@ export function fetchAllEvents(){
 	return {
 		type: FETCH_ALL_EVENTS,
 		payload: request
+	}
+}
+
+export function filterEvents(filteredEvents){
+	return {
+		type: FILTER_EVENTS,
+		payload: filteredEvents
 	}
 }
 

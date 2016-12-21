@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllEvents } from '../actions/index';
+import { fetchAllEvents, filterEvents } from '../actions/index';
 import EventsListItem from './events-list-item';
 
 
@@ -24,21 +24,25 @@ class EventsList extends Component{
 	}
 
 	render(){
+
+		if( this.props.filteredEvents.length == 0)
+			return <div>No available events in the selected category.</div>;
+
 		return (
 			<div>
-				{ this.props.events.map(this.renderEventItem) }
+				{ this.props.filteredEvents.map(this.renderEventItem) }
 			</div>
 		);
 	}
 
 }
 
-function mapStateToProps({events}){
-	return {events};
+function mapStateToProps({events, filteredEvents}){
+	return {events, filteredEvents};
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({ fetchAllEvents }, dispatch);
+	return bindActionCreators({ fetchAllEvents, filterEvents }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsList);

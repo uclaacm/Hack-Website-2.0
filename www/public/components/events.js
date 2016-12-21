@@ -6,6 +6,7 @@ export default class Events extends Component{
 	render(){
 		return (
 			<div>
+				<p>Select hack school for now...</p>
 				<Filter />
 				<EventsList />
 			</div>
