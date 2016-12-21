@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    './www/public/src/index.js'
+    './www/public/react-src/index.js'
   ],
   output: {
     path: 'www/public/common/js',
