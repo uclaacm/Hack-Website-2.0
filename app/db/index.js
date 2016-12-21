@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 
+// Use native ES6 promises
+mongoose.Promise = global.Promise;
 mongoose.connect(config.database.uri);
 
 let ShowcaseProject = mongoose.model('ShowcaseProject', require('./schema/showcaseProject'));
