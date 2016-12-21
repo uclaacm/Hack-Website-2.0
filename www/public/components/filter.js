@@ -19,15 +19,15 @@ class Filter extends Component{
 	render(){
 		return(
 			<ul>
-				{this.props.events.map(this.renderList)}
+				{this.props.categories.map(this.renderList)}
 			</ul>
 		);
 	}
 
 }
 
-function mapStateToProps({events}){
-	return {events};
+function mapStateToProps({categories}){
+	return {categories};
 }
 
 export default connect(mapStateToProps)(Filter);

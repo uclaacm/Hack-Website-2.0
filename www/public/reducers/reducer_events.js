@@ -1,12 +1,11 @@
+import { FETCH_ALL_EVENTS } from '../actions/index';
 
+export default (state = [], action) => {
 
-export default () => {
-	return [
-		'General',
-		'Hack School',
-		'Hackcelerator',
-		'Hack on the Hill',
-		'Showcase',
-		'Other'
-	];
+	switch(action.type){
+		case FETCH_ALL_EVENTS:
+			return [...action.payload.events];
+		default:
+			return state;
+	}
 }
