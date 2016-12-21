@@ -123,9 +123,9 @@ If the request was successful, the `success` field will be set to true and you'l
 
 
 
-#### `PUT /api/v1/event/:eventID`
+#### `PATCH /api/v1/event/:eventID`
 
-Update an existing event, provided you have the correct permission, a valid event format, and an existing event ID. The schema for the request is the same as the `POST` request on this route, except the `id` field is ignored and you **only need to specify the fields that you wish to update**. To specify which event to update, specify its ID as `:eventID` in the URL. For example, a request `PUT /api/v1/event/a2c715f0-c66d-11e6-b91b-658ec3ef27fe` (note that this is the newly-created event from the `POST` request above) with the following body:
+Update an existing event, provided you have the correct permission, a valid event format, and an existing event ID. The schema for the request is the same as the `POST` request on this route, except the `id` field is ignored and you **only need to specify the fields that you wish to update**. In other words, this request **applies a delta to an existing event**. To specify which event to update, specify its ID as `:eventID` in the URL. For example, a request `PATCH /api/v1/event/a2c715f0-c66d-11e6-b91b-658ec3ef27fe` (note that this is the newly-created event from the `POST` request above) with the following body:
 
 ```json
 {
