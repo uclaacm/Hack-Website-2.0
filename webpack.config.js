@@ -1,10 +1,9 @@
 module.exports = {
   entry: [
-    './www/public/index.js'
+    './www/public/react-src/index.js'
   ],
   output: {
-    path: '/common/js',
-    publicPath: '/common/js',
+    path: 'www/public/common/js',
     filename: 'bundle.js'
   },
   watch: true,
