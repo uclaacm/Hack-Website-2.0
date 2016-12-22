@@ -1,3 +1,25 @@
+@font-face {
+	font-family: 'Open Sans';
+	src: url('/common/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('/common/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face{
+	font-family: 'Source Code Pro';
+	src: url('/common/fonts/SourceCodePro-Regular.ttf');
+}
+
+:root{
+	--fam1: 'Open Sans', sans-serif;
+	--fam2: 'Montserrat', sans-serif;
+	--fam3: 'Source Code Pro', sans-serif;
+}
+
+
 .content{
 	width: 70vw;
 	left: 50%;
@@ -10,11 +32,36 @@
 }
 
 /*==================HEADER==================*/
-
+.team_pic
+{
+	width:  320px; 
+    height: 250px;
+	float:left;
+	margin-top: 0px;
+	margin-left:0px;
+}
 .header{
 	background: #fff;
 	height: 250px;
 	margin-top: 20px;
+}
+.who_we_are{
+	margin-left: 350px;
+	font-family: var(--fam2);
+	font-weight: bold;
+	font-size: 35px;
+	letter-spacing: 2px
+	
+
+}
+
+.team_description{
+
+	margin-left: 350px;
+	margin-right: 20px;
+	margin-bottom: 15px;
+	font-family: var(--fam1);
+	font-size: 16px;
 }
 
 
@@ -28,8 +75,52 @@
 	background: #fff;
 	width: 34vw;
 	float: left;
+	text-align: center;
+
+
 }
 
 .card:first-child{
 	margin-right: 2vw;
+}
+
+.title{
+	margin-top: 40px;
+	font-family: var(--fam2);
+	font-weight: bold;
+	font-size: 28px;
+	letter-spacing: 5px;
+}
+.member{
+	margin-top: 25px;
+	text-align: right;
+}
+
+
+.profile_pic{
+	width:  80px; 
+    height: 80px;
+	border-radius: 50%;
+	float:left;
+	margin-left:28px;
+}
+
+.member_name{
+	font-family: var(--fam1);
+	font-weight: 900;
+	font-size: 17px;
+	margin-left: 140px;
+	text-align: left;
+	letter-spacing: 2px;
+	
+
+}
+.member_info{
+	font-family: var(--fam1);
+	font-size: 16px;
+	margin-left: 140px;
+	text-align: left;
+	
+	
+	
 }
