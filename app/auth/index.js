@@ -17,12 +17,12 @@ let configAuth = (server) => {
 			// Find the use by facebook profile id
 			// If found, updated the access token and continue authentication
 			// If not found, create the user and continue authentication
-			db.User.findById(profile.id, (err, user) => {
+			db.User.findByProfileId(profile.id, (err, user) => {
 				if (err) 
 					return callack(err, null);
 				if (!user) {
 					user = new db.User({
-						id: profile.id,
+						profileId: profile.id,
 						accessToken: accessToken,
 						email: profile.emails[0].value,
 						name: profile.name.givenName + ' ' + profile.name.familyName,

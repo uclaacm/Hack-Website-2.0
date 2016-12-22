@@ -7,9 +7,9 @@ let router = express.Router();
 router.route('/:eventId?')
 .all((req, res, next) => {
 	// Parse and store the requested event ID, token, and event information
-	//   event ID is used to identify an event to read, modify, or delete (GET, PUT, DELETE)
-	//   token is used to authorize modification requests (POST, PUT, DELETE)
-	//   event is used to add or modify events (POST, PUT)
+	//   event ID is used to identify an event to read, modify, or delete (GET, PATCH, DELETE)
+	//   token is used to authorize modification requests (POST, PATCH, DELETE)
+	//   event is used to add or modify events (POST, PATCH)
 	req.eventId = req.params.eventId || null;
 	req.validToken = req.body && req.body.token && crypto.verifyToken(req.body.token);
 	req.event = req.body && req.body.event
@@ -51,8 +51,8 @@ router.route('/:eventId?')
 		});
 	});
 })
-.put((req, res, next) => {
-	// PUT request updates an existing event
+.patch((req, res, next) => {
+	// PATCH request updates an existing event
 	//   If there isn't an event ID or there isn't a field description of what to update,
 	//   then the request is malformed
 	if (!req.eventId || !req.event)

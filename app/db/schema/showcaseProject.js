@@ -3,7 +3,7 @@ const _ = require('underscore');
 let Schema = require('mongoose').Schema;
 let ObjectId = Schema.ObjectId;
 
-let Event = new Schema({
+let ShowcaseProject = new Schema({
 	id: {
 		type: String,
 		required: true,
@@ -11,32 +11,31 @@ let Event = new Schema({
 		default: () => uuid.v4()
 	},
 	date: {
-		start: { type: Date, required: true },
-		end: { type: Date, required: true },
+		type: Date,
+		required: true,
+		default: () => new Date()
 	},
 	desc: { type: String },
+	image: { type: String },
+	link: { type: String, required: true },
 	title: { type: String, required: true },
-	location: { type: String, required: true },
-	category: { type: String, required: true },
-	tagline: { type: String }
+	contributors: { type: [String], required: true }
 });
 
-Event.statics.findById = function(id, callback) {
+ShowcaseProject.statics.findById = function(id, callback) {
 	this.findOne({ id }, (err, event) => {
 		callback(err, event);
 	});
 };
 
-Event.statics.sanitize = function(event, withId=true) {
-	let pickProperties = ['date','desc','title','location','category','tagline'];
+ShowcaseProject.statics.sanitize = function(event, withId=true) {
+	let pickProperties = ['date','desc','image','link','title','contributors'];
 	if (withId) pickProperties.unshift('id');
 	event = _.pick(event, pickProperties);
-	if (event.date)
-		event.date = _.pick(event.date, ['start', 'end']);
 	return event;
 };
 
-Event.methods.update = function(event) {
+ShowcaseProject.methods.update = function(event) {
 	if (!event) return;
 	let applyDelta = (delta, target) => {
 		for (let key in delta) {
@@ -50,4 +49,4 @@ Event.methods.update = function(event) {
 	applyDelta(event, this);
 };
 
-module.exports = Event;
+module.exports = ShowcaseProject;
