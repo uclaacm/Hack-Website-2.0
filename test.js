@@ -10,18 +10,3 @@ describe('testing DB query for all eventss', function(){
     });
   });
 });
-
-
-// .get((req, res, next) => {
-// 	// GET request finds an event by the event ID, if given, otherwise get all events
-// 	let dbQuery = req.eventId ? { id: req.eventId } : {};
-//
-// 	db.Event.find(dbQuery).exec((err, results) => {
-// 		res.status(err ? 500 : 200).json({
-// 			success: !err,
-// 			events: err ? [] : results.map(event => {
-// 				return db.Event.sanitize(event);
-// 			})
-// 		});
-// 	});
-// })
