@@ -38,8 +38,16 @@ Event.statics.sanitize = function(event, withId=true) {
 
 Event.methods.update = function(event) {
 	if (!event) return;
-	for (let key in event)
-		this[key] = event[key];
+	let applyDelta = (delta, target) => {
+		for (let key in delta) {
+			if (typeof delta[key] === typeof {})
+				applyDelta(delta[key], target[key])
+			else
+				target[key] = delta[key]
+		}
+	};
+	
+	applyDelta(event, this);
 };
 
 module.exports = Event;
