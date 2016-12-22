@@ -5,7 +5,7 @@ import EventsList from './events-list';
 export default class Events extends Component{
 	render(){
 		return (
-			<div>
+			<div className="events-page">
 				<Filter />
 				<EventsList />
 			</div>

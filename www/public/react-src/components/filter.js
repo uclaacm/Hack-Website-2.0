@@ -46,7 +46,7 @@ class Filter extends Component{
 		if(!toggle)
 			this.setStateAndCallAction([]);
 		else
-			this.setStateAndCallAction(this.props.categories);
+			this.setStateAndCallAction(this.props.categories.map(cat => cat.name));
 	}
 
 	onCheckBoxToggle(e){		
@@ -68,9 +68,14 @@ class Filter extends Component{
 
 	renderList(category){
 		return (
-			<li key={category}>
-				<input type="checkbox" value={category} onChange={this.onCheckBoxToggle}/>
-				<label htmlFor={category}>{category}</label>
+			<li key={category.name}>
+				<input 	type="checkbox" className="checkbox" value={category.name}
+						id={category.name} onChange={this.onCheckBoxToggle}/>
+				
+				<div className="custom-check">
+				    <label htmlFor={category.name}></label>
+				    <p>{category.name}</p>
+				</div>
 			</li>
 		);
 	}
@@ -78,7 +83,7 @@ class Filter extends Component{
 	render(){
 		return(
 			<form name="filter">
-				<ul>
+				<ul className="checkbox-list">
 					{this.props.categories.map(this.renderList)}
 					<li key="clear">
 						<button onClick={(e) =>{

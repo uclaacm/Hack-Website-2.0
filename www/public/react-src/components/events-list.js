@@ -14,7 +14,8 @@ class EventsList extends Component{
 	renderEventItem(event){
 		return (
 			<EventsListItem key			= { event.id }
-							date		= { event.date.start }
+							dateStart	= { event.date.start }
+							dateEnd		= { event.date.end }
 							title		= { event.title }
 							location	= { event.location }
 							category	= { event.category }
@@ -25,10 +26,10 @@ class EventsList extends Component{
 
 	render(){
 		if( this.props.filteredEvents.length == 0)
-			return <div>Click on more categories.</div>;
+			return <div className="events-list events-item events-none">Click on more categories.</div>;
 
 		return (
-			<div>
+			<div className="events-list">
 				{ this.props.filteredEvents.map(this.renderEventItem) }
 			</div>
 		);
