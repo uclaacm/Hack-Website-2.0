@@ -4,7 +4,7 @@ export default (state = [], action) => {
 
 	switch(action.type){
 		case FETCH_ALL_EVENTS:
-			return action.payload.events;
+			return action.payload.data.events;
 		default:
 			return state;
 	}

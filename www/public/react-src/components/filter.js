@@ -19,7 +19,7 @@ class Filter extends Component{
 
 	//sets default state to be all checked
 	componentDidMount(){
-		this.toggleBoxes(true);
+		//this.toggleBoxes(true);
 	}
 
 	setAllCheckBoxes(toggle)
@@ -52,14 +52,14 @@ class Filter extends Component{
 	onCheckBoxToggle(e){		
 		const selectedCategory = e.target.value;
 		const stateCats = this.state.selectedCategories;
-		const index = this.state.selectedCategories.indexOf(selectedCategory);
+		const index = stateCats.indexOf(selectedCategory);
 		
 		//updating state to reflect checked checkboxes
 		let newCategories;
 		if(index == -1)
-			newCategories = [...stateCats, selectedCategory];
+			newCategories = [...stateCats, selectedCategory]; 	//copy of appended
 		else
-			newCategories = [...stateCats.slice(0, index),
+			newCategories = [...stateCats.slice(0, index),		//copy of removed
 							 ...stateCats.slice(index+1)];
 
 		//passing in component state to action creator

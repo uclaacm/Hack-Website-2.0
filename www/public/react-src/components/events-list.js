@@ -24,9 +24,8 @@ class EventsList extends Component{
 	}
 
 	render(){
-
 		if( this.props.filteredEvents.length == 0)
-			return <div>No available events in the selected category.</div>;
+			return <div>Click on more categories.</div>;
 
 		return (
 			<div>
