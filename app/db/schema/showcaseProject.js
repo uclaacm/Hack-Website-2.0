@@ -8,7 +8,7 @@ let ShowcaseProject = new Schema({
 		type: String,
 		required: true,
 		unique: true,
-		default: () => uuid.v1()
+		default: () => uuid.v4()
 	},
 	date: {
 		type: Date,

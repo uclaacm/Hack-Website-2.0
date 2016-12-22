@@ -1,6 +1,16 @@
+[TOC]
+
 # ACM Hack API 
 
-This API was written so that data on the Hack website can easily be accessed and modified. Each API will return a JSON object, with a top-level field `success`, which indicated whether or not the request executed successfully or not. Always make sure to check this field before trying to use the returned data, or making further requests based on this one. The API assumes you are familiar with RESTful and CRUD models, and are comfortable manipulating JSON objects.
+This API was written so that data on the Hack website can easily be accessed and modified. A few notes:
+
+- Each API will return a JSON object, with a top-level field `success`, which indicated whether or not the request executed successfully or not.
+  - Always make sure to check this field before trying to use the returned data, or making further requests based on this one.
+- All dates are in GMT ISO format. The Javascript `Date` class' default constructor can automatically convert it to a `Date` object. Make sure any dates displayed are converted to the user's local time zone.
+- This API assumes you are familiar with RESTful and CRUD models.
+- This API assumes you are comfortable manipulating JSON objects.
+
+
 
 ## Events
 
@@ -72,7 +82,7 @@ Find and return all events matching the given event ID. An example request to `G
 }
 ```
 
-Note that the response is still an array, and you need to access `events[0]`.
+Note that the response is still an array, and you need to access `events[0]`. Also, if there are no events with the specified ID, **the `success` field may still be `true`**. Make sure you check the length of `events` before trying to access it.
 
 
 
@@ -179,6 +189,193 @@ You'll receive a response in the following format:
 
 Where `success` indicates whether or not the request was successful, and `removed` indicates how many records were removed.
 
+
+
 #### `DELETE /api/v1/event/:eventID`
 
-This request is identical to the previous `DELETE` request, except it specifies and event ID to delete through the URL (in place of `:eventID`), and only removes that event.
+This request is identical to the previous `DELETE` request, except it specifies an event ID to delete through the URL (in place of `:eventID`), and only removes that event.
+
+
+
+## Showcase Projects
+
+We also display showcase projects on our website. The API to view, create, update, and delete showcase projects is identical to the the events API, except that the schema of a showcase project is different.
+
+
+
+#### `GET /api/v1/showcase`
+
+This request will return an object containing an array of all showcase projects. The response will be in the following format:
+
+```json
+{
+  "success": true,
+  "projects": [
+    {
+      "id": "1653fac0-c712-11e6-b0e4-fd8b404bc168",
+      "date": "2016-12-21T00:11:57.932Z",
+      "desc": "An API for ACM Hack to view, create, update, and delete showcase projects",
+      "image": "/some/image/url.png",
+      "link": "/api/v1/showcase",
+      "title": "Hack Showcase API",
+      "contributors": [
+        "Nikhil Kansal",
+        "Yvonne Chen",
+        "Justin Liu"
+      ]
+    },
+    {
+      "id": "8891a468-f32c-4e75-a434-8ced1df9183a",
+      "date": "2016-12-22T05:47:15.722Z",
+      "desc": "The dashboard for hack school students to complete hack school tasks",
+      "image": "/some/image/url.png",
+      "link": "http://hackucla.com/hackschool",
+      "title": "Hack School Dashboard",
+      "contributors": [
+        "Nikhil Kansal",
+        "Justin Liu",
+        "Yvonne Chen"
+      ]
+    }
+  ]
+}
+```
+
+The response has a top-level field `success` which indicates whether or not the request could be fulfilled successfully. It should be checked before any further operations are conducted.
+
+
+
+#### `GET /api/v1/showcase/:projectID`
+
+Find and return all projects that match a specific project ID (specified in place od `:projectId`). For example, a request to `GET /api/v1/showcase/1653fac0-c712-11e6-b0e4-fd8b404bc168` might result in a response in the following format:
+
+```Json
+{
+  "success": true,
+  "projects": [
+    {
+      "id": "1653fac0-c712-11e6-b0e4-fd8b404bc168",
+      "date": "2016-12-21T00:11:57.932Z",
+      "desc": "An API for ACM Hack to view, create, update, and delete showcase projects",
+      "image": "/some/image/url.png",
+      "link": "/api/v1/showcase",
+      "title": "Hack Showcase API",
+      "contributors": [
+        "Nikhil Kansal",
+        "Yvonne Chen",
+        "Justin Liu"
+      ]
+    }
+  ]
+}
+```
+
+Note that the response is still an array, and you need to access `projects[0]`. Also, if there are no events with the specified ID, **the `success` field may still be `true`**. Make sure you check the length of `projects` before trying to access it.
+
+
+
+#### `POST /api/v1/showcase`
+
+Create a showcase project, provided you have the correct permission and the event data is not malformed.
+
+The request body must follow the following schema:
+
+```Javascript
+{
+  token: { type: String, required: true},
+  project: {
+    desc: { type: String },
+    image: { type: String },
+    link: { type: String, required: true },
+    title: { type: String, required: true },
+    contributors: { type: [String], required: true }
+  }
+}
+```
+
+Where `token` is a valid token, and the remaining fields contain the project information. You'll receive a response in the following format:
+
+```json
+{
+  "success": true,
+  "project": {
+    "id": "02261896-ce32-4fa5-906e-57650684c721",
+    "date": "2016-12-22T05:57:51.155Z",
+    "desc": "The next big messenger app",
+    "image": "/some/image/url.png",
+    "link": "http://bruinmessenger.herokuapp.com",
+    "title": "Bruin Messenger",
+    "contributors": [
+      "Dmitri Brereton"
+    ]
+  }
+}
+```
+
+If the request was successful, the `success` field will be set to `true` and you'll receive a copy of the newly-created project.
+
+
+
+#### `PATCH /api/v1/showcase/:projectID`
+
+Update an existing project, provided you have the correct permission, a valid event format, and an existing project ID. The schema for the request is the same as the `POST` request on this route, except the `id` field is ignored and you **only need to specify the fields that you wish to update**. In other words, this request **applies a delta to an existing project**. To specify which project to update, specify its ID as `:projectID` in the URL. For example, a request `PATCH /api/v1/project/02261896-ce32-4fa5-906e-57650684c721` (note that this is the newly-created project from the `POST` request above) with the following body:
+
+```Json
+{
+  "token": "[Authorization token here",
+  "project": {
+    "contributors": ["Dmitri Brereton", "Ky-Coung Hyunh"]
+  }
+}
+```
+
+would be applied to the object shown in the `POST` request above. In repsonse, you might expect something in the form of:
+
+```JSON
+{
+  "success": true,
+  "project": {
+    "id": "02261896-ce32-4fa5-906e-57650684c721",
+    "date": "2016-12-22T05:57:51.155Z",
+    "desc": "The next big messenger app",
+    "image": "/some/image/url.png",
+    "link": "http://bruinmessenger.herokuapp.com",
+    "title": "Bruin Messenger",
+    "contributors": [
+      "Dmitri Brereton",
+      "Ky-Coung Hyunh"
+    ]
+  }
+}
+```
+
+The returned `project` is a confirmation of the updated project object.
+
+
+
+#### `DELETE /api/v1/showcase`
+
+Deletes all showcase projects currently in the database. Requires a token in the body.
+
+```json
+{
+  "token": "[Authorization token here"
+}
+```
+
+You'll receive a response in the following format:
+
+```JSON
+{
+  "success": true,
+  "removed": 4
+}
+```
+
+Where `success` indicates whether or not the request was successful, and `removed` indicates how many records were removed.
+
+
+
+#### `DELETE /api/v1/project/:projectID`
+
+This request is identical to the previous `DELETE` request, except it specifies a project ID to delete through the URL (in place of `:projectID`), and only removes that project.

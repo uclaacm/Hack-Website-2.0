@@ -8,7 +8,7 @@ let Event = new Schema({
 		type: String,
 		required: true,
 		unique: true,
-		default: () => uuid.v1()
+		default: () => uuid.v4()
 	},
 	date: {
 		start: { type: Date, required: true },
