@@ -4,6 +4,10 @@ const crypto = require('../../../crypto');
 const db = require('../../../db');
 let router = express.Router();
 
+//TODO:
+//add support of filtering based upon category
+//add error fields to response, that is empty if the request was successful or gives a description of the error(s) if it was not.
+
 router.route('/:eventId?')
 .all((req, res, next) => {
 	// Parse and store the requested event ID, token, and event information
@@ -13,7 +17,7 @@ router.route('/:eventId?')
 	req.eventId = req.params.eventId || null;
 	req.validToken = req.body && req.body.token && crypto.verifyToken(req.body.token);
 	req.event = req.body && req.body.event
-	                     && typeof req.body.event === "object" ? 
+	                     && typeof req.body.event === "object" ?
 						     db.Event.sanitize(req.body.event, withId=false) : null;
 	next();
 })
@@ -25,7 +29,7 @@ router.route('/:eventId?')
 		res.status(err ? 500 : 200).json({
 			success: !err,
 			events: err ? [] : results.map(event => {
-				return db.Event.sanitize(event); 
+				return db.Event.sanitize(event);
 			})
 		});
 	});
@@ -41,7 +45,7 @@ router.route('/:eventId?')
 	//   If there is an event ID or there isn't an event to post, the request is malformed
 	if (req.eventId || !req.event)
 		return res.status(400).json({ success: false });
-	
+
 	// Create a new event with the given details (sanitized in .all)
 	let newEvent = new db.Event(req.event);
 	newEvent.save((err, updatedEvent) => {
@@ -57,7 +61,7 @@ router.route('/:eventId?')
 	//   then the request is malformed
 	if (!req.eventId || !req.event)
 		return res.status(400).json({ success: false });
-	
+
 	// Find the event by ID and update the field based on the given details (sanitized in .all)
 	db.Event.findById(req.eventId, (err, event) => {
 		if (err || !event)
