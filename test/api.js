@@ -8,12 +8,14 @@ let server = require('../index');
 let should = chai.should();
 
 chai.use(chaiHttp);
+const eventUrl = '/api/v1/event';
+const dummyId = '307e6d30-c556-11e6-9cb8-bb15b01c6e55';
 
 describe("API.v1", () => {
 	describe("Events", () => {
-		describe("POST /api/v1/event", () => {
+		describe("POST " + eventUrl, () => {
 			it("It should create a new event", (done) => {
-				chai.request(server).post('/api/v1/event')
+				chai.request(server).post(eventUrl)
 					.send({
 						"token": crypto.getToken(),
 						"event": {
@@ -42,7 +44,7 @@ describe("API.v1", () => {
 			});
 
 			it("It should not create a new event, due to missing date", (done) => {
-				chai.request(server).post('/api/v1/event')
+				chai.request(server).post(eventUrl)
 					.send({
 						"token": crypto.getToken(),
 						"event": {
@@ -61,6 +63,37 @@ describe("API.v1", () => {
 						done();
 				});
 			});
+
+
 		});
+
+		describe("GET " + eventUrl, () => {
+			it("It should get all events", (done) => {
+				chai.request(server)
+				.get(eventUrl)
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('success');
+					res.body.success.should.be.eql(true);
+					res.body.should.have.property('events');
+					done();
+				});
+			});
+
+			it("It should return a specific event given an event ID", (done) =>{
+				chai.request(server)
+				.get(eventUrl + '/' + dummyId)
+				.end((err, res) =>{
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('events');
+					console.warn(res.body);
+					done();
+				});
+			});
+		});
+
+
 	});
 });
