@@ -17,9 +17,9 @@ let verifyToken = (token) => {
 	for (let i = 0; i < length; i += 2)
 		time += token[i];
 
-	// in production, tokens should not be older than 20 seconds
+	// in production, tokens should not be older than 10 seconds
 	if (config.isProduction)
-		if (Date.now() - parseInt(time) > 20000)
+		if (Date.now() - parseInt(time) > 10000)
 			return false;
 
 	return hash === crypto.createHash('sha256').update(time + config.apiSecret).digest('hex');
