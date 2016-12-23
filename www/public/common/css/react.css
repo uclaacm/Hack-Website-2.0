@@ -228,7 +228,7 @@ input[type=checkbox].checkbox:checked + .custom-check label{
 	height: 90px;
 	margin-left: 20px;
 	background: #fff;
-	padding: 20px;
+	padding: 10px;
 	text-align: center;
 }
 
