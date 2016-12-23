@@ -32,6 +32,10 @@ server.use('/api', app.api.router);
 // Hack School routes
 server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
 
+// Start the server
 server.listen(port, () => {
 	console.log("started server on port", port);
 });
+
+// For testing purposes
+module.exports = server;
