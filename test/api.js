@@ -10,6 +10,8 @@ let should = chai.should();
 chai.use(chaiHttp);
 const eventUrl = '/api/v1/event';
 const dummyId = '307e6d30-c556-11e6-9cb8-bb15b01c6e55';
+const showUrl = '/api/v1/showcase';
+const projectId = '1653fac0-c712-11e6-b0e4-fd8b404bc168';
 
 describe("API.v1", () => {
 	describe("Events", () => {
@@ -93,6 +95,34 @@ describe("API.v1", () => {
 			});
 		});
 
+		describe("GET " + showUrl, () => {
+			it("It should get all events", (done) => {
+				chai.request(server)
+				.get(showUrl)
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('success');
+					res.body.success.should.be.eql(true);
+					res.body.should.have.property('projects');
+					done();
+				});
+			});
+
+			it("It should return a specific project given a project ID", (done) =>{
+				chai.request(server)
+				.get(showUrl + '/' + projectId)
+				.end((err, res) =>{
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('projects');
+					done();
+				});
+			});
+		});
+
 
 	});
+
+
 });
