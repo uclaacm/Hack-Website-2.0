@@ -94,9 +94,58 @@ describe("API.v1", () => {
 				});
 			});
 		});
+	});
 
+	describe("Showcase", () => {
+		describe("POST" + showUrl, () =>{
+			it("should create a new project if valid data is passed in", (done) => {
+				chai.request(server)
+				.post(showUrl)
+				.send({
+					"token": crypto.getToken(),
+					"project": {
+						"desc": "Test Desc",
+						"image": "Test Link",
+						"link": "Test Title",
+						"title": "Test Tagline",
+						"contributors": [
+							"person1",
+							"person2"
+						]
+					}
+				})
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('success');
+					res.body.success.should.be.eql(true);
+					res.body.should.have.property('project');
+					done();
+				})
+			});
+			it("should not create a new project if the contributors field is missing", (done) => {
+				chai.request(server)
+				.post(showUrl)
+				.send({
+					"token": crypto.getToken(),
+					"project": {
+						"desc": "Test Desc",
+						"image": "Test Link",
+						"link": "Test Title",
+						"title": "Test Tagline"
+					}
+				})
+				.end((err,res)=>{
+					res.should.have.status(500);
+					res.body.should.be.a('object');
+					res.body.should.have.property('success');
+					res.body.success.should.be.eql(false);
+					done();
+				});
+			});
+		});
 		describe("GET " + showUrl, () => {
-			it("It should get all events", (done) => {
+			it("It should get all showcase projects", (done) => {
 				chai.request(server)
 				.get(showUrl)
 				.end((err, res) => {
@@ -108,7 +157,6 @@ describe("API.v1", () => {
 					done();
 				});
 			});
-
 			it("It should return a specific project given a project ID", (done) =>{
 				chai.request(server)
 				.get(showUrl + '/' + projectId)
@@ -120,9 +168,5 @@ describe("API.v1", () => {
 				});
 			});
 		});
-
-
+		});
 	});
-
-
-});
