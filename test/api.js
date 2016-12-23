@@ -1,22 +1,27 @@
 const config = require('../app/config');
 const crypto = require('../app/crypto');
 
+//include the testing dev dependencies
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-
 let server = require('../index');
 let should = chai.should();
 
 chai.use(chaiHttp);
+
+//API links and variables
 const eventUrl = '/api/v1/event';
 const dummyId = '307e6d30-c556-11e6-9cb8-bb15b01c6e55';
 const showUrl = '/api/v1/showcase';
 const projectId = '1653fac0-c712-11e6-b0e4-fd8b404bc168';
 
+
 describe("API.v1", () => {
+	//we first test the Events API, specifically POST and GET
 	describe("Events", () => {
 		describe("POST " + eventUrl, () => {
 			it("It should create a new event", (done) => {
+				//send a request with valid input parameters
 				chai.request(server).post(eventUrl)
 					.send({
 						"token": crypto.getToken(),
@@ -32,6 +37,7 @@ describe("API.v1", () => {
 							"location": "Test Location",
 							"category": "Test Category"
 						}
+					//the response should be valid
 					}).end((err, res) => {
 						res.should.have.status(200);
 						res.body.should.be.a('object');
@@ -46,6 +52,7 @@ describe("API.v1", () => {
 			});
 
 			it("It should not create a new event, due to missing date", (done) => {
+				//create a POST request with invalid data (specifically, no date)
 				chai.request(server).post(eventUrl)
 					.send({
 						"token": crypto.getToken(),
@@ -57,6 +64,7 @@ describe("API.v1", () => {
 							"location": "Test Location",
 							"category": "Test Category"
 						}
+						//the response should not indicate success.
 					}).end((err, res) => {
 						res.should.have.status(500);
 						res.body.should.be.a('object');
@@ -68,9 +76,10 @@ describe("API.v1", () => {
 
 
 		});
-
+		//testing the GET portion of our API
 		describe("GET " + eventUrl, () => {
 			it("It should get all events", (done) => {
+				//without an event ID, the response should return all events.
 				chai.request(server)
 				.get(eventUrl)
 				.end((err, res) => {
@@ -82,7 +91,7 @@ describe("API.v1", () => {
 					done();
 				});
 			});
-
+			//testing with a specific event ID
 			it("It should return a specific event given an event ID", (done) =>{
 				chai.request(server)
 				.get(eventUrl + '/' + dummyId)
@@ -95,9 +104,10 @@ describe("API.v1", () => {
 			});
 		});
 	});
-
+	//testing showcase API
 	describe("Showcase", () => {
-		describe("POST" + showUrl, () =>{
+		describe("POST" + showUrl, () => {
+			//POST request to create a new showcase project with valid data
 			it("should create a new project if valid data is passed in", (done) => {
 				chai.request(server)
 				.post(showUrl)
@@ -114,6 +124,7 @@ describe("API.v1", () => {
 						]
 					}
 				})
+				//the response should be valid. 
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
@@ -123,6 +134,7 @@ describe("API.v1", () => {
 					done();
 				})
 			});
+			//POST request with invalid data (no contributors)
 			it("should not create a new project if the contributors field is missing", (done) => {
 				chai.request(server)
 				.post(showUrl)
@@ -135,6 +147,7 @@ describe("API.v1", () => {
 						"title": "Test Tagline"
 					}
 				})
+				//the response should be invalid.
 				.end((err,res)=>{
 					res.should.have.status(500);
 					res.body.should.be.a('object');
@@ -144,7 +157,9 @@ describe("API.v1", () => {
 				});
 			});
 		});
+		//testing GET request for the showcase API.
 		describe("GET " + showUrl, () => {
+			//without a project ID, all projects should be returned.
 			it("It should get all showcase projects", (done) => {
 				chai.request(server)
 				.get(showUrl)
@@ -157,7 +172,8 @@ describe("API.v1", () => {
 					done();
 				});
 			});
-			it("It should return a specific project given a project ID", (done) =>{
+			//with a project ID, the appropriate project should be returned.
+			it("It should return a specific project given a project ID", (done) => {
 				chai.request(server)
 				.get(showUrl + '/' + projectId)
 				.end((err, res) =>{
