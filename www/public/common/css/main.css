@@ -31,7 +31,7 @@
 	--fam2: 'Montserrat', sans-serif;
 	--fam3: 'Source Code Pro', sans-serif;
 
-	--shad: 0px 2px 4px 0px rgba(0,0,0,0.2);
+	--shad: 0px 1px 4px 0px rgba(0,0,0,0.2);
 }
 
 *{
@@ -77,6 +77,18 @@ a{
 	color: var(--hack-black);
 	text-decoration: none;
 	letter-spacing: 2px;
+}
+
+button:focus {
+	outline:none;
+}
+
+button::-moz-focus-inner {
+	border:0;
+}
+
+button:hover{
+	cursor: pointer;
 }
 
 .title{

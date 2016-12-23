@@ -83,20 +83,20 @@ class Filter extends Component{
 	render(){
 		return(
 			<form name="filter">
-				<ul className="checkbox-list">
+				<ul className="filter-categories">
 					{this.props.categories.map(this.renderList)}
-					<li key="clear">
-						<button onClick={(e) =>{
-							this.toggleBoxes(false);
-							e.preventDefault();
-						}}>
-							clear
-						</button>
+					<li key="clear" className="buttons">
 						<button onClick={(e) => {
 							this.toggleBoxes(true);
 							e.preventDefault();
 						}}>
 							all
+						</button>
+						<button onClick={(e) =>{
+							this.toggleBoxes(false);
+							e.preventDefault();
+						}}>
+							none
 						</button>
 					</li>
 				</ul>

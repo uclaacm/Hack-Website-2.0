@@ -26,7 +26,13 @@ class EventsList extends Component{
 
 	render(){
 		if( this.props.filteredEvents.length == 0)
-			return <div className="events-list events-item events-none">Click on more categories.</div>;
+			return (
+				<div className="events-list">
+					<div className="events-item events-none">
+						<p>Select categories above to view.</p>
+					</div>
+				</div>
+			);
 
 		return (
 			<div className="events-list">
