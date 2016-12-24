@@ -112,8 +112,10 @@ describe("API.v1", () => {
 				chai.request(server)
 				.post(mailingUrl)
 				.send({
-					"email": "rvarm1@ucla.edu",
-					"name": "rohan"
+					email: {
+						"email": "rvarm1@ucla.edu",
+						"name": "rohan"
+					}
 				})
 				.end((err, res) =>{
 					res.should.have.status(200);
@@ -121,7 +123,7 @@ describe("API.v1", () => {
 					res.body.should.have.property('success');
 					res.body.success.should.be.eql(true);
 					res.body.should.have.property('email');
-					res.body.email.should.be.eql('rvarm1@ucla.edu');
+					res.body.email.email.should.be.eql('rvarm1@ucla.edu');
 					done();
 				})
 			});
@@ -129,11 +131,13 @@ describe("API.v1", () => {
 				chai.request(server)
 				.post(mailingUrl)
 				.send({
-					"email": "rohan@ucla.edu",
+					email: {
+						"email": "rohan@ucla.edu",
+					}
 				})
 				.end((err, res) =>{
 					res.should.have.status(200);
-					res.body.email.should.be.eql("rohan@ucla.edu");
+					res.body.email.email.should.be.eql("rohan@ucla.edu");
 					done();
 				})
 			});
