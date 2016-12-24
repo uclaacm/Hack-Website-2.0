@@ -16,15 +16,39 @@ class ShowcaseGrid extends Component{
 	}
 
 	onSelect(project){
-		this.props.selectProject(project);
+		//exit animations
+		const projects = Array.from(document.querySelectorAll('.project-item'));
+		projects.forEach(proj => {
+			switch(proj.classList[0]){
+				case "row-even":
+					proj.classList.add('exitLeft');
+					break;
+				case "row-odd":
+					proj.classList.add('exitRight');
+					break;
+			}
+			
+		});
+
+		//enter animations
+		const projDetail = document.querySelector('.project-detail');
+
+		setTimeout(() => {
+			this.props.selectProject(project);
+			projDetail.classList.add('enter');
+		}, 500);
 	}
 
-	renderProject(project){
+	renderProject(project, row, column){
+		const rowLabel = row % 2 ? "even" : "odd";
 		return (
 			<td 	className	= "project-td"
 					key			= { project.id }>
 				
-				<ProjectItem title			= { project.title }
+				<ProjectItem row 			= { row }
+							 col 			= { column }
+							 rowLabel		= { rowLabel }
+							 title			= { project.title }
 							 contributors 	= { project.contributors }
 							 image			= { project.image } 
 							 onClickEvent	= { () => this.onSelect(project) }/>
@@ -32,20 +56,29 @@ class ShowcaseGrid extends Component{
 		);
 	}
 
-	renderRow(row){
+	renderRow(row, rowNum){
+		let colNum = -1;
 
 		return (
 			<tr className="row" key={`row-${row[0].id}`} >
-				{row.map(this.renderProject)}
+				{row.map(proj => {
+					colNum++;
+					colNum%=3;
+					return this.renderProject(proj, rowNum, colNum);
+				})}
 			</tr>
 		);
 	}
 
 	render(){
+		let rowNum = -1;
 		return (
 			<table className="grid">
 				<tbody>
-					{this.props.projects.map(this.renderRow)}
+					{this.props.projects.map(row => {
+						rowNum++;
+						return this.renderRow(row, rowNum);
+					})}
 				</tbody>
 			</table>
 		);
