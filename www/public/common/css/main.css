@@ -303,6 +303,7 @@ button:hover{
 	position: fixed;
 	top: 100vh;
     margin-top: -70px;
+    box-shadow: var(--shad);
 }
 
 .mobile-login h1{
@@ -348,6 +349,19 @@ button:hover{
 .content{
 	position: absolute;
 	margin-top: 70px;
+}
+
+/*====================REACT-PAGES==================*/
+
+.container{
+	height: 100%;
+	width: 100%;
+}
+
+.app-wrapper{
+	position: absolute;
+	margin-top: 70px;
+	width: 100%;
 }
 
 /*==================MEDIA QUERIES=================*/

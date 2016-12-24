@@ -31,7 +31,7 @@ class EventsListItem extends Component {
 			<div className="events-item-wrapper">
 				<div className="time-label">
 					<p>
-						<span>{start.toDateString().substr(4,4)}</span><br/>
+						<span>{start.toDateString().substr(4,4).trim()}</span><br/>
 						<span className="date-number">{start.getDate()}</span>
 					</p>
 				</div>

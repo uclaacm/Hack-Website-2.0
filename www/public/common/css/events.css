@@ -1,25 +1,16 @@
 /*================GENERAL===================*/
-
-.container{
-	height: 100%;
-	width: 100%;
-}
-
-.app-wrapper{
-	position: absolute;
-	margin-top: 70px;
-}
-
 .events-page{
-	margin: 20px;
-}
-
-.events-page .col-left{
-	margin-left: 100px;
+	width: 970px;
+	overflow: auto;
+	margin: 20px auto;
 }
 
 .col-left, .col-right{
 	float: left;
+}
+
+.col-left{
+	
 }
 
 .filter-categories, .events-item, .time-label, .calendar, .calendar button{
@@ -36,7 +27,7 @@
 	border-radius: 3px;
 	margin-left: 80px;
 	position: fixed;
-	z-index: 1000;
+	z-index: 500;
 }
 
 .filter-categories li{
@@ -249,9 +240,22 @@ input[type=checkbox].checkbox:checked + .custom-check label{
 	color: #fff;
 }
 
+/*==================MEDIA QUERIES=================*/
+
+/*TODOS*/
+@media only screen and (max-width: 970px) {
 
 
 
+}
+
+@media only screen and (max-width: 700px) {
+
+
+
+
+
+}
 
 
 
