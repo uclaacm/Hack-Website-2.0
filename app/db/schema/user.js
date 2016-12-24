@@ -38,4 +38,14 @@ User.statics.findByProfileId = function(profileId, callback) {
 	});
 };
 
+User.methods.getPublic = function() {
+	/**
+	 * TODO: implement this.
+	 * Return a representation of a user object for the frontend
+	 * Remove sensitive information and make it easy to access properties
+	 * Remove: id, state, teamId
+	 * Add: team object for the user. Should include name, id, scores for each project, and total score
+	 */
+};
+
 module.exports = User;

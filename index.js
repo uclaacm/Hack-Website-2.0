@@ -22,16 +22,26 @@ server.use(bodyParser.json());
 // Use sessions
 server.use(app.session);
 
+// Hack Data API
+server.use('/api', app.api.router);
+
 // Use authentication
 app.auth.configAuth(server);
 server.use('/auth', app.auth.router);
 
-// Hack Data API
-server.use('/api', app.api.router);
+// Use authentication for the remaining routes
+server.use(app.auth.authenticated);
 
 // Hack School routes
-server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
+server.use('/hackschool', app.hackschool.router);
 
+// Expose private resources
+server.use(express.static('www/private'));
+
+// Start the server
 server.listen(port, () => {
 	console.log("started server on port", port);
 });
+
+// For testing purposes
+module.exports = server;

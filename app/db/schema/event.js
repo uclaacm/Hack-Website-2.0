@@ -15,6 +15,7 @@ let Event = new Schema({
 		end: { type: Date, required: true },
 	},
 	desc: { type: String },
+	link: { type: String },
 	title: { type: String, required: true },
 	location: { type: String, required: true },
 	category: { type: String, required: true },
@@ -28,7 +29,7 @@ Event.statics.findById = function(id, callback) {
 };
 
 Event.statics.sanitize = function(event, withId=true) {
-	let pickProperties = ['date','desc','title','location','category','tagline'];
+	let pickProperties = ['date','desc','link','title','location','category','tagline'];
 	if (withId) pickProperties.unshift('id');
 	event = _.pick(event, pickProperties);
 	if (event.date)
