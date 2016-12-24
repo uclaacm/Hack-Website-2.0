@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllEvents, filterEvents } from '../actions/index';
+import { fetchAllData, filterData } from '../actions/index';
 import EventsListItem from './events-list-item';
 
 
 class EventsList extends Component{
 
 	componentWillMount(){
-		this.props.fetchAllEvents();
+		this.props.fetchAllData('/api/v1/event');
 	}
 
 	renderEventItem(event){
@@ -25,7 +25,7 @@ class EventsList extends Component{
 	}
 
 	render(){
-		if( this.props.filteredEvents.length == 0)
+		if( this.props.filteredData.length == 0)
 			return (
 				<div className="events-list">
 					<div className="events-item events-none">
@@ -36,19 +36,19 @@ class EventsList extends Component{
 
 		return (
 			<div className="events-list">
-				{ this.props.filteredEvents.map(this.renderEventItem) }
+				{ this.props.filteredData.map(this.renderEventItem) }
 			</div>
 		);
 	}
 
 }
 
-function mapStateToProps({events, filteredEvents}){
-	return {events, filteredEvents};
+function mapStateToProps({data, filteredData}){
+	return {events: data.events, filteredData};
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({ fetchAllEvents, filterEvents }, dispatch);
+	return bindActionCreators({ fetchAllData, filterData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsList);

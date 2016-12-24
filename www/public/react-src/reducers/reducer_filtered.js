@@ -1,9 +1,9 @@
-import { FILTER_EVENTS } from '../actions/index';
+import { FILTER_DATA } from '../actions/index';
 
 export default (state = [], action) => {
 
 	switch(action.type){
-		case FILTER_EVENTS:
+		case FILTER_DATA:
 			return action.payload.sort((a,b) => {
 				const first = new Date(a.date.start);
 				const second = new Date(b.date.start);
