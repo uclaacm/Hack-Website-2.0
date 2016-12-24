@@ -6,22 +6,70 @@
 	margin: 20px auto;
 }
 
+.project-td{
+	padding-bottom: 10px;
+}
+
 .project-item{
 	width: 250px;
 	height: 460px;
-	vertical-align: top;
+	border-radius: 3px;
+	overflow: hidden;
+	box-shadow: var(--shad);
 }
 
 .project-item .img-wrapper{
 	height: 250px;
 	width: 250px;
 	background-size: cover;
+	background-position: 50%;
 }
 
 .text-wrapper{
 	background: #fff;
 	height: 200px;
 	width: 250px;
+	padding: 10px 0px;
+}
+
+.text-wrapper .title-wrapper{
+	height: 30px;
+	padding: 0 10px;
+}
+
+.text-wrapper h3{
+	text-transform: uppercase;
+	font-family: var(--fam2);
+	font-size: 16px;
+	text-align: center;
+}
+
+.text-wrapper ul{
+	padding: 20px;
+	height: 93px;
+	overflow: scroll;
+}
+
+.text-wrapper li{
+	font-family: var(--fam1);
+	color: var(--grey-deep);
+}
+
+.text-wrapper button{
+	width: 100%;
+	border: 0;
+	background: #fff;
+	color: var(--highlight);
+	border-top: 1px solid var(--grey-light);
+	padding: 10px 0;
+	font-size: 14px;
+	-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+}
+
+.text-wrapper button:hover{
+	background: var(--highlight);
+	color: #fff;
 }
 
 /*==============MEDIA QUERIES============*/
@@ -29,13 +77,18 @@
 @media only screen and (max-width: 790px){
 
 	.grid{
-		width: 80%;
+		width: 100%;
+		margin-bottom: 70px;
 	}
 
-	.project-item{
+	.project-td{
+		padding-bottom: 5px;
+	}
+
+	.project-td, .project-item{
 		display: block;
-		margin: 0 auto;
-		width: 80%;
+		margin: 20px auto;
+		width: 90%;
 	}
 
 	.img-wrapper, .text-wrapper{

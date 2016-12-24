@@ -12,22 +12,28 @@ class ShowcaseGrid extends Component{
 
 		this.renderRow = this.renderRow.bind(this);
 		this.renderProject = this.renderProject.bind(this);
+		this.onSelect = this.onSelect.bind(this);
+	}
+
+	onSelect(project){
+		this.props.selectProject(project);
 	}
 
 	renderProject(project){
 		return (
-			<td 	className	= "project-item"
-					key			= { project.id }
-					onClick		= { () => this.props.selectProject(project)}>
+			<td 	className	= "project-td"
+					key			= { project.id }>
 				
 				<ProjectItem title			= { project.title }
 							 contributors 	= { project.contributors }
-							 image			= { project.image } />
+							 image			= { project.image } 
+							 onClickEvent	= { () => this.onSelect(project) }/>
 			</td>
 		);
 	}
 
 	renderRow(row){
+
 		return (
 			<tr className="row" key={`row-${row[0].id}`} >
 				{row.map(this.renderProject)}
@@ -47,93 +53,13 @@ class ShowcaseGrid extends Component{
 }
 
 function mapStateToProps({data}){
-	//return {projects: data.projects};
-
-	//dummy data for now
-	let projects = [
-	    {
-	      "id": "1653fac0-c712-11e6-b0e4-fd8b404bc168",
-	      "date": "2016-12-21T00:11:57.932Z",
-	      "desc": "An API for ACM Hack to view, create, update, and delete showcase projects",
-	      "image": "/common/images/Android_M.jpg",
-	      "link": "/api/v1/showcase",
-	      "title": "Hack Showcase API",
-	      "contributors": [
-	        "Nikhil Kansal",
-	        "Yvonne Chen",
-	        "Justin Liu"
-	      ]
-	    },
-	    {
-	      "id": "8891a468-f32c-4e75-a434-8ced1df9183a",
-	      "date": "2016-12-22T05:47:15.722Z",
-	      "desc": "The dashboard for hack school students to complete hack school tasks",
-	      "image": "/common/images/Android_M.jpg",
-	      "link": "http://hackucla.com/hackschool",
-	      "title": "Hack School Dashboard",
-	      "contributors": [
-	        "Nikhil Kansal",
-	        "Justin Liu",
-	        "Yvonne Chen"
-	      ]
-	    },
-	    {
-	      "id": "8811a468-f32c-4e75-a434-8ced1df9183a",
-	      "date": "2016-12-22T05:47:15.722Z",
-	      "desc": "The dashboard for hack school students to complete hack school tasks",
-	      "image": "/common/images/Android_M.jpg",
-	      "link": "http://hackucla.com/hackschool",
-	      "title": "Hack School Dashboard",
-	      "contributors": [
-	        "Nikhil Kansal",
-	        "Justin Liu",
-	        "Yvonne Chen"
-	      ]
-	    },
-	    {
-	      "id": "1613fac0-c712-11e6-b0e4-fd8b404bc168",
-	      "date": "2016-12-21T00:11:57.932Z",
-	      "desc": "An API for ACM Hack to view, create, update, and delete showcase projects",
-	      "image": "/common/images/Android_M.jpg",
-	      "link": "/api/v1/showcase",
-	      "title": "Hack Showcase API",
-	      "contributors": [
-	        "Nikhil Kansal",
-	        "Yvonne Chen",
-	        "Justin Liu"
-	      ]
-	    },
-	    {
-	      "id": "8891a068-f32c-4e75-a434-8ced1df9183a",
-	      "date": "2016-12-22T05:47:15.722Z",
-	      "desc": "The dashboard for hack school students to complete hack school tasks",
-	      "image": "/common/images/Android_M.jpg",
-	      "link": "http://hackucla.com/hackschool",
-	      "title": "Hack School Dashboard",
-	      "contributors": [
-	        "Nikhil Kansal",
-	        "Justin Liu",
-	        "Yvonne Chen"
-	      ]
-	    },
-	    {
-	      "id": "8811a468-fs2c-4e75-a434-8ced1df9183a",
-	      "date": "2016-12-22T05:47:15.722Z",
-	      "desc": "The dashboard for hack school students to complete hack school tasks",
-	      "image": "/common/images/Android_M.jpg",
-	      "link": "http://hackucla.com/hackschool",
-	      "title": "Hack School Dashboard",
-	      "contributors": [
-	        "Nikhil Kansal",
-	        "Justin Liu",
-	        "Yvonne Chen"
-	      ]
-	    }];
+	if(data.length == 0) 
+		return {projects: []};
 
 	//divides into arrays of length 3
 	const cols = 3;
 
-	projects = projects.reduce((arr, proj) => {
+	let projects = data.projects.reduce((arr, proj) => {
 		if(arr.length == 0 || arr[arr.length-1].length >= cols)
 			arr.push([proj]);
 		else
