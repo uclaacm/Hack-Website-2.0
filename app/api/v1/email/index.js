@@ -16,7 +16,7 @@ router.route('/:email?')
 			error: err ? err : null,
 			success: !err,
 			numResults: users && users.length ? users.length : 0,
-			mailingList: users 
+			mailingList: users.map(user => Email.sanitize(user)) 
 		});
 	});
 })
