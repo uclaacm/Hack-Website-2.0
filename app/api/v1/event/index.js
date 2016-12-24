@@ -24,9 +24,7 @@ router.route('/:eventId?')
 	db.Event.find(dbQuery).exec((err, results) => {
 		res.status(err ? 500 : 200).json({
 			success: !err,
-			events: err ? [] : results.map(event => {
-				return db.Event.sanitize(event); 
-			})
+			events: err ? [] : results.map(event => db.Event.sanitize(event))
 		});
 	});
 })

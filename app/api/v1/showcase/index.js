@@ -24,9 +24,7 @@ router.route('/:projectId?')
 	db.ShowcaseProject.find(dbQuery).exec((err, results) => {
 		res.status(err ? 500 : 200).json({
 			success: !err,
-			projects: err ? [] : results.map(project => {
-				return db.ShowcaseProject.sanitize(project); 
-			})
+			projects: err ? [] : results.map(project => db.ShowcaseProject.sanitize(project))
 		});
 	});
 })
