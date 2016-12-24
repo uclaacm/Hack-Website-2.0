@@ -27,7 +27,7 @@ app.auth.configAuth(server);
 server.use('/auth', app.auth.router);
 
 // Expose private resources
-server.use(app.auth.authenticated, express.static('www/private'));
+//server.use(app.auth.authenticated, express.static('www/private'));
 
 // Hack Data API
 server.use('/api', app.api.router);
