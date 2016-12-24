@@ -9,10 +9,6 @@
 	float: left;
 }
 
-.col-left{
-	
-}
-
 .filter-categories, .events-item, .time-label, .calendar, .calendar button{
 	box-shadow: var(--shad);
 	border-radius: 3px;
