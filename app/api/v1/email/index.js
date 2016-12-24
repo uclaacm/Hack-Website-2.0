@@ -14,7 +14,9 @@ router.route('/:email?')
 		if (err){
 			res.send(err);
 		}
-		res.json(mails);
+		else {
+		res.json({success: true, mailingList:mails});
+	}
 	});
 })
 .post((req, res, next) =>{
@@ -25,8 +27,10 @@ router.route('/:email?')
 		if(err){
 			res.send(err);
 		}
-		res.json({success: "true"});
-		console.log("email created with " + mail.email);
+		else {
+			res.json({success: true, email: mail.email, name: mail.name});
+		}
+		console.log("email created with " + mail.email + " name: " + mail.name);
 	});
 });
 
