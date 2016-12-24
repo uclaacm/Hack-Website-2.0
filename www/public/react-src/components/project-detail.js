@@ -6,16 +6,13 @@ import { selectProject } from '../actions/index';
 class ProjectDetail extends Component{
 
 	render(){
-
 		const project = this.props.selectedProject;
-
-		if(project == null)
-			return <div></div>;
+		if(project == null) return <div></div>;
 
 		return(
 			<div>
 				<div>
-					<button>BACK</button>
+					<button onClick={() => this.props.selectProject(null)}>BACK</button>
 				</div>
 				<div>
 					<img src={project.image} />

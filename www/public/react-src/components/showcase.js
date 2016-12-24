@@ -16,7 +16,6 @@ class Showcase extends Component{
 		return (
 			<div>
 				<ShowcaseGrid />
-				<p>Project Detail: </p>
 				<ProjectDetail />
 			</div>
 		);

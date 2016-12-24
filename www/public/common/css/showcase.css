@@ -1,0 +1,46 @@
+
+/*==============PROJECT GRID============*/
+
+.grid{
+	width: 790px;
+	margin: 20px auto;
+}
+
+.project-item{
+	width: 250px;
+	height: 460px;
+	vertical-align: top;
+}
+
+.project-item .img-wrapper{
+	height: 250px;
+	width: 250px;
+	background-size: cover;
+}
+
+.text-wrapper{
+	background: #fff;
+	height: 200px;
+	width: 250px;
+}
+
+/*==============MEDIA QUERIES============*/
+
+@media only screen and (max-width: 790px){
+
+	.grid{
+		width: 80%;
+	}
+
+	.project-item{
+		display: block;
+		margin: 0 auto;
+		width: 80%;
+	}
+
+	.img-wrapper, .text-wrapper{
+		width: 100% !important;
+	}
+
+
+}
