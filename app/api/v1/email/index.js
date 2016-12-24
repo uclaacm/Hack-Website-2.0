@@ -6,7 +6,8 @@ const Email = db.Email
 let router = express.Router();
 
 router.route('/:email?')
-.all((req, res, next) =>{
+.all((req, res, next) => {
+	// TODO: add token verification?
 	next();
 })
 .get((req, res, next) => {
