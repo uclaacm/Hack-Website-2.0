@@ -9,28 +9,28 @@ router.route('/:email?')
 .all((req, res, next) =>{
 	next();
 })
-.get((req, res, next) =>{
-	Email.find(function(err, mails){
-		if (err){
-			res.send(err);
-		}
-		else {
-		res.json({success: true, mailingList:mails});
-	}
+.get((req, res, next) => {
+	Email.getAll((err, users) => {
+		res.json({
+			error: err ? err : null,
+			success: !err,
+			numResults: users && users.length ? users.length : 0,
+			mailingList: users 
+		});
 	});
 })
 .post((req, res, next) =>{
-	let mail = new Email();
-	mail.email = req.body.email;
-	mail.name = req.body.name;
-	mail.save(function(err){
-		if(err){
-			res.send(err);
-		}
-		else {
-			res.json({success: true, email: mail.email, name: mail.name});
-		}
-		console.log("email created with " + mail.email + " name: " + mail.name);
+	if (!req.body.email || !(typeof req.body.email === typeof {}))
+		return res.status(400).json({ success: false, error: "Invalid request format" });
+
+	let newMail = new Email(req.body.email);
+	newMail.save((err, updatedMail) => {
+		res.status(err ? 500 : 200).json({
+			error: err ? err : null,
+			success: !err,
+			numResults: err ? 0 : 1,
+			email: err ? {} : Email.sanitize(updatedMail)
+		});
 	});
 });
 
