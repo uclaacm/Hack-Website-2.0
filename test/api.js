@@ -104,13 +104,6 @@ describe("API.v1", () => {
 			});
 		});
 	});
-	describe("Mailing list", () =>{
-		describe("POST", () =>{
-			it("should post correctly", (done) => {
-				done();
-			});
-		});
-	});
 	//testing showcase API
 	describe("Showcase", () => {
 		describe("POST" + showUrl, () => {
