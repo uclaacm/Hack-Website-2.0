@@ -124,7 +124,7 @@ describe("API.v1", () => {
 						]
 					}
 				})
-				//the response should be valid.
+				//the response should be valid. 
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
