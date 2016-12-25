@@ -22,7 +22,7 @@ router.route('/:projectId?')
 	let dbQuery = req.projectId ? { id: req.projectId } : {};
 
 	db.ShowcaseProject.find(dbQuery).exec((err, results) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
 			projects: err ? [] : results.map(project => db.ShowcaseProject.sanitize(project))
 		});
@@ -43,7 +43,7 @@ router.route('/:projectId?')
 	// Create a new project with the given details (sanitized in .all)
 	let newShowcaseProject = new db.ShowcaseProject(req.project);
 	newShowcaseProject.save((err, updatedShowcaseProject) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
 			project: err ? {} : db.ShowcaseProject.sanitize(updatedShowcaseProject)
 		});
@@ -59,10 +59,10 @@ router.route('/:projectId?')
 	// Find the project by ID and update the field based on the given details (sanitized above)
 	db.ShowcaseProject.findById(req.projectId, (err, project) => {
 		if (err || !project)
-			return res.status(500).json({ success: false });
+			return res.json({ success: false });
 		project.update(req.project);
 		project.save((err, updatedShowcaseProject) => {
-			res.status(err ? 500 : 200).json({
+			res.json({
 				success: !err,
 				project: err ? {} : db.ShowcaseProject.sanitize(updatedShowcaseProject)
 			});
@@ -74,7 +74,7 @@ router.route('/:projectId?')
 	let dbQuery = req.projectId ? { id: req.projectId } : {};
 
 	db.ShowcaseProject.remove(dbQuery, (err, opInfo) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
 			removed: opInfo && opInfo.result && opInfo.result.n ? opInfo.result.n : 0
 		});

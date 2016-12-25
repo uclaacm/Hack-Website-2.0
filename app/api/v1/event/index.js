@@ -22,7 +22,7 @@ router.route('/:eventId?')
 	let dbQuery = req.eventId ? { id: req.eventId } : {};
 
 	db.Event.find(dbQuery).exec((err, results) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
 			events: err ? [] : results.map(event => db.Event.sanitize(event))
 		});
@@ -43,7 +43,7 @@ router.route('/:eventId?')
 	// Create a new event with the given details (sanitized in .all)
 	let newEvent = new db.Event(req.event);
 	newEvent.save((err, updatedEvent) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
 			event: err ? {} : db.Event.sanitize(updatedEvent)
 		});
@@ -59,10 +59,10 @@ router.route('/:eventId?')
 	// Find the event by ID and update the field based on the given details (sanitized in .all)
 	db.Event.findById(req.eventId, (err, event) => {
 		if (err || !event)
-			return res.status(500).json({ success: false });
+			return res.json({ success: false });
 		event.update(req.event);
 		event.save((err, updatedEvent) => {
-			res.status(err ? 500 : 200).json({
+			res.json({
 				success: !err,
 				event: err ? {} : db.Event.sanitize(updatedEvent)
 			});
@@ -74,7 +74,7 @@ router.route('/:eventId?')
 	let dbQuery = req.eventId ? { id: req.eventId } : {};
 
 	db.Event.remove(dbQuery, (err, opInfo) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
 			removed: opInfo && opInfo.result && opInfo.result.n ? opInfo.result.n : 0
 		});
