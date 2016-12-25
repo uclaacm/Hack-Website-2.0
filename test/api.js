@@ -68,7 +68,7 @@ describe("API.v1", () => {
 						}
 						//the response should not indicate success.
 					}).end((err, res) => {
-						res.should.have.status(500);
+						res.should.have.status(200);
 						res.body.should.be.a('object');
 						res.body.should.have.property('success');
 						res.body.success.should.be.eql(false);
@@ -113,6 +113,7 @@ describe("API.v1", () => {
 				chai.request(server)
 				.post(mailingUrl)
 				.send({
+					token: crypto.getToken(),
 					email: {
 						"email": "rvarm1@ucla.edu",
 						"name": "rohan"
@@ -132,6 +133,7 @@ describe("API.v1", () => {
 				chai.request(server)
 				.post(mailingUrl)
 				.send({
+					token: crypto.getToken(),
 					email: {
 						"email": "rohan@ucla.edu",
 					}
@@ -216,7 +218,7 @@ describe("API.v1", () => {
 				})
 				//the response should be invalid.
 				.end((err,res)=>{
-					res.should.have.status(500);
+					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('success');
 					res.body.success.should.be.eql(false);
