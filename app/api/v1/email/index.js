@@ -31,7 +31,6 @@ router.route('/:email?')
 		res.status(err ? 500 : 200).json({
 			error: err ? err : null,
 			success: !err,
-			numResults: err ? 0 : 1,
 			email: err ? {} : Email.sanitize(updatedMail)
 		});
 	});
