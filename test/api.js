@@ -158,6 +158,16 @@ describe("API.v1", () => {
 					done();
 				})
 			});
+			it("Should not succeed without all valid tokens", (done) => {
+				chai.request(server)
+				.get(mailingUrl)
+				.end((err, res) => {
+					res.body.should.be.a('object');
+					res.body.should.have.property('success');
+					res.body.success.should.be.eql(false);
+					done();
+				})
+			})
 		});
 	});
 	//testing showcase API
