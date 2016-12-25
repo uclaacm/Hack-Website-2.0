@@ -78,7 +78,7 @@ describe("API.v1", () => {
 
 
 		});
-		//testing the GET portion of our API
+		//testing the GET portion of our API for events
 		describe("GET " + eventUrl, () => {
 			it("It should get all events", (done) => {
 				//without an event ID, the response should return all events.
@@ -90,6 +90,7 @@ describe("API.v1", () => {
 					res.body.should.have.property('success');
 					res.body.success.should.be.eql(true);
 					res.body.should.have.property('events');
+					res.body.should.have.property('numResults');
 					done();
 				});
 			});
