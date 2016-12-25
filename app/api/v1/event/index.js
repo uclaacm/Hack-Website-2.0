@@ -29,6 +29,7 @@ router.route('/:eventId?')
 		res.status(err ? 500 : 200).json({
 			success: !err,
 			error: err ? "Request failed: " + err : null,
+			numResults: events && events.length ? events.length : 0,
 			events: err ? [] : results.map(event => {
 				return db.Event.sanitize(event);
 			})

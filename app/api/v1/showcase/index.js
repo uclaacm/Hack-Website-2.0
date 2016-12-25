@@ -25,6 +25,7 @@ router.route('/:projectId?')
 		res.status(err ? 500 : 200).json({
 			success: !err,
 			error: err ? "Unable to find project(s) by ID: " + err : null,
+			numResults: results && results.length ? results.length : 0,
 			projects: err ? [] : results.map(project => {
 				return db.ShowcaseProject.sanitize(project);
 			})
