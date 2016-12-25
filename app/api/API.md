@@ -138,7 +138,7 @@ Where `token` is a valid token, and the remaining fields contain the event infor
 ```JSON
 {
   "success": true,
-  "error": null
+  "error": null,
   "event": {
     "id": "a2c715f0-c66d-11e6-b91b-658ec3ef27fe",
     "date": {
@@ -176,7 +176,7 @@ would be applied to the object shown in the `POST` request above. In response, y
 ```json
 {
   "success": true,
-  "error": null
+  "error": null,
   "event": {
     "id": "a2c715f0-c66d-11e6-b91b-658ec3ef27fe",
     "date": {
