@@ -11,15 +11,15 @@ class EventsListItem extends Component {
 	}
 
 	getImageSrc(category){
-		this.props.categories.forEach( catItem => {
-			if(catItem.name == category)
-				return catItem.url;
-		});
+		return this.props.categories
+					.find( catItem => catItem.name == category)
+					.url;
 	}
 
 	getDate(date){
-		return new Date(date);
-		//getYear, getMouth, minutes, seconds, toDateString
+		let newDate = new Date(date);
+		newDate.suffix = newDate.getHours() > 12 ? 'PM' : 'AM';
+		return newDate;
 	}
 
 	render(){
@@ -28,15 +28,27 @@ class EventsListItem extends Component {
 		const category = this.props.category;
 
 		return (
-			<div className="events-item">
-				<div className="img-wrapper">
-					<img src="/common/images/Hack-Logo-Purple.png"/>
+			<div className="events-item-wrapper">
+				<div className="time-label">
+					<p>
+						<span>{start.toDateString().substr(4,4).trim()}</span><br/>
+						<span className="date-number">{start.getDate()}</span>
+					</p>
 				</div>
-				<div className="info-wrapper">
-					<p className="category-label">{category}</p>
-					<h1>{this.props.title}</h1>
-					<h3>{start.getHours()}:{start.getMinutes()} - {end.getHours()}:{end.getMinutes()}</h3>
-					<h3>{this.props.location}</h3>
+				<div className="events-item">
+					<div className="img-wrapper">
+						<img src={this.getImageSrc(category)}/>
+					</div>
+					<div className="info-wrapper info-default">
+						<p className="category-label">{category}</p>
+						<h1>{this.props.title}</h1>
+						<h3>{start.toDateString().substr(0,3)} {start.getHours()}:{start.getMinutes()} {start.suffix} - {end.getHours()}:{end.getMinutes()} {end.suffix}</h3>
+						<h3>{this.props.location}</h3>
+					</div>
+					<div className="info-wrapper info-hover">
+						<h1>{this.props.tagline}</h1>
+						<p>{this.props.desc}</p>
+					</div>
 				</div>
 			</div>
 		);

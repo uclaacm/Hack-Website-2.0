@@ -1,0 +1,266 @@
+/*================GENERAL===================*/
+.events-page{
+	width: 970px;
+	overflow: auto;
+	margin: 20px auto;
+}
+
+.col-left, .col-right{
+	float: left;
+}
+
+.filter-categories, .events-item, .time-label, .calendar, .calendar button{
+	box-shadow: var(--shad);
+	border-radius: 3px;
+}
+
+/*================FILTER===================*/
+
+.filter-categories{
+	width: 700px;
+	padding: 5px;
+	background: #fff;
+	border-radius: 3px;
+	margin-left: 80px;
+	position: fixed;
+	z-index: 500;
+}
+
+.filter-categories li{
+	display: inline-block;
+}
+
+input.checkbox {
+    position: absolute;
+    visibility: hidden;
+}
+
+.custom-check { 
+    float: left;
+    margin: 10px;
+}
+
+input[type=checkbox].checkbox:checked + .custom-check label{
+    background-color: var(--acc-deep);
+    background-image: url('/common/images/check.svg');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 70%;
+}
+
+.custom-check label {
+    background: #ddd;
+    height: 20px;
+    width: 20px;
+    display: block;
+    border-radius: 4px;
+    float: left;
+	margin-right: 6px;
+}
+.custom-check label:hover {
+  cursor: pointer;
+  background: #ccc;
+}
+
+.custom-check p{
+	font-size: 12px;
+	float: left;
+	font-family: var(--fam2);
+	margin-top: 2px;
+}
+
+.buttons{
+	float: right;
+}
+
+.filter-categories button{
+	position: absolute;
+	width: 60px;
+	height: 40px;
+	border: 0;
+	border-radius: 3px;
+	background-color: var(--grey-deep);
+	right: 7px;
+	top: 7px;
+	color: #fff;
+	text-transform: uppercase;
+	transition: all 0.1s;
+	box-shadow: var(--shad);
+}
+
+.filter-categories button:first-child{
+	right: 74px;
+}
+
+.filter-categories button:hover{
+	cursor: pointer;
+	background-color: var(--highlight);
+}
+
+/*================EVENTS-LIST===================*/
+
+.events-list{
+	margin-top: 25px;
+	padding-top:50px;
+}
+
+.events-item-wrapper > *{
+	float: left;
+}
+
+.time-label{
+	width: 60px;
+	height: 60px;
+	padding: 10px;
+	text-align: right;
+	background: #fff;
+}
+
+.time-label p{
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.time-label .date-number{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.events-item{
+	background: #fff;
+	margin-bottom: 20px;
+	border-radius: 3px;
+	height: 220px;
+	overflow: hidden;
+	width: 710px;
+	transition: all 0.3s ease;
+}
+
+.events-none{
+	height: 80px;
+	width: 200px;
+	background: #fff;
+	margin-left: 80px;
+	padding: 20px;
+	margin-right: 470px;
+}
+
+.events-item .img-wrapper{
+	height: 160px;
+	width: 160px;
+	padding: 30px;
+	float: left;
+	background: #fff;
+	position: absolute;
+	z-index: 100;
+}
+
+.events-item img{
+	height: 160px;
+	width: 160px;
+}
+
+.events-item .info-wrapper{
+	float: left;
+	margin-left: 220px;
+	width: 450px;
+	padding: 20px;
+	height: 180px;
+	border-left: 2px solid var(--grey-light);
+	transition: all 0.5s ease;
+}
+
+.info-default{
+	padding-top: 50px !important;
+	height: 150px !important;
+}
+/* 	if change movement to be left-right 
+	this could work
+.events-item:hover{
+	transform: translateX(30px);
+}*/
+
+.events-item:hover .info-wrapper{
+	transform: translateY(-100%);
+}
+
+.events-item .info-hover{
+	cursor: pointer;
+	background: var(--hack-purp);
+}
+
+.events-item .info-hover > *{
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.events-item .info-hover p{
+	font-size: 12px;
+}
+
+.category-label{
+	text-transform: uppercase;
+	font-size: 12px;
+	color: var(--grey-deep);
+	font-family: var(--fam2);
+	line-height: 8px;
+	letter-spacing: 1px;
+}
+
+/*================CALENDAR===================*/
+
+.calendar{
+	position: fixed;
+	width: 140px;
+	height: 90px;
+	margin-left: 20px;
+	background: #fff;
+	padding: 10px;
+	text-align: center;
+}
+
+.calendar > *{
+	margin-bottom: 10px;
+}
+
+.calendar p{
+	font-size: 12px;
+}
+
+.calendar button{
+	width: 100%;
+	height: 30px;
+	border: 0;
+	background: var(--highlight);
+	border-radius: 3px;
+	color: #fff;
+}
+
+/*==================MEDIA QUERIES=================*/
+
+/*TODOS*/
+@media only screen and (max-width: 970px) {
+
+
+
+}
+
+@media only screen and (max-width: 700px) {
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
