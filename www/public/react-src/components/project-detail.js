@@ -5,6 +5,35 @@ import { selectProject } from '../actions/index';
 
 class ProjectDetail extends Component{
 
+	constructor(props){
+		super(props);
+
+		this.formatContributors = this.formatContributors.bind(this);
+		this.onClickEvent = this.onClickEvent.bind(this);
+	}
+
+	formatContributors(contributors){
+		const num = contributors.length;
+		return contributors.map((person, i) => {
+			if(i < num - 1)
+				return `${person}, `;
+			else
+				return `and ${person}`;
+		});
+	}
+
+	onClickEvent(e){
+		const projDetail = document.querySelector('.project-detail');
+		projDetail.classList.remove('enter');
+
+		const projects = Array.from(document.querySelectorAll('.project-item'));
+		projects.forEach(proj => {
+				proj.classList.remove('exitLeft');
+				proj.classList.remove('exitRight');	
+		});
+		setTimeout( () => this.props.selectProject(null), 1000);
+	}
+
 	render(){
 		const project = this.props.selectedProject;
 		if(project == null) return <div className="project-detail"></div>;
@@ -12,7 +41,8 @@ class ProjectDetail extends Component{
 		return(
 			<div className="project-detail">
 				<div className="btn-wrapper">
-					<button onClick={() => this.props.selectProject(null)}>BACK</button>
+					<button onClick={this.onClickEvent}>
+					</button>
 				</div>
 				<div>
 					<div className="img-wrapper">
@@ -20,9 +50,13 @@ class ProjectDetail extends Component{
 					</div>
 					<div className="detail-zoom">
 						<h1>{project.title}</h1>
-						<h3>{project.contributors.map(c => `${c} `)}</h3>
-						<p>{project.desc}</p>
-						<a href={project.link}>Link</a>
+						<h3>by {this.formatContributors(project.contributors)}</h3>
+						<div className="project-desc">
+							<p>{project.desc}</p>
+						</div>
+						<a href={project.link}>
+							<button>SEE THIS PROJECT</button>
+						</a>
 					</div>
 				</div>
 			</div>

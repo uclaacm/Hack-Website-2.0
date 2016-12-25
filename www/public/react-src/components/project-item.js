@@ -13,8 +13,12 @@ class ProjectItem extends Component{
 						<h3>{this.props.title}</h3>
 					</div>
 					<ul>
-						{this.props.contributors.map(c => <li key={c}>{c}</li>)}
+						{this.props.contributors.map((c, i) => {
+							//row-col-person# to make unique ID
+							return <li key={`${this.props.row}-${this.props.col}-${i}`}>{c}</li>;
+					})}
 					</ul>
+					<div className="gradient"></div>
 					<button onClick={this.props.onClickEvent}>SEE THIS PROJECT</button>
 				</div>
 			</div>

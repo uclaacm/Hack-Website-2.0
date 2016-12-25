@@ -14,7 +14,7 @@ class Showcase extends Component{
 
 	render(){
 		return (
-			<div>
+			<div className="showcase-page">
 				<ProjectDetail />
 				<ShowcaseGrid />
 			</div>

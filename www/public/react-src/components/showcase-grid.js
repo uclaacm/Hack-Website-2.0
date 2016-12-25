@@ -32,11 +32,10 @@ class ShowcaseGrid extends Component{
 
 		//enter animations
 		const projDetail = document.querySelector('.project-detail');
+		projDetail.classList.add('enter');
 
-		setTimeout(() => {
-			this.props.selectProject(project);
-			projDetail.classList.add('enter');
-		}, 500);
+		//update app-level state
+		this.props.selectProject(project);
 	}
 
 	renderProject(project, row, column){
@@ -57,15 +56,9 @@ class ShowcaseGrid extends Component{
 	}
 
 	renderRow(row, rowNum){
-		let colNum = -1;
-
 		return (
 			<tr className="row" key={`row-${row[0].id}`} >
-				{row.map(proj => {
-					colNum++;
-					colNum%=3;
-					return this.renderProject(proj, rowNum, colNum);
-				})}
+				{row.map((proj, colNum) => this.renderProject(proj, rowNum, colNum%3))}
 			</tr>
 		);
 	}
@@ -75,10 +68,7 @@ class ShowcaseGrid extends Component{
 		return (
 			<table className="grid">
 				<tbody>
-					{this.props.projects.map(row => {
-						rowNum++;
-						return this.renderRow(row, rowNum);
-					})}
+					{this.props.projects.map((row, rowNum) => this.renderRow(row, rowNum))}
 				</tbody>
 			</table>
 		);

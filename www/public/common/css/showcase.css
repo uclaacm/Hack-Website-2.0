@@ -1,4 +1,8 @@
 
+.showcase-page{
+	overflow: hidden;
+}
+
 /*==============PROJECT GRID============*/
 
 .grid{
@@ -23,8 +27,8 @@
 	border-radius: 3px;
 	overflow: hidden;
 	box-shadow: var(--shad);
-	-webkit-transition: all 1.5s cubic-bezier(0.65,-0.3, 0.36, 1.07);
-			transition: all 1.5s cubic-bezier(0.65,-0.3, 0.36, 1.07);
+	-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
+			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
 }
 
 .project-item.exitLeft{
@@ -71,6 +75,19 @@
 	color: var(--grey-deep);
 }
 
+.text-wrapper .gradient{
+	position: absolute;
+	z-index: 100;
+	height: 20px;
+	width: 250px;
+	margin-top:-20px;
+	background: rgba(255,255,255,1);
+    background: -webkit-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1)); 
+    background: -o-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1)); 
+    background: -moz-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1));
+    background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1));
+}
+
 .text-wrapper button{
 	width: 100%;
 	border: 0;
@@ -92,10 +109,9 @@
 
 .project-detail{
 	position: fixed;
-	z-index: -1;
 	width: 100%;
 	height: 100%;
-	left: -100%;
+	left: -200%;
 	margin-top: -20px;
 	-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
 			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
@@ -108,17 +124,66 @@
 .project-detail .btn-wrapper{
 	position: absolute;
 	z-index: 100;
+	margin: 40px 20px;
+	right: 0;
+}
+
+.btn-wrapper button{
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	border: 0;
+	background-color: #fff;
+	background-image: url('/common/images/chevron-left.svg');
+	background-size: 70%;
+	background-position: 40%;
+	background-repeat: no-repeat;
+}
+
+.project-detail .img-wrapper, 
+.project-detail .detail-zoom{
+	float: left;
+}
+
+.project-detail .img-wrapper{
+	width: 30%;
 }
 
 .project-detail .img-wrapper, .project-detail img{
 	height: 100vh;
-	position: absolute;
+}
+
+.project-detail img{
+	float:right;
 }
 
 .detail-zoom{
-
+	height: 100vh;
+	width: 60%;
+	padding: 5%;
 }
 
+.detail-zoom h1{
+	font-family: var(--fam2);
+}
+
+.detail-zoom h3{
+	font-family: var(--fam1);
+	color: var(--grey-deep);
+	font-style: italic;
+	margin: 5px 0;
+}
+
+.project-desc{
+	margin: 20px 0;
+	color: var(--grey-deep);
+}
+
+.detail-zoom button{
+	font-size: 20px;
+	font-family: var(--fam2);
+	padding: 15px 30px;
+}
 
 /*==============MEDIA QUERIES============*/
 
@@ -139,5 +204,30 @@
 		width: 100% !important;
 	}
 
+	.detail-zoom{
+		position: absolute;
+		top: 70px;
+		left: 10px;
+	}
+
+	.detail-zoom h1{
+		font-size: 18px;
+		color: #fff;
+	}
+
+	.detail-zoom h3, .detail-zoom p{
+		font-size: 14px;
+		color: var(--grey-light);
+	}
+
+	.detail-zoom p{
+		font-size: 12px;
+	}
+
+	.detail-zoom button{
+		font-size: 10px;
+		color: var(--highlight);
+		background-color: #fff;
+	}
 
 }

@@ -79,6 +79,16 @@ a{
 	letter-spacing: 2px;
 }
 
+button{
+	border: 0;
+	background-color: var(--highlight);
+	color: #fff;
+	padding: 10px;
+	box-shadow: var(--shad);
+	text-transform: uppercase;
+	border-radius: 3px;
+}
+
 button:focus {
 	outline:none;
 }
@@ -257,8 +267,8 @@ a:hover, button:hover{
 	height: 6px;
 	
 
-	-webkit-transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
-    		transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
+	-webkit-transition: all 0.5s ease;
+    		transition: all 0.5s ease;
 }
 
 .hamburg-over{
@@ -271,8 +281,8 @@ a:hover, button:hover{
 	-webkit-transform: translate(-100%, 0);
 			transform: translate(-100%, 0);
 
-	-webkit-transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
-    		transition: all 0.5s cubic-bezier(0.76,-0.38, 0.65, 1.07);
+	-webkit-transition: all 0.5s ease;
+    		transition: all 0.5s ease;
 }
 
 .hamburg-over ul{
