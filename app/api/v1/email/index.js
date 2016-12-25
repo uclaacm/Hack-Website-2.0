@@ -7,16 +7,18 @@ let router = express.Router();
 
 router.route('/:email?')
 .all((req, res, next) => {
-	// TODO: add token verification?
+	req.validToken = req.body && req.body.token && crypto.verifyToken(req.body.token);
 	next();
 })
 .get((req, res, next) => {
+	if (!req.validToken)
+		return res.status(401).json({ success: false });
 	Email.getAll((err, users) => {
 		res.json({
 			error: err ? err : null,
 			success: !err,
 			numResults: users && users.length ? users.length : 0,
-			mailingList: err ? [] : users.map(user => Email.sanitize(user)) 
+			mailingList: err ? [] : users.map(user => Email.sanitize(user))
 		});
 	});
 })
