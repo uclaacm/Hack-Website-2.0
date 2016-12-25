@@ -8,8 +8,9 @@ let router = express.Router();
 router.route('/:email?')
 .all((req, res, next) => {
 	req.validToken = req.body && req.body.token && crypto.verifyToken(req.body.token);
+	req.validToken = req.validToken || (req.query && req.query.token && crypto.verifyToken(req.query.token));
 	if (!req.validToken)
-		return res.status(401).json({ success: false });
+		return res.status(401).json({ success: false, error: "Unauthorized" });
 	next();
 })
 .get((req, res, next) => {
