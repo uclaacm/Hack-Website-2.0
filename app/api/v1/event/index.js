@@ -28,6 +28,7 @@ router.route('/:eventId?')
 	db.Event.find(dbQuery).exec((err, results) => {
 		res.status(err ? 500 : 200).json({
 			success: !err,
+			error: err ? "Request failed: " + err : null
 			events: err ? [] : results.map(event => {
 				return db.Event.sanitize(event);
 			})
@@ -37,20 +38,22 @@ router.route('/:eventId?')
 .all((req, res, next) => {
 	// ALL remaining routes require a valid token to proceed.
 	if (!req.validToken)
-		return res.status(401).json({ success: false });
+		return res.status(401).json({ success: false, error: "A valid token is needed for this request."});
 	next();
 })
 .post((req, res, next) => {
 	// POST request adds and event
 	//   If there is an event ID or there isn't an event to post, the request is malformed
 	if (req.eventId || !req.event)
-		return res.status(400).json({ success: false });
+		return res.status(400).json({ success: false,
+			error: "Malformed request. Please see the API docs at http://github.com/uclaacm/Hack-Website-2.0 for API details."});
 
 	// Create a new event with the given details (sanitized in .all)
 	let newEvent = new db.Event(req.event);
 	newEvent.save((err, updatedEvent) => {
 		res.status(err ? 500 : 200).json({
 			success: !err,
+			error: err ? "Request failed: " + err : null
 			event: err ? {} : db.Event.sanitize(updatedEvent)
 		});
 	});
@@ -60,16 +63,17 @@ router.route('/:eventId?')
 	//   If there isn't an event ID or there isn't a field description of what to update,
 	//   then the request is malformed
 	if (!req.eventId || !req.event)
-		return res.status(400).json({ success: false });
+		return res.status(400).json({ success: false, error: "Malformed request. Please see the docs at http://github.com/uclaacm/Hack-Website-2.0 for API details."});
 
 	// Find the event by ID and update the field based on the given details (sanitized in .all)
 	db.Event.findById(req.eventId, (err, event) => {
 		if (err || !event)
-			return res.status(500).json({ success: false });
+			return res.status(500).json({ success: false, error: "Unable to find event by ID: " + err});
 		event.update(req.event);
 		event.save((err, updatedEvent) => {
 			res.status(err ? 500 : 200).json({
 				success: !err,
+				error: err ? "Unable to find event by ID: " + err : null
 				event: err ? {} : db.Event.sanitize(updatedEvent)
 			});
 		});
@@ -82,6 +86,7 @@ router.route('/:eventId?')
 	db.Event.remove(dbQuery, (err, opInfo) => {
 		res.status(err ? 500 : 200).json({
 			success: !err,
+			error: err ? "Unable to delete requested event(s): " + err : null
 			removed: opInfo && opInfo.result && opInfo.result.n ? opInfo.result.n : 0
 		});
 	});
