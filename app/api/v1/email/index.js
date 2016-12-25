@@ -8,11 +8,11 @@ let router = express.Router();
 router.route('/:email?')
 .all((req, res, next) => {
 	req.validToken = req.body && req.body.token && crypto.verifyToken(req.body.token);
+	if (!req.validToken)
+		return res.status(401).json({ success: false });
 	next();
 })
 .get((req, res, next) => {
-	if (!req.validToken)
-		return res.status(401).json({ success: false });
 	Email.getAll((err, users) => {
 		res.json({
 			error: err ? err : null,
@@ -28,7 +28,7 @@ router.route('/:email?')
 
 	let newMail = new Email(req.body.email);
 	newMail.save((err, updatedMail) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			error: err ? err : null,
 			success: !err,
 			email: err ? {} : Email.sanitize(updatedMail)
