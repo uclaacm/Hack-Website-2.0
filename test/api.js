@@ -146,13 +146,15 @@ describe("API.v1", () => {
 			it("Should GET all emails correctly", (done) =>{
 				chai.request(server)
 				.get(mailingUrl)
+				.send({
+					"token": crypto.getToken()
+				})
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('success');
 					res.body.success.should.be.eql(true);
 					res.body.should.have.property('mailingList');
-					console.log(res.body.mailingList);
 					done();
 				})
 			});
