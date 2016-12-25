@@ -236,6 +236,7 @@ describe("API.v1", () => {
 					res.body.should.have.property('success');
 					res.body.success.should.be.eql(true);
 					res.body.should.have.property('projects');
+					res.body.should.have.property('numResults');
 					done();
 				});
 			});
