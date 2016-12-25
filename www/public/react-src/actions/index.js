@@ -1,22 +1,29 @@
 import axios from 'axios';
 
-export const FETCH_ALL_EVENTS = 'FETCH_ALL_EVENTS';
-export const FILTER_EVENTS = 'FILTER_EVENTS';
+export const FETCH_ALL_DATA = 'FETCH_ALL_DATA';
+export const FILTER_DATA = 'FILTER_DATA';
+export const SELECT_PROJECT = 'SELECT_PROJECT';
 
-export function fetchAllEvents(){
+export function fetchAllData(url){
 
-	const url = '/api/v1/event';
 	const request = axios.get(url);
 	
 	return {
-		type: FETCH_ALL_EVENTS,
+		type: FETCH_ALL_DATA,
 		payload: request
 	}
 }
 
-export function filterEvents(filteredEvents){
+export function filterData(filteredData){
 	return {
-		type: FILTER_EVENTS,
-		payload: filteredEvents
+		type: FILTER_DATA,
+		payload: filteredData
+	}
+}
+
+export function selectProject(proj){
+	return {
+		type: SELECT_PROJECT,
+		payload: proj
 	}
 }

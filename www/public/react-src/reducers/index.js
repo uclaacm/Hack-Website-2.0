@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
+
+import DataReducer from './reducer_data';
+import FilteredDataReducer from './reducer_filtered';
+
 import CategoriesReducer from './reducer_categories';
-import EventsReducer from './reducer_events';
-import FilteredEventsReducer from './reducer_filtered';
+import SelecedProjectReducer from './reducer_selected_project';
 
 const rootReducer = combineReducers({
+	data: DataReducer,
+	filteredData: FilteredDataReducer,
 	categories: CategoriesReducer,
-	events: EventsReducer,
-	filteredEvents: FilteredEventsReducer
+	selectedProject: SelecedProjectReducer
 });
 
 export default rootReducer;

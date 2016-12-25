@@ -21,4 +21,12 @@ Team.statics.findById = function(id, callback) {
 	});
 };
 
+Team.methods.getPublic = function() {
+	/**
+	 * TODO: implement public team object
+	 * Return a publicized version of the team object
+	 * It should have the total score, individual project scores, list of public member profiles, id, and name
+	 */
+};
+
 module.exports = Team;

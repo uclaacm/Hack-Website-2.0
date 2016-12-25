@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { filterEvents } from '../actions/index';
+import { filterData } from '../actions/index';
 
 class Filter extends Component{
 
@@ -34,7 +34,7 @@ class Filter extends Component{
 		this.setState({
 			selectedCategories : newCategories
 		}, () => {
-			this.props.filterEvents(
+			this.props.filterData(
 				this.props.events.filter(event => this.state.selectedCategories.includes(event.category))
 			);
 		});
@@ -83,20 +83,20 @@ class Filter extends Component{
 	render(){
 		return(
 			<form name="filter">
-				<ul className="checkbox-list">
+				<ul className="filter-categories">
 					{this.props.categories.map(this.renderList)}
-					<li key="clear">
-						<button onClick={(e) =>{
-							this.toggleBoxes(false);
-							e.preventDefault();
-						}}>
-							clear
-						</button>
+					<li key="clear" className="buttons">
 						<button onClick={(e) => {
 							this.toggleBoxes(true);
 							e.preventDefault();
 						}}>
 							all
+						</button>
+						<button onClick={(e) =>{
+							this.toggleBoxes(false);
+							e.preventDefault();
+						}}>
+							none
 						</button>
 					</li>
 				</ul>
@@ -106,12 +106,12 @@ class Filter extends Component{
 
 }
 
-function mapStateToProps({categories, events}){
-	return {categories, events};
+function mapStateToProps({categories, data}){
+	return {categories, events: data.events};
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({ filterEvents }, dispatch);
+	return bindActionCreators({ filterData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
