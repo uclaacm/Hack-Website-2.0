@@ -28,7 +28,7 @@ router.route('/:eventId?')
 	db.Event.find(dbQuery).exec((err, results) => {
 		res.status(err ? 500 : 200).json({
 			success: !err,
-			error: err ? "Request failed: " + err : null
+			error: err ? "Request failed: " + err : null,
 			events: err ? [] : results.map(event => {
 				return db.Event.sanitize(event);
 			})
@@ -53,7 +53,7 @@ router.route('/:eventId?')
 	newEvent.save((err, updatedEvent) => {
 		res.status(err ? 500 : 200).json({
 			success: !err,
-			error: err ? "Request failed: " + err : null
+			error: err ? "Request failed: " + err : null,
 			event: err ? {} : db.Event.sanitize(updatedEvent)
 		});
 	});
@@ -73,7 +73,7 @@ router.route('/:eventId?')
 		event.save((err, updatedEvent) => {
 			res.status(err ? 500 : 200).json({
 				success: !err,
-				error: err ? "Unable to find event by ID: " + err : null
+				error: err ? "Unable to find event by ID: " + err : null,
 				event: err ? {} : db.Event.sanitize(updatedEvent)
 			});
 		});
@@ -86,7 +86,7 @@ router.route('/:eventId?')
 	db.Event.remove(dbQuery, (err, opInfo) => {
 		res.status(err ? 500 : 200).json({
 			success: !err,
-			error: err ? "Unable to delete requested event(s): " + err : null
+			error: err ? "Unable to delete requested event(s): " + err : null,
 			removed: opInfo && opInfo.result && opInfo.result.n ? opInfo.result.n : 0
 		});
 	});
