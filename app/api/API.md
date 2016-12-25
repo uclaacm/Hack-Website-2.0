@@ -1,6 +1,28 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [ACM Hack API](#acm-hack-api)
+  - [Events](#events)
+      - [`GET /api/v1/event`](#get-apiv1event)
+      - [`GET /api/v1/event/:eventID`](#get-apiv1eventeventid)
+      - [`POST /api/v1/event`](#post-apiv1event)
+      - [`PATCH /api/v1/event/:eventID`](#patch-apiv1eventeventid)
+      - [`DELETE /api/v1/event`](#delete-apiv1event)
+      - [`DELETE /api/v1/event/:eventID`](#delete-apiv1eventeventid)
+  - [Showcase Projects](#showcase-projects)
+      - [`GET /api/v1/showcase`](#get-apiv1showcase)
+      - [`GET /api/v1/showcase/:projectID`](#get-apiv1showcaseprojectid)
+      - [`POST /api/v1/showcase`](#post-apiv1showcase)
+      - [`PATCH /api/v1/showcase/:projectID`](#patch-apiv1showcaseprojectid)
+      - [`DELETE /api/v1/showcase`](#delete-apiv1showcase)
+      - [`DELETE /api/v1/project/:projectID`](#delete-apiv1projectprojectid)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 [TOC]
 
-# ACM Hack API 
+# ACM Hack API
 
 This API was written so that data on the Hack website can easily be accessed and modified. A few notes:
 

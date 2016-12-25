@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents**
 
 - [Hack-Website-2.0](#hack-website-20)
     - [Prerequisites](#prerequisites)
@@ -50,5 +50,3 @@ To additionally run webpack:
 ```shell
 $ npm run webpack
 ```
-
-
