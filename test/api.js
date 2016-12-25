@@ -14,6 +14,8 @@ const eventUrl = '/api/v1/event';
 const dummyId = '307e6d30-c556-11e6-9cb8-bb15b01c6e55';
 const showUrl = '/api/v1/showcase';
 const projectId = '1653fac0-c712-11e6-b0e4-fd8b404bc168';
+const mailingUrl = '/api/v1/mailinglist';
+const dummyEmail = 'myEmail@ucla.edu';
 
 
 describe("API.v1", () => {
@@ -104,6 +106,70 @@ describe("API.v1", () => {
 			});
 		});
 	});
+	describe("Mailing list", () =>{
+		describe("POST" + mailingUrl, () =>{
+			it("Should POST an email correctly, given a email and name", (done) => {
+				chai.request(server)
+				.post(mailingUrl)
+				.send({
+					email: {
+						"email": "rvarm1@ucla.edu",
+						"name": "rohan"
+					}
+				})
+				.end((err, res) =>{
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('success');
+					res.body.success.should.be.eql(true);
+					res.body.should.have.property('email');
+					res.body.email.email.should.be.eql('rvarm1@ucla.edu');
+					done();
+				})
+			});
+			it("Should POST correctly even with no name field", (done) =>{
+				chai.request(server)
+				.post(mailingUrl)
+				.send({
+					email: {
+						"email": "rohan@ucla.edu",
+					}
+				})
+				.end((err, res) =>{
+					res.should.have.status(200);
+					res.body.email.email.should.be.eql("rohan@ucla.edu");
+					done();
+				})
+			});
+		});
+		describe("GET" + mailingUrl, () => {
+			it("Should GET all emails correctly", (done) =>{
+				chai.request(server)
+				.get(mailingUrl)
+				.send({
+					"token": crypto.getToken()
+				})
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('success');
+					res.body.success.should.be.eql(true);
+					res.body.should.have.property('mailingList');
+					done();
+				})
+			});
+			it("Should not succeed without all valid tokens", (done) => {
+				chai.request(server)
+				.get(mailingUrl)
+				.end((err, res) => {
+					res.body.should.be.a('object');
+					res.body.should.have.property('success');
+					res.body.success.should.be.eql(false);
+					done();
+				})
+			})
+		});
+	});
 	//testing showcase API
 	describe("Showcase", () => {
 		describe("POST" + showUrl, () => {
@@ -124,7 +190,7 @@ describe("API.v1", () => {
 						]
 					}
 				})
-				//the response should be valid. 
+				//the response should be valid.
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
