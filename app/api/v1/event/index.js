@@ -67,7 +67,7 @@ router.route('/:eventId?')
 	// Find the event by ID and update the field based on the given details (sanitized in .all)
 	db.Event.findById(req.eventId, (err, event) => {
 		if (err || !event)
-			return res.status(500).json({ success: false, error: "Unable to find event by ID: " + err});
+			return res.json({ success: false, error: "Unable to find event by ID: " + err});
 		event.update(req.event);
 		event.save((err, updatedEvent) => {
 			res.json({

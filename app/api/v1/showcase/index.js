@@ -62,7 +62,7 @@ router.route('/:projectId?')
 	// Find the project by ID and update the field based on the given details (sanitized above)
 	db.ShowcaseProject.findById(req.projectId, (err, project) => {
 		if (err || !project)
-			return res.status(500).json({ success: false, error: "Unable to find project by ID: " + err});
+			return res.json({ success: false, error: "Unable to find project by ID: " + err});
 		project.update(req.project);
 		project.save((err, updatedShowcaseProject) => {
 			res.json({
