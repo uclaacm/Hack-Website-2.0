@@ -17,8 +17,10 @@ class ProjectDetail extends Component{
 		return contributors.map((person, i) => {
 			if(i < num - 1)
 				return `${person}, `;
-			else
+			else if(i != 0)
 				return `and ${person}`;
+			else
+				return `${person} `;
 		});
 	}
 
