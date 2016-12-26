@@ -3,3 +3,4 @@
 **/.DS_Store
 **/*.swp
 **/npm-debug.log
+www/public/common/js/bundle.js
