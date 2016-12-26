@@ -19,6 +19,7 @@ let ShowcaseProject = new Schema({
 	image: { type: String },
 	link: { type: String, required: true },
 	title: { type: String, required: true },
+	technologies: { type: [String] },
 	contributors: { type: [String], required: true }
 });
 
@@ -29,7 +30,7 @@ ShowcaseProject.statics.findById = function(id, callback) {
 };
 
 ShowcaseProject.statics.sanitize = function(event, withId=true) {
-	let pickProperties = ['date','desc','image','link','title','contributors'];
+	let pickProperties = ['date','desc','image','link','title','technologies','contributors'];
 	if (withId) pickProperties.unshift('id');
 	event = _.pick(event, pickProperties);
 	return event;
@@ -37,12 +38,13 @@ ShowcaseProject.statics.sanitize = function(event, withId=true) {
 
 ShowcaseProject.methods.update = function(event) {
 	if (!event) return;
+	let self = this;
 	let applyDelta = (delta, target) => {
 		for (let key in delta) {
-			if (typeof delta[key] === typeof {})
+			if (delta[key].constructor === Object)
 				applyDelta(delta[key], target[key])
-			else
-				target[key] = delta[key]
+			 else
+				target[key] = delta[key];
 		}
 	};
 	

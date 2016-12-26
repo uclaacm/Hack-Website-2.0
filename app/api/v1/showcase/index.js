@@ -13,7 +13,7 @@ router.route('/:projectId?')
 	req.projectId = req.params.projectId || null;
 	req.validToken = req.body && req.body.token && crypto.verifyToken(req.body.token);
 	req.project = req.body && req.body.project
-	                     && typeof req.body.project === "object" ? 
+	                     && typeof req.body.project === "object" ?
 						     db.ShowcaseProject.sanitize(req.body.project, withId=false) : null;
 	next();
 })
@@ -22,31 +22,32 @@ router.route('/:projectId?')
 	let dbQuery = req.projectId ? { id: req.projectId } : {};
 
 	db.ShowcaseProject.find(dbQuery).exec((err, results) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
-			projects: err ? [] : results.map(project => {
-				return db.ShowcaseProject.sanitize(project); 
-			})
+			error: err ? "Unable to find project(s) by ID: " + err : null,
+			numResults: results && results.length ? results.length : 0,
+			projects: err ? [] : results.map(project => db.ShowcaseProject.sanitize(project))
 		});
 	});
 })
 .all((req, res, next) => {
 	// ALL remaining routes require a valid token to proceed.
 	if (!req.validToken)
-		return res.status(401).json({ success: false });
+		return res.status(401).json({ success: false, error: "A valid token is needed for this request."});
 	next();
 })
 .post((req, res, next) => {
 	// POST request adds a project
 	//   If there is a project ID or there isn't a project to post, the request is malformed
 	if (req.projectId || !req.project)
-		return res.status(400).json({ success: false });
-	
+		return res.status(400).json({ success: false, error: "Malformed request."});
+
 	// Create a new project with the given details (sanitized in .all)
 	let newShowcaseProject = new db.ShowcaseProject(req.project);
 	newShowcaseProject.save((err, updatedShowcaseProject) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
+			error: err ? "Unable to create project: " + err : null,
 			project: err ? {} : db.ShowcaseProject.sanitize(updatedShowcaseProject)
 		});
 	});
@@ -56,16 +57,17 @@ router.route('/:projectId?')
 	//   If there isn't a project ID or there isn't a field description of what to update,
 	//   then the request is malformed
 	if (!req.projectId || !req.project)
-		return res.status(400).json({ success: false });
-	
+		return res.status(400).json({ success: false, error: "Malformed request." });
+
 	// Find the project by ID and update the field based on the given details (sanitized above)
 	db.ShowcaseProject.findById(req.projectId, (err, project) => {
 		if (err || !project)
-			return res.status(500).json({ success: false });
+			return res.json({ success: false, error: "Unable to find project by ID: " + err});
 		project.update(req.project);
 		project.save((err, updatedShowcaseProject) => {
-			res.status(err ? 500 : 200).json({
+			res.json({
 				success: !err,
+				error: err ? err : null,
 				project: err ? {} : db.ShowcaseProject.sanitize(updatedShowcaseProject)
 			});
 		});
@@ -76,8 +78,9 @@ router.route('/:projectId?')
 	let dbQuery = req.projectId ? { id: req.projectId } : {};
 
 	db.ShowcaseProject.remove(dbQuery, (err, opInfo) => {
-		res.status(err ? 500 : 200).json({
+		res.json({
 			success: !err,
+			error: err ? "Unable to delete project by ID: " + err : null,
 			removed: opInfo && opInfo.result && opInfo.result.n ? opInfo.result.n : 0
 		});
 	});

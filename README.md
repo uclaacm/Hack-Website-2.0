@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Hack-Website-2.0](#hack-website-20)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Installation](#installation)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Hack-Website-2.0
 
 Welcome to the revamp of the UCLA ACM Hack website. Now featuring the Ghost blogging platform.
@@ -39,5 +50,3 @@ To additionally run webpack:
 ```shell
 $ npm run webpack
 ```
-
-

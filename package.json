@@ -10,7 +10,8 @@
     "preinstall": "scripts/preinstall",
     "start": "node index",
     "test": "mocha",
-    "webpack": "node ./node_modules/webpack/bin/webpack.js"
+    "webpack": "node ./node_modules/webpack/bin/webpack.js",
+	"webpack-production": "node ./node_modules/webpack/bin/webpack.js --progress -p"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "async": "^2.1.4",
     "axios": "^0.15.3",
     "babel-preset-stage-1": "^6.1.18",
     "body-parser": "^1.15.2",
