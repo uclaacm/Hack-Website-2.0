@@ -38,12 +38,15 @@ ShowcaseProject.statics.sanitize = function(event, withId=true) {
 
 ShowcaseProject.methods.update = function(event) {
 	if (!event) return;
-	let applyDelta = (delta, target) => {
+	let self = this;
+	let applyDelta = (delta, target, path="") => {
 		for (let key in delta) {
-			if (typeof delta[key] === typeof {})
-				applyDelta(delta[key], target[key])
-			else
+			if (typeof delta[key] === typeof {}) {
+				applyDelta(delta[key], target[key], path + key + ".")
+			} else {
 				target[key] = delta[key]
+				self.markModified(path + key); // work around to force update
+			}
 		}
 	};
 	
