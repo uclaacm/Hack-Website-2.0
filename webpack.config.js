@@ -1,5 +1,3 @@
-const webpack = require('webpack');
-
 module.exports = {
   entry: [
     './www/public/react-src/index.js'
@@ -24,12 +22,5 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './www/public/'
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': 'production'
-      }
-	})
-  ]
+  }
 };
