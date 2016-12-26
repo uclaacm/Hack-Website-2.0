@@ -18,7 +18,10 @@ class EventsListItem extends Component {
 
 	getDate(date){
 		let newDate = new Date(date);
+		newDate.hour = newDate.getHours() % 12;
 		newDate.suffix = newDate.getHours() > 12 ? 'PM' : 'AM';
+		newDate.min = newDate.getMinutes() == '0' ? '00' : newDate.getMinutes();
+		newDate.month = newDate.toDateString().substr(4,4);
 		return newDate;
 	}
 
@@ -31,7 +34,7 @@ class EventsListItem extends Component {
 			<div className="events-item-wrapper">
 				<div className="time-label">
 					<p>
-						<span>{start.toDateString().substr(4,4).trim()}</span><br/>
+						<span>{start.month.trim()}</span><br/>
 						<span className="date-number">{start.getDate()}</span>
 					</p>
 				</div>
@@ -42,7 +45,7 @@ class EventsListItem extends Component {
 					<div className="info-wrapper info-default">
 						<p className="category-label">{category}</p>
 						<h1>{this.props.title}</h1>
-						<h3>{start.toDateString().substr(0,3)} {start.getHours()}:{start.getMinutes()} {start.suffix} - {end.getHours()}:{end.getMinutes()} {end.suffix}</h3>
+						<h3>{start.month} {start.hour}:{start.min} {start.suffix} - {end.hour}:{end.min} {end.suffix}</h3>
 						<h3>{this.props.location}</h3>
 					</div>
 					<div className="info-wrapper info-hover">

@@ -34,6 +34,10 @@ class ProjectDetail extends Component{
 				proj.classList.remove('exitRight');	
 		});
 		setTimeout( () => this.props.selectProject(null), 1000);
+
+		//miscellaneous fixes
+		const body = document.querySelector('body');
+		body.classList.remove('fix-scroll');
 	}
 
 	render(){

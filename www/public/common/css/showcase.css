@@ -28,18 +28,8 @@
 	overflow: hidden;
 	box-shadow: var(--shad);
 
-	-webkit-transition-property: margin, transform;
-			transition-property: margin, transform;
-	-webkit-transition-duration: 0.2s, 1s;
-			transition-duration: 0.2s, 1s;
-	-webkit-transition-timing-function: cubic-bezier(0.65,-0.3, 0.36, 1.07);
-			transition-timing-function: cubic-bezier(0.65,-0.3, 0.36, 1.07);
-	-webkit-transform: translateZ(0);
-			transform: translateZ(0);
-}
-
-.project-item:hover{
-	margin-top: -15px;
+	-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
+			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
 }
 
 .project-item.exitLeft{
@@ -174,9 +164,13 @@
 }
 
 .detail-zoom{
-	height: 100vh;
+	height: 80vh;
 	width: 60%;
 	padding: 5%;
+	margin-bottom: 20px;
+	margin-bottom: 20px;
+    overflow-y: auto;
+    position: relative;
 }
 
 .detail-zoom h1{
@@ -214,12 +208,6 @@
 		display: block;
 		margin: 5px auto;
 		width: 90%;
-		-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
-				transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
-	}
-
-	.project-item:hover{
-		margin-top:5px;
 	}
 
 	.project-td, .img-wrapper, .text-wrapper{
@@ -228,18 +216,22 @@
 
 	.detail-zoom{
 		position: absolute;
-		top: 70px;
-		left: 10px;
+		left: 20px;
+		background: #fff;
+		height: auto;
+		top: 40px;
+		border-radius: 3px;
+		box-shadow: var(--shad);
+		max-height: 60%;
+		overflow-y: auto;
 	}
 
 	.detail-zoom h1{
 		font-size: 18px;
-		color: #fff;
 	}
 
 	.detail-zoom h3, .detail-zoom p{
 		font-size: 14px;
-		color: var(--grey-light);
 	}
 
 	.detail-zoom p{
@@ -248,8 +240,6 @@
 
 	.detail-zoom button{
 		font-size: 10px;
-		color: var(--highlight);
-		background-color: #fff;
 	}
 
 }

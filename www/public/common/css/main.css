@@ -119,6 +119,10 @@ a:hover, button:hover{
 	display: none;
 }
 
+.fix-scroll{
+	overflow: hidden;
+}
+
 /*====================TOP MENU====================*/
 
 .menu{
@@ -127,6 +131,7 @@ a:hover, button:hover{
 	background: #fff;
 	box-shadow: var(--shad);
 	position: fixed;
+	overflow: hidden;
 	z-index: 1000;
 	-webkit-transform: translate(0, 0px);
 			transform: translate(0, 0px);
@@ -377,6 +382,10 @@ a:hover, button:hover{
 /*==================MEDIA QUERIES=================*/
 
 @media only screen and (max-width: 850px){
+
+	.menu{
+		overflow: visible;
+	}
 
 	.menu-inner li{
 		margin-left: 10px;
