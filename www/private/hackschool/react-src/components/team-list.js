@@ -4,12 +4,22 @@ import TeamItem from './team-item';
 
 class TeamList extends Component{
 
-	render(){
+	constructor(props){
+		super(props);
 
+		this.renderList = this.renderList.bind(this);
+	}
+
+	renderList(team){
+		return <TeamItem key={team.id}/>;
+	}
+
+	render(){
+		console.log(this.props.list);
 		return (
 			<div>
-				team list
-				<TeamItem />
+			List
+				{this.props.list.map(this.renderList)}
 			</div>
 		);
 	}

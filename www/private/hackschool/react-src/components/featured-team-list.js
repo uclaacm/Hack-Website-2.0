@@ -4,12 +4,22 @@ import FeaturedTeamItem from './featured-team-item';
 
 class FeaturedTeamList extends Component{
 
-	render(){
+	constructor(props){
+		super(props);
 
+		this.renderList = this.renderList.bind(this);
+	}
+
+	renderList(team){
+		return <FeaturedTeamItem key={team.id}/>;
+	}
+
+	render(){
+		console.log(this.props.list);
 		return (
 			<div>
-				Feature team list
-				<FeaturedTeamItem />
+			Featured
+				{this.props.list.map(this.renderList)}
 			</div>
 		);
 	}
