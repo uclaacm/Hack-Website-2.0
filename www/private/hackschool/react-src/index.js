@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hackschool from './components/hackschool';
+import Dashboard from './components/dashboard';
 
-ReactDOM.render(<Hackschool />, document.querySelector('.hack-container'));
+ReactDOM.render(<Dashboard />, document.querySelector('.container'));
