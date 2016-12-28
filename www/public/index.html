@@ -85,11 +85,10 @@ const menu = document.querySelector('.menu');
 const bg = document.querySelector('.main-bg');
 const text = Array.from(document.querySelectorAll('.text-over > *'));
 
-const menuMobile = document.querySelector('.hamburger');
 const menuMobileInner = document.querySelector('.hamburger-inner');
 
 function toggleMenu(e){
-	menuMobile.classList.toggle('active');
+	this.parentElement.classList.toggle('active');
 	e.preventDefault();
 }
 function triggerAllAnimateIn(){

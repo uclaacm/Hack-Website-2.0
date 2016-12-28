@@ -76,15 +76,15 @@
 	</div>
 
 <script>
+
+const menuMobileInner = document.querySelector('.hamburger-inner');
+
 function toggleMenu(e){
-	menu.classList.toggle('active');
+	this.parentElement.classList.toggle('active');
 	e.preventDefault();
 }
 
-const menu = document.querySelector('.hamburger');
-const menuInner = document.querySelector('.hamburger-inner');
-
-menuInner.addEventListener('click', toggleMenu);
+menuMobileInner.addEventListener('click', toggleMenu);
 
 </script>
 </body>

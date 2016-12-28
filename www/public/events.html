@@ -60,11 +60,10 @@
 <script src="/common/js/bundle.js"></script>
 <script>
 
-const menuMobile = document.querySelector('.hamburger');
 const menuMobileInner = document.querySelector('.hamburger-inner');
 
 function toggleMenu(e){
-	menuMobile.classList.toggle('active');
+	this.parentElement.classList.toggle('active');
 	e.preventDefault();
 }
 
