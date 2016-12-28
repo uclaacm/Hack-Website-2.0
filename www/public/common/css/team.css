@@ -31,46 +31,88 @@
 	box-shadow: var(--shad);
 }
 
+
 /*==================HEADER==================*/
-.team_pic
-{
-	max-width:  300px; 
-	width:70vw;
-    height: 250px;
-	float:left;
-	margin-top: 0px;
-	margin-left:0px;
-}
 .header{
+     
 	background: #fff;
-	min-height: 250px;
+	min-height: 327px;
 	width: 70vw;
 	margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
 
 }
+.team_pic
+{
+    /*max-width: 384px; 
+    max-height: 327px;*/
+    width:30vw;
+    height:25vw;
+    min-width: 336px;
+    min-height: 174px;
+	margin-top: 0px;
+	margin-left:0px;
+    float:left;
+}
+.header_text{ 
+   
+    float: left;
+    width:35vw;
+    max-height: 25vw;
+    max-height: 320px;
+    margin-left: 20px;
+    margin-right:20px;
+}
+
 .who_we_are{
-	margin-left: 320px;
+    
 	font-family: var(--fam2);
 	font-weight: bold;
-	font-size: 3vw;
+	font-size: 28px;
 	letter-spacing: 2px;
 	padding-top: 15px;
-	margin-bottom: 0px;
-	
-
+	margin-bottom: 10px; 
 }
 
 .team_description{
 
-	margin-left: 320px;
-	min-width: 300px
-	max-height: 250px;
-	margin-right: 20px;
 	font-family: var(--fam1);
-	font-size: 1.52vw;
+	font-size: 16px;
+}
+@media only screen and (max-width: 1100px){
+
+    .header_text{
+        margin-left: 10px;
+        margin-right: 10px;
+        width:35vw;
+        height:25vw;
+    }
+    .who_we_are{
+        font-size: 22px;
+    }
+    .team_description{
+        font-size:13px;
+    }
 }
 
-
+@media only screen and (max-width: 500px){
+.team_pic
+{	
+    max-width: 520px;
+	max-height: 333px;
+	float: center;
+	width:70vw;
+    height: 50vw;
+	margin-top: 0px;
+	margin-left:0px;
+}
+    .header_text{
+        margin-left: 20px;
+        margin-right: 20px;
+        width:70vw;
+    }
+}
 /*================INFO-CARDS==================*/
 
 .card-wrapper{
@@ -82,7 +124,6 @@
 	width: 34vw;
 	float: left;
 	text-align: center;
-
 }
 
 .card:first-child{
@@ -130,9 +171,7 @@
 	
 }
 
-
-
-
+	
 @media only screen and (max-width: 850px){
 .card {
 		width: 70vw;
