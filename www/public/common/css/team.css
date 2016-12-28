@@ -27,7 +27,10 @@
 .content > *{
 	margin: 0 auto;
 }
-
+.header >*, .card-wrapper > *{
+box-shadow: var(--shad);
+border-radius:3px;
+}
 
 /*==================HEADER==================*/
 
