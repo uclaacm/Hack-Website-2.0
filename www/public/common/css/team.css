@@ -1,24 +1,3 @@
-@font-face {
-	font-family: 'Open Sans';
-	src: url('/common/fonts/OpenSans-Regular.ttf');
-}
-
-@font-face {
-	font-family: 'Montserrat';
-	src: url('/common/fonts/Montserrat-Regular.ttf');
-}
-
-@font-face{
-	font-family: 'Source Code Pro';
-	src: url('/common/fonts/SourceCodePro-Regular.ttf');
-}
-
-:root{
-	--fam1: 'Open Sans', sans-serif;
-	--fam2: 'Montserrat', sans-serif;
-	--fam3: 'Source Code Pro', sans-serif;
-}
-
 
 .content{
 	width: 100%;
@@ -27,9 +6,13 @@
 .content > *{
 	margin: 0 auto;
 }
-.header >*, .card-wrapper > *{
-box-shadow: var(--shad);
-border-radius:3px;
+
+.header > *, .card-wrapper > *{
+	box-shadow: var(--shad);
+}
+
+.header, .card-wrapper > *{
+	border-radius:3px;
 }
 
 /*==================HEADER==================*/
@@ -84,6 +67,7 @@ border-radius:3px;
 	width: 390px;
 	float: left;
 	text-align: center;
+	margin-bottom: 20px;
 }
 
 .card:first-child{
