@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
 export const CHANGE_DIALOG = 'CHANGE_DIALOG';
+export const CREATE_TEAM = 'CREATE_TEAM';
 
 export function fetchUser(url){
 
@@ -85,5 +86,43 @@ export function changeDialog(change){
 		type: CHANGE_DIALOG,
 		payload: change
 	}
+
+}
+
+export function createTeam(teamName){
+
+	const url = '/hackschool/team/create';
+	const request = {
+		success: true,
+  		error: null,
+  		team: {
+  			id: '123-456-789',
+  			name: teamName,
+  			totalScore: 0,
+  			scores: [],
+			members: [
+				{
+					id: '1234',
+					name: 'Member 1',
+					profilePicture: ''
+				}
+			]
+  		}
+	};
+
+	/*const request = axios.post(url, {
+						  	teamname: teamname
+						});*/
+
+	return{
+		type: CREATE_TEAM,
+		payload: request
+	}
+
+}
+
+export function joinTeam(teamID){
+
+
 
 }
