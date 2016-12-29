@@ -25,6 +25,7 @@ class DialogOnboardInput extends Component{
 				break;
 			case 'JOIN':
 				this.props.joinTeam(this.state.term);
+				break;
 		}
 			
 		this.props.onFormSubmit(e);

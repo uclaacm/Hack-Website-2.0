@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import _ from 'underscore';
+import { changeDialog } from '../actions/index';
 import DialogOnboardInput from './dialog-onboard-input';
 
 class DialogOnboard extends Component{
@@ -19,20 +21,20 @@ class DialogOnboard extends Component{
 		this.renderSuccess = this.renderSuccess.bind(this);
 		this.renderLoading = this.renderLoading.bind(this);
 		this.renderFailure = this.renderFailure.bind(this);
+		
 		this.incrementSlide = this.incrementSlide.bind(this);
-
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
 	incrementSlide(num){
-		if(this.state.currentSlide == 0 && num < 1)
-			return;
+		if(this.state.currentSlide == 0 && num < 0)
+			this.props.changeDialog({active : false});
+
 		this.setState({currentSlide: this.state.currentSlide+num});
 	}
 
 	onFormSubmit(e){
 		e.preventDefault();
-		//TODO: detect success/failure and render different messages
 		this.incrementSlide(1);
 	}
 
@@ -85,7 +87,7 @@ class DialogOnboard extends Component{
 		return (
 			<div>
 				Error:<br />
-				{this.props.team}
+				
 			</div>
 		);
 	}
@@ -104,6 +106,8 @@ class DialogOnboard extends Component{
 						<span>{this.props.team.id}</span>
 						<br />
 						<span>Make sure to share this ID with your teammates. You can access it anytime by clicking &quot;Manage Team&quot;.</span>
+						<br />
+						<button onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
 					</div>
 				);
 			case 'join':
@@ -116,6 +120,8 @@ class DialogOnboard extends Component{
 						<span>Your teammates are</span>
 						<br />
 						<ul>{this.props.team.members.map(m => `${m.name} `)}</ul>
+						<br />
+						<button onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
 					</div>
 				);
 			default:
@@ -145,6 +151,7 @@ class DialogOnboard extends Component{
 	render(){
 		return(
 			<div>
+				{this.state.currentSlide != 2 && <button onClick={() => this.incrementSlide(-1)}>back</button>}
 				{this.renderSlide(this.state.currentSlide)}
 			</div>
 		);
@@ -156,4 +163,8 @@ function mapStateToProps({team}){
 	return {team};
 }
 
-export default connect(mapStateToProps)(DialogOnboard);
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({changeDialog}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DialogOnboard);

@@ -112,7 +112,7 @@ export function createTeam(teamName){
 	};
 
 	/*const request = axios.post(url, {
-						  	teamname: teamname
+						  	{team: {name: teamName}}
 						});*/
 
 	return{
@@ -142,6 +142,10 @@ export function joinTeam(teamID){
 			]
   		}
 	}
+
+	/*const request = axios.post(url, {
+						  	{team: {id: teamID}}
+						});*/
 
 	return{
 		type: JOIN_TEAM,
