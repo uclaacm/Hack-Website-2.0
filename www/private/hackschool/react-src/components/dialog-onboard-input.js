@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createTeam } from '../actions/index';
+import { createTeam, joinTeam } from '../actions/index';
 
 class DialogOnboardInput extends Component{
 
@@ -19,11 +19,19 @@ class DialogOnboardInput extends Component{
 	}
 
 	onFormSubmit(e){
-		this.props.createTeam(this.state.term);
+		switch(this.props.action){
+			case 'CREATE':
+				this.props.createTeam(this.state.term);
+				break;
+			case 'JOIN':
+				this.props.joinTeam(this.state.term);
+		}
+			
 		this.props.onFormSubmit(e);
 	}
 
 	render(){
+		
 		return (
 			<div>
 				<span>{this.props.message}</span>
@@ -31,7 +39,7 @@ class DialogOnboardInput extends Component{
 					<input 	type="text"
 							value={this.state.term}
 							onChange={e => this.onInputChange(e.target.value)} />
-					<button type="submit">{this.props.btnText}</button>
+					<button type="submit">{this.props.action}</button>
 				</form>
 			</div>
 		);
@@ -44,7 +52,7 @@ function mapStateToProps({team}){
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({createTeam}, dispatch);
+	return bindActionCreators({createTeam, joinTeam}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogOnboardInput);

@@ -4,6 +4,7 @@ export const FETCH_USER = 'FETCH_USER';
 export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
 export const CHANGE_DIALOG = 'CHANGE_DIALOG';
 export const CREATE_TEAM = 'CREATE_TEAM';
+export const JOIN_TEAM = 'JOIN_TEAM';
 
 export function fetchUser(url){
 
@@ -123,6 +124,28 @@ export function createTeam(teamName){
 
 export function joinTeam(teamID){
 
+	const url = '/hackschool/team/join';
+	const request = {
+		success: true,
+  		error: null,
+  		team: {
+  			id: teamID,
+  			name: 'fetched team name',
+  			totalScore: 0,
+  			scores: [],
+			members: [
+				{
+					id: '1234',
+					name: 'Member 1',
+					profilePicture: ''
+				}
+			]
+  		}
+	}
 
+	return{
+		type: JOIN_TEAM,
+		payload: request
+	}
 
 }

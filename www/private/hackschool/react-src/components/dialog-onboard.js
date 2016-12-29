@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import _ from 'underscore';
 import DialogOnboardInput from './dialog-onboard-input';
 
 class DialogOnboard extends Component{
@@ -15,19 +17,23 @@ class DialogOnboard extends Component{
 		this.renderDefault = this.renderDefault.bind(this);
 		this.renderFormInput = this.renderFormInput.bind(this);
 		this.renderSuccess = this.renderSuccess.bind(this);
+		this.renderLoading = this.renderLoading.bind(this);
+		this.renderFailure = this.renderFailure.bind(this);
 		this.incrementSlide = this.incrementSlide.bind(this);
 
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
-	incrementSlide(){
-		this.setState({currentSlide: this.state.currentSlide+1});
+	incrementSlide(num){
+		if(this.state.currentSlide == 0 && num < 1)
+			return;
+		this.setState({currentSlide: this.state.currentSlide+num});
 	}
 
 	onFormSubmit(e){
 		e.preventDefault();
 		//TODO: detect success/failure and render different messages
-		this.incrementSlide();
+		this.incrementSlide(1);
 	}
 
 	renderDefault(){
@@ -49,18 +55,18 @@ class DialogOnboard extends Component{
 		switch(this.state.action){
 			case 'create':
 				return (
-					<DialogOnboardInput 
+					<DialogOnboardInput
+						action="CREATE" 
 						initialFormValue="Your team name"
 						message="Give your team a name! Make sure to keep it community appropriate."
-						btnText="CREATE"
 						onFormSubmit={this.onFormSubmit}/>
 				);
 			case 'join':
 				return (
 					<DialogOnboardInput 
+						action="JOIN"
 						initialFormValue="team code"
-						message="Paste the team ID below"
-						btnText="JOIN"
+						message="Paste the team ID below."
 						onFormSubmit={this.onFormSubmit}/>
 				);
 			default:
@@ -69,10 +75,52 @@ class DialogOnboard extends Component{
 		
 	}
 
-	renderSuccess(){
+	renderLoading(){
 		return (
-			<div>success</div>
+			<div>Loading...</div>
 		);
+	}
+
+	renderFailure(){
+		return (
+			<div>
+				Error:<br />
+				{this.props.team}
+			</div>
+		);
+	}
+
+	renderSuccess(){
+		switch(this.state.action){
+			case 'create':
+				return (
+					<div>
+						<span>Awesome! Your team name is</span>
+						<br />
+						<span>{this.props.team.name}</span>
+						<br />
+						<span>and your team ID is:</span>
+						<br />
+						<span>{this.props.team.id}</span>
+						<br />
+						<span>Make sure to share this ID with your teammates. You can access it anytime by clicking &quot;Manage Team&quot;.</span>
+					</div>
+				);
+			case 'join':
+				return (
+					<div>
+						<span>Great! You&apos;ve joined team</span>
+						<br />
+						<span>{this.props.team.name}</span>
+						<br />
+						<span>Your teammates are</span>
+						<br />
+						<ul>{this.props.team.members.map(m => `${m.name} `)}</ul>
+					</div>
+				);
+			default:
+				return <div>Something went wrong...</div>;
+		}
 	}
 
 	renderSlide(slideNum){
@@ -82,7 +130,13 @@ class DialogOnboard extends Component{
 			case 1:
 				return this.renderFormInput();
 			case 2:
-				return this.renderSuccess();
+				console.log(this.props.team)
+				if(_.isEmpty(this.props.team))
+					return this.renderLoading();
+				else if (typeof this.props.team === 'string')
+					return this.renderFailure();
+				else
+					return this.renderSuccess();
 			default:
 				return <div>Something went wrong...</div>;
 		}
@@ -98,4 +152,8 @@ class DialogOnboard extends Component{
 
 }
 
-export default DialogOnboard;
+function mapStateToProps({team}){
+	return {team};
+}
+
+export default connect(mapStateToProps)(DialogOnboard);
