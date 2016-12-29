@@ -1,6 +1,28 @@
 import axios from 'axios';
 
+export const FETCH_USER = 'FETCH_USER';
 export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
+export const CHANGE_DIALOG = 'CHANGE_DIALOG';
+
+export function fetchUser(url){
+
+	//const request = axios.get(url);
+	const request = {
+		success: true,
+		error: null,
+		user: {
+			id: 'ab-15-asdf',
+			name: 'John Doe',
+			profilePicture: ''
+		}
+	};
+
+	return{
+		type: FETCH_USER,
+		payload: request
+	}
+
+}
 
 export function fetchScoreboard(url){
 
@@ -55,4 +77,13 @@ export function fetchScoreboard(url){
 		type: FETCH_SCOREBOARD,
 		payload: request
 	}
+}
+
+export function changeDialog(change){
+
+	return{
+		type: CHANGE_DIALOG,
+		payload: change
+	}
+
 }
