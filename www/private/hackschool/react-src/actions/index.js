@@ -5,6 +5,7 @@ export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
 export const CHANGE_DIALOG = 'CHANGE_DIALOG';
 export const CREATE_TEAM = 'CREATE_TEAM';
 export const JOIN_TEAM = 'JOIN_TEAM';
+export const LEAVE_TEAM = 'LEAVE_TEAM';
 
 export function fetchUser(url){
 
@@ -149,6 +150,30 @@ export function joinTeam(teamID){
 
 	return{
 		type: JOIN_TEAM,
+		payload: request
+	}
+
+}
+
+export function leaveTeam(teamInput){
+
+	const url = '/hackschool/team/leave';
+	let request;
+
+	if(teamInput)
+		request = {
+			success: true,
+			error: null,
+			team: null
+		};
+	else
+		request = {
+			success: false,
+			error: 'Incorrect team name'
+		};
+
+	return {
+		type: LEAVE_TEAM,
 		payload: request
 	}
 

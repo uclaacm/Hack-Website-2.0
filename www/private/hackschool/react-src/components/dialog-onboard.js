@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'underscore';
 import { changeDialog } from '../actions/index';
-import DialogOnboardInput from './dialog-onboard-input';
+import DialogInput from './dialog-input';
 
 class DialogOnboard extends Component{
 
@@ -57,7 +57,7 @@ class DialogOnboard extends Component{
 		switch(this.state.action){
 			case 'create':
 				return (
-					<DialogOnboardInput
+					<DialogInput
 						action="CREATE" 
 						initialFormValue="Your team name"
 						message="Give your team a name! Make sure to keep it community appropriate."
@@ -65,7 +65,7 @@ class DialogOnboard extends Component{
 				);
 			case 'join':
 				return (
-					<DialogOnboardInput 
+					<DialogInput 
 						action="JOIN"
 						initialFormValue="team code"
 						message="Paste the team ID below."
