@@ -1,10 +1,14 @@
 import React from 'react';
 
-export default function TeamItem(){
+export default function TeamItem(props){
 
 	return(
 		<div>
-			team item
+			Rank: {props.rank}
+			<br />
+			Members: {props.members.map(member => `${member.name} `)}
+			<br />
+			Total score: {props.score}
 		</div>
 	);
 

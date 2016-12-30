@@ -1,11 +1,13 @@
 import axios from 'axios';
 
 export const FETCH_USER = 'FETCH_USER';
+export const FETCH_SESSIONS = 'FETCH_SESSIONS';
 export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
 export const FETCH_TEAM_RANK = 'FETCH_TEAM_RANK';
 
 export const CHANGE_DIALOG = 'CHANGE_DIALOG';
 export const SELECT_SLIDE = 'SELECT_SLIDE';
+export const SELECT_SESSION = 'SELECT_SESSION';
 
 export const CREATE_TEAM = 'CREATE_TEAM';
 export const JOIN_TEAM = 'JOIN_TEAM';
@@ -31,6 +33,83 @@ export function fetchUser(url){
 
 }
 
+export function fetchSessions(url){
+
+	//const request = axios.get(url);
+	const request = {
+		success: true,
+		error: null,
+		projects: [
+			{
+				id: 'r7truyd',
+				number: 1,
+				points: 10,
+				name: 'Project 1',
+				desc: 'description uefhidjsh',
+				image: '',
+				videoLink: '',
+				slidesLink: '',
+				blogPostLink: '',
+				submissionLink: ''
+			},
+			{
+				id: '7tfhgv',
+				number: 2,
+				points: 10,
+				name: 'Project 2',
+				desc: 'description eiuwihsdfjxcn',
+				image: '',
+				videoLink: '',
+				slidesLink: '',
+				blogPostLink: '',
+				submissionLink: ''
+			},
+			{
+				id: '32uyiwrfgdj',
+				number: 3,
+				points: 10,
+				name: 'Project 3',
+				desc: 'description eijskfd',
+				image: '',
+				videoLink: '',
+				slidesLink: '',
+				blogPostLink: '',
+				submissionLink: ''
+			},
+			{
+				id: '38u7ryefd',
+				number: 4,
+				points: 10,
+				name: 'Project 4',
+				desc: 'description 32urwhj',
+				image: '',
+				videoLink: '',
+				slidesLink: '',
+				blogPostLink: '',
+				submissionLink: ''
+			},
+			{
+				id: 'h4398fdf',
+				number: 5,
+				points: 10,
+				name: 'Project 5',
+				desc: 'description 34ru8eigfdyj',
+				image: '',
+				videoLink: '',
+				slidesLink: '',
+				blogPostLink: '',
+				submissionLink: ''
+			}]
+	};
+
+	return{
+		type: FETCH_SESSIONS,
+		payload: request
+	}
+
+
+}
+
 export function fetchScoreboard(url){
 
 	//const request = axios.get(url);
@@ -41,7 +120,7 @@ export function fetchScoreboard(url){
 		error: null,
 		scoreboard: [
 			{
-				id: 'some-id',
+				id: '987656',
 				name: 'Team #1',
 				totalScore: 30,
 				scores: [
@@ -61,22 +140,133 @@ export function fetchScoreboard(url){
 				],
 				members: [
 					{
-						id: 'some-id',
+						id: '8uhk',
 						name: 'Member 1',
 						profilePicture: ''
 					},
 					{
-						id: 'some-id',
+						id: '98yugjhb',
 						name: 'Member 2',
 						profilePicture: ''
 					},
 					{
-						id: 'some-id',
+						id: '213werfdg',
 						name: 'Member 3',
 						profilePicture: ''
 					}
 				]
-			},//several more like this
+			},
+			{
+				id: '1234564',
+				name: 'Team #2',
+				totalScore: 24,
+				scores: [
+					{
+						projectNumber: 1,
+						score: 9
+					},
+					{
+						projectNumber: 2,
+						score: 8
+					},
+					{
+						projectNumber: 3,
+						score: 7
+					},
+
+				],
+				members: [
+					{
+						id: 'vghu98',
+						name: 'Member 1',
+						profilePicture: ''
+					},
+					{
+						id: 'gf45656',
+						name: 'Member 2',
+						profilePicture: ''
+					},
+					{
+						id: '87yutf5',
+						name: 'Member 3',
+						profilePicture: ''
+					}
+				]
+			},
+			{
+				id: '65rdfgjbb8o9i9',
+				name: 'Team #3',
+				totalScore: 18,
+				scores: [
+					{
+						projectNumber: 1,
+						score: 6
+					},
+					{
+						projectNumber: 2,
+						score: 7
+					},
+					{
+						projectNumber: 3,
+						score: 5
+					},
+
+				],
+				members: [
+					{
+						id: '23yfdgyuvhcj',
+						name: 'Member 1',
+						profilePicture: ''
+					},
+					{
+						id: '97rwe234r',
+						name: 'Member 2',
+						profilePicture: ''
+					},
+					{
+						id: '3284y7rwe',
+						name: 'Member 3',
+						profilePicture: ''
+					}
+				]
+			},
+			{
+				id: 'some-id',
+				name: 'Team #4',
+				totalScore: 12,
+				scores: [
+					{
+						projectNumber: 1,
+						score: 4
+					},
+					{
+						projectNumber: 2,
+						score: 4
+					},
+					{
+						projectNumber: 3,
+						score: 4
+					},
+
+				],
+				members: [
+					{
+						id: '21343wetdf',
+						name: 'Member 1',
+						profilePicture: ''
+					},
+					{
+						id: 'ny7b632d',
+						name: 'Member 2',
+						profilePicture: ''
+					},
+					{
+						id: '349nv984',
+						name: 'Member 3',
+						profilePicture: ''
+					}
+				]
+			}
 		]
 	}
 
@@ -115,6 +305,14 @@ export function selectSlide(slide){
 	return{
 		type: SELECT_SLIDE,
 		payload: slide
+	}
+}
+
+//session is a session/project obj
+export function selectSession(session){
+	return{
+		type: SELECT_SESSION,
+		payload: session
 	}
 }
 

@@ -10,8 +10,14 @@ class TeamList extends Component{
 		this.renderList = this.renderList.bind(this);
 	}
 
-	renderList(team){
-		return <TeamItem key={team.id}/>;
+	renderList(team, i){
+		const highest = 4;
+		return <TeamItem 	key={team.id}
+							featured={false}
+							name={team.name}
+							score={team.totalScore}
+							members={team.members}
+							rank={i + highest} />;
 	}
 
 	render(){
