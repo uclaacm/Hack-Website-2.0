@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'underscore';
+import DashboardNav from './dashboard-nav';
 
 class Profile extends Component{
 
@@ -34,6 +35,7 @@ class Profile extends Component{
 				<h4>{teamName}</h4>
 				<h4> {/* TODO */}Team ranking:</h4>
 				<h4>Total points: {totalScore}</h4>
+				<DashboardNav />
 			</div>
 		);
 	}

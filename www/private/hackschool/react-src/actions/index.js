@@ -5,6 +5,8 @@ export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
 export const FETCH_TEAM_RANK = 'FETCH_TEAM_RANK';
 
 export const CHANGE_DIALOG = 'CHANGE_DIALOG';
+export const SELECT_SLIDE = 'SELECT_SLIDE';
+
 export const CREATE_TEAM = 'CREATE_TEAM';
 export const JOIN_TEAM = 'JOIN_TEAM';
 export const LEAVE_TEAM = 'LEAVE_TEAM';
@@ -98,6 +100,7 @@ export function fetchTeamRank(){
 
 }
 
+//change is an object
 export function changeDialog(change){
 
 	return{
@@ -105,6 +108,14 @@ export function changeDialog(change){
 		payload: change
 	}
 
+}
+
+//slide is a string
+export function selectSlide(slide){
+	return{
+		type: SELECT_SLIDE,
+		payload: slide
+	}
 }
 
 export function createTeam(teamName){

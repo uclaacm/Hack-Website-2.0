@@ -5,6 +5,7 @@ import { fetchUser, fetchScoreboard } from '../actions/index';
 
 import MenuBar from './menu-bar';
 import Profile from './profile';
+import SessionsGrid from './sessions-grid';
 import Leaderboard from './leaderboard';
 import DialogBox from './dialog-box';
 
@@ -24,20 +25,22 @@ class Dashboard extends Component{
 		if(!this.props.scoreboard)
 			return <div>Retrieving team info...</div>;
 
+		const currentSlide = this.props.currentSlide == 'sessions' ? <SessionsGrid /> : <Leaderboard />;
+
 		console.log(this.props.user)
 		return (
 			<div>
 				{ this.props.dialog.active && <DialogBox /> }
 				<MenuBar />
 				<Profile />
-				<Leaderboard />
+				{currentSlide}
 			</div>
 		);
 	}
 }
 
-function mapStateToProps({dialog, user, scoreboard}){
-	return {dialog, user, scoreboard};
+function mapStateToProps({dialog, user, scoreboard, currentSlide}){
+	return {dialog, user, scoreboard, currentSlide};
 }
 
 function mapDispatchToProps(dispatch){
