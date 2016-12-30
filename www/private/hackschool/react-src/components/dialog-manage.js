@@ -88,7 +88,7 @@ class DialogManage extends Component{
 				return this.renderDefault();
 			case 1:
 				return this.renderConfirm();
-			case 2:
+			case 2://TODO: account for async request
 				return this.props.team ? this.renderFailure() : this.renderSuccess();
 			default:
 				return <div>Something went wrong...lmao...</div>;
