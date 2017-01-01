@@ -8,7 +8,7 @@ class DialogOnboardInput extends Component{
 	constructor(props){
 		super(props);
 
-		this.state = {term: this.props.initialFormValue};
+		this.state = {term: ''};
 
 		this.onInputChange = this.onInputChange.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -27,7 +27,8 @@ class DialogOnboardInput extends Component{
 				this.props.joinTeam(this.state.term);
 				break;
 			case 'LEAVE':
-				const input = this.state.term == this.props.team.name ? this.state.term : false;
+				//TODO: FIX THIS BUG - TEAM NAME IS NOT GETTING INPUT FROM HERE
+				const input = this.state.term.toUpperCase() == this.props.team.name.toUpperCase() ? this.state.term.toUpperCase() : false;
 				this.props.leaveTeam(input);
 				break;
 		}
@@ -38,13 +39,14 @@ class DialogOnboardInput extends Component{
 	render(){
 		
 		return (
-			<div>
-				<span>{this.props.message}</span>
+			<div className="dialog-inner">
+				<h3>{this.props.message}</h3>
 				<form onSubmit={this.onFormSubmit}>
 					<input 	type="text"
 							value={this.state.term}
+							placeholder={this.props.initialFormValue}
 							onChange={e => this.onInputChange(e.target.value)} />
-					<button type="submit">{this.props.action}</button>
+					<button className="btn-action" type="submit">{this.props.action}</button>
 				</form>
 			</div>
 		);

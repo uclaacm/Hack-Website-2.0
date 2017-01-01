@@ -89,7 +89,7 @@ button{
 	border-radius: 3px;
 }
 
-button:focus {
+*:focus{
 	outline:none;
 }
 

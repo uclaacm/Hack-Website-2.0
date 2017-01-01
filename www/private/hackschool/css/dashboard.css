@@ -1,0 +1,141 @@
+
+
+/*====================DASH MENU====================*/
+
+.dashboard-menu{
+	background: var(--hack-purp);
+	color: #fff;
+	height: 36px;
+}
+
+.dashboard-menu > *{
+	letter-spacing: 2px;
+}
+
+.dashboard-menu p{
+	font-size: 12px;
+	padding: 10px 10px 10px 20px;
+	float: left;
+}
+
+.dashboard-menu button{
+	float: right;
+	font-size: 12px;
+	background: none;
+	box-shadow: none;
+	border-radius: 0px;
+	padding: 10.5px 15px;
+	border-left: 1px solid white;
+	-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+}
+
+.dashboard-menu button:hover{
+	background: #fff;
+	color: var(--hack-purp);
+}
+
+/*====================PROFILE====================*/
+
+/*====================DIALOG BOX====================*/
+
+
+.dialog-box-wrapper{
+	height: 100%;
+	width: 100%;
+	background: rgba(46, 12, 56, 0.7);
+	position: fixed;
+}
+
+.dialog-box{
+	position: inherit;
+	height: 260px;
+	width: 360px;
+	padding: 20px;
+	background: #fff;
+	border-radius: 3px;
+	top: 50%;
+	left: 50%;
+	margin-top: -150px;
+	margin-left: -200px;
+	text-align: center;
+	box-shadow: var(--shad);
+}
+
+.dialog-box button.back{
+	position: absolute;
+	margin-left: -300px;
+	margin-top: -30px;
+}
+
+.dialog-inner{
+	position: absolute;
+	width: 360px;
+	left:50%;
+	top: 50%;
+	-webkit-transform: translate(-50%,-50%);
+			transform: translate(-50%,-50%);
+}
+
+.dialog-box p{
+	font-weight: 900;
+}
+
+.dialog-box .btn-selection{
+	width: 100%;
+	font-size: 16px;
+	height: 50px;
+	margin: 10px 0px 0px 0px;
+}
+
+.or{
+	margin: 10px 0px;
+}
+
+.dialog-box input{
+	border: 0px;
+	border-bottom: 3px solid var(--highlight);
+	width: 100%;
+	margin: 20px 0;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 2px;
+	padding-bottom: 5px;
+}
+
+.dialog-box .btn-action{
+	font-size: 16px;
+	padding: 15px 25px;
+}
+
+.dialog-box span{
+	color: var(--highlight);
+	font-size: 14px;
+	letter-spacing: 2px;
+}
+
+.team-id-copy{
+	background: var(--grey-light);
+	padding: 14px 0;
+	border-radius: 3px;
+	width: 80%;
+	margin: 5px auto 0px auto;
+}
+
+.create-success p{
+	font-size: 12px;
+	color: var(--grey-deep);
+}
+
+.create-success .notice{
+	margin: 10px 0;
+}
+
+
+
+
+
+
+
+

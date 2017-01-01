@@ -40,13 +40,14 @@ class DialogOnboard extends Component{
 
 	renderDefault(){
 		return(
-				<div>
-					<span>You&apos;re not on a team yet. You can:</span>
-					<button onClick={() => this.setState({currentSlide: 1, action: 'create'})}>
+				<div className="dialog-inner">
+					<h3>You&apos;re not on a team yet.</h3>
+					<h3>You can:</h3>
+					<button className="btn-selection" onClick={() => this.setState({currentSlide: 1, action: 'create'})}>
 						create a team
 					</button>
-					<span>or</span>
-					<button onClick={() => this.setState({currentSlide: 1, action: 'join'})}>
+					<h3 className="or">or</h3>
+					<button className="btn-selection" onClick={() => this.setState({currentSlide: 1, action: 'join'})}>
 						join a team
 					</button>
 				</div>
@@ -96,23 +97,22 @@ class DialogOnboard extends Component{
 		switch(this.state.action){
 			case 'create':
 				return (
-					<div>
-						<span>Awesome! Your team name is</span>
-						<br />
-						<span>{this.props.team.name}</span>
-						<br />
-						<span>and your team ID is:</span>
-						<br />
-						<span>{this.props.team.id}</span>
-						<br />
-						<span>Make sure to share this ID with your teammates. You can access it anytime by clicking &quot;Manage Team&quot;.</span>
-						<br />
-						<button onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
+					<div className="create-success dialog-inner">
+						<h3>Awesome! Your team name is</h3>
+						<h3><span>{this.props.team.name}</span></h3>
+						<h3>and your team ID is:</h3>
+						<div className="team-id-copy">
+							<p>{this.props.team.id}</p>
+						</div>
+						<div className="notice">
+							<p>Make sure to share this ID with your teammates. You can access it anytime by clicking &quot;Manage Team&quot;.</p>
+						</div>
+						<button className="btn-selection" onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
 					</div>
 				);
 			case 'join':
 				return (
-					<div>
+					<div className="dialog-inner">
 						<span>Great! You&apos;ve joined team</span>
 						<br />
 						<span>{this.props.team.name}</span>
@@ -151,7 +151,7 @@ class DialogOnboard extends Component{
 	render(){
 		return(
 			<div>
-				{this.state.currentSlide != 2 && <button onClick={() => this.incrementSlide(-1)}>back</button>}
+				{this.state.currentSlide != 2 && <button className="back" onClick={() => this.incrementSlide(-1)}>back</button>}
 				{this.renderSlide(this.state.currentSlide)}
 			</div>
 		);

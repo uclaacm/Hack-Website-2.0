@@ -19,10 +19,10 @@ class MenuBar extends Component{
 	render(){
 		
 		return (
-			<div>
-				<span>HACKSCHOOL DASHBOARD</span>
-				<button onClick={this.toggleDialog}><span>MANAGE TEAM</span></button>
+			<div className="dashboard-menu">
+				<p>HACKSCHOOL DASHBOARD</p>
 				<button onClick=""><span>SIGN OUT</span></button>
+				<button onClick={this.toggleDialog}><span>MANAGE TEAM</span></button>
 			</div>
 		);
 	}

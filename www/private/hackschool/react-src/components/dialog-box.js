@@ -9,8 +9,8 @@ class DialogBox extends Component{
 	render(){
 		const dialogBox = this.props.dialog.onBoarding ? <DialogOnboard /> : <DialogManage />;
 		return(
-			<div>
-				{dialogBox}
+			<div className="dialog-box-wrapper">
+				<div className="dialog-box">{dialogBox}</div>
 			</div>
 		);
 
