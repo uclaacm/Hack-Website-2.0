@@ -105,6 +105,16 @@ describe("API.v1", () => {
 					done();
 				});
 			});
+			it("Should fail with an invalid event ID", (done) => {
+				chai.request(server)
+				.get(eventUrl + '/' + "oidwio")
+				.end((err, res) => {
+					res.should.have.status(200);
+					console.log(res.events);
+					done();
+					//console.log(res);
+				})
+			})
 		});
 	});
 	describe("Mailing list", () =>{
