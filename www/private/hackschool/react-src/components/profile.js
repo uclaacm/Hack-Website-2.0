@@ -16,7 +16,8 @@ class Profile extends Component{
 		return members
 					.filter(member => member.id != this.props.user.id)
 					.map(member => <li key={member.id}>
-										<div style={{backgroundImage: `url(${member.profilePicture})`}}></div>
+										<div 	className="team-profile-pic"
+												style={{backgroundImage: `url(${member.profilePicture})`}}></div>
 									</li>);
 
 	}

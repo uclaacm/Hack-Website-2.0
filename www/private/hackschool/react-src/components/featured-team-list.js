@@ -13,6 +13,7 @@ class FeaturedTeamList extends Component{
 	renderList(team, i){
 		return <TeamItem 	key={team.id}
 							featured={true}
+							first={i==0}
 							name={team.name}
 							score={team.totalScore}
 							members={team.members}
@@ -20,10 +21,8 @@ class FeaturedTeamList extends Component{
 	}
 
 	render(){
-		console.log(this.props.list);
 		return (
-			<div>
-			Featured
+			<div className="featured-team-list">
 				{this.props.list.map(this.renderList)}
 			</div>
 		);

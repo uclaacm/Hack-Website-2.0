@@ -14,6 +14,7 @@ class TeamList extends Component{
 		const highest = 4;
 		return <TeamItem 	key={team.id}
 							featured={false}
+							first={false}
 							name={team.name}
 							score={team.totalScore}
 							members={team.members}
@@ -23,9 +24,17 @@ class TeamList extends Component{
 	render(){
 		console.log(this.props.list);
 		return (
-			<div>
-			List
-				{this.props.list.map(this.renderList)}
+			<div className="team-list">
+				<table>
+					<thead>
+						<td>MEMBERS</td>
+						<td>TEAM NAME</td>
+						<td>POINTS</td>
+					</thead>
+					<tbody>
+						{/*this.props.list.map(this.renderList)*/}
+					</tbody>
+				</table>
 			</div>
 		);
 	}

@@ -44,7 +44,7 @@ class DialogOnboardInput extends Component{
 		return (
 			<div className="dialog-inner">
 				<h3>{this.props.message}</h3>
-				<h3>{additional}</h3>
+				<h3 className="hl">{additional}</h3>
 				<form onSubmit={this.onFormSubmit}>
 					<input 	type="text"
 							value={this.state.term}

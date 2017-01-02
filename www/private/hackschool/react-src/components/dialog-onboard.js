@@ -99,7 +99,7 @@ class DialogOnboard extends Component{
 				return (
 					<div className="create-success dialog-inner">
 						<h3>Awesome! Your team name is</h3>
-						<h3><span>{this.props.team.name}</span></h3>
+						<h3><span className="hl">{this.props.team.name}</span></h3>
 						<h3>and your team ID is:</h3>
 						<div className="team-id-copy">
 							<p>{this.props.team.id}</p>
@@ -114,7 +114,7 @@ class DialogOnboard extends Component{
 				return (
 					<div className="dialog-inner">
 						<h3>Great! You&apos;ve joined team</h3>
-						<h3><span>{this.props.team.name}</span></h3>
+						<h3><span className="hl">{this.props.team.name}</span></h3>
 						<h3>Your teammates are</h3>
 						<ul className="team-members">
 							{

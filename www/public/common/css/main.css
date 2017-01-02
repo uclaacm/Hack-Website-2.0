@@ -123,6 +123,14 @@ a:hover, button:hover{
 	overflow: hidden;
 }
 
+.hl{
+	color: var(--highlight);
+}
+
+.hl-grey{
+	color: var(--grey-deep);
+}
+
 /*====================TOP MENU====================*/
 
 .menu{

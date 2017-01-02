@@ -66,12 +66,15 @@
 	text-align: center;
 }
 
+/*why is scroll displaying
+even when not overflow? 
+TODO: fix this*/
 .text-wrapper ul{
 	padding: 20px;
 	padding-top:5px;
 	height: 71px;
 	text-align: center;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .text-wrapper li{
