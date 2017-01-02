@@ -21,7 +21,7 @@ export function fetchUser(url){
 		error: null,
 		user: {
 			id: 'ab-15-asdf',
-			name: 'John Doe',
+			name: 'Dmitri Brereton',
 			profilePicture: ''
 		}
 	};

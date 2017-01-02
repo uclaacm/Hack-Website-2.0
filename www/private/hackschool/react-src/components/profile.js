@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'underscore';
 import DashboardNav from './dashboard-nav';
 
 class Profile extends Component{
@@ -16,25 +15,46 @@ class Profile extends Component{
 		//extract members that are not this user, then format
 		return members
 					.filter(member => member.id != this.props.user.id)
-					//TODO: change to profile pic
-					.map(member => <li key={member.id}>{member.name}</li>);
+					.map(member => <li key={member.id}>
+										<div style={{backgroundImage: `url(${member.profilePicture})`}}></div>
+									</li>);
 
 	}
 
 	render(){
-		const teamName 		= _.isEmpty(this.props.team) ? 'Join a team by clicking \'Manage Team\'' : this.props.team.name;
-		const teamMembers 	= _.isEmpty(this.props.team) ? null : this.formatOtherMembers(this.props.team.members);
-		const totalScore 	= _.isEmpty(this.props.team) ? 'Not available.' : this.props.team.totalScore;
+		const teamDisplay 	= this.props.team ? <h4 className="team">TEAM {this.props.team.name}</h4> : <h4 className="team">Not on a team</h4>
+		const teamMembers 	= this.props.team ? this.formatOtherMembers(this.props.team.members) : null;
+
+		const teamRanking 	= this.props.team 
+								? 	<div>
+										<h3>TEAM RANKING</h3>
+										<h3 className="number">0</h3>
+									</div>
+								: null;
+		const totalScore 	= this.props.team 
+								? 	<div>
+										<h3>TOTAL POINTS</h3>
+										<h3 className="number">{this.props.team.totalScore}</h3>
+									</div>
+								: null;
 
 		return(
 			<div>
-				<div style={{backgroundImage: `url(${this.props.user.profilePicture})`, width: '100px', height:'100px', border: '1px solid black'}}></div>
-				<ul>{teamMembers}</ul>
-				<h3>Hello,</h3>
-				<h2>{this.props.user.name}</h2>
-				<h4>{teamName}</h4>
-				<h4> {/* TODO */}Team ranking:</h4>
-				<h4>Total points: {totalScore}</h4>
+				<div className="profile">
+					<div 	className="profile-pic"
+							style={{backgroundImage: `url(${this.props.user.profilePicture})`}}></div>
+					
+					<div className="main-profile-info">
+						<h3 className="greeting">Hello,</h3>
+						<h1>{this.props.user.name}</h1>
+						{teamDisplay}
+						<ul className="team-members">{teamMembers}</ul>
+					</div>
+					<div className="info-right">
+						{teamRanking}
+						{totalScore}
+					</div>
+				</div>
 				<DashboardNav />
 			</div>
 		);

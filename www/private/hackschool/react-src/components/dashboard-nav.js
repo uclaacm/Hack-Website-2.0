@@ -7,12 +7,17 @@ class DashboardNav extends Component{
 
 	render(){
 		return (
-			<div>	
-				<button onClick={() => this.props.selectSlide('sessions')}>SESSIONS</button>
-				{this.props.currentSlide == 'sessions' && <span>selected</span>}
-				<br />
-				<button onClick={() => this.props.selectSlide('leaderboard')}>LEADERBOARD</button>
-				{this.props.currentSlide == 'leaderboard' && <span>selected</span>}
+			<div className="dashboard-nav">	
+				<button onClick={() => this.props.selectSlide('sessions')}>
+					{this.props.currentSlide == 'sessions' && <div className="select"></div>}
+					{this.props.currentSlide != 'sessions' && <div className="no-select"></div>}
+					<h3>SESSIONS</h3>
+				</button>
+				<button onClick={() => this.props.selectSlide('leaderboard')}>
+					{this.props.currentSlide == 'leaderboard' && <div className="select"></div>}
+					{this.props.currentSlide != 'leaderboard' && <div className="no-select"></div>}
+					<h3>LEADERBOARD</h3>
+				</button>
 			</div>
 		);
 	}
