@@ -22,6 +22,7 @@ class DialogManage extends Component{
 	}
 
 	incrementSlide(num){
+
 		if(this.state.currentSlide == 0 && num < 0)
 			this.props.changeDialog({active : false});
 
@@ -29,9 +30,11 @@ class DialogManage extends Component{
 	}
 
 	formatMembers(members){
-		return members.map(member => {
-			return <li key={member.id}>{member.name}</li>;
-		});
+		return members
+				.filter(member => member.name.toUpperCase() != this.props.user.name.toUpperCase())
+				.map(member => {
+					return <li key={member.id}><span>{member.name}</span></li>;
+				});
 	}
 
 	onFormSubmit(e){
@@ -41,13 +44,14 @@ class DialogManage extends Component{
 
 	renderDefault(){
 		return (
-			<div>
-				Team name: {this.props.team.name}
-				<br />
-				Team id: {this.props.team.id}
-				<br />
-				<ul>{this.formatMembers(this.props.team.members)}</ul>
-				<button onClick={() => this.incrementSlide(1)}>Leave team</button>
+			<div className="left-align">
+				<h3>{this.props.team.name}</h3>
+				<h3 className="team-id">Team ID: {this.props.team.id}</h3>
+				<ul className="team-members">
+					<li>{this.props.user.name} (you)</li>
+					{this.formatMembers(this.props.team.members)}
+				</ul>
+				<button className='leave' onClick={() => this.incrementSlide(1)}>Leave team</button>
 			</div>
 		);
 	}
@@ -56,28 +60,30 @@ class DialogManage extends Component{
 		return (
 			<DialogInput 
 					action="LEAVE"
-					initialFormValue=""
+					initialFormValue="team name"
 					message="Please confirm that you want to leave team"
-					onFormSubmit={this.onFormSubmit} />
+					additional={this.props.team.name}
+					onFormSubmit={this.onFormSubmit}
+					formLabel="Type the name of your team to proceed." />
 		);
 	}
 
 	renderSuccess(){
 		console.log(this.props.team)
 		return (
-			<div>
-				You have successfully left your team.
-				<button onClick={() => this.props.changeDialog({onBoarding: true})}>continue</button>
+			<div className="dialog-inner">
+				<h3>You have successfully left your team.</h3>
+				<button className="btn-selection" onClick={() => this.props.changeDialog({onBoarding: true})}>continue</button>
 			</div>
 		);
 	}
 
 	renderFailure(){
 		return (
-			<div>
-				Error: <br />
-				{this.props.team.error}
-				<button onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
+			<div className="dialog-inner">
+				<h3>Sorry,</h3>
+				<h3>{this.props.team.error}</h3>
+				<button className="btn-selection" onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
 			</div>
 		);
 	}
@@ -88,7 +94,7 @@ class DialogManage extends Component{
 				return this.renderDefault();
 			case 1:
 				return this.renderConfirm();
-			case 2://TODO: account for async request
+			case 2://TODO: account for async request, display loading
 				return this.props.team ? this.renderFailure() : this.renderSuccess();
 			default:
 				return <div>Something went wrong...lmao...</div>;
@@ -98,7 +104,13 @@ class DialogManage extends Component{
 	render(){
 		return (
 			<div>
-				{this.state.currentSlide != 2 && <button onClick={() => this.incrementSlide(-1)}>back</button>}
+				{
+					this.state.currentSlide != 2 && 
+					<button className="back" 
+							onClick={() => this.incrementSlide(-1)}>
+							<img src="/common/images/chevron-left.svg" />
+					</button>
+				}
 				{this.renderSlide(this.state.currentSlide)}
 			</div>
 		);
@@ -106,8 +118,8 @@ class DialogManage extends Component{
 
 }
 
-function mapStateToProps({team}){
-	return {team};
+function mapStateToProps({team, user}){
+	return {team, user};
 }
 
 function mapDispatchToProps(dispatch){

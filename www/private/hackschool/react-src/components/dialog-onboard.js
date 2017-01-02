@@ -113,15 +113,18 @@ class DialogOnboard extends Component{
 			case 'join':
 				return (
 					<div className="dialog-inner">
-						<span>Great! You&apos;ve joined team</span>
+						<h3>Great! You&apos;ve joined team</h3>
+						<h3><span>{this.props.team.name}</span></h3>
+						<h3>Your teammates are</h3>
+						<ul className="team-members">
+							{
+								this.props.team.members.map(member => {
+									return <li key={member.id}>{member.name}</li>;
+								})
+							}
+						</ul>
 						<br />
-						<span>{this.props.team.name}</span>
-						<br />
-						<span>Your teammates are</span>
-						<br />
-						<ul>{this.props.team.members.map(m => `${m.name} `)}</ul>
-						<br />
-						<button onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
+						<button className="btn-selection" onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
 					</div>
 				);
 			default:
@@ -137,7 +140,7 @@ class DialogOnboard extends Component{
 				return this.renderFormInput();
 			case 2:
 				console.log(this.props.team)
-				if(_.isEmpty(this.props.team))
+				if(this.props.team == null)
 					return this.renderLoading();
 				else if (typeof this.props.team === 'string')
 					return this.renderFailure();
@@ -151,7 +154,13 @@ class DialogOnboard extends Component{
 	render(){
 		return(
 			<div>
-				{this.state.currentSlide != 2 && <button className="back" onClick={() => this.incrementSlide(-1)}>back</button>}
+				{
+					this.state.currentSlide == 1 &&
+					<button className="back"
+							onClick={() => this.incrementSlide(-1)}>
+							<img src="/common/images/chevron-left.svg" />
+					</button>
+				}
 				{this.renderSlide(this.state.currentSlide)}
 			</div>
 		);

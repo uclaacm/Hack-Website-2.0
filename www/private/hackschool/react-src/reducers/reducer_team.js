@@ -1,6 +1,6 @@
 import { CREATE_TEAM, JOIN_TEAM, LEAVE_TEAM } from '../actions/index';
 
-export default (state = {}, action) => {
+export default (state = null, action) => {
 
 	switch(action.type){
 		case CREATE_TEAM:

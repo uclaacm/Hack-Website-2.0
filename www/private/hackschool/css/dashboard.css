@@ -6,6 +6,7 @@
 	background: var(--hack-purp);
 	color: #fff;
 	height: 36px;
+	overflow: hidden;
 }
 
 .dashboard-menu > *{
@@ -65,7 +66,14 @@
 .dialog-box button.back{
 	position: absolute;
 	margin-left: -300px;
-	margin-top: -30px;
+	margin-top: -10px;
+	background: #fff;
+	border-radius: 50%;
+}
+
+button.back img{
+	margin-left: -3px;
+	padding-right:3px;
 }
 
 .dialog-inner{
@@ -75,6 +83,15 @@
 	top: 50%;
 	-webkit-transform: translate(-50%,-50%);
 			transform: translate(-50%,-50%);
+}
+
+.left-align{
+	text-align: left;
+}
+
+.left-align .team-id{
+	color: var(--grey-deep);
+	margin-top: -12px;
 }
 
 .dialog-box p{
@@ -104,13 +121,21 @@
 	padding-bottom: 5px;
 }
 
+.dialog-box label{
+	display: block;
+    margin-bottom: 15px;
+    margin-top: -5px;
+    font-size: 14px;
+    font-family: var(--fam1);
+    color: var(--grey-deep);
+}
+
 .dialog-box .btn-action{
 	font-size: 16px;
 	padding: 15px 25px;
 }
 
-.dialog-box span{
-	color: var(--highlight);
+.dialog-box span, .dialog-inner span{
 	font-size: 14px;
 	letter-spacing: 2px;
 }
@@ -123,6 +148,11 @@
 	margin: 5px auto 0px auto;
 }
 
+.create-success span, .dialog-inner span{
+	color: var(--highlight);
+	font-family: var(--fam1);
+}
+
 .create-success p{
 	font-size: 12px;
 	color: var(--grey-deep);
@@ -132,9 +162,31 @@
 	margin: 10px 0;
 }
 
+.dialog-box .team-members li{
+	font-family: var(--fam1);
+	text-transform: uppercase;
+	color: #000 !important;
+	font-weight: 900;
+}
 
+.dialog-inner .team-members{
+	margin-top: 10px;
+	height: 80px;
+	overflow-y: auto;
+}
 
-
+.leave{
+	position: absolute;
+	width: 120px;
+	height: 40px;
+	background: #D03144;
+	left: 100%;
+	top: 100%;
+	margin-left: -140px;
+	margin-top: -60px;
+	font-size: 14px;
+	padding: 10px;
+}
 
 
 

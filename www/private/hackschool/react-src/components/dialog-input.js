@@ -37,15 +37,20 @@ class DialogOnboardInput extends Component{
 	}
 
 	render(){
+
+		const additional = <span>{this.props.additional}</span>;
+		const label = <label>{this.props.formLabel}</label>
 		
 		return (
 			<div className="dialog-inner">
 				<h3>{this.props.message}</h3>
+				<h3>{additional}</h3>
 				<form onSubmit={this.onFormSubmit}>
 					<input 	type="text"
 							value={this.state.term}
 							placeholder={this.props.initialFormValue}
 							onChange={e => this.onInputChange(e.target.value)} />
+					{label}
 					<button className="btn-action" type="submit">{this.props.action}</button>
 				</form>
 			</div>
