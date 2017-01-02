@@ -7,6 +7,7 @@
 	height: 36px;
 	overflow: hidden;
 	position: fixed;
+	z-index: 999;
 	width: 100%;
 }
 
@@ -115,7 +116,9 @@
 /*=================DASHBOARD NAV====================*/
 
 .dashboard-nav{
-	float: right;
+	position: absolute;
+	right: 0;
+	z-index: 50;
 }
 
 .dashboard-nav button{
@@ -149,6 +152,91 @@
 	letter-spacing: 2px;
 	margin-top: 5px;
 	font-family: var(--fam2);
+}
+
+/*=================SESSIONS====================*/
+
+.grid-wrapper{
+	width: 100%;
+	position: absolute;
+	z-index: 0;
+}
+
+.grid{
+	width: 1000px;
+	margin: 50px auto 0 auto;
+}
+
+.grid tr{
+	display: block;
+	overflow: auto;
+	margin-bottom: 20px;
+	margin-left: 15px;
+}
+
+.grid td{
+	display: block;
+	float: left;
+	width: 220px;
+	margin-left: 30px;
+	padding-bottom: 10px;
+}
+
+.grid td:first-child{
+	margin-left: 0px;
+}
+
+.session-item{
+	background: #fff;
+	border-radius: 3px;
+	box-shadow: var(--shad);
+	overflow: hidden;
+}
+
+.session-item:hover{
+	cursor: pointer;
+}
+
+.img-wrapper{
+	height: 150px;
+	width: 220px;
+	background-size: cover;
+	background-position: 50%;
+	background-color: var(--grey-deep);
+}
+
+.text-wrapper{
+	background: #fff;
+	height: 60px;
+	width: 200px;
+	text-transform: uppercase;
+	padding: 10px;
+}
+
+.text-wrapper h3{
+	font-size: 16px;
+	font-family: var(--fam2);
+}
+
+.text-wrapper h4{
+	font-size: 16px;
+	color: var(--grey-deep);
+}
+
+.icons{
+	height: 40px;
+}
+
+.session-detail-wrapper{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(46, 12, 56, 0.7);
+	z-index: 1000;
+}
+
+.session-detail{
+
 }
 
 /*=================LEADERBOARD====================*/

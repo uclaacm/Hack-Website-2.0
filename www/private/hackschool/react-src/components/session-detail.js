@@ -11,14 +11,16 @@ class SessionDetail extends Component{
 			return null;
 
 		return (
-			<div>
-				<button onClick={() => this.props.selectSession(null)}>back</button>
-				Week {session.number}<br />
-				{session.name}<br />
-				{session.desc}<br />
-				{session.slidesLink}<br />
-				{session.videoLink}<br />
-				{session.blogPostLink}
+			<div className="session-detail-wrapper">
+				<div className="session-detail">
+					<button onClick={() => this.props.selectSession(null)}>back</button>
+					Week {session.number}<br />
+					{session.name}<br />
+					{session.desc}<br />
+					{session.slidesLink}<br />
+					{session.videoLink}<br />
+					{session.blogPostLink}
+				</div>
 			</div>
 		);
 	}

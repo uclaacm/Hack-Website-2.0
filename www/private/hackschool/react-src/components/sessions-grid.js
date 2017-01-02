@@ -44,11 +44,13 @@ class SessionsGrid extends Component{
 	render(){
 		console.log('selected session', this.props.selectedSession)
 		return (
-			<table>
-				<tbody>
-					{this.props.sessions.map((row, rowNum) => this.renderRow(row, rowNum))}
-				</tbody>
-			</table>
+			<div className="grid-wrapper">
+				<table className="grid">
+					<tbody>
+						{this.props.sessions.map((row, rowNum) => this.renderRow(row, rowNum))}
+					</tbody>
+				</table>
+			</div>
 		);
 	}
 
