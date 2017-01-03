@@ -15,7 +15,8 @@ export const LEAVE_TEAM = 'LEAVE_TEAM';
 
 export function fetchUser(url){
 
-	//const request = axios.get(url);
+	//const request2 = axios.get(url);
+	//console.log(request2);
 	const request = {
 		success: true,
 		error: null,

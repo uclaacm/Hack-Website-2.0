@@ -26,12 +26,12 @@ class TeamList extends Component{
 		return (
 			<div className="team-list">
 				<table>
-					<thead>
-						<td>MEMBERS</td>
-						<td>TEAM NAME</td>
-						<td>POINTS</td>
-					</thead>
 					<tbody>
+					<tr>
+						<th>MEMBERS</th>
+						<th>TEAM NAME</th>
+						<th>POINTS</th>
+					</tr>
 						{/*this.props.list.map(this.renderList)*/}
 					</tbody>
 				</table>

@@ -2,12 +2,12 @@
 /*====================DASH MENU====================*/
 
 .dashboard-menu{
-	background: var(--hack-purp);
-	color: #fff;
-	height: 36px;
 	overflow: hidden;
 	position: fixed;
 	z-index: 999;
+	background: var(--hack-purp);
+	color: #fff;
+	height: 36px;
 	width: 100%;
 }
 
@@ -19,16 +19,19 @@
 	font-size: 12px;
 	padding: 10px 10px 10px 20px;
 	float: left;
+	font-family: var(--fam2);
 }
 
 .dashboard-menu button{
 	float: right;
-	font-size: 12px;
 	background: none;
 	box-shadow: none;
 	border-radius: 0px;
 	padding: 10.5px 15px;
 	border-left: 1px solid white;
+	font-size: 12px;
+	font-family: var(--fam2);
+	letter-spacing: 1px;
 	-webkit-transition: all 0.2s ease;
 			transition: all 0.2s ease;
 }
@@ -37,6 +40,8 @@
 	background: #fff;
 	color: var(--hack-purp);
 }
+
+
 
 /*====================PROFILE====================*/
 
@@ -83,18 +88,18 @@
 
 .info-right{
 	float: right;
-	margin-right: 30px;
+	margin-right: 80px;
 }
 
 .info-right > *{
-	width: 100px;
+	width: 80px;
 	text-align: center;
 	margin: 20px 20px 0px 20px;
 	float: left;
 }
 
 .info-right h3{
-	font-size: 16px;
+	font-size: 12px;
 	font-family: var(--fam2);
 }
 
@@ -126,11 +131,11 @@
 	color: var(--grey-deep);
 	box-shadow: none;
 	font-size: 20px;
-	padding: 0 80px 0px 15px;
+	padding: 0 80px 0px 10px;
 }
 
 .dashboard-nav button:first-child{
-	padding: 0 30px 0px 15px;
+	padding: 0 10px 0px 10px;
 }
 
 .dashboard-nav > *{
@@ -140,7 +145,7 @@
 
 .dashboard-nav .select, .dashboard-nav .no-select{
 	width: 100%;
-	height: 5px;
+	height: 3px;
 }
 
 .dashboard-nav .select{
@@ -148,7 +153,7 @@
 }
 
 .dashboard-nav h3{
-	font-size: 18px;
+	font-size: 14px;
 	letter-spacing: 2px;
 	margin-top: 5px;
 	font-family: var(--fam2);
@@ -164,14 +169,15 @@
 
 .grid{
 	width: 1000px;
+	overflow: visible;
 	margin: 50px auto 0 auto;
 }
 
 .grid tr{
 	display: block;
 	overflow: auto;
-	margin-bottom: 20px;
 	margin-left: 15px;
+	overflow: visible;
 }
 
 .grid td{
@@ -179,7 +185,7 @@
 	float: left;
 	width: 220px;
 	margin-left: 30px;
-	padding-bottom: 10px;
+	padding-bottom: 30px;
 }
 
 .grid td:first-child{
@@ -191,10 +197,14 @@
 	border-radius: 3px;
 	box-shadow: var(--shad);
 	overflow: hidden;
+	-webkit-transition: all 0.1s;
+			transition: all 0.1s;
 }
 
 .session-item:hover{
 	cursor: pointer;
+	transform: translateY(-10px);
+	box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.4);
 }
 
 .img-wrapper{
@@ -207,19 +217,19 @@
 
 .text-wrapper{
 	background: #fff;
-	height: 60px;
-	width: 200px;
+	height: 50px;
+	width: 190px;
 	text-transform: uppercase;
-	padding: 10px;
+	padding: 15px;
 }
 
 .text-wrapper h3{
-	font-size: 16px;
+	font-size: 14px;
 	font-family: var(--fam2);
 }
 
 .text-wrapper h4{
-	font-size: 16px;
+	font-size: 12px;
 	color: var(--grey-deep);
 }
 
