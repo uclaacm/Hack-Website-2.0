@@ -1,5 +1,4 @@
-import { FETCH_TEAM, CREATE_TEAM, JOIN_TEAM, LEAVE_TEAM, CHANGE_DIALOG, RESET_TEAM_ERROR } from '../actions/index';
-import { changeDialog } from '../actions';
+import { FETCH_TEAM, CREATE_TEAM, JOIN_TEAM, LEAVE_TEAM, RESET_TEAM_ERROR } from '../actions/index';
 
 export default (state = {team: null, error: null, done: false}, action) => {
 	switch(action.type){

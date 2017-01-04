@@ -283,13 +283,13 @@
 
 .session-detail{
 	position: absolute;
-	width: 450px;
-	height: 400px;
+	width: 550px;
+	height: 450px;
 	border-radius: 3px;
 	box-shadow: var(--shad);
 	top: 50%;
 	left:50%;
-	margin: -200px 0 0 -225px;
+	margin: -225px 0 0 -275px;
 	overflow: hidden;
 }
 
@@ -300,8 +300,8 @@
 }
 
 .session-content{
-	width: 370px;
-	height: 280px;
+	width: 470px;
+	height: 320px;
 	padding: 30px 40px 30px 40px;
 	background: #fff;
 }
@@ -311,8 +311,10 @@
 }
 
 .content-left{
-	width: 240px;
-	height: 225px;
+	width: 320px;
+	height: 250px;
+    padding-bottom: 25px;
+    padding-right: 20px;
 }
 
 .content-right{
@@ -330,6 +332,21 @@
 
 .content-left p{
 	font-size: 16px;
+    height: 160px;
+    overflow-y: auto;
+}
+
+.content-left .gradient{
+	position: absolute;
+	z-index: 100;
+	height: 20px;
+	width: 320px;
+	margin-top:-20px;
+	background: rgba(255,255,255,1);
+    background: -webkit-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1)); 
+    background: -o-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1)); 
+    background: -moz-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1));
+    background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1));
 }
 
 .content-right .scores{

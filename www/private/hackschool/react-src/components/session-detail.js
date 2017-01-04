@@ -34,6 +34,7 @@ class SessionDetail extends Component{
 								<h3>{session.name}</h3>
 							</div>
 							<p>{session.desc}</p>
+							<div className="gradient"></div>
 						</div>
 						<div className="content-right">
 							<div className="scores">

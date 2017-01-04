@@ -28,71 +28,73 @@ export function fetchUser(url){
 
 export function fetchSessions(url){
 
-	//const request = axios.get(url);
+	const request2 = axios.get(url);
 	const request = {
-		success: true,
-		error: null,
-		projects: [
-			{
-				id: 'r7truyd',
-				number: 1,
-				points: 10,
-				name: 'Project 1',
-				desc: 'description uefhidjsh',
-				image: '/common/images/Android_M.jpg',
-				videoLink: '',
-				slidesLink: '',
-				blogPostLink: '',
-				submissionLink: ''
-			},
-			{
-				id: '7tfhgv',
-				number: 2,
-				points: 10,
-				name: 'Project 2',
-				desc: 'description eiuwihsdfjxcn',
-				image: '/common/images/Android_M.jpg',
-				videoLink: '',
-				slidesLink: '',
-				blogPostLink: '',
-				submissionLink: ''
-			},
-			{
-				id: '32uyiwrfgdj',
-				number: 3,
-				points: 10,
-				name: 'Project 3',
-				desc: 'description eijskfd',
-				image: '/common/images/Android_M.jpg',
-				videoLink: '',
-				slidesLink: '',
-				blogPostLink: '',
-				submissionLink: ''
-			},
-			{
-				id: '38u7ryefd',
-				number: 4,
-				points: 10,
-				name: 'Project 4',
-				desc: 'description 32urwhj',
-				image: '/common/images/Android_M.jpg',
-				videoLink: '',
-				slidesLink: '',
-				blogPostLink: '',
-				submissionLink: ''
-			},
-			{
-				id: 'h4398fdf',
-				number: 5,
-				points: 10,
-				name: 'Project 5',
-				desc: 'description 34ru8eigfdyj',
-				image: '/common/images/Android_M.jpg',
-				videoLink: '',
-				slidesLink: '',
-				blogPostLink: '',
-				submissionLink: ''
-			}]
+		data:{
+			success: true,
+			error: null,
+			projects: [
+				{
+					id: 'r7truyd',
+					number: 1,
+					points: 10,
+					name: 'Introduction to Android',
+					desc: 'description uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uedescription uefhidjsh a da df fd df df adescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja ue fd description uefhidjsh fdsja uefhidjsh fda dsa fdadescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uefhidjsh fda dsa fda',
+					image: '/common/images/Android_M.jpg',
+					videoLink: 'http://youtube.com',
+					slidesLink: '',
+					blogPostLink: '',
+					submissionLink: ''
+				},
+				{
+					id: '7tfhgv',
+					number: 2,
+					points: 10,
+					name: 'Second Lesson on Android Long Long Long Long',
+					desc: 'description uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uedescription uefhidjsh a da df fd df df adescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja ue fd description uefhidjsh fdsja uefhidjsh fda dsa fdadescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uefhidjsh fda dsa fda',
+					image: '/common/images/Android_M.jpg',
+					videoLink: '',
+					slidesLink: '',
+					blogPostLink: '',
+					submissionLink: ''
+				},
+				{
+					id: '32uyiwrfgdj',
+					number: 3,
+					points: 10,
+					name: 'Project 3',
+					desc: 'description eijskfd',
+					image: '/common/images/Android_M.jpg',
+					videoLink: 'http://youtube.com',
+					slidesLink: '',
+					blogPostLink: '',
+					submissionLink: ''
+				},
+				{
+					id: '38u7ryefd',
+					number: 4,
+					points: 10,
+					name: 'Project 4',
+					desc: 'description 32urwhj',
+					image: '/common/images/Android_M.jpg',
+					videoLink: 'http://youtube.com',
+					slidesLink: '',
+					blogPostLink: '',
+					submissionLink: ''
+				},
+				{
+					id: 'h4398fdf',
+					number: 5,
+					points: 10,
+					name: 'Project 5',
+					desc: 'description 34ru8eigfdyj',
+					image: '/common/images/Android_M.jpg',
+					videoLink: '',
+					slidesLink: '',
+					blogPostLink: '',
+					submissionLink: ''
+				}]
+			}
 	};
 
 	return{
