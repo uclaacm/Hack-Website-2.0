@@ -86,7 +86,6 @@
 }
 
 .team{
-	text-transform: uppercase;
 	font-family: var(--fam2);
 	font-size: 16px;
 }

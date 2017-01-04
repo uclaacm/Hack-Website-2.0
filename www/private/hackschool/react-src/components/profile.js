@@ -24,7 +24,7 @@ class Profile extends Component{
 	}
 
 	render(){
-		const teamDisplay 	= this.props.team ? <h4 className="team">TEAM {this.props.team.name}</h4> : <h4 className="team">Not on a team</h4>
+		const teamDisplay 	= this.props.team ? <h4 className="team">Team {this.props.team.name}</h4> : <h4 className="team">Not on a team</h4>
 		const teamMembers 	= this.props.team ? this.formatOtherMembers(this.props.team.members) : null;
 
 		const teamRanking 	= this.props.team 
