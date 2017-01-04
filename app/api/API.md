@@ -17,10 +17,12 @@
       - [`PATCH /api/v1/showcase/:projectID`](#patch-apiv1showcaseprojectid)
       - [`DELETE /api/v1/showcase`](#delete-apiv1showcase)
       - [`DELETE /api/v1/project/:projectID`](#delete-apiv1projectprojectid)
+  - [Mailing List](#mailing-list)
+      - [`GET /api/v1/mailinglist`](#get-apiv1mailinglist)
+      - [`POST /api/v1/mailinglist`](#post-apiv1mailinglist)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-[TOC]
 
 # ACM Hack API
 
@@ -32,14 +34,14 @@ This API was written so that data on the Hack website can easily be accessed and
 - This API assumes you are familiar with RESTful and CRUD models.
 - This API assumes you are comfortable manipulating JSON objects.
 
-  
+
 ## Events
 
 We display events on our homepage. The Events API provides an easy way to view, create, update, and delete events.
 
 #### `GET /api/v1/event`
 
-Finds and returns all ACM events. The top level field of `success` will indicate if the request was performed successfully. If the `success` field is false, then the `error` field will provide some information about what went wrong. 
+Finds and returns all ACM events. The top level field of `success` will indicate if the request was performed successfully. If the `success` field is false, then the `error` field will provide some information about what went wrong.
 
 A successful response is a JSON object that indicates the number of results returned, as well as the events array:
 
@@ -166,7 +168,7 @@ Where `token` is a valid token, and the remaining fields contain the event infor
 
 If the request was successful, the `success` field will be set to true and you'll receive a copy of the newly-created event.
 
-This request can fail if no token or an invalid token is provided, or if the request is otherwise malformed (ie, missing required data). The result of this request will indicate failure through a `success` field of `false` and the `error` field will conatin information about the error encountered. 
+This request can fail if no token or an invalid token is provided, or if the request is otherwise malformed (ie, missing required data). The result of this request will indicate failure through a `success` field of `false` and the `error` field will conatin information about the error encountered.
 
 **Example Request:**
 
@@ -330,7 +332,7 @@ Find and return all projects that match a specific project ID (specified as a UR
 }
 ```
 
-The top-level field of `success` indicates the status of the request. Note that a request may return successfuly but have no projects in the projects array. Please check either the `numResults` field or the length of the `projects` array before trying to access the `projects` array. 
+The top-level field of `success` indicates the status of the request. Note that a request may return successfuly but have no projects in the projects array. Please check either the `numResults` field or the length of the `projects` array before trying to access the `projects` array.
 
 
 #### `POST /api/v1/showcase`
@@ -464,10 +466,10 @@ This request is identical to the previous `DELETE` request, except it specifies 
 
 
 ## Mailing List
-The mailing list API gives access to ACM's mailing list (with token permission), and it also allows users to subscribe to the ACM mailing list. 
+The mailing list API gives access to ACM's mailing list (with token permission), and it also allows users to subscribe to the ACM mailing list.
 
 #### `GET /api/v1/mailinglist`
-This request requires a valid token in the body. It returns the current ACM mailing list. The request body would look like this: 
+This request requires a valid token in the body. It returns the current ACM mailing list. The request body would look like this:
 ```json
 {
   "token": "[Authorization token here]"
@@ -487,7 +489,7 @@ A successful response would follow the following format:
 }
 ```
 
-This request will fail with an invalid token. The `error` field will indicate this. 
+This request will fail with an invalid token. The `error` field will indicate this.
 
 #### `POST /api/v1/mailinglist`
 This request adds an email to the database, subscribing the user to the mailing list. The request body should look as follows:
@@ -501,6 +503,5 @@ This request adds an email to the database, subscribing the user to the mailing 
 }
 ```
 
-A successful request response will simply return a copy of the data back to you, along with a top-level field of `success`. 
-The request will fail if the required `email` field is not provided. In this case, a response with a `success` field of `false` will be returned, along with an `error` field indicating the error. 
-
+A successful request response will simply return a copy of the data back to you, along with a top-level field of `success`.
+The request will fail if the required `email` field is not provided. In this case, a response with a `success` field of `false` will be returned, along with an `error` field indicating the error.
