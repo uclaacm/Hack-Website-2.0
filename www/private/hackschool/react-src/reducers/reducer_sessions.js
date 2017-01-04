@@ -1,4 +1,4 @@
-import { FETCH_SESSIONS } from '../actions/index';
+import { FETCH_SESSIONS } from '../actions';
 
 export default (state = null, action) => {
 

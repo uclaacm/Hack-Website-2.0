@@ -1,4 +1,4 @@
-import { SELECT_SLIDE } from '../actions/index';
+import { SELECT_SLIDE } from '../actions';
 
 export default (state = 'sessions', action) => {
 

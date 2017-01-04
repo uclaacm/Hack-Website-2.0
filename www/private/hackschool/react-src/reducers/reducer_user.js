@@ -1,4 +1,4 @@
-import { FETCH_USER } from '../actions/index';
+import { FETCH_USER } from '../actions';
 
 export default (state = null, action) => {
 

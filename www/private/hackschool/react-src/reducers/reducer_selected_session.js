@@ -1,4 +1,4 @@
-import { SELECT_SESSION } from '../actions/index';
+import { SELECT_SESSION } from '../actions';
 
 export default (state = null, action) => {
 

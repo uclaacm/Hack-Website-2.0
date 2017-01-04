@@ -154,12 +154,10 @@ class DialogOnboard extends Component{
 	}
 
 	render(){
-		console.log('new render----')
 		return(
 			<div>
 				{
-					(this.state.currentSlide == 1 || this.state.currentSlide == 2) &&
-					(!this.props.team.team) &&
+					!this.props.team.team && //if haven't joined team, continue displaying back button
 					<button className="back"
 							onClick={() => this.incrementSlide(-1)}>
 							<img src="/common/images/chevron-left.svg" />

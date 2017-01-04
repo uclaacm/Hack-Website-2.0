@@ -1,4 +1,4 @@
-import { FETCH_TEAM_RANK } from '../actions/index';
+import { FETCH_TEAM_RANK } from '../actions';
 
 export default (state = null, action) => {
 

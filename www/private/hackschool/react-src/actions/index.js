@@ -346,7 +346,7 @@ export function triggerTeamAction(endpoint, props){
 				payload
 			}
 		//this is needed if team.error is not null due to previously caused error,
-		//and error is displayed (incorrectly) when correct submission happens, and
+		//and error is displayed (incorrectly) when correct input is submitted, and
 		//should instead see loading render
 		case 'reset-error':
 			return{

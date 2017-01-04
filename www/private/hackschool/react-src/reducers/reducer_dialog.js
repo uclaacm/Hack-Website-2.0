@@ -1,6 +1,6 @@
-import { CHANGE_DIALOG } from '../actions/index';
+import { CHANGE_DIALOG } from '../actions';
 
-/*todo: figure out how to call this from within another reducer*/
+//onBoarding value will be changed if team is null on dialog's render
 const defaultState = {
 	active: false,
 	onBoarding: false
@@ -23,10 +23,10 @@ export default (state = defaultState, action) => {
 			        temp[property] = action.payload[property];
 			    }
 			}
-
 			return temp;
 			
 		default:
+			//console.log('default dialog', state)
 			return state;
 	}
 }

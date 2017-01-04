@@ -1,4 +1,4 @@
-import { FETCH_SCOREBOARD } from '../actions/index';
+import { FETCH_SCOREBOARD } from '../actions';
 
 export default (state = null, action) => {
 

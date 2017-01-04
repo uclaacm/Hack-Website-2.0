@@ -46,6 +46,7 @@ class DialogManage extends Component{
 	}
 
 	renderDefault(){
+		console.log('inside dialog manage, dialog: ', this.props.dialog)
 		const team = this.props.team.team;
 		return (
 			<div className="left-align">
@@ -104,7 +105,6 @@ class DialogManage extends Component{
 			case 1:
 				return this.renderConfirm();
 			case 2: 
-				console.log(this.props.team)
 				if(this.props.team.error)
 					return this.renderFailure();
 				else if(this.props.team.team) //team is not null yet, but no error
@@ -121,7 +121,7 @@ class DialogManage extends Component{
 		return (
 			<div>
 				{
-					this.props.team.team &&
+					this.props.team.team && //if haven't left team, continue displaying back button
 					<button className="back" 
 							onClick={() => this.incrementSlide(-1)}>
 							<img src="/common/images/chevron-left.svg" />
@@ -134,8 +134,8 @@ class DialogManage extends Component{
 
 }
 
-function mapStateToProps({team, user}){
-	return {team, user};
+function mapStateToProps({team, user, dialog}){
+	return {team, user, dialog};
 }
 
 function mapDispatchToProps(dispatch){

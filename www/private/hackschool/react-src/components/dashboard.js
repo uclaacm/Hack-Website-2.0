@@ -13,6 +13,7 @@ import DialogBox from './dialog-box';
 class Dashboard extends Component{
 
 	componentWillMount(){
+		console.log('dash mounting')
 		this.props.fetchUser('/hackschool/user');
 		this.props.triggerTeamAction('fetch', null);
 		this.props.fetchSessions('/hackschool/projects');
@@ -32,6 +33,9 @@ class Dashboard extends Component{
 		if(!this.props.scoreboard)
 			return <div>Retrieving scoreboard info...</div>;
 
+		if(!this.props.team.done)
+			return <div>Retrieving team info...</div>;
+
 		const currentSlide = this.props.currentSlide == 'sessions' ? <SessionsGrid /> : <Leaderboard />;
 
 		return (
@@ -46,8 +50,8 @@ class Dashboard extends Component{
 	}
 }
 
-function mapStateToProps({dialog, user, scoreboard, currentSlide, sessions}){
-	return {dialog, user, scoreboard, currentSlide, sessions};
+function mapStateToProps({dialog, user, scoreboard, currentSlide, sessions, team}){
+	return {dialog, user, scoreboard, currentSlide, sessions, team};
 }
 
 function mapDispatchToProps(dispatch){
