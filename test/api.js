@@ -105,6 +105,16 @@ describe("API.v1", () => {
 					done();
 				});
 			});
+			it("Should fail with an invalid event ID", (done) => {
+				chai.request(server)
+				.get(eventUrl + '/' + "oidwio")
+				.end((err, res) => {
+					res.should.have.status(200);
+					//console.log(res.events);
+					done();
+					//console.log(res);
+				})
+			})
 		});
 	});
 	describe("Mailing list", () =>{
@@ -113,7 +123,7 @@ describe("API.v1", () => {
 				chai.request(server)
 				.post(mailingUrl)
 				.send({
-					token: crypto.getToken(),
+					//token: crypto.getToken(),
 					email: {
 						"email": "rvarm1@ucla.edu",
 						"name": "rohan"
@@ -133,7 +143,7 @@ describe("API.v1", () => {
 				chai.request(server)
 				.post(mailingUrl)
 				.send({
-					token: crypto.getToken(),
+				//	token: crypto.getToken(),
 					email: {
 						"email": "rohan@ucla.edu",
 					}
@@ -153,6 +163,7 @@ describe("API.v1", () => {
 					"token": crypto.getToken()
 				})
 				.end((err, res) => {
+				//	console.log(res.body);
 					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('success');
