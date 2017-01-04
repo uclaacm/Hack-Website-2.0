@@ -16,7 +16,7 @@ router.route('/:email?')
 })
 .get((req, res, next) => {
 	if(!req.validToken){
-		return res.status(401).json({success: false, error: "Unauthorized request"});
+		return res.status(401).json({success: false, error: "Unauthorized request, token required."});
 	}
 	Email.getAll((err, users) => {
 		res.json({
