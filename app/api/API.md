@@ -475,13 +475,13 @@ This request requires a valid token in the body. It returns the current ACM mail
 ```
 
 A successful response would follow the following format:
-```json
-{ 
-success: true,
-  error: null,
-  numResults: 97,
-  mailingList:
-   [ { email: 'acm@cs.ucla.edu', name: 'acm' } ]
+
+```JSON
+{
+  "success": true,
+  "error": null,
+  "numResults": 1
+  "mailingList": [ {email: "acm@cs.ucla.edu", name: acm} ]
 }
 ```
 
@@ -490,13 +490,14 @@ This request will fail with an invalid token. The `error` field will indicate th
 #### `POST /api/v1/mailinglist`
 This request adds an email to the database, subscribing the user to the mailing list. The request body should look as follows:
 
-```json
+```JSON
 {
-"email": {
-"email": {type: String, required: True},
-"name": {type: String}
-}
+  "email": {
+  "email": {type: String, required: True}
+  "name": {type: String}
+  }
 ```
+
 A successful request response will simply return a copy of the data back to you, along with a top-level field of `success`. 
 The request will fail if the required `email` field is not provided. In this case, a response with a `success` field of `false` will be returned, along with an `error` field indicating the error. 
 
