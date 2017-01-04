@@ -17,10 +17,12 @@
       - [`PATCH /api/v1/showcase/:projectID`](#patch-apiv1showcaseprojectid)
       - [`DELETE /api/v1/showcase`](#delete-apiv1showcase)
       - [`DELETE /api/v1/project/:projectID`](#delete-apiv1projectprojectid)
+  - [Mailing List](#mailing-list)
+      - [`GET /api/v1/mailinglist`](#get-apiv1mailinglist)
+      - [`POST /api/v1/mailinglist`](#post-apiv1mailinglist)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-[TOC]
 
 # ACM Hack API
 
@@ -33,21 +35,21 @@ This API was written so that data on the Hack website can easily be accessed and
 - This API assumes you are comfortable manipulating JSON objects.
 
 
-
 ## Events
 
 We display events on our homepage. The Events API provides an easy way to view, create, update, and delete events.
 
 #### `GET /api/v1/event`
 
-Finds and returns all ACM events.
+Finds and returns all ACM events. The top level field of `success` will indicate if the request was performed successfully. If the `success` field is false, then the `error` field will provide some information about what went wrong.
 
-The response format is a json object in the following format:
+A successful response is a JSON object that indicates the number of results returned, as well as the events array:
 
 ```json
 {
   "success": true,
   "error": null,
+  "numResults": 2
   "events": [
     {
       "id": "307e6d30-c556-11e6-9cb8-bb15b01c6e55",
@@ -79,6 +81,11 @@ The response format is a json object in the following format:
 
 Each `date.start` and `date.end` can be converted into Javascript Date objects (see documentation) very easily by passing them to the constructor (`date.state = new Date(date.start)`), which will let you sort and filter the `events` array however you want.
 
+An unsuccessful response will be indicated by a `success` field of false.
+
+**Example Request:**
+
+`curl http://localhost:5000/api/v1/event`
 
 
 #### `GET /api/v1/event/:eventID`
@@ -89,6 +96,7 @@ Find and return all events matching the given event ID. An example request to `G
 {
   "success": true,
   "error": null,
+  "numResults": 1,
   "events": [
     {
       "id": "307e6d30-c556-11e6-9cb8-bb15b01c6e55",
@@ -106,15 +114,18 @@ Find and return all events matching the given event ID. An example request to `G
 }
 ```
 
-Note that the response is still an array, and you need to access `events[0]`. Also, if there are no events with the specified ID, **the `success` field may still be `true`**. Make sure you check the length of `events` before trying to access it.
+As a note, if there are no events with the specified ID, **the `success` field may still be `true`**. Make sure you check the length of `events` or the `numResults` field before accessing the `events` array.
+
+**Example Request:**
+
+`curl http://localhost:5000/api/v1/event/307e6d30-c556-11e6-9cb8-bb15b01c6e55`
 
 
 
 #### `POST /api/v1/event`
 
 Create an event, provided you have the correct permission and the event data is not malformed.
-
-The request body must follow the following schema:
+A request body is required for this endpoint. It must follow the following schema:
 
 ```javascript
 {
@@ -133,7 +144,7 @@ The request body must follow the following schema:
 }
 ```
 
-Where `token` is a valid token, and the remaining fields contain the event information. You'll receive a response in the following format:
+Where `token` is a valid token, and the remaining fields contain the event information. If the request succeeds, you'll receive a response in the following format:
 
 ```JSON
 {
@@ -154,8 +165,29 @@ Where `token` is a valid token, and the remaining fields contain the event infor
 }
 ```
 
+
 If the request was successful, the `success` field will be set to true and you'll receive a copy of the newly-created event.
 
+This request can fail if no token or an invalid token is provided, or if the request is otherwise malformed (ie, missing required data). The result of this request will indicate failure through a `success` field of `false` and the `error` field will conatin information about the error encountered.
+
+**Example Request:**
+
+```
+curl -X POST -H "Content-Type: application/json" -d '{
+						"token": "your_token",
+						"event": {
+							"date": {
+								"start": "2016-12-18T19:10:33.251Z",
+								"end": "2016-12-18T19:12:07.770Z"
+							},
+							"desc": "Test Desc",
+							"link": "Test Link",
+							"title": "Test Title",
+							"tagline": "Test Tagline",
+							"location": "Test Location",
+							"category": "Test Category"
+						}' http://localhost:5000/api/v1/event
+```
 
 
 #### `PATCH /api/v1/event/:eventID`
@@ -231,12 +263,13 @@ We also display showcase projects on our website. The API to view, create, updat
 
 #### `GET /api/v1/showcase`
 
-This request will return an object containing an array of all showcase projects. The response will be in the following format:
+This request will return an object containing an array of all showcase projects. Similar to the events API, the top-level field, `success`, will indicate if the request was successful or not. For a successful response, the response will be in the following format:
 
 ```json
 {
   "success": true,
   "error": null,
+  "numResults": 2,
   "projects": [
     {
       "id": "1653fac0-c712-11e6-b0e4-fd8b404bc168",
@@ -268,18 +301,19 @@ This request will return an object containing an array of all showcase projects.
 }
 ```
 
-The response has a top-level field `success` which indicates whether or not the request could be fulfilled successfully. It should be checked before any further operations are conducted.
+**Example Request:**
 
-
+`curl http://localhost:5000/api/v1/showcase`
 
 #### `GET /api/v1/showcase/:projectID`
 
-Find and return all projects that match a specific project ID (specified in place od `:projectId`). For example, a request to `GET /api/v1/showcase/1653fac0-c712-11e6-b0e4-fd8b404bc168` might result in a response in the following format:
+Find and return all projects that match a specific project ID (specified as a URL param: `:projectId`). For example, a request to `GET /api/v1/showcase/1653fac0-c712-11e6-b0e4-fd8b404bc168` might result in a response in the following format:
 
 ```Json
 {
   "success": true,
   "error": null,
+  "numResults": 1,
   "projects": [
     {
       "id": "1653fac0-c712-11e6-b0e4-fd8b404bc168",
@@ -298,13 +332,12 @@ Find and return all projects that match a specific project ID (specified in plac
 }
 ```
 
-Note that the response is still an array, and you need to access `projects[0]`. Also, if there are no events with the specified ID, **the `success` field may still be `true`**. Make sure you check the length of `projects` before trying to access it.
-
+The top-level field of `success` indicates the status of the request. Note that a request may return successfuly but have no projects in the projects array. Please check either the `numResults` field or the length of the `projects` array before trying to access the `projects` array.
 
 
 #### `POST /api/v1/showcase`
 
-Create a showcase project, provided you have the correct permission and the event data is not malformed.
+Create a showcase project, provided you have the correct permission and the event data is not malformed. Similar to POSTing events, this requires a valid token and all required data in the body to be filled in.
 
 The request body must follow the following schema:
 
@@ -321,7 +354,7 @@ The request body must follow the following schema:
 }
 ```
 
-Where `token` is a valid token, and the remaining fields contain the project information. You'll receive a response in the following format:
+Where `token` is a valid token, and the remaining fields contain the project information. You'll receive a response in the following format, if the request succeeds:
 
 ```json
 {
@@ -342,6 +375,26 @@ Where `token` is a valid token, and the remaining fields contain the project inf
 ```
 
 If the request was successful, the `success` field will be set to `true` and you'll receive a copy of the newly-created project.
+
+This request can fail if no token is provided, the token is invalid, or required data is missing. In this case, the `success` field will be false and the `error` field will indicate what went wrong with the request.
+
+**Example Request:**
+
+```
+curl -X POST -H "Content-Type: application/json" -d '{
+						"token": "your_token",
+						"project": {
+						"desc": "Test Desc",
+						"image": "Test Link",
+						"link": "Test Title",
+						"title": "Test Tagline",
+						"contributors": [
+							"person1",
+							"person2"
+						]
+					}
+						}' http://localhost:5000/api/v1/showcase
+```
 
 
 
@@ -410,3 +463,45 @@ Where `success` indicates whether or not the request was successful, and `remove
 #### `DELETE /api/v1/project/:projectID`
 
 This request is identical to the previous `DELETE` request, except it specifies a project ID to delete through the URL (in place of `:projectID`), and only removes that project.
+
+
+## Mailing List
+The mailing list API gives access to ACM's mailing list (with token permission), and it also allows users to subscribe to the ACM mailing list.
+
+#### `GET /api/v1/mailinglist`
+This request requires a valid token in the body. It returns the current ACM mailing list. The request body would look like this:
+```json
+{
+  "token": "[Authorization token here]"
+}
+```
+
+A successful response would follow the following format:
+
+```JSON
+{
+  "success": true,
+  "error": null,
+  "numResults": 1,
+   "mailingList": [
+      {"email": "acm@cs.ucla.edu", "name": "acm"}
+    ]
+}
+```
+
+This request will fail with an invalid token. The `error` field will indicate this.
+
+#### `POST /api/v1/mailinglist`
+This request adds an email to the database, subscribing the user to the mailing list. The request body should look as follows:
+
+```javascript
+{
+  email: {
+    email: { type: String, required: true },
+    name: {type: String},
+  }
+}
+```
+
+A successful request response will simply return a copy of the data back to you, along with a top-level field of `success`.
+The request will fail if the required `email` field is not provided. In this case, a response with a `success` field of `false` will be returned, along with an `error` field indicating the error.

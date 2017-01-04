@@ -23,10 +23,11 @@
 
 .project-item{
 	width: 250px;
-	height: 460px;
+	height: 420px;
 	border-radius: 3px;
 	overflow: hidden;
 	box-shadow: var(--shad);
+
 	-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
 			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
 }
@@ -40,7 +41,7 @@
 }
 
 .project-item .img-wrapper{
-	height: 250px;
+	height: 230px;
 	width: 250px;
 	background-size: cover;
 	background-position: 50%;
@@ -48,31 +49,36 @@
 
 .text-wrapper{
 	background: #fff;
-	height: 200px;
+	height: 180px;
 	width: 250px;
 	padding: 10px 0px;
 }
 
 .text-wrapper .title-wrapper{
-	height: 36px;
+	height: 46px;
 	padding: 0 10px;
 }
 
 .text-wrapper h3{
 	font-family: var(--fam1);
 	font-size: 18px;
+	line-height: 20px;
 	text-align: center;
 }
 
 .text-wrapper ul{
 	padding: 20px;
-	height: 86px;
+	padding-top:5px;
+	height: 71px;
+	text-align: center;
 	overflow: scroll;
 }
 
 .text-wrapper li{
 	font-family: var(--fam1);
 	color: var(--grey-deep);
+	text-transform: uppercase;
+	font-size: 14px;
 }
 
 .text-wrapper .gradient{
@@ -158,9 +164,13 @@
 }
 
 .detail-zoom{
-	height: 100vh;
+	height: 80vh;
 	width: 60%;
 	padding: 5%;
+	margin-bottom: 20px;
+	margin-bottom: 20px;
+    overflow-y: auto;
+    position: relative;
 }
 
 .detail-zoom h1{
@@ -206,18 +216,22 @@
 
 	.detail-zoom{
 		position: absolute;
-		top: 70px;
-		left: 10px;
+		left: 20px;
+		background: #fff;
+		height: auto;
+		top: 40px;
+		border-radius: 3px;
+		box-shadow: var(--shad);
+		max-height: 60%;
+		overflow-y: auto;
 	}
 
 	.detail-zoom h1{
 		font-size: 18px;
-		color: #fff;
 	}
 
 	.detail-zoom h3, .detail-zoom p{
 		font-size: 14px;
-		color: var(--grey-light);
 	}
 
 	.detail-zoom p{
@@ -226,8 +240,6 @@
 
 	.detail-zoom button{
 		font-size: 10px;
-		color: var(--highlight);
-		background-color: #fff;
 	}
 
 }

@@ -9,19 +9,19 @@ router.route('/:email?')
 .all((req, res, next) => {
 	req.validToken = req.body && req.body.token && crypto.verifyToken(req.body.token);
 	req.validToken = req.validToken || (req.query && req.query.token && crypto.verifyToken(req.query.token));
-	//uncomment next line to make sure all requests need a token.
-	// if (!req.validToken)
-	// 	return res.status(401).json({ success: false, error: "Unauthorized" });
+	//uncomment the below code to require a token for all email related requests
+	//if (!req.validToken)
+	//	return res.status(401).json({ success: false, error: "Unauthorized" });
 	next();
 })
 .get((req, res, next) => {
 	if(!req.validToken){
-		return res.status(401).json({success: false, error: "Unauthorized request, token rquired."});
+		return res.status(401).json({success: false, error: "Unauthorized request, token required."});
 	}
 	Email.getAll((err, users) => {
 		res.json({
-			error: err ? err : null,
 			success: !err,
+			error: err ? err : null,
 			numResults: users && users.length ? users.length : 0,
 			mailingList: err ? [] : users.map(user => Email.sanitize(user))
 		});
@@ -34,8 +34,8 @@ router.route('/:email?')
 	let newMail = new Email(req.body.email);
 	newMail.save((err, updatedMail) => {
 		res.json({
-			error: err ? err : null,
 			success: !err,
+			error: err ? err : null,
 			email: err ? {} : Email.sanitize(updatedMail)
 		});
 	});

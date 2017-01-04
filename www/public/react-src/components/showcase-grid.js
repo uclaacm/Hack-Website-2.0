@@ -36,6 +36,10 @@ class ShowcaseGrid extends Component{
 
 		//update app-level state
 		this.props.selectProject(project);
+
+		//miscellaneous fixes
+		const body = document.querySelector('body');
+		body.classList.add('fix-scroll');
 	}
 
 	renderProject(project, row, column){
