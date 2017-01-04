@@ -16,6 +16,7 @@ class Profile extends Component{
 		return members
 					.filter(member => member.id != this.props.user.id)
 					.map(member => <li key={member.id}>
+										<div	className="team-profile-pic shadow"></div>
 										<div 	className="team-profile-pic"
 												style={{backgroundImage: `url(${member.profilePicture})`}}></div>
 									</li>);
@@ -42,9 +43,9 @@ class Profile extends Component{
 		return(
 			<div>
 				<div className="profile">
-					<div 	className="profile-pic"
+					<div	className="profile-pic shadow"></div>
+					<div 	className="profile-pic main"
 							style={{backgroundImage: `url(${this.props.user.profilePicture})`}}></div>
-					
 					<div className="main-profile-info">
 						<h3 className="greeting">Hello,</h3>
 						<h1>{this.props.user.name}</h1>

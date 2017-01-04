@@ -19,6 +19,11 @@ class SessionsGrid extends Component{
 	}
 
 	renderSession(session, row, column){
+		//if the link is not available, don't show it's icon
+		const slidesLink = session.slidesLink == "" ? false : true;
+		const videoLink = session.videoLink == "" ? false : true;
+		const blogPostLink = session.blogPostLink == "" ? false : true;
+		
 		return (
 			<td 	className	= "project-td"
 					key			= { session.id }>
@@ -28,7 +33,10 @@ class SessionsGrid extends Component{
 							 title			= { session.name }
 							 number			= { session.number }
 							 image			= { session.image }
-							 onClickEvent	= { () => this.onSelect(session) } />
+							 onClickEvent	= { () => this.onSelect(session) }
+							 slidesLink		= { slidesLink }
+							 videoLink		= { videoLink }
+							 blogPostLink	= { blogPostLink } />
 			</td>
 		);
 	}
