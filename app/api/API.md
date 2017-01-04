@@ -476,11 +476,13 @@ This request requires a valid token in the body. It returns the current ACM mail
 
 A successful response would follow the following format:
 ```json
-{ success: true,
+{ 
+success: true,
   error: null,
   numResults: 97,
   mailingList:
    [ { email: 'acm@cs.ucla.edu', name: 'acm' } ]
+}
 ```
 
 This request will fail with an invalid token. The `error` field will indicate this. 
@@ -488,7 +490,8 @@ This request will fail with an invalid token. The `error` field will indicate th
 #### `POST /api/v1/mailinglist`
 This request adds an email to the database, subscribing the user to the mailing list. The request body should look as follows:
 
-```json 
+```json
+{
 "email": {
 "email": {type: String, required: True},
 "name": {type: String}
