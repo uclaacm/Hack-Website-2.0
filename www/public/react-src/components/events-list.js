@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllData, filterData } from '../actions/index';
+import { fetchAllData, filterData } from '../actions';
 import EventsListItem from './events-list-item';
 
 

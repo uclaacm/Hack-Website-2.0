@@ -1,4 +1,5 @@
 import axios from 'axios';
+import _ from 'underscore';
 
 export const FETCH_ALL_DATA = 'FETCH_ALL_DATA';
 export const FILTER_DATA = 'FILTER_DATA';
@@ -14,10 +15,10 @@ export function fetchAllData(url){
 	}
 }
 
-export function filterData(filteredData){
+export function filterData(all, filter){
 	return {
 		type: FILTER_DATA,
-		payload: filteredData
+		payload: all.filter(item => _.includes(filter, item.category))
 	}
 }
 

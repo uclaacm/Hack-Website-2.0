@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllData } from '../actions/index';
+import { fetchAllData } from '../actions';
 
 import ShowcaseGrid from './showcase-grid';
 import ProjectDetail from './project-detail';

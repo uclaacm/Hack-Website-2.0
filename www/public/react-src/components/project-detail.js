@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectProject } from '../actions/index';
+import { selectProject } from '../actions';
 
 class ProjectDetail extends Component{
 
