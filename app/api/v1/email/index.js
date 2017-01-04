@@ -20,8 +20,8 @@ router.route('/:email?')
 	}
 	Email.getAll((err, users) => {
 		res.json({
-			error: err ? err : null,
 			success: !err,
+			error: err ? err : null,
 			numResults: users && users.length ? users.length : 0,
 			mailingList: err ? [] : users.map(user => Email.sanitize(user))
 		});
@@ -34,8 +34,8 @@ router.route('/:email?')
 	let newMail = new Email(req.body.email);
 	newMail.save((err, updatedMail) => {
 		res.json({
-			error: err ? err : null,
 			success: !err,
+			error: err ? err : null,
 			email: err ? {} : Email.sanitize(updatedMail)
 		});
 	});
