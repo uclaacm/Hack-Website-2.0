@@ -461,3 +461,39 @@ Where `success` indicates whether or not the request was successful, and `remove
 #### `DELETE /api/v1/project/:projectID`
 
 This request is identical to the previous `DELETE` request, except it specifies a project ID to delete through the URL (in place of `:projectID`), and only removes that project.
+
+
+## Mailing List
+The mailing list API gives access to ACM's mailing list (with token permission), and it also allows users to subscribe to the ACM mailing list. 
+
+#### `GET /api/v1/mailinglist`
+This request requires a valid token in the body. It returns the current ACM mailing list. The request body would look like this: 
+```json
+{
+  "token": "[Authorization token here"
+}
+```
+
+A successful response would follow the following format:
+```json
+{ success: true,
+  error: null,
+  numResults: 97,
+  mailingList:
+   [ { email: 'acm@cs.ucla.edu', name: 'acm' } ]
+```
+
+This request will fail with an invalid token. The `error` field will indicate this. 
+
+#### `POST /api/v1/mailinglist`
+This request adds an email to the database, subscribing the user to the mailing list. The request body should look as follows:
+
+```json 
+"email": {
+"email": {type: String, required: True},
+"name": {type: String}
+}
+```
+A successful request response will simply return a copy of the data back to you, along with a top-level field of `success`. 
+The request will fail if the required `email` field is not provided. In this case, a response with a `success` field of `false` will be returned, along with an `error` field indicating the error. 
+
