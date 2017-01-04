@@ -14,10 +14,27 @@ class SessionItem extends Component{
 				</div>
 				<div className="icons">
 					{/*if the link is not available, don't show it's icon*/}
-					{this.props.slidesLink && <span></span>}
-					{this.props.videoLink && <span></span>}
-					{this.props.blogPostLink && <span></span>}
-					<span className="right"></span>
+					{
+						this.props.slidesLink &&
+						<span>
+							<i className="fa fa-film" ariaHidden="true"></i>
+						</span>
+					}
+					{
+						this.props.videoLink &&
+						<span>
+							<i className="fa fa-video-camera" ariaHidden="true"></i>
+						</span>
+					}
+					{
+						this.props.blogPostLink &&
+						<span>
+							<i className="fa fa-thumb-tack" ariaHidden="true"></i>
+						</span>
+					}
+					<span className="right">
+						<i className="fa fa-plus hl" ariaHidden="true"></i>
+					</span>
 				</div>
 			</div>
 		);

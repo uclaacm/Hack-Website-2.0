@@ -21,7 +21,7 @@ class SessionDetail extends Component{
 			<div className="session-detail-wrapper">
 				<button className="back"
 					onClick={() => this.props.selectSession(null)}>
-						<img src="/common/images/chevron-left.svg" />
+						<i className="fa fa-chevron-left hl" ariaHidden="true"></i>
 				</button>
 				<div className="session-detail">
 					<div 	className="img-top"
@@ -43,16 +43,16 @@ class SessionDetail extends Component{
 							</div>
 							{/*display links only if they are not empty*/}
 							{slidesLink && <a href={session.slidesLink}>
-								<button><span className="icon"></span> SLIDES</button>
+								<button><span className="icon"><i className="fa fa-film" ariaHidden="true"></i></span> SLIDES</button>
 							</a>}
 							{videoLink && <a href={session.videoLink}>
-								<button><span className="icon"></span> SCREENCAST</button>
+								<button><span className="icon"><i className="fa fa-video-camera" ariaHidden="true"></i></span> SCREENCAST</button>
 							</a>}
 							{blogPostLink && <a href={session.blogPostLink}>
-								<button><span className="icon"></span> BLOG POST</button>
+								<button><span className="icon"><i className="fa fa-thumb-tack" ariaHidden="true"></i></span> BLOG POST</button>
 							</a>}
 						</div>
-						<button className="btn-selection">ADD SUBMISSION</button>
+						<button className="btn-selection"><i className="fa fa-plus" ariaHidden="true"></i> ADD SUBMISSION</button>
 					</div>
 					
 				</div>

@@ -42,7 +42,7 @@ export function fetchSessions(url){
 					desc: 'description uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uedescription uefhidjsh a da df fd df df adescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja ue fd description uefhidjsh fdsja uefhidjsh fda dsa fdadescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uefhidjsh fda dsa fda',
 					image: '/common/images/Android_M.jpg',
 					videoLink: 'http://youtube.com',
-					slidesLink: '',
+					slidesLink: 'http://google.com',
 					blogPostLink: '',
 					submissionLink: ''
 				},
@@ -54,8 +54,8 @@ export function fetchSessions(url){
 					desc: 'description uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uedescription uefhidjsh a da df fd df df adescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja ue fd description uefhidjsh fdsja uefhidjsh fda dsa fdadescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uefhidjsh fda dsa fda',
 					image: '/common/images/Android_M.jpg',
 					videoLink: '',
-					slidesLink: '',
-					blogPostLink: '',
+					slidesLink: 'http://google.com',
+					blogPostLink: 'http://medium.com',
 					submissionLink: ''
 				},
 				{

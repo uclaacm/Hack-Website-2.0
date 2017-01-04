@@ -124,7 +124,7 @@ class DialogManage extends Component{
 					this.props.team.team && //if haven't left team, continue displaying back button
 					<button className="back" 
 							onClick={() => this.incrementSlide(-1)}>
-							<img src="/common/images/chevron-left.svg" />
+							<i className="fa fa-chevron-left hl" ariaHidden="true"></i>
 					</button>
 				}
 				{this.renderSlide(this.state.currentSlide)}
