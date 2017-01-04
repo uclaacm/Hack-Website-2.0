@@ -39,14 +39,15 @@ We display events on our homepage. The Events API provides an easy way to view, 
 
 #### `GET /api/v1/event`
 
-Finds and returns all ACM events.
+Finds and returns all ACM events. The top level field of `success` will indicate if the request was performed successfully. If the `success` field is false, then the `error` field will provide some information about what went wrong. 
 
-The response format is a json object in the following format:
+A successful response is a JSON object that indicates the number of results returned, as well as the events array:
 
 ```json
 {
   "success": true,
   "error": null,
+  "numResults": 2
   "events": [
     {
       "id": "307e6d30-c556-11e6-9cb8-bb15b01c6e55",
@@ -78,6 +79,11 @@ The response format is a json object in the following format:
 
 Each `date.start` and `date.end` can be converted into Javascript Date objects (see documentation) very easily by passing them to the constructor (`date.state = new Date(date.start)`), which will let you sort and filter the `events` array however you want.
 
+An unsuccessful response will be indicated by a `success` field of false.
+
+**Example Request:**
+
+`curl http://localhost:5000/api/v1/event`
 
 
 #### `GET /api/v1/event/:eventID`
@@ -88,6 +94,7 @@ Find and return all events matching the given event ID. An example request to `G
 {
   "success": true,
   "error": null,
+  "numResults": 1,
   "events": [
     {
       "id": "307e6d30-c556-11e6-9cb8-bb15b01c6e55",
@@ -105,15 +112,18 @@ Find and return all events matching the given event ID. An example request to `G
 }
 ```
 
-Note that the response is still an array, and you need to access `events[0]`. Also, if there are no events with the specified ID, **the `success` field may still be `true`**. Make sure you check the length of `events` before trying to access it.
+As a note, if there are no events with the specified ID, **the `success` field may still be `true`**. Make sure you check the length of `events` or the `numResults` field before accessing the `events` array.
+
+**Example Request:**
+
+`curl http://localhost:5000/api/v1/event/307e6d30-c556-11e6-9cb8-bb15b01c6e55`
 
 
 
 #### `POST /api/v1/event`
 
 Create an event, provided you have the correct permission and the event data is not malformed.
-
-The request body must follow the following schema:
+A request body is required for this endpoint. It must follow the following schema:
 
 ```javascript
 {
@@ -132,7 +142,7 @@ The request body must follow the following schema:
 }
 ```
 
-Where `token` is a valid token, and the remaining fields contain the event information. You'll receive a response in the following format:
+Where `token` is a valid token, and the remaining fields contain the event information. If the request succeeds, you'll receive a response in the following format:
 
 ```JSON
 {
@@ -153,8 +163,29 @@ Where `token` is a valid token, and the remaining fields contain the event infor
 }
 ```
 
+
 If the request was successful, the `success` field will be set to true and you'll receive a copy of the newly-created event.
 
+This request can fail if no token or an invalid token is provided, or if the request is otherwise malformed (ie, missing required data). The result of this request will indicate failure through a `success` field of `false` and the `error` field will conatin information about the error encountered. 
+
+**Example Request:**
+
+```
+curl -X POST -H "Content-Type: application/json" -d '{
+						"token": "your_token",
+						"event": {
+							"date": {
+								"start": "2016-12-18T19:10:33.251Z",
+								"end": "2016-12-18T19:12:07.770Z"
+							},
+							"desc": "Test Desc",
+							"link": "Test Link",
+							"title": "Test Title",
+							"tagline": "Test Tagline",
+							"location": "Test Location",
+							"category": "Test Category"
+						}' http://localhost:5000/api/v1/event
+```
 
 
 #### `PATCH /api/v1/event/:eventID`
