@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeDialog } from '../actions/index'; 
+import { changeDialog, triggerTeamAction } from '../actions/index'; 
 import DialogInput from './dialog-input';
 
 class DialogManage extends Component{
@@ -18,10 +18,13 @@ class DialogManage extends Component{
 		this.renderConfirm = this.renderConfirm.bind(this);
 		this.renderFailure = this.renderFailure.bind(this);
 		this.renderSuccess = this.renderSuccess.bind(this);
+		this.renderLoading = this.renderLoading.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
 	incrementSlide(num){
+		if(this.state.currentSlide == 2) //at error message
+			this.props.triggerTeamAction('reset-error', null);
 
 		if(this.state.currentSlide == 0 && num < 0)
 			this.props.changeDialog({active : false});
@@ -43,13 +46,14 @@ class DialogManage extends Component{
 	}
 
 	renderDefault(){
+		const team = this.props.team.team;
 		return (
 			<div className="left-align">
-				<h3>{this.props.team.name}</h3>
-				<h3 className="team-id">Team ID: {this.props.team.id}</h3>
+				<h3>{team.name}</h3>
+				<h3 className="team-id">Team ID: {team.id}</h3>
 				<ul className="team-members">
 					<li>{this.props.user.name} (you)</li>
-					{this.formatMembers(this.props.team.members)}
+					{this.formatMembers(team.members)}
 				</ul>
 				<button className='leave' onClick={() => this.incrementSlide(1)}>Leave team</button>
 			</div>
@@ -57,19 +61,19 @@ class DialogManage extends Component{
 	}
 
 	renderConfirm(){
+		const team = this.props.team.team;
 		return (
 			<DialogInput 
 					action="LEAVE"
 					initialFormValue="team name"
 					message="Please confirm that you want to leave team"
-					additional={this.props.team.name}
+					additional={team.name}
 					onFormSubmit={this.onFormSubmit}
 					formLabel="Type the name of your team to proceed." />
 		);
 	}
 
 	renderSuccess(){
-		console.log(this.props.team)
 		return (
 			<div className="dialog-inner">
 				<h3>You have successfully left your team.</h3>
@@ -78,12 +82,17 @@ class DialogManage extends Component{
 		);
 	}
 
+	renderLoading(){
+		return (
+			<div>Loading...</div>
+		);
+	}
+
 	renderFailure(){
 		return (
 			<div className="dialog-inner">
 				<h3>Sorry,</h3>
 				<h3>{this.props.team.error}</h3>
-				<button className="btn-selection" onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
 			</div>
 		);
 	}
@@ -94,8 +103,15 @@ class DialogManage extends Component{
 				return this.renderDefault();
 			case 1:
 				return this.renderConfirm();
-			case 2://TODO: account for async request, display loading
-				return this.props.team ? this.renderFailure() : this.renderSuccess();
+			case 2: 
+				console.log(this.props.team)
+				if(this.props.team.error)
+					return this.renderFailure();
+				else if(this.props.team.team) //team is not null yet, but no error
+					return this.renderLoading();
+				else
+					return this.renderSuccess();
+
 			default:
 				return <div>Something went wrong...lmao...</div>;
 		}
@@ -105,7 +121,7 @@ class DialogManage extends Component{
 		return (
 			<div>
 				{
-					this.state.currentSlide != 2 && 
+					this.props.team.team &&
 					<button className="back" 
 							onClick={() => this.incrementSlide(-1)}>
 							<img src="/common/images/chevron-left.svg" />
@@ -123,7 +139,7 @@ function mapStateToProps({team, user}){
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({changeDialog}, dispatch);
+	return bindActionCreators({changeDialog, triggerTeamAction}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogManage);

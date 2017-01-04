@@ -4,8 +4,8 @@ export default (state = null, action) => {
 
 	switch(action.type){
 		case FETCH_USER:
-			console.log(action.payload.user)
-			return action.payload.user;
+			console.log(action.payload.data.user)
+			return action.payload.data.user;
 		default:
 			return state;
 	}

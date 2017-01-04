@@ -88,21 +88,23 @@ class DialogOnboard extends Component{
 		return (
 			<div>
 				Error:<br />
-				
+				{this.props.team.error}
 			</div>
 		);
 	}
 
 	renderSuccess(){
+		//if we reach here, can assume this.props.team.team is defined
+		const team = this.props.team.team;
 		switch(this.state.action){
 			case 'create':
 				return (
 					<div className="create-success dialog-inner">
 						<h3>Awesome! Your team name is</h3>
-						<h3><span className="hl">{this.props.team.name}</span></h3>
+						<h3><span className="hl">{team.name}</span></h3>
 						<h3>and your team ID is:</h3>
 						<div className="team-id-copy">
-							<p>{this.props.team.id}</p>
+							<p>{team.id}</p>
 						</div>
 						<div className="notice">
 							<p>Make sure to share this ID with your teammates. You can access it anytime by clicking &quot;Manage Team&quot;.</p>
@@ -114,11 +116,11 @@ class DialogOnboard extends Component{
 				return (
 					<div className="dialog-inner">
 						<h3>Great! You&apos;ve joined team</h3>
-						<h3><span className="hl">{this.props.team.name}</span></h3>
+						<h3><span className="hl">{team.name}</span></h3>
 						<h3>Your teammates are</h3>
 						<ul className="team-members">
 							{
-								this.props.team.members.map(member => {
+								team.members.map(member => {
 									return <li key={member.id}>{member.name}</li>;
 								})
 							}
@@ -134,28 +136,30 @@ class DialogOnboard extends Component{
 
 	renderSlide(slideNum){
 		switch(slideNum){
-			case 0:
+			case 0: 
 				return this.renderDefault();
 			case 1:
 				return this.renderFormInput();
 			case 2:
 				console.log(this.props.team)
-				if(this.props.team == null)
-					return this.renderLoading();
-				else if (typeof this.props.team === 'string')
+				if(this.props.team.error)
 					return this.renderFailure();
-				else
-					return this.renderSuccess();
+				else if(this.props.team.team)
+					return this.renderSuccess();					
+				else //team is null, and no error
+					return this.renderLoading();
 			default:
 				return <div>Something went wrong...</div>;
 		}
 	}
 
 	render(){
+		console.log('new render----')
 		return(
 			<div>
 				{
-					this.state.currentSlide == 1 &&
+					(this.state.currentSlide == 1 || this.state.currentSlide == 2) &&
+					(!this.props.team.team) &&
 					<button className="back"
 							onClick={() => this.incrementSlide(-1)}>
 							<img src="/common/images/chevron-left.svg" />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchUser, fetchSessions, fetchScoreboard } from '../actions/index';
+import { fetchUser, fetchSessions, fetchScoreboard, triggerTeamAction, changeDialog} from '../actions/index';
 
 import MenuBar from './menu-bar';
 import Profile from './profile';
@@ -14,6 +14,7 @@ class Dashboard extends Component{
 
 	componentWillMount(){
 		this.props.fetchUser('/hackschool/user');
+		this.props.triggerTeamAction('fetch', null);
 		this.props.fetchSessions('/hackschool/projects');
 		this.props.fetchScoreboard('/hackschool/scoreboard');
 	}
@@ -29,7 +30,7 @@ class Dashboard extends Component{
 
 		//fetchScoreboard not done yet
 		if(!this.props.scoreboard)
-			return <div>Retrieving team info...</div>;
+			return <div>Retrieving scoreboard info...</div>;
 
 		const currentSlide = this.props.currentSlide == 'sessions' ? <SessionsGrid /> : <Leaderboard />;
 
@@ -50,7 +51,7 @@ function mapStateToProps({dialog, user, scoreboard, currentSlide, sessions}){
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({fetchUser, fetchSessions, fetchScoreboard}, dispatch);
+	return bindActionCreators({fetchUser, fetchSessions, fetchScoreboard, triggerTeamAction, changeDialog}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

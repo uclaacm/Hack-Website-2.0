@@ -64,7 +64,7 @@ class Profile extends Component{
 }
 
 function mapStateToProps({user, team}){
-	return {user, team};
+	return {user, team: team.team};
 }
 
 export default connect(mapStateToProps)(Profile);

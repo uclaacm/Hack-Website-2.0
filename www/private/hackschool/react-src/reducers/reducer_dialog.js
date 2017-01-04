@@ -1,9 +1,9 @@
 import { CHANGE_DIALOG } from '../actions/index';
 
+/*todo: figure out how to call this from within another reducer*/
 const defaultState = {
 	active: false,
-	onBoarding: true,
-	current: 'teamCreateJoin'
+	onBoarding: false
 };
 
 export default (state = defaultState, action) => {

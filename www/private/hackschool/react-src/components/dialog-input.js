@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createTeam, joinTeam, leaveTeam } from '../actions/index';
+import { triggerTeamAction } from '../actions/index';
 
 class DialogOnboardInput extends Component{
 
@@ -19,27 +19,19 @@ class DialogOnboardInput extends Component{
 	}
 
 	onFormSubmit(e){
-		switch(this.props.action){
-			case 'CREATE':
-				this.props.createTeam(this.state.term);
-				break;
-			case 'JOIN':
-				this.props.joinTeam(this.state.term);
-				break;
-			case 'LEAVE':
-				//TODO: FIX THIS BUG - TEAM NAME IS NOT GETTING INPUT FROM HERE
-				const input = this.state.term.toUpperCase() == this.props.team.name.toUpperCase() ? this.state.term.toUpperCase() : false;
-				this.props.leaveTeam(input);
-				break;
-		}
-			
+		const action = this.props.action.toLowerCase();
+
+		let userInput = this.state.term;
+		if(action == 'leave' && this.state.term != this.props.team.name)
+			userInput = null;
+		this.props.triggerTeamAction(action, userInput);
 		this.props.onFormSubmit(e);
 	}
 
 	render(){
 
 		const additional = <span>{this.props.additional}</span>;
-		const label = <label>{this.props.formLabel}</label>
+		const label = <label>{this.props.formLabel}</label>;
 		
 		return (
 			<div className="dialog-inner">
@@ -60,11 +52,11 @@ class DialogOnboardInput extends Component{
 }
 
 function mapStateToProps({team}){
-	return {team};
+	return {team: team.team};
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({createTeam, joinTeam, leaveTeam}, dispatch);
+	return bindActionCreators({triggerTeamAction}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogOnboardInput);

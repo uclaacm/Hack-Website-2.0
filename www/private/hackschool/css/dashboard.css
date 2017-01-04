@@ -60,6 +60,8 @@
 	border: 10px solid #fff;
 	margin: 0 15px 20px 20px;
 	background: var(--grey-deep);
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 
 .main-profile-info{
@@ -438,7 +440,12 @@ button.back img{
 	padding: 15px 25px;
 }
 
-.dialog-box span, .dialog-inner span{
+.dialog-box span{
+	font-size: 10px;
+	letter-spacing: 2px;
+}
+
+.team-members span, .dialog-inner span{
 	font-size: 14px;
 	letter-spacing: 2px;
 }

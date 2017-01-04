@@ -42,7 +42,6 @@ class SessionsGrid extends Component{
 	}
 
 	render(){
-		console.log('selected session', this.props.selectedSession)
 		return (
 			<div className="grid-wrapper">
 				<table className="grid">

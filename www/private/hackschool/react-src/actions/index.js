@@ -9,23 +9,15 @@ export const CHANGE_DIALOG = 'CHANGE_DIALOG';
 export const SELECT_SLIDE = 'SELECT_SLIDE';
 export const SELECT_SESSION = 'SELECT_SESSION';
 
+export const FETCH_TEAM = 'FETCH_TEAM';
 export const CREATE_TEAM = 'CREATE_TEAM';
 export const JOIN_TEAM = 'JOIN_TEAM';
 export const LEAVE_TEAM = 'LEAVE_TEAM';
+export const RESET_TEAM_ERROR = 'RESET_TEAM_ERROR';
 
 export function fetchUser(url){
 
-	//const request2 = axios.get(url);
-	//console.log(request2);
-	const request = {
-		success: true,
-		error: null,
-		user: {
-			id: 'ab-15-asdf',
-			name: 'Dmitri Brereton',
-			profilePicture: ''
-		}
-	};
+	const request = axios.get(url);
 
 	return{
 		type: FETCH_USER,
@@ -317,90 +309,56 @@ export function selectSession(session){
 	}
 }
 
-export function createTeam(teamName){
+export function triggerTeamAction(endpoint, props){
 
-	const url = '/hackschool/team/create';
-	const request = {
-		success: true,
-  		error: null,
-  		team: {
-  			id: '123-456-789',
-  			name: teamName,
-  			totalScore: 0,
-  			scores: [],
-			members: [
-				{
-					id: '1234',
-					name: 'Member 1',
-					profilePicture: ''
-				}
-			]
-  		}
-	};
+	const url = endpoint != 'fetch' ? `/hackschool/team/${endpoint}` : '/hackschool/team';
 
-	/*const request = axios.post(url, {
-						  	{team: {name: teamName}}
-						});*/
-
-	return{
-		type: CREATE_TEAM,
-		payload: request
-	}
-
-}
-
-export function joinTeam(teamID){
-
-	const url = '/hackschool/team/join';
-	const request = {
-		success: true,
-  		error: null,
-  		team: {
-  			id: teamID,
-  			name: 'fetched team name',
-  			totalScore: 0,
-  			scores: [],
-			members: [
-				{
-					id: '1234',
-					name: 'Member 1',
-					profilePicture: ''
-				}
-			]
-  		}
-	}
-
-	/*const request = axios.post(url, {
-						  	{team: {id: teamID}}
-						});*/
-
-	return{
-		type: JOIN_TEAM,
-		payload: request
-	}
-
-}
-
-export function leaveTeam(teamInput){
-
-	const url = '/hackschool/team/leave';
-	let request;
-
-	if(teamInput)
-		request = {
-			success: true,
-			error: null,
-			team: null
-		};
-	else
-		request = {
-			success: false,
-			error: 'Incorrect team name'
-		};
-
-	return {
-		type: LEAVE_TEAM,
-		payload: request
+	switch(endpoint){
+		case 'fetch':
+			return{
+				type: FETCH_TEAM,
+				payload: axios.get(url)
+			}
+		case 'create':
+			return{
+				type: CREATE_TEAM,
+				payload: axios.post(url, {
+							team: {
+								name: props
+							}
+						})
+			}
+		case 'join':
+			return{
+				type: JOIN_TEAM,
+				payload: axios.post(url, {
+							team:{
+								id: props
+							}
+						})
+			}
+		case 'leave':
+			//if props is null (incorrect name match),
+			//simulate server response error
+			const payload = props ? axios.get(url) : {data: {error: 'wrong team name submitted'}};
+			return{
+				type: LEAVE_TEAM,
+				payload
+			}
+		//this is needed if team.error is not null due to previously caused error,
+		//and error is displayed (incorrectly) when correct submission happens, and
+		//should instead see loading render
+		case 'reset-error':
+			return{
+				type: RESET_TEAM_ERROR,
+				payload: null
+			}
+		default:
+			console.error(endpoint);
+			return{
+				type: 'error',
+				payload: null
+			}
 	}
 
 }
