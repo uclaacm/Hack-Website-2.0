@@ -33,6 +33,7 @@ This API was written so that data on the Hack website can easily be accessed and
 - All dates are in GMT ISO format. The Javascript `Date` class' default constructor can automatically convert it to a `Date` object. Make sure any dates displayed are converted to the user's local time zone.
 - This API assumes you are familiar with RESTful and CRUD models.
 - This API assumes you are comfortable manipulating JSON objects.
+- A great way to learn about the API is to read the [tests](https://github.com/uclaacm/Hack-Website-2.0/blob/master/test/api.js). They describe how the API should be used and how it handles many different types of requests. 
 
 
 ## Events
