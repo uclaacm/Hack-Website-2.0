@@ -470,7 +470,7 @@ The mailing list API gives access to ACM's mailing list (with token permission),
 This request requires a valid token in the body. It returns the current ACM mailing list. The request body would look like this: 
 ```json
 {
-  "token": "[Authorization token here"
+  "token": "[Authorization token here]"
 }
 ```
 
@@ -480,8 +480,10 @@ A successful response would follow the following format:
 {
   "success": true,
   "error": null,
-  "numResults": 1
-  "mailingList": [ {email: "acm@cs.ucla.edu", name: acm} ]
+  "numResults": 1,
+   "mailingList": [
+      {"email": "acm@cs.ucla.edu", "name": "acm"}
+    ]
 }
 ```
 
@@ -490,12 +492,13 @@ This request will fail with an invalid token. The `error` field will indicate th
 #### `POST /api/v1/mailinglist`
 This request adds an email to the database, subscribing the user to the mailing list. The request body should look as follows:
 
-```JSON
+```javascript
 {
-  "email": {
-  "email": {type: String, required: True}
-  "name": {type: String}
+  email: {
+    email: { type: String, required: true },
+    name: {type: String},
   }
+}
 ```
 
 A successful request response will simply return a copy of the data back to you, along with a top-level field of `success`. 
