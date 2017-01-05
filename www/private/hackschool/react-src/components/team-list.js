@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TeamItem from './team-item';
+import TeamGridItem from './team-grid-item';
 
 class TeamList extends Component{
 
@@ -12,29 +12,35 @@ class TeamList extends Component{
 
 	renderList(team, i){
 		const highest = 4;
-		return <TeamItem 	key={team.id}
-							featured={false}
-							first={false}
-							name={team.name}
-							score={team.totalScore}
-							members={team.members}
-							rank={i + highest} />;
+		return <TeamGridItem 	key={team.id}
+								name={team.name}
+								score={team.totalScore}
+								members={team.members}
+								rank={i + highest} />;
 	}
 
 	render(){
 		console.log(this.props.list);
 		return (
-			<div className="team-list">
-				<table>
-					<tbody>
-					<tr>
-						<th>MEMBERS</th>
-						<th>TEAM NAME</th>
-						<th>POINTS</th>
-					</tr>
-						{/*this.props.list.map(this.renderList)*/}
-					</tbody>
-				</table>
+			<div>
+			{this.props.list.length != 0 && 
+				<div className="team-list">
+					<div className="gradient"></div>
+					<table>
+						<thead>
+							<tr>
+								<th></th>
+								<th>MEMBERS</th>
+								<th>TEAM NAME</th>
+								<th>POINTS</th>
+							</tr>
+							</thead>
+						<tbody>
+						{this.props.list.map(this.renderList)}
+						</tbody>
+					</table>
+				</div>
+			}
 			</div>
 		);
 	}

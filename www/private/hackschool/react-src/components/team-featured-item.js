@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TeamItem extends Component{
+class TeamFeaturedItem extends Component{
 
 	constructor(props){
 		super(props);
@@ -34,14 +34,13 @@ class TeamItem extends Component{
 	}
 
 	render(){
-		const className = this.props.featured ? 'team-item-featured team-item' : 'team-item';
 		return (
-			<div className={className}>
+			<div className="team-item-featured team-item">
 				<div>
 					<h2 className="hl">{this.formatNumber(this.props.rank)}</h2>
 					<ul>{this.formatMembers(this.props.members)}</ul>
 				</div>
-				<p className="filler">filler, will fix later</p>
+				
 				<h3>{this.props.name}</h3>
 				<h3 className="hl-grey">{this.props.score} points</h3>
 			</div>
@@ -50,4 +49,4 @@ class TeamItem extends Component{
 
 }
 
-export default TeamItem;
+export default TeamFeaturedItem;
