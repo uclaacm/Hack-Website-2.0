@@ -67,7 +67,7 @@ router.route('/:projectId?')
 		project.save((err, updatedShowcaseProject) => {
 			res.json({
 				success: !err,
-				error: err ? "" + err : null,
+				error: err ? err : null,
 				project: err ? {} : db.ShowcaseProject.sanitize(updatedShowcaseProject)
 			});
 		});
