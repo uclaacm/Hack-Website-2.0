@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getTeamRank } from '../actions';
 import DashboardNav from './dashboard-nav';
 
 class Profile extends Component{
@@ -8,6 +10,14 @@ class Profile extends Component{
 		super(props);
 
 		this.formatOtherMembers = this.formatOtherMembers.bind(this);
+	}
+
+	//not just initial mount, need to change to whenever update
+	//can't use componentWillUpdate() since will generate infinite loop
+	//TODO: figure this out
+	componentWillMount(){
+		if(this.props.team.team)
+			this.props.getTeamRank([...this.props.scoreboard.featured, ...this.props.scoreboard.list], this.props.team.team.id);
 	}
 
 
@@ -24,19 +34,22 @@ class Profile extends Component{
 	}
 
 	render(){
-		const teamDisplay 	= this.props.team ? <h4 className="team">Team {this.props.team.name}</h4> : <h4 className="team">Not on a team</h4>
-		const teamMembers 	= this.props.team ? this.formatOtherMembers(this.props.team.members) : null;
+		console.log('team in profile', this.props.team)
+		const props = this.props.team;
 
-		const teamRanking 	= this.props.team 
+		const teamDisplay 	= props.team ? <h4 className="team">Team {props.team.name}</h4> : <h4 className="team">Not on a team</h4>
+		const teamMembers 	= props.team ? this.formatOtherMembers(props.team.members) : null;
+
+		const teamRanking 	= props.team 
 								? 	<div>
 										<h3>TEAM RANKING</h3>
-										<h3 className="number">0</h3>
+										<h3 className="number">{props.rank}</h3>
 									</div>
 								: null;
-		const totalScore 	= this.props.team 
+		const totalScore 	= props.team 
 								? 	<div>
 										<h3>TOTAL POINTS</h3>
-										<h3 className="number">{this.props.team.totalScore}</h3>
+										<h3 className="number">{props.team.totalScore}</h3>
 									</div>
 								: null;
 
@@ -64,8 +77,12 @@ class Profile extends Component{
 
 }
 
-function mapStateToProps({user, team}){
-	return {user, team: team.team};
+function mapStateToProps({user, team, scoreboard}){
+	return {user, team, scoreboard};
 }
 
-export default connect(mapStateToProps)(Profile);
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({getTeamRank}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

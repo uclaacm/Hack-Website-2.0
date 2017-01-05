@@ -14,7 +14,6 @@ import Loading from './loading';
 class Dashboard extends Component{
 
 	componentWillMount(){
-		console.log('dash mounting')
 		this.props.fetchUser('/hackschool/user');
 		this.props.triggerTeamAction('fetch', null);
 		this.props.fetchSessions('/hackschool/projects');

@@ -3,7 +3,6 @@ import axios from 'axios';
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_SESSIONS = 'FETCH_SESSIONS';
 export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
-export const FETCH_TEAM_RANK = 'FETCH_TEAM_RANK';
 
 export const CHANGE_DIALOG = 'CHANGE_DIALOG';
 export const SELECT_SLIDE = 'SELECT_SLIDE';
@@ -14,6 +13,8 @@ export const CREATE_TEAM = 'CREATE_TEAM';
 export const JOIN_TEAM = 'JOIN_TEAM';
 export const LEAVE_TEAM = 'LEAVE_TEAM';
 export const RESET_TEAM_ERROR = 'RESET_TEAM_ERROR';
+
+export const GET_TEAM_RANK = 'GET_TEAM_RANK';
 
 export function fetchUser(url){
 
@@ -107,34 +108,20 @@ export function fetchSessions(url){
 
 export function fetchScoreboard(url){
 
+	const request = axios.get(url);
+
 	return{
 		type: FETCH_SCOREBOARD,
-		payload: axios.get(url)
+		payload: request
 	}
-}
-
-export function fetchTeamRank(){
-
-	//stuffs with parameters
-	//might need to call this function within reducer_scoreboard.js
-	//would need to know 1) ordered scoreboard, 2) this user's team
-	//need to do this after fetchScoreboard and fetchTeam are successful
-
-	return{
-		type: FETCH_TEAM_RANK,
-		payload: null
-	}
-
 }
 
 //change is an object
 export function changeDialog(change){
-
 	return{
 		type: CHANGE_DIALOG,
 		payload: change
 	}
-
 }
 
 //slide is a string
@@ -203,6 +190,19 @@ export function triggerTeamAction(endpoint, props){
 				type: 'error',
 				payload: null
 			}
+	}
+
+}
+
+
+export function getTeamRank(scoreboard, teamID){
+
+	const match = scoreboard.find(team => team.id === teamID);
+	return{
+		type: GET_TEAM_RANK,
+		payload: typeof match !== undefined 
+					? scoreboard.indexOf(match) + 1
+					: 'n/a'
 	}
 
 }
