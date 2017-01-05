@@ -5,6 +5,7 @@ let router = express.Router();
 router.use('/user', require('./user').router);
 router.use('/team', require('./team').router);
 router.use('/projects', require('./projects').router);
+router.use('/sessions', require('./sessions').router);
 router.use('/scoreboard', require('./scoreboard').router);
 
 module.exports = { router };

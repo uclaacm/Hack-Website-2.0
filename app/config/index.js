@@ -8,6 +8,8 @@ if (env === "production") {
     config.database.uri = process.env.MONGODB_URI;
     config.session.uri = process.env.REDIS_URL;
     config.ghost.database.uri = process.env.DATABASE_URL;
+	config.facebook.appId = process.env.FACEBOOK_APP_ID;
+	config.facebook.secret = process.env.FACEBOOK_APP_SECRET;
 } else {
     config.port = 5000;
     config.host = "http://localhost:" + config.port;

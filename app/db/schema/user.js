@@ -20,6 +20,7 @@ let User = new Schema({
 		enum: [ 'PENDING', 'ACTIVE', 'BLOCKED' ]
 	},
 	name: { type: String, required: true},
+	email: { type: String },
 	profilePicture: { type: String },
 	accessToken: { type: String },
 	lastSignIn: { type: Date },
@@ -27,15 +28,11 @@ let User = new Schema({
 });
 
 User.statics.findById = function(id, callback) {
-	this.findOne({ id }, (err, user) => {
-		callback(err, user);
-	});
+	this.findOne({ id }, callback); 
 };
 
 User.statics.findByProfileId = function(profileId, callback) {
-	this.findOne({ profileId }, (err, user) => {
-		callback(err, user);
-	});
+	this.findOne({ profileId }, callback);
 };
 
 User.methods.getPublic = function() {

@@ -24,9 +24,7 @@ let ShowcaseProject = new Schema({
 });
 
 ShowcaseProject.statics.findById = function(id, callback) {
-	this.findOne({ id }, (err, event) => {
-		callback(err, event);
-	});
+	this.findOne({ id }, callback);
 };
 
 ShowcaseProject.statics.sanitize = function(event, withId=true) {
@@ -38,7 +36,6 @@ ShowcaseProject.statics.sanitize = function(event, withId=true) {
 
 ShowcaseProject.methods.update = function(event) {
 	if (!event) return;
-	let self = this;
 	let applyDelta = (delta, target) => {
 		for (let key in delta) {
 			if (delta[key].constructor === Object)
