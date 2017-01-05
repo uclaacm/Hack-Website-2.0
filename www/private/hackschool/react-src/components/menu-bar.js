@@ -21,8 +21,10 @@ class MenuBar extends Component{
 		return (
 			<div className="dashboard-menu">
 				<p>HACKSCHOOL DASHBOARD</p>
-				<a href="/login"><button>SIGN OUT</button></a>
-				<button onClick={this.toggleDialog}>MANAGE TEAM</button>
+				<a href="/login">
+					<button><i className="fa fa-power-off" ariaHidden="true"></i> SIGN OUT</button>
+				</a>
+				<button onClick={this.toggleDialog}><i className="fa fa-user" ariaHidden="true"></i> MANAGE TEAM</button>
 			</div>
 		);
 	}
