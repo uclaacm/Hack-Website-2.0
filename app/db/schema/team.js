@@ -12,25 +12,20 @@ let Team = new Schema({
 	},
 	name: { type: String, required: true },
 	members: { type: [User], required: true },
-	scores: { type: [{ projectNumber: Number, score: Number }] }
+	scores: { type: [{ sessionNumber: Number, score: Number }] },
+	attendence: { type: [Number] }
 });
 
 Team.statics.getAll = function(callback) {
-	this.find({}, (err, teams) => {
-		return callback(err, teams);
-	});
+	this.find({}, callback); 
 };
 
 Team.statics.findById = function(id, callback) {
-	this.findOne({ id }, (err, team) => {
-		return callback(err, team);
-	});
+	this.findOne({ id }, callback); 
 };
 
 Team.statics.findByName = function(name, callback) {
-	this.findOne({ name }, (err, team) => {
-		return callback(err, team);
-	});
+	this.findOne({ name }, callback); 
 };
 
 Team.methods.getPublic = function() {
@@ -39,7 +34,9 @@ Team.methods.getPublic = function() {
 		name: this.name,
 		scores: this.scores,
 		members: this.members.map(member => member.getPublic()),
-		totalScore: this.scores.reduce((a,b) => a.score + b.score, 0)
+		attendence: this.attendence,
+		totalScore: this.scores.reduce((a,b) => a.score + b.score, 0) +
+					this.attendence.reduce((a,b) => a + b, 0)
 	};
 };
 
