@@ -5,3 +5,4 @@
 **/npm-debug.log
 www/public/common/js/bundle.js
 www/private/hackschool/bundle.js
+www/public/common/js/vendor/vendor.js

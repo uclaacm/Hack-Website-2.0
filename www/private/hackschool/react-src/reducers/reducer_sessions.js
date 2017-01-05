@@ -1,16 +1,13 @@
-import { FETCH_ALL_EVENTS, FETCH_ALL_SHOWCASE } from '../actions/index';
+import { FETCH_SESSIONS } from '../actions';
 
-export default (state = [], action) => {
+export default (state = null, action) => {
 
 	switch(action.type){
-		case FETCH_ALL_EVENTS:
-			return action.payload.data;
-
-		case FETCH_ALL_SHOWCASE:
-			if(action.payload.data.length == 0)
-				return [];
+		case FETCH_SESSIONS:
+			if(!action.payload.data.success)
+				return state;
 			else{
-				const cols = 3;
+				const cols = 4;
 				return action.payload.data.projects.reduce((arr, proj) => {
 					if(arr.length == 0 || arr[arr.length-1].length >= cols)
 						arr.push([proj]);
@@ -20,7 +17,6 @@ export default (state = [], action) => {
 					return arr;
 				}, []);
 			}
-			
 		default:
 			return state;
 	}

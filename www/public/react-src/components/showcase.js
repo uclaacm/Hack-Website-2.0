@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllData } from '../actions';
+import { fetchAllShowcaseData } from '../actions/index';
 
 import ShowcaseGrid from './showcase-grid';
 import ProjectDetail from './project-detail';
@@ -9,7 +9,7 @@ import ProjectDetail from './project-detail';
 class Showcase extends Component{
 
 	componentWillMount(){
-		this.props.fetchAllData('/api/v1/showcase');
+		this.props.fetchAllShowcaseData('/api/v1/showcase');
 	}
 
 	render(){
@@ -28,7 +28,7 @@ function mapStateToProps({selectedProject}){
 
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({ fetchAllData }, dispatch);
+	return bindActionCreators({ fetchAllShowcaseData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Showcase);

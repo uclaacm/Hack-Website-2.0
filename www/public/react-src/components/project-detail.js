@@ -48,6 +48,7 @@ class ProjectDetail extends Component{
 			<div className="project-detail">
 				<div className="btn-wrapper">
 					<button onClick={this.onClickEvent}>
+						<i className="fa fa-chevron-left hl" ariaHidden="true"></i>
 					</button>
 				</div>
 				<div>

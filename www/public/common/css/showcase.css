@@ -71,7 +71,7 @@
 	padding-top:5px;
 	height: 71px;
 	text-align: center;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .text-wrapper li{
@@ -137,13 +137,16 @@
 .btn-wrapper button{
 	height: 50px;
 	width: 50px;
+	padding-top: 8px;
 	border-radius: 25px;
 	border: 0;
 	background-color: #fff;
-	background-image: url('/common/images/chevron-left.svg');
-	background-size: 70%;
-	background-position: 40%;
-	background-repeat: no-repeat;
+	font-size: 30px;
+}
+
+.btn-wrapper button i{
+	margin-left: -5px;
+	margin-top: -5px;
 }
 
 .project-detail .img-wrapper, 
