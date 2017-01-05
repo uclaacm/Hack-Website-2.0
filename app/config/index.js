@@ -12,7 +12,7 @@ if (env === "production") {
 	config.facebook.secret = process.env.FACEBOOK_APP_SECRET;
 } else {
     config.port = 5000;
-    config.host = "http://localhost:" + config.port;
+    config.host = "http://98.248.77.38:" + config.port;
     config.session.secret = "77ea260f6918c0d8c3b6c35514d3b1a4fc69f01adbf7d2412611de97c3f0f2dc";
     config.database.uri = "mongodb://127.0.0.1:27017/acm-hack-db";
     config.ghost.database.uri = "postgres://localhost/acm-hack-dev-db";
