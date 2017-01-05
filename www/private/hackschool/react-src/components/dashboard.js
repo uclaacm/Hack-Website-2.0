@@ -9,6 +9,7 @@ import SessionsGrid from './sessions-grid';
 import SessionDetail from './session-detail';
 import Leaderboard from './leaderboard';
 import DialogBox from './dialog-box';
+import Loading from './loading';
 
 class Dashboard extends Component{
 
@@ -23,18 +24,18 @@ class Dashboard extends Component{
 	render() {
 		//fetchUser not done yet
 		if(!this.props.user)
-			return <div>Retrieving profile info...</div>;
+			return <Loading message="Retrieving user info..." />
 
 		//fetchSessions not done yet
 		if(!this.props.sessions)
-			return <div>Retrieving projects info...</div>;
+			return <Loading message="Retrieving projects info..." />
 
 		//fetchScoreboard not done yet
 		if(!this.props.scoreboard)
-			return <div>Retrieving scoreboard info...</div>;
+			return <Loading message="Retrieving scoreboard info..." />
 
 		if(!this.props.team.done)
-			return <div>Retrieving team info...</div>;
+			return <Loading message="Retrieving team info..." />
 
 		const currentSlide = this.props.currentSlide == 'sessions' ? <SessionsGrid /> : <Leaderboard />;
 

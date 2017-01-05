@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeDialog, triggerTeamAction } from '../actions/index'; 
 import DialogInput from './dialog-input';
+import Loading from './loading';
 
 class DialogManage extends Component{
 
@@ -18,7 +19,6 @@ class DialogManage extends Component{
 		this.renderConfirm = this.renderConfirm.bind(this);
 		this.renderFailure = this.renderFailure.bind(this);
 		this.renderSuccess = this.renderSuccess.bind(this);
-		this.renderLoading = this.renderLoading.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
@@ -83,12 +83,6 @@ class DialogManage extends Component{
 		);
 	}
 
-	renderLoading(){
-		return (
-			<div>Loading...</div>
-		);
-	}
-
 	renderFailure(){
 		return (
 			<div className="dialog-inner">
@@ -108,7 +102,7 @@ class DialogManage extends Component{
 				if(this.props.team.error)
 					return this.renderFailure();
 				else if(this.props.team.team) //team is not null yet, but no error
-					return this.renderLoading();
+					return <Loading message="loading..." />
 				else
 					return this.renderSuccess();
 

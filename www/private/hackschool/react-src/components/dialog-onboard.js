@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import _ from 'underscore';
 import { changeDialog } from '../actions/index';
 import DialogInput from './dialog-input';
+import Loading from './loading';
 
 class DialogOnboard extends Component{
 
@@ -19,7 +20,6 @@ class DialogOnboard extends Component{
 		this.renderDefault = this.renderDefault.bind(this);
 		this.renderFormInput = this.renderFormInput.bind(this);
 		this.renderSuccess = this.renderSuccess.bind(this);
-		this.renderLoading = this.renderLoading.bind(this);
 		this.renderFailure = this.renderFailure.bind(this);
 		
 		this.incrementSlide = this.incrementSlide.bind(this);
@@ -76,12 +76,6 @@ class DialogOnboard extends Component{
 				return <div>Something went wrong...</div>;
 		}
 		
-	}
-
-	renderLoading(){
-		return (
-			<div>Loading...</div>
-		);
 	}
 
 	renderFailure(){
@@ -147,7 +141,7 @@ class DialogOnboard extends Component{
 				else if(this.props.team.team)
 					return this.renderSuccess();					
 				else //team is null, and no error
-					return this.renderLoading();
+					return <Loading message="loading..." />
 			default:
 				return <div>Something went wrong...</div>;
 		}

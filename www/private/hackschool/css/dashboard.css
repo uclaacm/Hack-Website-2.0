@@ -1,4 +1,22 @@
 
+.loading{
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.loading img{
+	height: 400px;
+}
+
+.dialog-box .loading img{
+	height: 200px;
+}
+
+.dialog-box .loading h1{
+	font-size: 18px;
+}
+
 /*====================DASH MENU====================*/
 
 .dashboard-menu{
