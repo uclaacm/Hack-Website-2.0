@@ -16,7 +16,7 @@ class Dashboard extends Component{
 	componentWillMount(){
 		this.props.fetchUser('/hackschool/user');
 		this.props.triggerTeamAction('fetch', null);
-		this.props.fetchSessions('/hackschool/projects');
+		this.props.fetchSessions('/hackschool/sessions');
 		this.props.fetchScoreboard('/hackschool/scoreboard');
 	}
 
@@ -27,7 +27,7 @@ class Dashboard extends Component{
 
 		//fetchSessions not done yet
 		if(!this.props.sessions)
-			return <Loading message="Retrieving projects info..." />
+			return <Loading message="Retrieving sessions info..." />
 
 		//fetchScoreboard not done yet
 		if(!this.props.scoreboard)
