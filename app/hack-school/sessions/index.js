@@ -28,7 +28,7 @@ router.post('/attend', (req, res) => {
 		if (err) return res.json({ success: false, error: err });
 		if (!session) return res.json({ success: false, error: "No session found to sign in to" });
 		if (session.secret !== req.body.session.secret)
-			return res.json({ success: false, error: "Wrong secret" });
+			return res.json({ success: false, error: "Wrong attendence code" });
 
 		db.Team.findById(req.user.teamId, (err, team) => {
 			if (err) return res.json({ success: false, error: err });
