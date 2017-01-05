@@ -81,7 +81,6 @@ router.route('/:eventId?')
 .delete((req, res, next) => {
 	// DELETE request deletes the indicated event (or all events, if none specified)
 	let dbQuery = req.eventId ? { id: req.eventId } : {};
-
 	db.Event.remove(dbQuery, (err, opInfo) => {
 		res.json({
 			success: !err,

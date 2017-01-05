@@ -17,8 +17,10 @@ class ProjectDetail extends Component{
 		return contributors.map((person, i) => {
 			if(i < num - 1)
 				return `${person}, `;
-			else
+			else if(i != 0)
 				return `and ${person}`;
+			else
+				return `${person} `;
 		});
 	}
 
@@ -32,6 +34,10 @@ class ProjectDetail extends Component{
 				proj.classList.remove('exitRight');	
 		});
 		setTimeout( () => this.props.selectProject(null), 1000);
+
+		//miscellaneous fixes
+		const body = document.querySelector('body');
+		body.classList.remove('fix-scroll');
 	}
 
 	render(){
