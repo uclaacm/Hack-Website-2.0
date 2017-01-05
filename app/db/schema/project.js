@@ -22,9 +22,7 @@ let Project = new Schema({
 });
 
 Project.statics.getAll = function(callback) {
-	this.find({}, (err, projects) => {
-		return callback(err, projects);
-	});
+	this.find({}, callback);
 };
 
 Project.methods.getPublic = function() {
