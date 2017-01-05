@@ -20,7 +20,6 @@ class TeamList extends Component{
 	}
 
 	render(){
-		console.log(this.props.list);
 		return (
 			<div>
 			{this.props.list.length != 0 && 

@@ -19,7 +19,7 @@ class SessionsGrid extends Component{
 	}
 
 	renderSession(session, row, column){
-		//if the link is not available, don't show it's icon
+		//if the link is not available, don't show its icon
 		const slidesLink = session.slidesLink == "" ? false : true;
 		const videoLink = session.videoLink == "" ? false : true;
 		const blogPostLink = session.blogPostLink == "" ? false : true;

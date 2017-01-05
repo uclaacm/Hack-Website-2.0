@@ -13,7 +13,7 @@ class SessionItem extends Component{
 					<h3>{this.props.title}</h3>
 				</div>
 				<div className="icons">
-					{/*if the link is not available, don't show it's icon*/}
+					{/*if the link is not available, don't show its icon*/}
 					{
 						this.props.slidesLink &&
 						<span>

@@ -27,11 +27,9 @@ class DialogBox extends Component{
 
 	render(){
 		if(this.state.triggerOnboard == null){
-			return <div>Loading...</div>;
+			return null;
 		}
 			
-
-		//console.log('team within box: ', this.props.team)
 		const dialogBox = this.state.triggerOnboard
 							? <DialogOnboard />
 							: <DialogManage />;

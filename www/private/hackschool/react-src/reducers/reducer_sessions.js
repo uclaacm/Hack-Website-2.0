@@ -2,8 +2,6 @@ import { FETCH_SESSIONS } from '../actions';
 
 export default (state = null, action) => {
 
-	console.log(action.payload)
-
 	switch(action.type){
 		case FETCH_SESSIONS:
 			if(!action.payload.data.success)

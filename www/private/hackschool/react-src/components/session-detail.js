@@ -9,9 +9,7 @@ class SessionDetail extends Component{
 		const session = this.props.selectedSession;
 		if(!session)
 			return null;
-
-		console.log(session)
-
+		
 		//if empty string, button will not be displayed
 		const slidesLink = session.slidesLink == "" ? false : true;
 		const videoLink = session.videoLink == "" ? false : true;

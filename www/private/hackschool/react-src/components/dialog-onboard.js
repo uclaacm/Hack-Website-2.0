@@ -80,9 +80,9 @@ class DialogOnboard extends Component{
 
 	renderFailure(){
 		return (
-			<div>
-				Error:<br />
-				{this.props.team.error}
+			<div className="dialog-inner">
+				<h3>Error:</h3>
+				<h3>{this.props.team.error}</h3>
 			</div>
 		);
 	}
@@ -135,7 +135,6 @@ class DialogOnboard extends Component{
 			case 1:
 				return this.renderFormInput();
 			case 2:
-				console.log(this.props.team)
 				if(this.props.team.error)
 					return this.renderFailure();
 				else if(this.props.team.team)

@@ -34,7 +34,6 @@ class Profile extends Component{
 	}
 
 	render(){
-		console.log('team in profile', this.props.team)
 		const props = this.props.team;
 
 		const teamDisplay 	= props.team ? <h4 className="team">Team {props.team.name}</h4> : <h4 className="team">Not on a team</h4>

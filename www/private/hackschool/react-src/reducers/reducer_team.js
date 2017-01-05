@@ -5,7 +5,7 @@ export default (state = {team: null, rank: 'n/a', error: null, done: false}, act
 		case FETCH_TEAM:
 		case CREATE_TEAM:
 		case JOIN_TEAM:
-			console.log('my team: ', action.payload.data.team)
+			console.log('my team', action.payload.data.team)
 			return action.payload.data.success 
 					? {
 						team: action.payload.data.team,
@@ -20,15 +20,18 @@ export default (state = {team: null, rank: 'n/a', error: null, done: false}, act
 						done: true
 					}		
 		case LEAVE_TEAM:
-			if(action.payload.data.success)
+			if(action.payload.data.success){
+				console.log('my team', null);
 				return {
 					team: null,
 					rank: 'n/a',
 					error: null,
 					done: true
 				};
+			}
 
 			//wrong team name submitted, so null payload reaches here
+			console.log('my team', 'unchanged: ' + action.payload.data.error)
 			return {								
 				team: state.team, 					//unchanged
 				rank: state.rank,					//unchanged

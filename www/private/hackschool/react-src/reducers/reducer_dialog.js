@@ -26,7 +26,6 @@ export default (state = defaultState, action) => {
 			return temp;
 			
 		default:
-			//console.log('default dialog', state)
 			return state;
 	}
 }

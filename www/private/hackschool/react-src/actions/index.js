@@ -160,6 +160,7 @@ export function triggerTeamAction(endpoint, props){
 						})
 			}
 		case 'join':
+			console.log('attempting to join...');
 			return{
 				type: JOIN_TEAM,
 				payload: axios.post(url, {

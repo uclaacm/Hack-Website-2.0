@@ -46,7 +46,6 @@ class DialogManage extends Component{
 	}
 
 	renderDefault(){
-		console.log('inside dialog manage, dialog: ', this.props.dialog)
 		const team = this.props.team.team;
 		return (
 			<div className="left-align">
