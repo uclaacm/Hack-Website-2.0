@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectProject } from '../actions/index';
+import { selectProject } from '../actions';
 
 import ProjectItem from './project-item';
 
@@ -80,29 +80,11 @@ class ShowcaseGrid extends Component{
 }
 
 function mapStateToProps({data}){
-	if(data.length == 0) 
-		return {projects: []};
-
-	//divides into arrays of length 3
-	const cols = 3;
-
-	let projects = data.projects.reduce((arr, proj) => {
-		if(arr.length == 0 || arr[arr.length-1].length >= cols)
-			arr.push([proj]);
-		else
-			arr[arr.length-1].push(proj);
-		
-		return arr;
-
-	}, []);
-
-	return {projects};
+	return {projects: data};
 }
-
 
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({ selectProject }, dispatch);
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowcaseGrid);

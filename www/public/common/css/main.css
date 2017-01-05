@@ -54,7 +54,7 @@ h2{
 	font-size: 24px;
 }
 
-h3{
+h3, h4{
 	font-family: var(--fam1);
 	font-size: 24px;
 }
@@ -89,7 +89,7 @@ button{
 	border-radius: 3px;
 }
 
-button:focus {
+*:focus{
 	outline:none;
 }
 
@@ -121,6 +121,14 @@ a:hover, button:hover{
 
 .fix-scroll{
 	overflow: hidden;
+}
+
+.hl{
+	color: var(--highlight);
+}
+
+.hl-grey{
+	color: var(--grey-deep);
 }
 
 /*====================TOP MENU====================*/

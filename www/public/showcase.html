@@ -10,16 +10,14 @@
 	<link rel="stylesheet" type="text/css" href="/common/css/showcase.css"/>
 
 	<link rel="shortcut icon" type="image/x-icon" href="/common/images/favicon.png" />
+	<link rel="stylesheet" href="/common/css/font-awesome.min.css">
 </head>
 <body>
 
 	<div class="menu">
 		<div class="logo">
 			<a class="logo-inner" href="/">
-				<img src="/common/images/Hack-Logo-Purple.png"/>
-				<span class="logo-words">
-					<span>ACM</span><span>hack</span>
-				</span>
+				<img src="/common/images/Hack.svg"/>
 			</a>
 			<div class="mobile hamburger">
 				<div class="hamburger-inner">
@@ -34,7 +32,7 @@
 						<li><a href="/events.html">events</a></li>
 						<li><a href="">blog</a></li>
 						<li><a href="/showcase.html">showcase</a></li>
-						<li><a href="/team">team</a></li>
+						<li><a href="/team.html">team</a></li>
 					</ul>
 				</div>
 				<div class="mobile-login">
@@ -57,14 +55,14 @@
 
 	<div class="container"></div>
 
+<script src="/common/js/vendor/vendor.js"></script>
 <script src="/common/js/bundle.js"></script>
 <script>
 
-const menuMobile = document.querySelector('.hamburger');
 const menuMobileInner = document.querySelector('.hamburger-inner');
 
 function toggleMenu(e){
-	menuMobile.classList.toggle('active');
+	this.parentElement.classList.toggle('active');
 	e.preventDefault();
 }
 
