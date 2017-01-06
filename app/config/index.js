@@ -1,5 +1,5 @@
 const env = process.env.NODE_ENV || "development";
-let config = { database: {}, session: {}, ghost: { database: {} }, facebook: {} };
+let config = { database: {}, session: {}, ghost: { database: {} }, facebook: {}, logging: {} };
 
 if (env === "production") {
     config.port = process.env.PORT;
@@ -11,6 +11,7 @@ if (env === "production") {
     config.ghost.database.uri = process.env.DATABASE_URL;
 	config.facebook.appId = process.env.FACEBOOK_APP_ID;
 	config.facebook.secret = process.env.FACEBOOK_APP_SECRET;
+	config.logging.level = "debug";
 } else {
     config.port = 5000;
     config.host = "http://localhost:" + config.port;
@@ -22,6 +23,7 @@ if (env === "production") {
 	config.facebook.secret = "72afc70ce3cb5f2ba13115b2516450ed";
 //	config.facebook.appId = "229762920785401";
 //	config.facebook.secret = "a6e3b6dee5c7424fd0605a6679052739";
+	config.logging.level = "silly";
 }
 
 config.apiSecret = "a076ef2e85154871eb365ecb4942bfd5";
