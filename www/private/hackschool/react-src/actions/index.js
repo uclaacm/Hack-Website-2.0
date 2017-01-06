@@ -30,7 +30,7 @@ export function fetchUser(url){
 export function fetchSessions(url){
 
 	const request = axios.get(url);
-
+	
 	return{
 		type: FETCH_SESSIONS,
 		payload: request
