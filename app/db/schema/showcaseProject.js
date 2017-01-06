@@ -30,8 +30,7 @@ ShowcaseProject.statics.findById = function(id, callback) {
 ShowcaseProject.statics.sanitize = function(event, withId=true) {
 	let pickProperties = ['date','desc','image','link','title','technologies','contributors'];
 	if (withId) pickProperties.unshift('id');
-	event = _.pick(event, pickProperties);
-	return event;
+	return _.pick(event, pickProperties);
 };
 
 ShowcaseProject.methods.update = function(event) {
