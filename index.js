@@ -1,7 +1,7 @@
+const cluster = require('cluster');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = require('./app');
-const port = process.env.PORT || 5000;
 
 let server = express();
 
@@ -38,10 +38,22 @@ server.use('/hackschool', app.hackschool.router);
 // Expose private resources
 server.use(express.static('www/private'));
 
-// Start the server
-server.listen(port, () => {
-	console.log("started server on port", port);
-});
+// Create workers
+if (cluster.isMaster) {
+	console.log("creating", app.config.numCPUs);
+	for (let i = 0; i < app.config.numCPUs; i++)
+		cluster.fork();
+	
+	cluster.on('exit', (worker, code, signal) => {
+		console.log("worker", worker.process.pid, "died");
+		cluster.fork();
+	});
+} else {
+	// Start the server on each worker
+	server.listen(app.config.port, () => {
+		console.log("started server on port", app.config.port, "PID:", process.pid);
+	});
+}
 
 // For testing purposes
 module.exports = server;
