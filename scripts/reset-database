@@ -1,0 +1,10 @@
+#! /bin/bash
+
+DB_NAME=acm-hack-db
+
+mongo $DB_NAME --eval "db.users.drop()"
+mongo $DB_NAME --eval "db.teams.drop()"
+mongo $DB_NAME --eval "db.events.drop()"
+mongo $DB_NAME --eval "db.projects.drop()"
+mongo $DB_NAME --eval "db.sessions.drop()"
+mongo $DB_NAME --eval "db.showcaseprojects.drop()"

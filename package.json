@@ -11,7 +11,8 @@
     "start": "node index",
     "test": "mocha",
     "webpack": "node ./node_modules/webpack/bin/webpack.js",
-    "webpack-production": "node ./node_modules/webpack/bin/webpack.js --progress -p"
+    "webpack-production": "node ./node_modules/webpack/bin/webpack.js --progress -p",
+	"reset-database": "scripts/reset-database"
   },
   "repository": {
     "type": "git",
