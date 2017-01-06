@@ -21,11 +21,15 @@ let User = new Schema({
 	},
 	name: { type: String, required: true},
 	email: { type: String },
-	profilePicture: { type: String },
+	profilePicture: {
+		small: { type: String },
+		medium: { type: String },
+		large: { type: String }
+	},
 	accessToken: { type: String },
 	lastSignIn: { type: Date },
 	teamId: { type: String }
-});
+}, { minimize: false });
 
 User.statics.findById = function(id, callback) {
 	this.findOne({ id }, callback); 
