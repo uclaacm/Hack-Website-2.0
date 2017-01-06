@@ -24,9 +24,13 @@ let configAuth = (server) => {
 					user = new db.User({
 						profileId: profile.id,
 						accessToken: accessToken,
-						email: profile.emails[0].value,
+						email: profile.emails && profile.emails.length > 0 && profile.emails[0].value ? profile.emails[0].value : null,
 						name: profile.name.givenName + ' ' + profile.name.familyName,
-						profilePicture: 'https://graph.facebook.com/v2.8/' + profile.id + '/picture'
+						profilePicture: {
+							small: 'https://graph.facebook.com/' + profile.id + '/picture?width=100',
+							medium: 'https://graph.facebook.com/' + profile.id + '/picture?width=250',
+							large: 'https://graph.facebook.com/' + profile.id + '/picture?width=500'
+						}
 					});
 				}
 

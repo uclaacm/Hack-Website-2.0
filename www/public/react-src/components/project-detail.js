@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectProject } from '../actions/index';
+import { selectProject } from '../actions';
 
 class ProjectDetail extends Component{
 
@@ -48,6 +48,7 @@ class ProjectDetail extends Component{
 			<div className="project-detail">
 				<div className="btn-wrapper">
 					<button onClick={this.onClickEvent}>
+						<i className="fa fa-chevron-left hl" ariaHidden="true"></i>
 					</button>
 				</div>
 				<div>

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { filterData } from '../actions/index';
+import { filterData } from '../actions';
 
 class Filter extends Component{
 
 	constructor(props){
 		super(props);
 
+		//I chose to hold this at component-level state rather than app-level (with redux)
+		//so that this could be more modular
 		this.state = { selectedCategories: []};
 
 		//binding functions
@@ -15,11 +17,6 @@ class Filter extends Component{
 		this.setStateAndCallAction = this.setStateAndCallAction.bind(this);
 		this.onCheckBoxToggle = this.onCheckBoxToggle.bind(this);
 		this.renderList = this.renderList.bind(this);
-	}
-
-	//sets default state to be all checked
-	componentDidMount(){
-		//this.toggleBoxes(true);
 	}
 
 	setAllCheckBoxes(toggle)
@@ -31,21 +28,17 @@ class Filter extends Component{
 	}
 
 	setStateAndCallAction(newCategories){
-		this.setState({
-			selectedCategories : newCategories
-		}, () => {
-			this.props.filterData(
-				this.props.events.filter(event => this.state.selectedCategories.includes(event.category))
-			);
-		});
+		this.setState({selectedCategories : newCategories}, 
+			() => this.props.filterData(this.props.events, this.state.selectedCategories)
+		);
 	}
 
 	//false unchecks all boxes, true checks all boxes
 	toggleBoxes(toggle){
 		this.setAllCheckBoxes(toggle);
 		if(!toggle)
-			this.setStateAndCallAction([]);
-		else
+			this.setStateAndCallAction([]); //sets selected category array to empty
+		else								//sets selected category array to all categories
 			this.setStateAndCallAction(this.props.categories.map(cat => cat.name));
 	}
 

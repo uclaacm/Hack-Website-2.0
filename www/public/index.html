@@ -16,10 +16,7 @@
 	<div class="menu inactive">
 		<div class="logo">
 			<a class="logo-inner" href="/">
-				<img src="/common/images/Hack-Logo-Purple.png"/>
-				<span class="logo-words">
-					<span>ACM</span><span>hack</span>
-				</span>
+				<img src="/common/images/Hack.svg"/>
 			</a>
 			<div class="mobile hamburger">
 				<div class="hamburger-inner">
@@ -85,11 +82,10 @@ const menu = document.querySelector('.menu');
 const bg = document.querySelector('.main-bg');
 const text = Array.from(document.querySelectorAll('.text-over > *'));
 
-const menuMobile = document.querySelector('.hamburger');
 const menuMobileInner = document.querySelector('.hamburger-inner');
 
 function toggleMenu(e){
-	menuMobile.classList.toggle('active');
+	this.parentElement.classList.toggle('active');
 	e.preventDefault();
 }
 function triggerAllAnimateIn(){

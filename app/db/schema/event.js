@@ -23,9 +23,7 @@ let Event = new Schema({
 });
 
 Event.statics.findById = function(id, callback) {
-	this.findOne({ id }, (err, event) => {
-		callback(err, event);
-	});
+	this.findOne({ id }, callback);
 };
 
 Event.statics.sanitize = function(event, withId=true) {

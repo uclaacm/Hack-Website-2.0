@@ -15,10 +15,7 @@
 	<div class="menu">
 		<div class="logo">
 			<a class="logo-inner" href="/">
-				<img src="/common/images/Hack-Logo-Purple.png"/>
-				<span class="logo-words">
-					<span>ACM</span><span>hack</span>
-				</span>
+				<img src="/common/images/Hack.svg"/>
 			</a>
 			<div class="mobile hamburger">
 				<div class="hamburger-inner">
@@ -30,10 +27,10 @@
 					<ul>
 						<li><img src="/common/images/Hack-Logo-White.png"/></li>
 						<li><a href="/">home</a></li>
-						<li><a href="/events">events</a></li>	
+						<li><a href="/events.html">events</a></li>	
 						<li><a href="">blog</a></li>
-						<li><a href="/showcase">showcase</a></li>
-						<li><a href="/team">team</a></li>
+						<li><a href="/showcase.html">showcase</a></li>
+						<li><a href="/team.html">team</a></li>
 					</ul>
 				</div>
 				<div class="mobile-login">
@@ -47,10 +44,10 @@
 		</a>
 		<ul class="menu-inner">
 			<li><a href="/">home</a></li>
-			<li><a href="/events">events</a></li>
+			<li><a href="/events.html">events</a></li>
 			<li><a href="">blog</a></li>
-			<li><a href="/showcase">showcase</a></li>
-			<li class="current"><a href="/team">team</a></li>
+			<li><a href="/showcase.html">showcase</a></li>
+			<li class="current"><a href="/team.html">team</a></li>
 		</ul>
 	</div>
 
@@ -145,15 +142,15 @@
 	</div>
 
 <script>
+
+const menuMobileInner = document.querySelector('.hamburger-inner');
+
 function toggleMenu(e){
-	menu.classList.toggle('active');
+	this.parentElement.classList.toggle('active');
 	e.preventDefault();
 }
 
-const menu = document.querySelector('.hamburger');
-const menuInner = document.querySelector('.hamburger-inner');
-
-menuInner.addEventListener('click', toggleMenu);
+menuMobileInner.addEventListener('click', toggleMenu);
 
 </script>
 </body>
