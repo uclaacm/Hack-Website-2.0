@@ -4,7 +4,7 @@ let config = { database: {}, session: {}, ghost: { database: {} }, facebook: {},
 if (env === "production") {
     config.port = process.env.PORT;
     config.host = process.env.HOST;
-	config.numCPUS = process.env.WEB_CONCURRENCY;
+	config.numCPUs = process.env.WEB_CONCURRENCY;
 	config.session.secret = process.env.SESSION_SECRET;
     config.session.uri = process.env.REDIS_URL;
     config.database.uri = process.env.MONGODB_URI;
