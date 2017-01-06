@@ -1,3 +1,4 @@
+const _ = require('underscore');
 const uuid = require('node-uuid');
 let Schema = require('mongoose').Schema;
 let ObjectId = Schema.ObjectId;
@@ -21,11 +22,15 @@ let User = new Schema({
 	},
 	name: { type: String, required: true},
 	email: { type: String },
-	profilePicture: { type: String },
+	profilePicture: {
+		small: { type: String },
+		medium: { type: String },
+		large: { type: String }
+	},
 	accessToken: { type: String },
 	lastSignIn: { type: Date },
 	teamId: { type: String }
-});
+}, { minimize: false });
 
 User.statics.findById = function(id, callback) {
 	this.findOne({ id }, callback); 
@@ -36,11 +41,7 @@ User.statics.findByProfileId = function(profileId, callback) {
 };
 
 User.methods.getPublic = function() {
-	return {
-		id: this.id,
-		name: this.name,
-		profilePicture: this.profilePicture
-	};
+	return _.pick(this, ['id', 'name', 'profilePicture']);
 };
 
 module.exports = User;

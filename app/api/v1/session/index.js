@@ -34,14 +34,14 @@ router.route('/:sessionId?')
 .all((req, res, next) => {
 	// ALL remaining routes require a valid token to proceed.
 	if (!req.validToken)
-		return res.status(401).json({ success: false, error: "A valid token is needed for this request."});
+		return res.status(401).json({ success: false, error: "A valid token is needed for this request." });
 	next();
 })
 .post((req, res, next) => {
 	// POST request adds a session
 	//   If there is a session ID or there isn't a session to post, the request is malformed
 	if (req.sessionId || !req.sessionObj)
-		return res.status(400).json({ success: false, error: "Malformed request."});
+		return res.status(400).json({ success: false, error: "Malformed request." });
 
 	// Create a new session with the given details (sanitized in .all)
 	let newSession = new db.Session(req.sessionObj);
@@ -63,7 +63,7 @@ router.route('/:sessionId?')
 	// Find the session by ID and update the field based on the given details (sanitized above)
 	db.Session.findById(req.sessionId, (err, session) => {
 		if (err || !session)
-			return res.json({ success: false, error: err});
+			return res.json({ success: false, error: err });
 		console.log(session, err);
 		session.update(req.sessionObj);
 		session.save((err, updatedSession) => {

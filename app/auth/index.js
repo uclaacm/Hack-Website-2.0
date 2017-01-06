@@ -1,5 +1,6 @@
 const express = require('express');
 const config = require('../config');
+const log = require('../logger');
 let passport = require('passport');
 let FacebookStrategy = require('passport-facebook').Strategy;
 let db = require('../db');
@@ -17,22 +18,32 @@ let configAuth = (server) => {
 			// Find the use by facebook profile id
 			// If found, updated the access token and continue authentication
 			// If not found, create the user and continue authentication
+			log.debug("[AUTH] Received profile from Facebook: %j", profile);
 			db.User.findByProfileId(profile.id, (err, user) => {
-				if (err) 
+				if (err) {
+					log.error("[AUTH] Database error: %s", err);
 					return callack(err, null);
+				}
 				if (!user) {
+					log.info("[AUTH] User for ID %s not found, creating new user...", profile.id);
 					user = new db.User({
 						profileId: profile.id,
 						accessToken: accessToken,
-						email: profile.emails[0].value,
+						email: profile.emails && profile.emails.length > 0 && profile.emails[0].value ? profile.emails[0].value : null,
 						name: profile.name.givenName + ' ' + profile.name.familyName,
-						profilePicture: 'https://graph.facebook.com/v2.8/' + profile.id + '/picture'
+						profilePicture: {
+							small: 'https://graph.facebook.com/' + profile.id + '/picture?width=100',
+							medium: 'https://graph.facebook.com/' + profile.id + '/picture?width=250',
+							large: 'https://graph.facebook.com/' + profile.id + '/picture?width=500'
+						}
 					});
 				}
 
 				user.lastSignIn = new Date();
 				user.accessToken = accessToken;
 				user.save(err => {
+					if (err)
+						log.error("[AUTH] Database save error: %s", err);
 					callback(err, user);
 				});
 			});
@@ -71,8 +82,11 @@ let authenticated = (req, res, next) => {
  * hack school page. Otherwise, show the login form.
  */
 router.get('/', (req, res) => {
-	if (req.user)
+	if (req.user) {
+		log.debug("[AUTH] User %s already logged in. Redirecting to Dashboard...", req.user.id);
 		return res.redirect('/hackschool');
+	}
+
 	res.render('auth/login');
 });
 
@@ -86,16 +100,19 @@ router.get('/facebook/callback',
 	}),
 	(req, res) => {
 		// success
+		log.debug("[AUTH] Successfully logged in. Redirecting to Dashboard...");
 		res.redirect('/hackschool');
 	},
 	(err, req, res, next) => {
 		// failure - relogin
+		log.error("[AUTH] Error logging in. %j, %s, %s, %s", err, req.body, req.params, req.query);
 		res.redirect('/auth');
 	}
 );
 
 // Logout route
 router.get('/logout', (req, res) => {
+	log.debug("[AUTH] User %s logged out", req.user.id);
 	req.logout();
 	res.redirect('/auth');
 });
