@@ -1,12 +1,14 @@
 import axios from 'axios';
 
 export const FETCH_USER = 'FETCH_USER';
-export const FETCH_SESSIONS = 'FETCH_SESSIONS';
 export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
 
 export const CHANGE_DIALOG = 'CHANGE_DIALOG';
 export const SELECT_SLIDE = 'SELECT_SLIDE';
 export const SELECT_SESSION = 'SELECT_SESSION';
+
+export const FETCH_SESSIONS = 'FETCH_SESSIONS';
+export const ATTEND_SESSION = 'ATTEND_SESSION';
 
 export const FETCH_TEAM = 'FETCH_TEAM';
 export const CREATE_TEAM = 'CREATE_TEAM';
@@ -27,13 +29,29 @@ export function fetchUser(url){
 
 }
 
-export function fetchSessions(url){
+export function triggerSessionAction(action, prop){
 
-	const request = axios.get(url);
-	
-	return{
-		type: FETCH_SESSIONS,
-		payload: request
+	switch(action){
+		case 'fetch':
+			return{
+				type: FETCH_SESSIONS,
+				payload: axios.get('/hackschool/sessions')
+			}
+		case 'attend':
+			return{
+				type: ATTEND_SESSION,
+				payload: axios.post('/hackschool/sessions/attend',{
+					session: {
+						secret: prop
+					}
+				})
+			}
+		default:
+			console.error(action);
+			return{
+				type: 'error',
+				payload: null
+			}
 	}
 
 }
@@ -72,11 +90,11 @@ export function selectSession(session){
 	}
 }
 
-export function triggerTeamAction(endpoint, props){
+export function triggerTeamAction(action, prop){
 
-	const url = endpoint != 'fetch' ? `/hackschool/team/${endpoint}` : '/hackschool/team';
+	const url = action != 'fetch' ? `/hackschool/team/${action}` : '/hackschool/team';
 
-	switch(endpoint){
+	switch(action){
 		case 'fetch':
 			return{
 				type: FETCH_TEAM,
@@ -87,7 +105,7 @@ export function triggerTeamAction(endpoint, props){
 				type: CREATE_TEAM,
 				payload: axios.post(url, {
 							team: {
-								name: props
+								name: prop
 							}
 						})
 			}
@@ -97,14 +115,14 @@ export function triggerTeamAction(endpoint, props){
 				type: JOIN_TEAM,
 				payload: axios.post(url, {
 							team:{
-								id: props
+								id: prop
 							}
 						})
 			}
 		case 'leave':
-			//if props is null (incorrect name match),
+			//if prop is null (incorrect name match),
 			//simulate server response error
-			const payload = props ? axios.get(url) : {data: {error: 'wrong team name submitted'}};
+			const payload = prop ? axios.get(url) : {data: {error: 'wrong team name submitted'}};
 			return{
 				type: LEAVE_TEAM,
 				payload
@@ -118,7 +136,7 @@ export function triggerTeamAction(endpoint, props){
 				payload: null
 			}
 		default:
-			console.error(endpoint);
+			console.error(action);
 			return{
 				type: 'error',
 				payload: null

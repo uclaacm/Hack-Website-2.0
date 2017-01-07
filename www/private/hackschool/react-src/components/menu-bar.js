@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeDialog } from '../actions/index';
+import { changeDialog } from '../actions';
 import DialogBox from './dialog-box';
 
 class MenuBar extends Component{
@@ -25,6 +25,7 @@ class MenuBar extends Component{
 					<button><i className="fa fa-power-off" ariaHidden="true"></i> SIGN OUT</button>
 				</a>
 				<button onClick={this.toggleDialog}><i className="fa fa-user" ariaHidden="true"></i> MANAGE TEAM</button>
+				<button onClick=""><i className="fa fa-calendar-o" ariaHidden="true"></i> ATTENDANCE</button>
 			</div>
 		);
 	}
