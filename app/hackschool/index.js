@@ -8,4 +8,9 @@ router.use('/projects', require('./projects').router);
 router.use('/sessions', require('./sessions').router);
 router.use('/scoreboard', require('./scoreboard').router);
 
+// Render the dashboard
+app.get('/', (req, res) => {
+	res.render('hackschool/dashboard');
+});
+
 module.exports = { router };
