@@ -38,10 +38,10 @@ app.auth.configAuth(server);
 server.use('/auth', app.auth.router);
 
 // Use authentication for the remaining routes
-server.use(app.auth.authenticated);
+// server.use(app.auth.authenticated);
 
 // Hack School routes
-server.use('/hackschool', app.hackschool.router);
+server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
 
 // Expose private resources
 server.use(express.static('www/private'));
