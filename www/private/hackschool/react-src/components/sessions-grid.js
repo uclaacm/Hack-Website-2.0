@@ -34,6 +34,7 @@ class SessionsGrid extends Component{
 							 number			= { session.number }
 							 image			= { session.image }
 							 onClickEvent	= { () => this.onSelect(session) }
+							 project 		= { session.project }
 							 slidesLink		= { slidesLink }
 							 videoLink		= { videoLink }
 							 blogPostLink	= { blogPostLink } />

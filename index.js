@@ -33,18 +33,15 @@ server.use(app.session);
 // Hack Data API
 server.use('/api', app.api.router);
 
-// Use authentication
+// Configure authentication
 app.auth.configAuth(server);
 server.use('/auth', app.auth.router);
 
-// Use authentication for the remaining routes
-// server.use(app.auth.authenticated);
-
-// Hack School routes
+// Hack School routes (requires authentication)
 server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
 
-// Expose private resources
-server.use(express.static('www/private'));
+// Expose private resources (requires authentication)
+server.use('/private', app.auth.authenticated, express.static('www/private'));
 
 // Create workers
 if (cluster.isMaster) {

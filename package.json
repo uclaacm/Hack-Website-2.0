@@ -12,7 +12,7 @@
     "test": "mocha",
     "webpack": "node ./node_modules/webpack/bin/webpack.js",
     "webpack-production": "node ./node_modules/webpack/bin/webpack.js --progress -p",
-	"reset-database": "scripts/reset-database"
+    "reset-database": "scripts/reset-database"
   },
   "repository": {
     "type": "git",
@@ -60,6 +60,7 @@
     "react-router": "^2.0.0-rc5",
     "redux": "^3.0.4",
     "redux-promise": "^0.5.3",
+    "request": "^2.79.0",
     "underscore": "^1.8.3",
     "winston": "^2.3.0"
   }

@@ -1,5 +1,14 @@
 const env = process.env.NODE_ENV || "development";
-let config = { database: {}, session: {}, ghost: { database: {} }, facebook: {}, logging: {} };
+let config = {
+	database: {},
+	session: {},
+	ghost: { 
+		database: {}
+	},
+	facebook: {},
+	logging: {},
+	mailchimp: {}
+};
 
 if (env === "production") {
     config.port = process.env.PORT;
@@ -12,6 +21,8 @@ if (env === "production") {
 	config.facebook.appId = process.env.FACEBOOK_APP_ID;
 	config.facebook.secret = process.env.FACEBOOK_APP_SECRET;
 	config.logging.level = "debug";
+	config.mailchimp.apiKey = process.env.MAILCHIMP_API_KEY;
+	config.mailchimp.hackListId = process.env.MAILCHIMP_HACK_LIST_ID;
 } else {
     config.port = 5000;
     config.host = "http://localhost:" + config.port;
@@ -25,10 +36,13 @@ if (env === "production") {
 //	config.facebook.appId = "229762920785401";
 //	config.facebook.secret = "a6e3b6dee5c7424fd0605a6679052739";
 	config.logging.level = "silly";
+	config.mailchimp.apiKey = "06efc2be170824225c414a3d7fd47076-us14";
+	config.mailchimp.hackListId = "28bbeb9f5a";
 }
 
 config.apiSecret = "a076ef2e85154871eb365ecb4942bfd5";
 config.ghost.url = config.host + "/blog";
+config.mailchimp.instance = config.mailchimp.apiKey.split("-")[1];
 config.isProduction = env === "production";
 config.isDevelopment = !config.isProduction;
 
