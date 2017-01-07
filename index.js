@@ -44,7 +44,7 @@ server.use(app.auth.authenticated);
 server.use('/hackschool', app.hackschool.router);
 
 // Expose private resources
-server.use(express.static('www/private'));
+server.use('/private', app.auth.authenticated, express.static('www/private'));
 
 // Create workers
 if (cluster.isMaster) {
