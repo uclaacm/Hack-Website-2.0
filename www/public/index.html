@@ -11,7 +11,7 @@
 
 	<link rel="shortcut icon" type="image/x-icon" href="/common/images/favicon.png" />
 </head>
-<body>
+<body class = "locked">
 
 	<div class="menu inactive">
 		<div class="logo">
@@ -65,20 +65,89 @@
 
 		<div class="main-bg inactive">
 			<div class="text-over">
-				<h1 class="title inactive">MOVE FAST</h1>
-				<h1 class="title inactive">BUILD THINGS</h1>
+				<h1 class="title inactive">Move Fast.</h1>
+				<h1 class="title inactive">Build Things.</h1>
 				<div class="btn-enter inactive">
 					<a href="">START HACKING</a>
 				</div>
 			</div>
 		</div>
 
-<script>
+		<div class = "hack-bg">
+			<div class = "image-wrapper">
+				<div class = "image"></div>
+			</div>
+			<div class = "text-wrapper">
+				<h1 class = "title">What is Hack?</h1>
+				<p>
+					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success. I’m giving you cloth talk, cloth. Special cloth alert, cut from a special cloth. Don’t ever play yourself.
+				</p>
+			</div>
+			<div class = "bar-container"><div class = "bar"></div></div>
+		</div>
 
+		<div class = "school-bg">
+			<div class = "image-wrapper">
+				<div class = "image"></div>
+			</div>
+			<div class = "text-wrapper">
+				<h1 class = "title">HackSchool</h1>
+				<p>
+					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success. I’m giving you cloth talk	, cloth. Special cloth alert, cut from a special cloth. Don’t ever play yourself.
+				</p>
+			</div>
+		</div>
+
+		<div class = "other-bg">
+			<a><div class = "ctf">
+				<h2>Capture the Flag</h2>
+				<p>
+					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+				</p>
+			</div></a>
+			<a><div class = "hoth">
+				<h2>Hack on the Hill</h2>
+				<p>
+					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+				</p>
+			</div></a>
+			<a><div class = "expo">
+				<h2>Hacker Expo</h2>
+				<p>
+					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+				</p>
+			</div></a>
+		</div>
+		<div class = "see-all">
+			<a href = events.html><div class = "button">
+				<h2>See all events</h2>
+			</div></a>
+		</div>
+
+		<div class = "community-bg">
+			<h1 class = "title">Our Community</h1>
+			<p>
+				Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+			</p>
+			<div class = "carousel">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+
+		<div class = "footer-bg">
+
+		</div>
+
+<script>
 const lines = Array.from(document.querySelectorAll('.line'));
 const logoChildren = Array.from(document.querySelectorAll('.opening-logo > *'));
 
 const menu = document.querySelector('.menu');
+const locked = document.querySelector('.locked');
 const bg = document.querySelector('.main-bg');
 const text = Array.from(document.querySelectorAll('.text-over > *'));
 
@@ -93,6 +162,8 @@ function triggerAllAnimateIn(){
 	menu.classList.remove('inactive');
 	setTimeout(function(){
 		bg.classList.remove('inactive');
+	}, 700);setTimeout(function(){
+		locked.classList.remove('locked');
 	}, 700);
 
 	text.forEach(function(title){
@@ -116,12 +187,12 @@ function triggerInitial(){
 		line.addEventListener('transitionend', rotate);
 	});
 }
-
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
 menuMobileInner.addEventListener('click', toggleMenu);
 setTimeout(triggerInitial, 200);
 setTimeout(triggerAllAnimateIn, 1100);
-
-
 </script>
 </body>
 

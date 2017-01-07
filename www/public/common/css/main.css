@@ -27,9 +27,9 @@
 
 	--highlight: #FF9700;
 
-	--fam1: 'Open Sans', sans-serif;
-	--fam2: 'Montserrat', sans-serif;
-	--fam3: 'Source Code Pro', sans-serif;
+	--fam1: 'Open Sans', Tahoma, sans-serif;
+	--fam2: 'Montserrat', Futura, sans-serif;
+	--fam3: 'Source Code Pro', Monaco, sans-serif;
 
 	--shad: 0px 1px 4px 0px rgba(0,0,0,0.2);
 }
@@ -44,9 +44,10 @@ body{
 	height: 100vh;
 }
 
-h1{
+h2{
 	font-family: var(--fam1);
 	font-size: 36px;
+	font-weight: 700;
 }
 
 h2{
@@ -104,7 +105,8 @@ a:hover, button:hover{
 .title{
 	font-family: var(--fam2);
 	font-size: 60px;
-	letter-spacing: 5px;
+	/*font-size: 72px;*/
+	/*letter-spacing: 5px;*/
 }
 
 .caption, .quote{
@@ -278,7 +280,7 @@ a:hover, button:hover{
 	background: var(--hack-purp);
 	margin-bottom: 10px;
 	height: 6px;
-	
+
 
 	-webkit-transition: all 0.5s ease;
     		transition: all 0.5s ease;
@@ -445,5 +447,13 @@ a:hover, button:hover{
 		display: block;
 		left: 0px
 	}
-
+	.title:first-child {
+		font-size: 48px;
+	}
+	.title {
+		font-size: 48px;
+	}
+	p {
+		font-size: 16px;
+	}
 }
