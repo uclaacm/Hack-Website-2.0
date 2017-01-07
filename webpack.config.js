@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     'www/public/common/js/bundle': './www/public/react-src/index.js',
-    'www/private/hackschool/bundle': './www/private/hackschool/react-src/index.js'
+    'www/private/hackschool/js/bundle': './www/private/hackschool/react-src/index.js'
   },
   output: {
     path: './',
@@ -24,7 +24,7 @@ module.exports = {
   },
   plugins: [
       new webpack.optimize.CommonsChunkPlugin({
-          name: 'www/public/common/js/vendor/vendor'
+          name: 'www/public/common/js/vendor'
       })
   ]
 
