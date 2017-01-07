@@ -4,6 +4,12 @@
 }
 
 @font-face {
+	font-family: 'Open Sans';
+	src: url('/common/fonts/OpenSans-Bold.ttf');
+	font-weight: bold;
+}
+
+@font-face {
 	font-family: 'Montserrat';
 	src: url('/common/fonts/Montserrat-Regular.ttf');
 }
@@ -270,7 +276,7 @@ a:hover, button:hover{
 	background: var(--hack-purp);
 	margin-bottom: 10px;
 	height: 6px;
-	
+
 
 	-webkit-transition: all 0.5s ease;
     		transition: all 0.5s ease;
