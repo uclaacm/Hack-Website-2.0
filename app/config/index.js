@@ -7,7 +7,10 @@ let config = {
 	},
 	facebook: {},
 	logging: {},
-	mailchimp: {}
+	mailchimp: {},
+	aws: {
+		s3: {}
+	}
 };
 
 if (env === "production") {
@@ -23,6 +26,8 @@ if (env === "production") {
 	config.logging.level = "debug";
 	config.mailchimp.apiKey = process.env.MAILCHIMP_API_KEY;
 	config.mailchimp.hackListId = process.env.MAILCHIMP_HACK_LIST_ID;
+	config.aws.s3.accessKey = process.env.AWS_S3_ACCESS_KEY;
+	config.aws.s3.secretAccessKey = process.env.AWS_S3_SECRET_ACCESS_KEY;
 } else {
     config.port = 5000;
     config.host = "http://localhost:" + config.port;
@@ -33,11 +38,11 @@ if (env === "production") {
     config.ghost.database.uri = "postgres://localhost/acm-hack-dev-db";
 	config.facebook.appId = "236380866788670";
 	config.facebook.secret = "72afc70ce3cb5f2ba13115b2516450ed";
-//	config.facebook.appId = "229762920785401";
-//	config.facebook.secret = "a6e3b6dee5c7424fd0605a6679052739";
 	config.logging.level = "silly";
 	config.mailchimp.apiKey = "06efc2be170824225c414a3d7fd47076-us14";
 	config.mailchimp.hackListId = "28bbeb9f5a";
+	config.aws.s3.accessKey = "AKIAJIUHLPM6ILHGM5IQ"; 
+	config.aws.s3.secretAccessKey = "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";
 }
 
 config.apiSecret = "a076ef2e85154871eb365ecb4942bfd5";
