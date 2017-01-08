@@ -32,8 +32,7 @@ conf = {
 				accessKeyId: config.aws.s3.accessKey,
 				secretAccessKey: config.aws.s3.secretAccessKey,
 				bucket: 'acm-hack-ghost',
-				region: 'us-west-1',
-				assetHost: 'https://acm-hack-ghost.s3.amazonaws.com'
+				region: 'us-west-1'
 			}
 		}
     },
