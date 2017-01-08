@@ -1,3 +1,4 @@
+const opbeat = require('opbeat').start(); // performance metrics. this should be first line always.
 const cluster = require('cluster');
 const express = require('express');
 const morgan = require('morgan');
