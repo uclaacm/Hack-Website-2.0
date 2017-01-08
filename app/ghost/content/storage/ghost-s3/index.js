@@ -1,1 +1,1 @@
-module.exports = require('ghost-s3-storage');
+module.exports = require('ghost-s3-storage-adapter');
