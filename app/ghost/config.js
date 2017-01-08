@@ -25,7 +25,17 @@ conf = {
         server: {
             host: '0.0.0.0',
             port: config.port
-        }
+        },
+		storage: {
+			active: 'ghost-s3',
+			'ghost-s3': {
+				accessKeyId: config.aws.s3.accessKey,
+				secretAccessKey: config.aws.s3.secretAccessKey,
+				bucket: 'acm-hack-ghost',
+				region: 'us-west-1',
+				assetHost: 'https://acm-hack-ghost.s3.amazonaws.com'
+			}
+		}
     },
 
     // ### Development **(default)**
