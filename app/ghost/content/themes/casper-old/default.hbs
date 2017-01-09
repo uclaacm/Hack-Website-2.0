@@ -18,7 +18,7 @@
 
     {{!-- Styles'n'Scripts --}}
     <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "css/nav.css"}}" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
 
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
@@ -26,43 +26,7 @@
 <body class="{{body_class}} nav-closed">
 
     {{!-- The blog navigation links --}}
-    {{!--{{navigation}}--}}
-
-    <div class="menu">
-		<div class="logo">
-			<a class="logo-inner" href="/">
-				<img src="/common/images/Hack.svg"/>
-			</a>
-			<div class="mobile hamburger">
-				<div class="hamburger-inner">
-					<div class="hamburg-line"></div>
-					<div class="hamburg-line"></div>
-					<div class="hamburg-line"></div>
-				</div>
-				<div class="hamburg-over">
-					<ul>
-						<li><img src="/common/images/Hack-Logo-White.png"/></li>
-						<li><a href="/">home</a></li>
-						<li><a href="/events">events</a></li>
-						<li><a href="/blog">blog</a></li>
-						<li><a href="/showcase">showcase</a></li>
-						<li><a href="/team">team</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<a class="login-wrapper" href="/login">
-			<img src="/common/images/School-Logo-White.png"/>
-			<span>HACK LOGIN</span>
-		</a>
-		<ul class="menu-inner">
-			<li><a href="/">home</a></li>
-			<li><a href="/events">events</a></li>
-			<li class="current"><a href="/blog">blog</a></li>
-			<li><a href="/showcase">showcase</a></li>
-			<li><a href="/team">team</a></li>
-		</ul>
-	</div>
+    {{navigation}}
 
     <div class="site-wrapper">
 
