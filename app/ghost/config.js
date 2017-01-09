@@ -21,7 +21,8 @@ conf = {
 			connection: config.ghost.database.uri,
             debug: false,
 			pool: {
-				max: 10
+				min: 2,
+				max: 4
 			}
         },
         server: {
