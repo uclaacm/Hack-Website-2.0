@@ -3,7 +3,7 @@
 
 .opening-logo{
 	position: absolute;
-	z-index: -1;
+	z-index: 100;
 	top: 50%;
 	left: 50%;
 }
@@ -139,18 +139,18 @@
 /*================================WHAT-IS-HACK=====================*/
 
 .hack-bg {
-	height: 60%;
+	height: 100%;
 	width: 100%;
 	overflow: hidden;
-	background-color: white
+	background-color: #fff;
 }
 
 .hack-bg .text-wrapper {
 	box-sizing: border-box;
 	height: 100%;
 	width: 50%;
-	float: right;
-	padding: 0 50px 0 25px;
+	float: left;
+	padding: 0 50px 0 75px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -163,7 +163,7 @@
 	float: right;
 	transform: skewX(-10deg);
 	overflow: hidden;
-	box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, 0.5);
+	box-shadow: var(--shad);
 }
 
 .hack-bg .image {
@@ -194,7 +194,7 @@
 /*================================HACKSCHOOL=====================*/
 
 .school-bg {
-	height: 60%;
+	height: 100%;
 	width: 100%;
 	overflow: hidden;
 	background-color: var(--hack-purp);
@@ -222,7 +222,7 @@
 	float: left;
 	transform: skewX(-10deg);
 	overflow: hidden;
-	box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+	box-shadow: var(--shad);
 }
 
 .school-bg .image {
@@ -238,12 +238,14 @@
 
 /*================================OTHER-EVENTS=====================*/
 
+
 .other-bg {
 	width: 100%;
 	height: 40%;
+	background-color: #fff;
 }
 
-.other-bg div {
+.event {
 	height: 100%;
 	width: 33.3%;
 	display: flex;
@@ -254,39 +256,42 @@
 	background-position: center;
 	padding: 20px;
 	box-sizing: border-box;
-	background-color: rgba(0,0,0,0.5);
+
+	-webkit-transition: all 0.2s;
+			transition: all 0.2s;
 }
 
-.other-bg div:hover {
-	background-blend-mode: overlay;
+.event:hover{
+	opacity: 0.8;
+	cursor: pointer;
 }
 
-.other-bg div h2 {
+.event h2 {
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 5px;
 	color: white;
 	margin-bottom: 10px;
 }
-.other-bg div p {
+.event p {
 	color: white;
 	text-align: center;
 	font-size: 16px;
 	letter-spacing: 0;
 }
 
-.other-bg .hoth {
+#hoth {
 	background-image: url('/common/images/hackonthehill.png');
 }
 
-.other-bg .expo {
+#expo {
 	background-image: url('/common/images/hackerexpo.png');
 }
 
-.other-bg .ctf {
+#ctf {
 	background-image: url('/common/images/acm.png');
 }
-
+/*
 .see-all {
 	width: 100%;
 	height: auto;
@@ -314,7 +319,7 @@
 	text-align: center;
 	text-transform: uppercase;
 	color: var(--hack-purp);
-}
+}*/
 /*================================COMMUNITY=====================*/
 
 .community-bg {
@@ -327,14 +332,14 @@
 	padding: 10px;
 }
 
-.community-bg .carousel {
+.carousel {
 	width: 100%;
 	height: 200px;
 	background-color: white;
 	margin: 50px 0 50px;
 }
 
-.community-bg .carousel div {
+.carousel li {
 	height: 100%;
 	width: 20%;
 	background-size: cover;
@@ -342,23 +347,23 @@
 	float: left;
 }
 
-.community-bg .carousel div:nth-child(1) {
+.carousel li:first-child {
 	background-image: url('/common/images/community1.jpg')
 }
 
-.community-bg .carousel div:nth-child(2) {
+.carousel li:nth-child(2) {
 	background-image: url('/common/images/community2.jpg')
 }
 
-.community-bg .carousel div:nth-child(3) {
+.carousel li:nth-child(3) {
 	background-image: url('/common/images/community3.jpg')
 }
 
-.community-bg .carousel div:nth-child(4) {
+.carousel li:nth-child(4) {
 	background-image: url('/common/images/community4.jpg')
 }
 
-.community-bg .carousel div:nth-child(5) {
+.carousel li:nth-child(5) {
 	background-image: url('/common/images/community5.jpg')
 }
 
@@ -367,7 +372,8 @@
 .footer-bg {
 	height: 80px;
 	width: 100%;
-	background-color: var(--hack-purp);
+	/*background-color: var(--hack-purp);*/
+	background: #fff;
 }
 
 /*==================MEDIA QUERIES=================*/
@@ -387,24 +393,25 @@
 		height: auto;
 	}
 
-	.hack-bg .text-wrapper,.hack-bg .image-wrapper,.school-bg .text-wrapper,.school-bg .image-wrapper {
+	.wrapper{
 		float: left;
 		width: 100%;
 	}
 
-	.hack-bg .text-wrapper,.school-bg .text-wrapper {
+	.text-wrapper {
 		height: auto;
 		padding: 20% 10%;
 		justify-content: flex-start;
 	}
-	.hack-bg .image-wrapper,.school-bg .image-wrapper {
+	.image-wrapper{
 		margin-top: -10%;
 		height: 40vh;
 		margin-right: 0;
 		margin-left: 0;
 		transform: skewY(-10deg);
 	}
-	.hack-bg .image, .school-bg .image{
+
+	.image{
 		height: 120%;
 		margin-left: 0;
 		margin-right: 0;
@@ -414,17 +421,21 @@
 	.other-bg {
 		height: 120%;
 	}
+
 	.other-bg div {
 		height: 33.333%;
 		width: 100%;
 	}
+
 	.see-all .button {
 		width: 80%;
 	}
-	.community-bg .carousel div:nth-child(1),.community-bg .carousel div:nth-child(2) {
+
+	.carousel li{
 		width: 50%;
 	}
-	.community-bg .carousel div:nth-child(3),.community-bg .carousel div:nth-child(4),.community-bg .carousel div:nth-child(5) {
+	
+	.carousel li:nth-child(n+3){
 		width: 33.33%;
 	}
 }

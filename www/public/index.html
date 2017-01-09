@@ -11,9 +11,9 @@
 
 	<link rel="shortcut icon" type="image/x-icon" href="/common/images/favicon.png" />
 </head>
-<body class = "locked">
+<body class="locked">
 
-	<div class="menu inactive">
+	<div class="menu">
 		<div class="logo">
 			<a class="logo-inner" href="/">
 				<img src="/common/images/Hack.svg"/>
@@ -63,7 +63,7 @@
 			</div>
 		</div>
 
-		<div class="main-bg inactive">
+		<div class="main-bg">
 			<div class="text-over">
 				<h1 class="title inactive">Move Fast.</h1>
 				<h1 class="title inactive">Build Things.</h1>
@@ -73,127 +73,78 @@
 			</div>
 		</div>
 
-		<div class = "hack-bg">
-			<div class = "image-wrapper">
-				<div class = "image"></div>
-			</div>
-			<div class = "text-wrapper">
-				<h1 class = "title">What is Hack?</h1>
+		<div class="hack-bg">
+			<!--<div class="image-wrapper wrapper">
+				<div class="image"></div>
+			</div>-->
+			<div class="text-wrapper wrapper">
+				<h1 class="title">What is Hack?</h1>
 				<p>
 					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success. I’m giving you cloth talk, cloth. Special cloth alert, cut from a special cloth. Don’t ever play yourself.
 				</p>
 			</div>
-			<div class = "bar-container"><div class = "bar"></div></div>
+			<!--<div class="bar-container"><div class="bar"></div></div>-->
 		</div>
 
-		<div class = "school-bg">
-			<div class = "image-wrapper">
-				<div class = "image"></div>
-			</div>
-			<div class = "text-wrapper">
-				<h1 class = "title">HackSchool</h1>
+		<div class="school-bg">
+			<!--<div class="image-wrapper wrapper">
+				<div class="image"></div>
+			</div>-->
+			<div class="text-wrapper wrapper">
+				<h1 class="title">HackSchool</h1>
 				<p>
 					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success. I’m giving you cloth talk	, cloth. Special cloth alert, cut from a special cloth. Don’t ever play yourself.
 				</p>
 			</div>
 		</div>
 
-		<div class = "other-bg">
-			<a><div class = "ctf">
-				<h2>Capture the Flag</h2>
-				<p>
-					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
-				</p>
-			</div></a>
-			<a><div class = "hoth">
-				<h2>Hack on the Hill</h2>
-				<p>
-					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
-				</p>
-			</div></a>
-			<a><div class = "expo">
-				<h2>Hacker Expo</h2>
-				<p>
-					Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
-				</p>
-			</div></a>
+		<div class="other-bg">
+				<div class="event" id="ctf">
+					<h2>Capture the Flag</h2>
+					<p>
+						Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+					</p>
+				</div>
+			
+				<div class="event" id="hoth">
+					<h2>Hack on the Hill</h2>
+					<p>
+						Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+					</p>
+				</div>
+				
+				<div class="event" id="expo">
+					<h2>Hacker Expo</h2>
+					<p>
+						Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+					</p>
+				</div>
 		</div>
-		<div class = "see-all">
-			<a href = events.html><div class = "button">
+		<!--<div class="see-all">
+			<a href="events.html">
+				<div class="button">
 				<h2>See all events</h2>
-			</div></a>
-		</div>
+				</div>
+			</a>
+		</div>-->
 
-		<div class = "community-bg">
-			<h1 class = "title">Our Community</h1>
+		<!--<div class="community-bg">
+			<h1 class="title">Our Community</h1>
 			<p>
 				Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
 			</p>
-			<div class = "carousel">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-		</div>
+			<ul class="carousel">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>-->
 
-		<div class = "footer-bg">
+		<!--<div class="footer-bg">
+		</div>-->
 
-		</div>
-
-<script>
-const lines = Array.from(document.querySelectorAll('.line'));
-const logoChildren = Array.from(document.querySelectorAll('.opening-logo > *'));
-
-const menu = document.querySelector('.menu');
-const locked = document.querySelector('.locked');
-const bg = document.querySelector('.main-bg');
-const text = Array.from(document.querySelectorAll('.text-over > *'));
-
-const menuMobileInner = document.querySelector('.hamburger-inner');
-
-function toggleMenu(e){
-	this.parentElement.classList.toggle('active');
-	e.preventDefault();
-}
-function triggerAllAnimateIn(){
-	var stagger = 1100;
-	menu.classList.remove('inactive');
-	setTimeout(function(){
-		bg.classList.remove('inactive');
-	}, 700);setTimeout(function(){
-		locked.classList.remove('locked');
-	}, 700);
-
-	text.forEach(function(title){
-		setTimeout(function(){
-			title.classList.remove('inactive');
-		}, stagger);
-		stagger += 300;
-	});
-}
-function rotate(transition){
-	if(transition.propertyName != 'transform')
-		return;
-
-	logoChildren.forEach(function(child){
-		child.classList.remove('inactive');
-	});
-}
-function triggerInitial(){
-	lines.forEach(function(line){
-		line.classList.remove('inactive');
-		line.addEventListener('transitionend', rotate);
-	});
-}
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-menuMobileInner.addEventListener('click', toggleMenu);
-setTimeout(triggerInitial, 200);
-setTimeout(triggerAllAnimateIn, 1100);
-</script>
+<script src="/common/js/homepage.js"></script>
 </body>
-
 </html>
