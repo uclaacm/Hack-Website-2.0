@@ -3,6 +3,3 @@
 **/.DS_Store
 **/*.swp
 **/npm-debug.log
-www/public/common/js/bundle.js
-www/private/hackschool/js/bundle.js
-www/public/common/js/vendor.js
