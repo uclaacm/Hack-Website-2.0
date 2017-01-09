@@ -27,8 +27,9 @@
   "dependencies": {
     "amperize": "0.3.1",
     "archiver": "1.1.0",
+    "aws-sdk": "^2.7.21",
     "bcryptjs": "2.3.0",
-    "bluebird": "3.4.6",
+    "bluebird": "https://registry.npmjs.org/bluebird/-/bluebird-3.4.6.tgz",
     "body-parser": "1.15.2",
     "bookshelf": "0.10.2",
     "chalk": "1.1.3",

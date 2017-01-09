@@ -131,7 +131,7 @@
 	position: absolute;
 	z-index: 100;
 	margin: 40px 20px;
-	right: 0;
+	left: 0;
 }
 
 .btn-wrapper button{
@@ -147,6 +147,23 @@
 .btn-wrapper button i{
 	margin-left: -5px;
 	margin-top: -5px;
+}
+
+.info-wrapper{
+	position: absolute;
+	right: 0;
+	margin-right: 20px;
+	margin-top: 40px;
+	text-align: right;
+}
+
+.info-wrapper h2{
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.info-wrapper li{
+	font-family: var(--fam1);
 }
 
 .project-detail .img-wrapper, 

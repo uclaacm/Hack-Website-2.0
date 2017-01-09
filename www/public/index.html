@@ -11,7 +11,7 @@
 
 	<link rel="shortcut icon" type="image/x-icon" href="/common/images/favicon.png" />
 </head>
-<body>
+<body class="locked">
 
 	<div class="menu inactive">
 		<div class="logo">
@@ -28,27 +28,27 @@
 					<ul>
 						<li><img src="/common/images/Hack-Logo-White.png"/></li>
 						<li><a href="/">home</a></li>
-						<li><a href="/events.html">events</a></li>
-						<li><a href="">blog</a></li>
-						<li><a href="/showcase.html">showcase</a></li>
-						<li><a href="/team.html">team</a></li>
+						<li><a href="/events">events</a></li>
+						<li><a href="/blog">blog</a></li>
+						<li><a href="/showcase">showcase</a></li>
+						<li><a href="/team">team</a></li>
 					</ul>
 				</div>
 				<div class="mobile-login">
-					<a href="/login"><h1 class="hack-mobile-login">LOGIN</h1></a>
+					<a href="/auth"><h1 class="hack-mobile-login">LOGIN</h1></a>
 				</div>
 			</div>
 		</div>
-		<a class="login-wrapper" href="/login">
+		<a class="login-wrapper" href="/auth">
 			<img src="/common/images/School-Logo-White.png"/>
 			<span>HACK LOGIN</span>
 		</a>
 		<ul class="menu-inner">
 			<li class="current"><a href="/">home</a></li>
-			<li><a href="/events.html">events</a></li>
-			<li><a href="">blog</a></li>
-			<li><a href="/showcase.html">showcase</a></li>
-			<li><a href="/team.html">team</a></li>
+			<li><a href="/events">events</a></li>
+			<li><a href="/blog">blog</a></li>
+			<li><a href="/showcase">showcase</a></li>
+			<li><a href="/team">team</a></li>
 		</ul>
 	</div>
 
@@ -65,64 +65,123 @@
 
 		<div class="main-bg inactive">
 			<div class="text-over">
-				<h1 class="title inactive">MOVE FAST</h1>
-				<h1 class="title inactive">BUILD THINGS</h1>
+				<h1 class="title inactive">Move Fast.</h1>
+				<h1 class="title inactive">Build Things.</h1>
 				<div class="btn-enter inactive">
-					<a href="">START HACKING</a>
+					<a onClick="scrollToHack()">START HACKING</a>
 				</div>
 			</div>
 		</div>
 
+		<div class="hack-bg inactive bg">
+			<div class="image-wrapper wrapper">
+				<div class="image"></div>
+			</div>
+			<div class="text-wrapper wrapper">
+				<h1 class="title">What is Hack?</h1>
+				<p>
+					ACM Hack is a community of hackers at UCLA who love building cool projects in technology. We have weekly events with fun workshops and tutorials to teach beginners how to start working on their own projects. 
+				</p>
+				<div class="btn-enter">
+					<a onClick="scrollToSchool()">MORE ON HACK SCHOOL</a>
+				</div>
+			</div>
+			<!--<div class="bar-container"><div class="bar"></div></div>-->
+		</div>
+
+		<div class="school-bg inactive bg">
+			<div class="image-wrapper wrapper">
+				<div class="image"></div>
+			</div>
+			<div class="text-wrapper wrapper">
+				<h1 class="title">HackSchool</h1>
+				<p>
+					Hack School is a brand new program that was launched this year. Our goal is to deliver a quarter-long bootcamp on various technologies to help students quickly pick up new skills. You will be able to learn from experienced teachers, collaborate on group projects, and meet like-minded peers. Our schedule for this year is web development in the fall, android development in the winter, and iOS development in the spring. We hope to see you at all our weekly events.
+				</p>
+				<div class="btn-enter">
+					<a href="/auth">SIGN UP NOW</a>
+				</div>
+			</div>
+		</div>
+<!--
+		<div class="events-list">
+				<div class="event" id="ctf">
+					<div class="event-title">
+						<h2>Capture the Flag</h2>
+					</div>
+					<p>
+						Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+					</p>
+				</div>
+			
+				<div class="event" id="hoth">
+					<div class="event-title">
+						<h2>Hack on the Hill</h2>
+					</div>
+					<p>
+						Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+					</p>
+				</div>
+				
+				<div class="event" id="expo">
+					<div class="event-title">
+						<h2>Hacker Expo</h2>
+					</div>
+					<p>
+						Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+					</p>
+				</div>
+		</div>-->
+		<!--<div class="see-all">
+			<a href="events">
+				<div class="button">
+				<h2>See all events</h2>
+				</div>
+			</a>
+		</div>-->
+
+		<!--<div class="community-bg">
+			<h1 class="title">Our Community</h1>
+			<p>
+				Lorem Khaled Ipsum is a major key to success. Learning is cool, but knowing is better, and I know the key to success.
+			</p>
+			<ul class="carousel">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>-->
+
+		<!--<div class="footer-bg">
+		</div>-->
+
+<script src="/common/js/homepage.js"></script>
 <script>
-
-const lines = Array.from(document.querySelectorAll('.line'));
-const logoChildren = Array.from(document.querySelectorAll('.opening-logo > *'));
-
-const menu = document.querySelector('.menu');
-const bg = document.querySelector('.main-bg');
-const text = Array.from(document.querySelectorAll('.text-over > *'));
-
-const menuMobileInner = document.querySelector('.hamburger-inner');
-
-function toggleMenu(e){
-	this.parentElement.classList.toggle('active');
-	e.preventDefault();
-}
-function triggerAllAnimateIn(){
-	var stagger = 1100;
-	menu.classList.remove('inactive');
-	setTimeout(function(){
-		bg.classList.remove('inactive');
-	}, 700);
-
-	text.forEach(function(title){
-		setTimeout(function(){
-			title.classList.remove('inactive');
-		}, stagger);
-		stagger += 300;
-	});
-}
-function rotate(transition){
-	if(transition.propertyName != 'transform')
-		return;
-
-	logoChildren.forEach(function(child){
-		child.classList.remove('inactive');
-	});
-}
-function triggerInitial(){
-	lines.forEach(function(line){
-		line.classList.remove('inactive');
-		line.addEventListener('transitionend', rotate);
-	});
+function animate(elem,time) {
+    if( !elem) return;
+    var to = elem.offsetTop;
+    var from = window.scrollY;
+    var start = new Date().getTime(),
+        timer = setInterval(function() {
+            var step = Math.min(1,(new Date().getTime()-start)/time);
+            window.scrollTo(0,(from+step*(to-from))+1);
+            if( step == 1){ clearInterval(timer);};
+        },25);
+	window.scrollTo(0,(from+1));
 }
 
-menuMobileInner.addEventListener('click', toggleMenu);
-setTimeout(triggerInitial, 200);
-setTimeout(triggerAllAnimateIn, 1100);
+function scrollToHack(){
+		var divVal = document.querySelector('.hack-bg');
+		animate(divVal,600);
+}
 
+function scrollToSchool(){
+		var divVal = document.querySelector('.school-bg');
+		animate(divVal,600);
+}
 
 </script>
 </body>
-
 </html>

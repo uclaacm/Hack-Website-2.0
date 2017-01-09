@@ -1,3 +1,4 @@
+const opbeat = require('opbeat').start();
 const cluster = require('cluster');
 const express = require('express');
 const morgan = require('morgan');
@@ -21,7 +22,7 @@ if (process.env.NODE_ENV === "production")
 server.set('view engine', 'hbs');
 
 // Expose public resources
-server.use(express.static('www/public'));
+server.use(express.static('www/public', { extensions: ['html'] }));
 
 // Parse urlencoded and json POST data
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -33,18 +34,19 @@ server.use(app.session);
 // Hack Data API
 server.use('/api', app.api.router);
 
-// Use authentication
+// Configure authentication
 app.auth.configAuth(server);
 server.use('/auth', app.auth.router);
 
-// Use authentication for the remaining routes
-server.use(app.auth.authenticated);
+// Hack School routes (requires authentication)
+server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
 
-// Hack School routes
-server.use('/hackschool', app.hackschool.router);
+// Expose private resources (requires authentication)
+server.use('/private', app.auth.authenticated, express.static('www/private'));
 
-// Expose private resources
-server.use(express.static('www/private'));
+// Register Opbeat monitoring error handler
+if (app.config.isProduction)
+	server.use(opbeat.middleware.express());
 
 // Create workers
 if (cluster.isMaster) {
