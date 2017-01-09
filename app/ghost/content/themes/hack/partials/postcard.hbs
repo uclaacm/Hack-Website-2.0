@@ -1,0 +1,23 @@
+<article onclick="location.href='{{{url}}}';" class="card scale">
+    <a href="{{{url}}}" rel="bookmark">
+        <div class="card-image">
+            {{#if image}}
+            <img src="{{image}}" alt="{{title}}"></img>
+            {{else}}
+            <svg alt="{{title}}"/ >
+            {{/if}}
+        </div>
+    </a>
+    <div class="card-content">
+        <h3 class="card-category">HACKSCHOOL</h3>
+        <h1 class="card-title">{{title}}</h1>
+        <p class="card-excerpt">{{{excerpt words="30"}}}</p>
+        <h4>
+            <time class="date" datetime="{{date format="YYYY-MM-DD"}}">
+                {{date format='MMMM DD, YYYY'}}
+            </time>
+        </h4>
+        <hr />
+        <h4 class="read-more">Read More</h4>
+    </div>
+</article>

@@ -1,0 +1,11 @@
+{{!< default}}
+<div class="articles-wrapper">
+    {{#foreach posts}}
+    <div class="card-wrapper">
+        {{> postcard}}
+    </div>
+    {{/foreach}}
+    {{#if pagination}}
+        {{{pagination}}}
+    {{/if}}
+</div>
