@@ -1,36 +1,17 @@
-<div class="menu">
-    <div class="logo">
-        <a class="logo-inner" href="/">
-            <img src="/common/images/Hack.svg"/>
-        </a>
-        <div class="mobile hamburger">
-            <div class="hamburger-inner">
-                <div class="hamburg-line"></div>
-                <div class="hamburg-line"></div>
-                <div class="hamburg-line"></div>
-            </div>
-            <div class="hamburg-over">
-                <ul>
-                    <li><img src="/common/images/Hack-Logo-White.png"/></li>
-                    <li><a href="/">home</a></li>
-                    <li><a href="/events.html">events</a></li>
-                    <li><a href="">blog</a></li>
-                    <li><a href="/showcase.html">showcase</a></li>
-                    <li><a href="/team.html">team</a></li>
-                </ul>
-            </div>
-        
-        </div>
-    </div>
-    <a class="login-wrapper" href="/login">
-        <img src="/common/images/School-Logo-White.png"/>
-        <span>HACK LOGIN</span>
+<div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
     </a>
-    <ul class="menu-inner">
-        <li><a href="/">home</a></li>
-        <li class="current"><a href="/events.html">events</a></li>
-        <li><a href="">blog</a></li>
-        <li><a href="/showcase.html">showcase</a></li>
-        <li><a href="/team.html">team</a></li>
+    <ul>
+        {{#foreach navigation}}
+            <li class="nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
     </ul>
+    {{#if @labs.subscribers}}
+        <a class="subscribe-button" href="{{@blog.url}}/subscribe/">Subscribe</a>
+    {{else}}
+        <a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/">Subscribe</a>
+    {{/if}}
 </div>
+<span class="nav-cover"></span>
