@@ -55,6 +55,7 @@ class ProjectDetail extends Component{
 								: <h2>TECHNOLOGIES</h2>;
 
 		return(
+
 			<div className="project-detail">
 				<div className="btn-wrapper">
 					<button onClick={this.onClickEvent}>
@@ -69,7 +70,7 @@ class ProjectDetail extends Component{
 				</div>
 				<div>
 					<div className="img-wrapper">
-						<img src={project.image} />
+						<img src={project.screenshots[0]} />
 					</div>
 					<div className="detail-zoom">
 						<h1>{project.title}</h1>
