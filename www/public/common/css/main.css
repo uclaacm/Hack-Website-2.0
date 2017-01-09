@@ -180,18 +180,6 @@ a:hover, button:hover{
 	position: fixed;
 }
 
-.logo-words{
-	position: absolute;
-	z-index: 100;
-	color: var(--hack-purp);
-	margin-left: 80px;
-	font-size: 30px;
-	top:50%;
-
-	-webkit-transform: translate(0, -50%);
-			transform: translate(0, -50%);
-}
-
 .menu-inner{
 	padding: 25px;
 	padding-right: 30px;
@@ -207,7 +195,6 @@ a:hover, button:hover{
 }
 
 .current{
-	color: var(--hack-purp);
 	opacity: 1 !important;
 }
 
@@ -391,7 +378,7 @@ a:hover, button:hover{
 
 /*==================MEDIA QUERIES=================*/
 
-@media only screen and (max-width: 850px){
+@media only screen and (max-width: 900px){
 
 	.menu{
 		overflow: visible;

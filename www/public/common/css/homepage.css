@@ -3,7 +3,7 @@
 
 .opening-logo{
 	position: absolute;
-	z-index: 100;
+	z-index: -1;
 	top: 50%;
 	left: 50%;
 }
@@ -138,11 +138,23 @@
 }
 /*================================WHAT-IS-HACK=====================*/
 
+.bg .image-wrapper{
+	-webkit-transition: all 0.5s;
+			transition: all 0.5s;
+}
+
+.bg .text-wrapper{
+	-webkit-transition: all 1s;
+			transition: all 1s;
+}
+
 .hack-bg {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
 	background-color: #fff;
+	-webkit-transition: opacity 1s;
+			transition: opacity 1s;
 }
 
 .hack-bg .text-wrapper {
@@ -171,7 +183,7 @@
 	height: 100%;
 	width: 100%;
 	margin-left: -15%;
-	background-image: url('/common/images/What-Is-Hack.jpg');
+	background-image: url('/common/images/What-Is-Hack.png');
 	background-size: cover;
 	background-position: right;
 }
@@ -191,6 +203,16 @@
 	background-color: var(--hack-purp);
 }
 
+.hack-bg.inactive .image-wrapper, .school-bg.inactive .image-wrapper{
+	-webkit-transform: translateX(-50px);
+			transform: translateX(-50px);
+}
+
+.hack-bg.inactive .text-wrapper, .school-bg.inactive .text-wrapper{
+	-webkit-transform: translateX(50px);
+			transform: translateX(50px);
+}
+
 /*================================HACKSCHOOL=====================*/
 
 .school-bg {
@@ -202,6 +224,8 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: right;
+	-webkit-transition: all 1s;
+			transition: all 1s;
 }
 
 .school-bg .text-wrapper {
@@ -230,19 +254,19 @@
 	height: 120%;
 	width: 100%;
 	margin-right: -10%;
-	background-image: url('/common/images/Hackschool.jpg');
+	background-image: url('/common/images/Hackschool.png');
 	background-size: cover;
 	background-position: center;
 	float: right;
 }
 
-/*================================OTHER-EVENTS=====================*/
+/*================================EVENTS-LIST=====================*/
 
 
-.other-bg {
+.events-list {
 	width: 100%;
 	height: 40%;
-	background-color: #fff;
+	background-color: #000;
 }
 
 .event {
@@ -266,8 +290,23 @@
 	cursor: pointer;
 }
 
+.event:hover p{
+	opacity: 1;
+}
+
+.event:hover h2{
+	opacity: 0;
+}
+
+.event-title{
+	width: 200px;
+	position: absolute;
+	text-align: left;
+
+}
+
 .event h2 {
-	text-align: center;
+	font-size: 30px;
 	text-transform: uppercase;
 	letter-spacing: 5px;
 	color: white;
@@ -278,6 +317,7 @@
 	text-align: center;
 	font-size: 16px;
 	letter-spacing: 0;
+	opacity: 0;
 }
 
 #hoth {
@@ -291,7 +331,7 @@
 #ctf {
 	background-image: url('/common/images/acm.png');
 }
-/*
+
 .see-all {
 	width: 100%;
 	height: auto;
@@ -319,7 +359,7 @@
 	text-align: center;
 	text-transform: uppercase;
 	color: var(--hack-purp);
-}*/
+}
 /*================================COMMUNITY=====================*/
 
 .community-bg {
@@ -418,11 +458,11 @@
 		transform: skewY(10deg);
 		background-size: cover;
 	}
-	.other-bg {
+	.events-list {
 		height: 120%;
 	}
 
-	.other-bg div {
+	.events-list div {
 		height: 33.333%;
 		width: 100%;
 	}
