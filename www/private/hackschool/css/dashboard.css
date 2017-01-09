@@ -150,6 +150,7 @@
 	width: 50px;
 	border-radius: 50%;
 	background: var(--grey-deep);
+	background-size:100%;
 }
 
 /*=================DASHBOARD NAV====================*/
