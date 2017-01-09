@@ -19,9 +19,11 @@ conf = {
         database: {
             client: 'pg',
 			connection: config.ghost.database.uri,
-            debug: false
+            debug: false,
+			pool: {
+				max: 10
+			}
         },
-
         server: {
             host: '0.0.0.0',
             port: config.port
