@@ -53,7 +53,7 @@ class ShowcaseGrid extends Component{
 							 rowLabel		= { rowLabel }
 							 title			= { project.title }
 							 contributors 	= { project.contributors }
-							 image			= { project.image } 
+							 image			= { project.image }
 							 onClickEvent	= { () => this.onSelect(project) }/>
 			</td>
 		);
