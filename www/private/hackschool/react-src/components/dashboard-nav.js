@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectSlide } from '../actions/index';
+import { selectSlide } from '../actions';
 
 class DashboardNav extends Component{
 

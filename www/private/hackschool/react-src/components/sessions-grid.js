@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectSession } from '../actions/index';
+import { selectSession } from '../actions';
 import SessionItem from './session-item';
 
 class SessionsGrid extends Component{

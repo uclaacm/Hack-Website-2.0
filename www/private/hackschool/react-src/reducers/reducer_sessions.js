@@ -1,10 +1,10 @@
-import { FETCH_SESSIONS } from '../actions';
+import { FETCH_SESSIONS, ATTEND_SESSION } from '../actions';
 import _ from 'underscore';
 
 export default (state = null, action) => {
 	switch(action.type){
-
 		case FETCH_SESSIONS:
+			console.log(action.payload.data.sessions)
 			if(!action.payload.data.success)
 				return state;
 			else{
@@ -27,6 +27,8 @@ export default (state = null, action) => {
 					return arr;
 				}, []);
 			}
+		case ATTEND_SESSION:
+			return state;
 		default:
 			return state;
 	}
