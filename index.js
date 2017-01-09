@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production")
 server.set('view engine', 'hbs');
 
 // Expose public resources
-server.use(express.static('www/public'));
+server.use(express.static('www/public', { extensions: ['html'] }));
 
 // Parse urlencoded and json POST data
 server.use(bodyParser.urlencoded({ extended: true }));
