@@ -1,3 +1,4 @@
+const opbeat = require('opbeat').start();
 const cluster = require('cluster');
 const express = require('express');
 const morgan = require('morgan');
@@ -42,6 +43,10 @@ server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
 
 // Expose private resources (requires authentication)
 server.use('/private', app.auth.authenticated, express.static('www/private'));
+
+// Register Opbeat monitoring error handler
+if (app.config.isProduction)
+	server.use(opbeat.middleware.express());
 
 // Create workers
 if (cluster.isMaster) {

@@ -19,13 +19,24 @@ conf = {
         database: {
             client: 'pg',
 			connection: config.ghost.database.uri,
-            debug: false
+            debug: false,
+			pool: {
+				max: 10
+			}
         },
-
         server: {
             host: '0.0.0.0',
             port: config.port
-        }
+        },
+		storage: {
+			active: 'ghost-s3',
+			'ghost-s3': {
+				accessKeyId: config.aws.s3.accessKey,
+				secretAccessKey: config.aws.s3.secretAccessKey,
+				bucket: 'acm-hack-ghost',
+				region: 'us-west-1'
+			}
+		}
     },
 
     // ### Development **(default)**
