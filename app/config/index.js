@@ -36,13 +36,13 @@ if (env === "production") {
     config.session.uri = "redis://127.0.0.1:6379/0";
     config.database.uri = "mongodb://127.0.0.1:27017/acm-hack-db";
     config.ghost.database.uri = "postgres://localhost/acm-hack-dev-db";
-	config.facebook.appId = "236380866788670";
-	config.facebook.secret = "72afc70ce3cb5f2ba13115b2516450ed";
+	config.facebook.appId = "242266409533449";
+	config.facebook.secret = "1c577fb0e3e6516310e76a24ae568d32";
 	config.logging.level = "silly";
 	config.mailchimp.apiKey = "06efc2be170824225c414a3d7fd47076-us14";
 	config.mailchimp.hackListId = "28bbeb9f5a";
-	config.aws.s3.accessKey = "AKIAJIUHLPM6ILHGM5IQ"; 
-	config.aws.s3.secretAccessKey = "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";
+	config.aws.s3.accessKey = ""; 
+	config.aws.s3.secretAccessKey = "";
 }
 
 config.apiSecret = "a076ef2e85154871eb365ecb4942bfd5";
