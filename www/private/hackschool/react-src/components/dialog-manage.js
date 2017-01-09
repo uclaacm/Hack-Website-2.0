@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeDialog, triggerTeamAction } from '../actions/index'; 
+import { changeDialog, triggerTeamAction } from '../actions'; 
 import DialogInput from './dialog-input';
 import Loading from './loading';
 
