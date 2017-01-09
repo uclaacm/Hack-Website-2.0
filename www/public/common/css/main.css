@@ -27,9 +27,9 @@
 
 	--highlight: #FF9700;
 
-	--fam1: 'Open Sans', sans-serif;
-	--fam2: 'Montserrat', sans-serif;
-	--fam3: 'Source Code Pro', sans-serif;
+	--fam1: 'Open Sans', Tahoma, sans-serif;
+	--fam2: 'Montserrat', Futura, sans-serif;
+	--fam3: 'Source Code Pro', Monaco, sans-serif;
 
 	--shad: 0px 1px 4px 0px rgba(0,0,0,0.2);
 }
@@ -47,6 +47,7 @@ body{
 h1{
 	font-family: var(--fam1);
 	font-size: 36px;
+	font-weight: 700;
 }
 
 h2{
@@ -104,7 +105,8 @@ a:hover, button:hover{
 .title{
 	font-family: var(--fam2);
 	font-size: 60px;
-	letter-spacing: 5px;
+	/*font-size: 72px;*/
+	/*letter-spacing: 5px;*/
 }
 
 .caption, .quote{
@@ -178,18 +180,6 @@ a:hover, button:hover{
 	position: fixed;
 }
 
-.logo-words{
-	position: absolute;
-	z-index: 100;
-	color: var(--hack-purp);
-	margin-left: 80px;
-	font-size: 30px;
-	top:50%;
-
-	-webkit-transform: translate(0, -50%);
-			transform: translate(0, -50%);
-}
-
 .menu-inner{
 	padding: 25px;
 	padding-right: 30px;
@@ -205,7 +195,6 @@ a:hover, button:hover{
 }
 
 .current{
-	color: var(--hack-purp);
 	opacity: 1 !important;
 }
 
@@ -278,7 +267,7 @@ a:hover, button:hover{
 	background: var(--hack-purp);
 	margin-bottom: 10px;
 	height: 6px;
-	
+
 
 	-webkit-transition: all 0.5s ease;
     		transition: all 0.5s ease;
@@ -389,7 +378,7 @@ a:hover, button:hover{
 
 /*==================MEDIA QUERIES=================*/
 
-@media only screen and (max-width: 850px){
+@media only screen and (max-width: 900px){
 
 	.menu{
 		overflow: visible;
@@ -446,4 +435,10 @@ a:hover, button:hover{
 		left: 0px
 	}
 
+	.title {
+		font-size: 48px;
+	}
+	p {
+		font-size: 16px;
+	}
 }
