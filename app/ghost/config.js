@@ -15,7 +15,16 @@ conf = {
     // Configure your URL and mail settings here
     production: {
         url: config.ghost.url,
-        mail: {},
+        mail: {
+			transport: 'SMTP',
+			options: {
+				service: 'Gmail',
+				auth: {
+					user: config.mail.email,
+					pass: config.mail.password
+				}
+			}
+		},
         database: {
             client: 'pg',
 			connection: config.ghost.database.uri,

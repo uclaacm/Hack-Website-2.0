@@ -8,6 +8,7 @@ let config = {
 	facebook: {},
 	logging: {},
 	mailchimp: {},
+	mail: {},
 	aws: {
 		s3: {}
 	}
@@ -26,6 +27,8 @@ if (env === "production") {
 	config.logging.level = "debug";
 	config.mailchimp.apiKey = process.env.MAILCHIMP_API_KEY;
 	config.mailchimp.hackListId = process.env.MAILCHIMP_HACK_LIST_ID;
+	config.mail.email = process.env.GMAIL_USERNAME;
+	config.mail.password = process.env.GMAIL_PASSWORD;
 	config.aws.s3.accessKey = process.env.AWS_S3_ACCESS_KEY;
 	config.aws.s3.secretAccessKey = process.env.AWS_S3_SECRET_ACCESS_KEY;
 } else {
