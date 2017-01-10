@@ -202,10 +202,13 @@ function update(httpRequest) {
     	if(response.success)
     		document.querySelector('.success').classList.remove('hidden');
     	else{
-    		document.querySelector('.failure').classList.remove('hidden');
+    		const failure = document.querySelector('.failure');
+    		failure.children[0].innerHTML = '<h3>' + response.error + '<h3>';
+    		failure.classList.remove('hidden');
     	}
     		
     } else {
+    	//will display <h3>Something went wrong.</h3>
        document.querySelector('.failure').classList.remove('hidden');
     }
   }
