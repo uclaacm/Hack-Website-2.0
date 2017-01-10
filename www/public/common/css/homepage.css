@@ -100,6 +100,7 @@
 
 .text-over{
 	position: absolute;
+	width: auto;
 	left: 50%;
 	top: 50%;
 	-webkit-transform: translate(-50%, -50%);
@@ -120,23 +121,31 @@
 }
 
 .btn-enter{
+	display: inline-block;
 	margin-top: 40px;
-}
-
-.btn-enter a{
-	color: var(--highlight);
-	padding: 20px;
 	border: 2px solid var(--highlight);
-
+	padding: 20px;
 	-webkit-transition: all 0.2s;
     		transition: all 0.2s;
 }
 
-.btn-enter a:hover{
+.btn-enter:hover{
+	background: var(--highlight) !important;
+	cursor: pointer;
+}
+
+.btn-enter a{
+	color: var(--highlight);
+}
+
+.btn-enter:hover a{
 	color: #fff;
-	background: var(--highlight);
 }
 /*================================WHAT-IS-HACK=====================*/
+
+.bg{
+	background: var(--grey-light) !important;
+}
 
 .bg .image-wrapper{
 	-webkit-transition: all 0.5s;
@@ -144,14 +153,29 @@
 }
 
 .bg .text-wrapper{
+	margin-top: 100px;
 	-webkit-transition: all 1s;
 			transition: all 1s;
+}
+
+.bg .btn-enter{
+	margin-top: 20px;
+	border-radius: 3px;
+	border: 0;
+	box-shadow: var(--shad);
+	background: #fff;
+	padding: 10px;
+	padding: 10px;
+    font-size: 16px;
+}
+
+.bg h1, .bg p{
+	color: #000;
 }
 
 .hack-bg {
 	height: 100%;
 	width: 100%;
-	overflow: hidden;
 	background-color: #fff;
 	-webkit-transition: opacity 1s;
 			transition: opacity 1s;
@@ -159,13 +183,14 @@
 
 .hack-bg .text-wrapper {
 	box-sizing: border-box;
-	height: 100%;
-	width: 50%;
-	float: left;
-	padding: 0 50px 0 75px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	width: 50%;
+	height: 450px;
+	position: absolute;
+    float: left;
+	padding: 0 50px 0 75px;
 }
 
 .hack-bg .image-wrapper {
@@ -183,7 +208,7 @@
 	height: 100%;
 	width: 100%;
 	margin-left: -15%;
-	background-image: url('/common/images/What-Is-Hack.png');
+	background-image: url('/common/images/updated-hack.jpg');
 	background-size: cover;
 	background-position: right;
 }
@@ -218,8 +243,6 @@
 .school-bg {
 	height: 100%;
 	width: 100%;
-	overflow: hidden;
-	background-color: var(--hack-purp);
 	color: white;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -230,13 +253,14 @@
 
 .school-bg .text-wrapper {
 	box-sizing: border-box;
-	height: 100%;
-	width: 60%;
-	float: left;
-	padding: 0 100px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	width: 60%;
+	height: 450px;
+	float: left;
+	padding: 0 100px;
+	text-align: right;
 }
 
 .school-bg .image-wrapper {
@@ -254,10 +278,56 @@
 	height: 120%;
 	width: 100%;
 	margin-right: -10%;
-	background-image: url('/common/images/Hackschool.png');
-	background-size: cover;
-	background-position: center;
+	background-image: url('/common/images/Hackschool.jpg');
+	background-size: 150%;
+	background-position: 50% 50%;
 	float: right;
+}
+
+/*form related*/
+
+#email{
+	height: 42px;
+	margin-top: 20px;
+	text-align: right;
+}
+
+#email button{
+	margin-top: 0px;
+}
+
+#email input{
+	font-family: var(--fam1);
+	font-size: 16px;
+    padding: 10px 0px;
+    width: 250px;
+    border: none;
+    border-bottom: 2px solid var(--highlight);
+    background: none;
+    margin-right: 20px;
+}
+
+#email input:active{
+	background: none;
+}
+
+#email > *{
+	position: absolute;
+	right: 100px;
+	-webkit-transition: opacity 0.2s ease;
+			transition: opacity 0.2s ease;
+}
+
+.initial{
+	z-index: 4;
+}
+
+.success h3, .failure h3{
+	color: var(--highlight);
+}
+
+.hidden{
+	opacity: 0;
 }
 
 /*================================EVENTS-LIST=====================*/
@@ -270,7 +340,6 @@
 }
 
 .event {
-	height: 100%;
 	width: 33.3%;
 	display: flex;
 	flex-flow: column;
@@ -420,6 +489,10 @@
 
 @media only screen and (max-width: 700px) {
 
+	p{
+		font-size: 12px;
+	}
+
 	.opening-logo{
 		-webkit-transform: scale(0.6);
 				transform: scale(0.6);
@@ -427,6 +500,14 @@
 
 	.text-over{
 		margin-top: -5vh;
+	}
+
+	.btn-enter{
+		padding: 15px;
+	}
+
+	.btn-enter a{
+		font-size: 12px;
 	}
 
 	.hack-bg,.school-bg{
@@ -444,11 +525,7 @@
 		justify-content: flex-start;
 	}
 	.image-wrapper{
-		margin-top: -10%;
-		height: 40vh;
-		margin-right: 0;
-		margin-left: 0;
-		transform: skewY(-10deg);
+		display: none;
 	}
 
 	.image{

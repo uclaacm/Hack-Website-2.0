@@ -67,8 +67,8 @@
 			<div class="text-over">
 				<h1 class="title inactive">Move Fast.</h1>
 				<h1 class="title inactive">Build Things.</h1>
-				<div class="btn-enter inactive">
-					<a onClick="scrollToHack()">START HACKING</a>
+				<div class="btn-enter inactive" onClick="scrollToHack()">
+					<a>START HACKING</a>
 				</div>
 			</div>
 		</div>
@@ -82,8 +82,10 @@
 				<p>
 					We are a student-run organization that aims to empower UCLA students to influence their world through code. We host events for coders of all skill levels. So whether you've been to 10 hackathons, or you just learned "hello world", we're happy to have you.
 				</p>
-				<div class="btn-enter">
-					<a onClick="scrollToSchool()">MORE ON HACK SCHOOL</a>
+				<div>
+					<button class="btn-enter" onClick="scrollToSchool()">
+						<a>MORE ON HACK SCHOOL</a>
+					</button>
 				</div>
 			</div>
 			<!--<div class="bar-container"><div class="bar"></div></div>-->
@@ -98,9 +100,20 @@
 				<p>
 					HackSchool is a quarter-long course that gives beginners the skills they need to build and deploy their own projects. You will learn from experienced teachers, collaborate on group projects, and meet like-minded peers. Our schedule for this year is Web Development in the Fall, Android in the Winter, and iOS in the Spring.
 				</p>
-				<div class="btn-enter">
-					<a href="/auth">SIGN UP NOW</a>
-				</div>
+				<form name="email" id="email">
+					<div class="initial">
+						<input type="text" name="email" placeholder="email address"/>
+						<button class="btn-enter" type="submit">
+							<a>SUBSCRIBE</a>
+						</button>
+					</div>
+					<div class="success hidden">
+						<h3>You're subscribed!</h3>
+					</div>
+					<div class="failure hidden">
+						<h3>Something went wrong.</h3>
+					</div>
+				</form>
 			</div>
 		</div>
 <!--
@@ -181,6 +194,42 @@ function scrollToSchool(){
 		var divVal = document.querySelector('.school-bg');
 		animate(divVal,600);
 }
+
+function update(httpRequest) {
+  if (httpRequest.readyState == 4) {
+    if ((httpRequest.status == 200) || (httpRequest.status == 0)) {
+    	var response = JSON.parse(httpRequest.responseText);
+    	if(response.success)
+    		document.querySelector('.success').classList.remove('hidden');
+    	else{
+    		document.querySelector('.failure').classList.remove('hidden');
+    	}
+    		
+    } else {
+       document.querySelector('.failure').classList.remove('hidden');
+    }
+  }
+}
+
+function send_with_ajax(e) {
+	e.preventDefault();
+	const url = '/api/v1/mailinglist/subscribe';
+	const formInput = this.elements[0].value;
+
+	var httpRequest = new XMLHttpRequest();
+	var params = "email=" + encodeURIComponent(formInput);
+	
+	httpRequest.open("POST", url, true);
+	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	httpRequest.onreadystatechange = function() { update(httpRequest); };
+	httpRequest.onerror = function() {};
+	httpRequest.send(params);
+
+	document.querySelector('.initial').classList.add('hidden');
+}
+
+document.forms['email'].addEventListener('submit', send_with_ajax);
 
 </script>
 </body>
