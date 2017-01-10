@@ -26,10 +26,6 @@
 	z-index: 500;
 }
 
-.filter-categories li{
-	display: inline-block;
-}
-
 input.checkbox {
     position: absolute;
     visibility: hidden;
@@ -76,7 +72,7 @@ input[type=checkbox].checkbox:checked + .custom-check label{
 .filter-categories button{
 	position: absolute;
 	width: 60px;
-	height: 40px;
+	height: 37px;
 	border: 0;
 	border-radius: 3px;
 	background-color: var(--grey-deep);
@@ -110,7 +106,6 @@ input[type=checkbox].checkbox:checked + .custom-check label{
 
 .time-label{
 	width: 60px;
-	height: 60px;
 	padding: 10px;
 	text-align: right;
 	background: #fff;
@@ -164,21 +159,37 @@ input[type=checkbox].checkbox:checked + .custom-check label{
 	float: left;
 	margin-left: 220px;
 	width: 450px;
-	padding: 20px;
+	padding: 0px 20px;
 	height: 180px;
 	border-left: 2px solid var(--grey-light);
 	transition: all 0.5s ease;
 }
 
-.info-default{
-	padding-top: 50px !important;
-	height: 150px !important;
+.info-wrapper.info-hover{
+	padding: 20px;
 }
-/* 	if change movement to be left-right 
-	this could work
-.events-item:hover{
-	transform: translateX(30px);
-}*/
+
+.info-wrapper h1{
+	font-size: 30px;
+}
+
+.info-wrapper h3{
+	font-size: 20px;
+	color: var(--grey-deep);
+	font-weight: 400;
+}
+
+.info-text-wrapper{
+	overflow: auto;
+	margin-top: -20px;
+	padding-top:1px;
+}
+
+.info-wrapper.info-default{
+	display: flex;
+	align-items: center;
+	height: 220px !important;
+}
 
 .events-item:hover .info-wrapper{
 	transform: translateY(-100%);
