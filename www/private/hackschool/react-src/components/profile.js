@@ -29,6 +29,10 @@ class Profile extends Component{
 										<div	className="team-profile-pic shadow"></div>
 										<div 	className="team-profile-pic"
 												style={{backgroundImage: `url(${member.profilePicture.small})`}}></div>
+										<div className="hover-name">
+											<div className="triangle-with-shadow"></div>
+											<span>{member.name}</span>
+										</div>
 									</li>);
 
 	}

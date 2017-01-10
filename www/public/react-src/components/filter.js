@@ -10,13 +10,21 @@ class Filter extends Component{
 
 		//I chose to hold this at component-level state rather than app-level (with redux)
 		//so that this could be more modular
-		this.state = { selectedCategories: []};
+		this.state = { firstRender: true, selectedCategories: []};
 
 		//binding functions
 		this.setAllCheckBoxes = this.setAllCheckBoxes.bind(this);
 		this.setStateAndCallAction = this.setStateAndCallAction.bind(this);
 		this.onCheckBoxToggle = this.onCheckBoxToggle.bind(this);
 		this.renderList = this.renderList.bind(this);
+	}
+
+	//sets initial state to all checked on first render
+	componentWillUpdate(){
+		if(this.state.firstRender && this.props.categories){ 	//NOTE: if categories ever becomes async request
+			this.toggleBoxes(true);								//be sure to set default = null in reducer
+			this.setState({firstRender : false});
+		}
 	}
 
 	setAllCheckBoxes(toggle)
