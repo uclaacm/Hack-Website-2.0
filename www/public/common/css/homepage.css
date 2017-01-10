@@ -367,7 +367,7 @@
 .event-title{
 	position: absolute;
 	width: 33.33%;
-	margin-top: 50px;
+	margin-top: 40px;
 }
 
 .event h2 {
@@ -546,7 +546,7 @@
 		background-size: cover;
 	}
 	.events-list {
-		height: 660px;
+		height: 540px;
 	}
 
 	.event:first-child{
@@ -557,8 +557,12 @@
 		border-bottom: 10px solid #000;
 	}
 
+	.event-title{
+		margin-top: 30px;
+	}
+
 	.events-list div {
-		height: 220px;
+		height: 180px;
 		width: 100%;
 	}
 
