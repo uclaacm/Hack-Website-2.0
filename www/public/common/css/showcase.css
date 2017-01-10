@@ -5,7 +5,7 @@
 
 div.submit-project {
 	background-color: white;
-	width: 850px;
+	width: 820px;
 	height: 30px;
 	margin: auto;
 	border-radius: 3px;
@@ -21,10 +21,7 @@ div.submit-project {
 			transition: all 0.2s; 
 }
 
-div.submit-project:hover {
-	background: var(--hack-purp);
-	color: white;
-}
+
 
 /*==============PROJECT GRID============*/
 
@@ -238,6 +235,10 @@ div.submit-project:hover {
 /*==============MEDIA QUERIES============*/
 
 @media only screen and (max-width: 850px){
+
+	.submit-project{
+		width: 90% !important;
+	}
 
 	.grid{
 		width: 100%;
