@@ -105,10 +105,11 @@ input[type=checkbox].checkbox:checked + .custom-check label{
 }
 
 .time-label{
-	width: 60px;
 	padding: 10px;
 	text-align: right;
 	background: #fff;
+	width: 58px;
+    margin-left: 2px;
 }
 
 .time-label p{
