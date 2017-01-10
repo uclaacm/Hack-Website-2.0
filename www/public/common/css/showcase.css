@@ -3,6 +3,29 @@
 	overflow: hidden;
 }
 
+div.submit-project {
+	background-color: white;
+	width: 850px;
+	height: 30px;
+	margin: auto;
+	border-radius: 3px;
+	overflow: hidden;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 30px;
+	box-shadow: var(--shad);
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	font-size: 0.8em;
+	-webkit-transition: all 0.2s;
+			transition: all 0.2s; 
+}
+
+div.submit-project:hover {
+	background: var(--hack-purp);
+	color: white;
+}
+
 /*==============PROJECT GRID============*/
 
 .grid{
