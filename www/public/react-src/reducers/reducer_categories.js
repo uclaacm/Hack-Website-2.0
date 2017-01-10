@@ -15,10 +15,6 @@ export default () => {
 			url: '/common/images/hill.png'
 		},
 		{
-			name: 'Showcase',
-			url: ''
-		},
-		{
 			name: 'Other',
 			url: ''
 		}

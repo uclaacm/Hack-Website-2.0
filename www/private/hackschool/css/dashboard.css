@@ -111,7 +111,7 @@
 
 .profile h1{
 	margin-top: -5px;
-	font-weight: 900;
+	font-weight: 500;
 	font-family: var(--fam2);
 }
 
@@ -130,6 +130,7 @@
 .info-right h3{
 	font-size: 12px;
 	font-family: var(--fam2);
+	font-weight: 600;
 }
 
 .info-right .number{
@@ -176,7 +177,7 @@
 	background: #fff;
 	border-radius: 3px;
 	box-shadow: var(--shad);
-	padding: 5px;
+	padding: 5px 15px;
 	text-align: center;
 	top: 65px;
 	left: 50%;
@@ -252,6 +253,7 @@
 	letter-spacing: 2px;
 	margin-top: 5px;
 	font-family: var(--fam2);
+	font-weight: 600;
 }
 
 /*=================SESSIONS====================*/
@@ -551,12 +553,13 @@ button span.icon{
 	margin-left: -10px;
 	width: 45px;
 	height: 45px;
-	background-size: 100%;
+	background-size: cover;
+	background-position: 50%;
 }
 
 .team-item-featured h3{
 	font-size: 18px;
-	font-weight: 800;
+	font-weight: 600;
 }
 
 /*normal team list*/
@@ -600,7 +603,7 @@ button span.icon{
 
 .team-list td p{
 	font-size: 16px;
-	font-weight: 900;
+	font-weight: 600;
 }
 
 .team-list tbody{
@@ -627,6 +630,8 @@ button span.icon{
 tr.team-item .team-profile-pic{
 	width: 30px;
 	height: 30px;
+	background-size: cover;
+	background-position: 50%;
 }
 
 .team-list .gradient{
@@ -696,11 +701,11 @@ button.back i{
 
 .left-align .team-id{
 	color: var(--grey-deep);
-	margin-top: -12px;
+	margin-top: -10px;
 }
 
 .dialog-box p{
-	font-weight: 900;
+	font-weight: 500;
 }
 
 .dialog-box .btn-selection{
@@ -741,7 +746,12 @@ button.back i{
 
 .dialog-box span{
 	font-size: 10px;
-	letter-spacing: 2px;
+	font-family: "Source Code Pro", monospace;
+	/*letter-spacing: 2px;*/
+}
+
+.team-members {
+	margin-top: 20px;
 }
 
 .team-members span, .dialog-inner span{
@@ -784,7 +794,7 @@ button.back i{
 	font-family: var(--fam1);
 	text-transform: uppercase;
 	color: #000 !important;
-	font-weight: 900;
+	font-weight: 500;
 }
 
 .dialog-inner .team-members{
