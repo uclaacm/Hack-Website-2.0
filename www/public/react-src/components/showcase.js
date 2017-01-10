@@ -15,11 +15,11 @@ class Showcase extends Component{
 	render(){
 		return (
 			<div className="showcase-page">
-				<a href="https://docs.google.com/forms/d/e/1FAIpQLSfflJk_PR2Vt45XhROVyCw-U6zEjPOyhKszwSNkv3YopMq3-Q/viewform?c=0&w=1&usp=send_form" target="_blank">
+				{/*<a href="https://docs.google.com/forms/d/e/1FAIpQLSfflJk_PR2Vt45XhROVyCw-U6zEjPOyhKszwSNkv3YopMq3-Q/viewform?c=0&w=1&usp=send_form" target="_blank">
 					<div className="submit-project">
 						Click here to submit your project!
 					</div>
-				</a>
+				</a>*/}
 				<ProjectDetail />
 				<ShowcaseGrid />
 			</div>

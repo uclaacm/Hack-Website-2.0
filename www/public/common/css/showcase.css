@@ -232,6 +232,10 @@ div.submit-project {
 	padding: 15px 30px;
 }
 
+.display-none{
+	display: none;
+}
+
 /*==============MEDIA QUERIES============*/
 
 @media only screen and (max-width: 850px){
