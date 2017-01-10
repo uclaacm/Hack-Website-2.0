@@ -25,11 +25,12 @@
 
 .team-pic
 {
-  height: 250px;
-  width: 250px;
+  height: 400px;
+  width: 800px;
 	float:left;
-	background-size: cover;
-	background-position: center;
+	background-size: 105%;
+	background-position: 0% 55%;
+	background-repeat: no-repeat;
 }
 
 .header > *{
@@ -38,15 +39,17 @@
 
 .desc{
   box-sizing: border-box;
-	width: 550px;
-	padding: 40px;
+	width: 800px;
+	padding: 20px;
 	background: #fff;
-	height: 250px;
+	height: 200px;
+	margin-bottom: 20px;
 }
 
 .header h1{
 	font-family: var(--fam2);
 	font-weight: bold;
+	text-align: center;
 }
 
 .team-description{
@@ -130,7 +133,10 @@
 
 	.header, .card-wrapper{
 		width: 90%;
-		margin-bottom: 20px;
+	}
+
+	.team-pic{
+		height: 200px;
 	}
 
 	.team-pic, .desc{
@@ -140,6 +146,8 @@
 	.header, .desc{
 		height: auto;
 		overflow: auto;
+		margin-bottom: 0px;
+		box-shadow: var(--shad);
 	}
 	.card {
 		margin: 0 auto 20px auto !important;
