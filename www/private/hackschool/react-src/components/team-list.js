@@ -20,28 +20,28 @@ class TeamList extends Component{
 	}
 
 	render(){
-		return (
-			<div>
-			{this.props.list.length != 0 && 
+
+		if (this.props.list.length != 0)
+			return (
 				<div className="team-list">
 					<div className="gradient"></div>
-					<table>
-						<thead>
-							<tr>
-								<th></th>
-								<th>MEMBERS</th>
-								<th>TEAM NAME</th>
-								<th>POINTS</th>
-							</tr>
-							</thead>
-						<tbody>
-						{this.props.list.map(this.renderList)}
-						</tbody>
-					</table>
-				</div>
-			}
-			</div>
-		);
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th>MEMBERS</th>
+									<th>TEAM NAME</th>
+									<th>POINTS</th>
+								</tr>
+								</thead>
+							<tbody>
+							{this.props.list.map(this.renderList)}
+							</tbody>
+						</table>
+					</div>
+			);
+
+		return null;
 	}
 
 }

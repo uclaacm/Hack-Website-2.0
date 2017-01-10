@@ -63,6 +63,10 @@
 
 /*====================PROFILE====================*/
 
+.profile-wrapper{
+	overflow: hidden;
+}
+
 .profile{
 	background: #fff;
 	height: 100px;
@@ -477,9 +481,17 @@ button span.icon{
 
 /*=================LEADERBOARD====================*/
 
+.team-profile-pic{
+	background-size: cover !important;
+	background-position: 50% !important;
+	background-repeat: none;
+}
+
 .leaderboard{
-	width: 1000px;
-	margin: 50px auto 0 auto;
+	width: 1002px; /*for shadow*/
+	padding-left:2px;
+	margin: 0px auto 0 auto;
+	overflow: auto;
 }
 
 .featured-team-list, .team-list{

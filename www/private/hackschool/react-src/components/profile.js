@@ -57,7 +57,7 @@ class Profile extends Component{
 								: null;
 
 		return(
-			<div>
+			<div className="profile-wrapper">
 				<div className="profile">
 					<div	className="profile-pic shadow"></div>
 					<div 	className="profile-pic main"
