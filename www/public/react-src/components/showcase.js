@@ -15,6 +15,11 @@ class Showcase extends Component{
 	render(){
 		return (
 			<div className="showcase-page">
+				<a href="#">
+					<div className="submit-project">
+						Click here to submit your project!
+					</div>
+				</a>
 				<ProjectDetail />
 				<ShowcaseGrid />
 			</div>
