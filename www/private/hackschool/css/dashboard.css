@@ -525,6 +525,7 @@ button span.icon{
 .team-item .team-profile-pic{
 	float: left;
 	border: 2px solid white;
+	border-radius: 50%;
 }
 
 .team-item-featured ul{
