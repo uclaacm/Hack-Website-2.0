@@ -216,7 +216,7 @@ function update(httpRequest) {
     		document.querySelector('.success').classList.remove('hidden');
     	else{
     		const failure = document.querySelector('.failure');
-    		failure.children[0].innerHTML = '<h3>' + response.error + '<h3>';
+    		failure.children[0].innerHTML = '<h3>' + response.error + '</h3>';
     		failure.classList.remove('hidden');
     	}
     		
