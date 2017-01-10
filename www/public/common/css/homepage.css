@@ -562,7 +562,7 @@
 		width: 100%;
 	}
 
-	.initial{
+	.initial, .success, .failure{
 		left: 20px;
 	}
 
