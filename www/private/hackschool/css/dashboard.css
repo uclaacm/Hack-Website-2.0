@@ -66,8 +66,7 @@
 .profile{
 	background: #fff;
 	height: 100px;
-	padding: 40px;
-	padding-top: 76px;
+	padding: 76px 40px 25px 40px;
 	box-shadow: var(--shad);
 }
 
@@ -80,7 +79,8 @@
 	margin: 0 15px 20px 20px;
 	background: var(--grey-deep);
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
+    background-position: 50%;
 }
 
 .shadow{
@@ -89,12 +89,9 @@
 	z-index: -1;
 }
 
-.profile-pic.main{
-}
-
 .main-profile-info{
 	float: left;
-	margin: 5px 0;
+	margin: 3px 0;
 	height: 150px;
 }
 
@@ -138,19 +135,77 @@
 .profile ul.team-members{
 	margin-top: 10px;
 	overflow: visible;
+	position: absolute;
+	z-index: 100;
 }
 
-.profile ul.team-members{
+.profile ul.team-members li{
 	display: inline-block;
-	margin-right: 10px;
+    position: relative;
+    width: 60px;
 }
 
-.team-profile-pic{
+.profile .team-profile-pic{
 	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background: var(--grey-deep);
-	background-size:100%;
+    width: 50px;
+    border-radius: 50%;
+    background: var(--grey-deep);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border: 2px solid white;
+    margin: auto;
+}
+
+.team-members .shadow{
+	left: 50%;
+    margin-left: -26px !important;
+}
+
+.team-members li:hover .hover-name{
+	opacity: 1;
+}
+
+.hover-name{
+	position: absolute;
+	opacity: 0;
+	background: #fff;
+	border-radius: 3px;
+	box-shadow: var(--shad);
+	padding: 5px;
+	text-align: center;
+	top: 65px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+    		transform: translateX(-50%);
+}
+
+.hover-name .triangle-with-shadow {
+	width: 20px;
+	height: 20px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 16px 10px -17px rgba(0, 0, 0, 0.5);
+	margin: -25px auto 5px auto;
+}
+.hover-name .triangle-with-shadow:after {
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: #fff;
+	top: 15px;
+	left: 5px;
+	box-shadow: -1px -1px 10px -2px rgba(0, 0, 0, 0.5);
+	-webkit-transform: rotate(45deg);
+			transform: rotate(45deg);
+}
+
+.hover-name span{
+	font-size: 12px;
+	font-family: var(--fam1);
+	letter-spacing: 0px !important;
+	text-transform: uppercase;
 }
 
 /*=================DASHBOARD NAV====================*/
