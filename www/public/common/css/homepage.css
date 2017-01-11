@@ -174,6 +174,11 @@
 	color: #000;
 }
 
+.bg p {
+	padding: 5px;
+}
+
+
 .hack-bg {
 	height: 100%;
 	width: 100%;
@@ -279,8 +284,9 @@
 	width: 100%;
 	margin-right: -10%;
 	background-image: url('/common/images/Hackschool.jpg');
-	background-size: 150%;
+	background-size: cover; 
 	background-position: 50% 50%;
+	background-repeat: no-repeat;
 	float: right;
 }
 
@@ -298,7 +304,8 @@
 #email input{
 	font-family: var(--fam1);
 	font-size: 16px;
-    padding: 10px 0px;
+	font-weight: 300;
+    padding: 5px 5px;
     width: 250px;
     border: none;
     border-bottom: 2px solid var(--highlight);
@@ -435,15 +442,15 @@
 	padding-top: 10px;
 }
 
-.community-bg h1,.community-bg p{
-	text-align: center;
-	padding: 10px;
+.community-bg h1, .community-bg p{
+	text-align: center;;
+	padding: 40px;
 }
 
 .community-bg p{
 	text-align: left;
     margin: 0px 10px 10px 10px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .carousel {
@@ -491,10 +498,17 @@
 
 /*==================MEDIA QUERIES=================*/
 
+@media only screen and (max-width: 850px) {
+	#email button {
+		margin-top: 10px;
+		display: block;
+	}
+}
+
 @media only screen and (max-width: 700px) {
 
-	p{
-		font-size: 12px;
+	p {
+		font-size: 14px;
 	}
 
 	.opening-logo{
