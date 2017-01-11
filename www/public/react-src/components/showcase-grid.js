@@ -40,6 +40,7 @@ class ShowcaseGrid extends Component{
 		//miscellaneous fixes
 		const body = document.querySelector('body');
 		body.classList.add('fix-scroll');
+		document.querySelector('.submit-project').classList.add('exitLeft');
 	}
 
 	renderProject(project, row, column){
