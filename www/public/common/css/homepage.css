@@ -348,51 +348,45 @@
 
 .event {
 	width: 33.3%;
-	height: inherit;
+	height: 100%;
 	float: left;
 	background-size: cover;
 	background-position: center;
-	padding: 20px 0px;
 	box-sizing: border-box;
-
+	text-align: center;
 	-webkit-transition: all 0.2s;
 			transition: all 0.2s;
 }
 
-.event:hover{
-	opacity: 0.8;
-}
-
-.event:hover p{
-	opacity: 1;
-}
-
-.event:hover h2{
-	opacity: 0;
-}
-
-.event-title{
-	position: absolute;
-	width: 33.33%;
-	margin-top: 40px;
+.event .event-inner {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .event h2 {
 	font-size: 30px;
 	text-transform: uppercase;
 	letter-spacing: 5px;
+	text-shadow: 0px 1px 2px #000000;
 	color: white;
+	display: block;
 	margin-bottom: 10px;
-	text-align: center;
 }
+
 .event p {
-	opacity: 0;
+	display: none;
 	color: white;
-	text-align: center;
 	font-size: 16px;
 	letter-spacing: 0;
 	padding: 20px;
 }
+
+.event:hover h2 { display: none; }
+.event:hover p { display: block; }
+.event:hover .event-inner { background: rgba(0,0,0,0.5); }
 
 #hoth {
 	background-image: url('/common/images/hackonthehill.png');
@@ -498,10 +492,14 @@
 
 /*==================MEDIA QUERIES=================*/
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 880px) {
 	#email button {
 		margin-top: 10px;
 		display: block;
+	}
+
+	p {
+		font-size: 16px;
 	}
 }
 
@@ -569,10 +567,6 @@
 
 	.event{
 		border-bottom: 10px solid #000;
-	}
-
-	.event-title{
-		margin-top: 30px;
 	}
 
 	.events-list div {
