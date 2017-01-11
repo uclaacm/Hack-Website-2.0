@@ -244,6 +244,8 @@ div.submit-project {
 
 	.submit-project{
 		width: 90% !important;
+		left: 5% !important;
+		margin-left: 0 !important;
 	}
 
 	.grid{
