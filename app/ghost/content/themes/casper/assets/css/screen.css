@@ -1173,7 +1173,7 @@ body.page-template .post-title {
    text column to break out. */
 .post-content img {
     display: block;
-    max-width: 126%;
+    max-width: 100%;
     height: auto;
     padding: 0.6em 0;
     /* Centers an image by (1) pushing its left edge to the
@@ -1320,7 +1320,7 @@ body.page-template .post-title {
 }
 
 .author-profile {
-    padding: 0 15px 5rem 15px;
+    padding: 50px 15px 5rem 15px;
     border-bottom: #EBF2F6 1px solid;
     text-align: center;
 }
