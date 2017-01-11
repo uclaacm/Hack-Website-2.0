@@ -41,6 +41,7 @@ class ProjectDetail extends Component{
 		//miscellaneous fixes
 		const body = document.querySelector('body');
 		body.classList.remove('fix-scroll');
+		document.querySelector('.submit-project').classList.remove('exitLeft');
 	}
 
 	render(){

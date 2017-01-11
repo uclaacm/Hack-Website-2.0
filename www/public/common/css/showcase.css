@@ -3,11 +3,31 @@
 	overflow: hidden;
 }
 
+div.submit-project {
+	background-color: white;
+	width: 820px;
+	height: 30px;
+	border-radius: 3px;
+	overflow: hidden;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 30px;
+	box-shadow: var(--shad);
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	font-size: 0.8em;
+	position: absolute;
+	left:50%;
+	margin-left: -410px;
+	-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
+			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07); 
+}
+
 /*==============PROJECT GRID============*/
 
 .grid{
 	width: 850px;
-	margin: 20px auto;
+	margin: 70px auto;
 }
 
 .project-td{
@@ -29,12 +49,14 @@
 			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
 }
 
-.project-item.exitLeft{
-	transform: translateX(-1500px);
+.exitLeft{
+	-webkit-transform: translateX(-1500px);
+			transform: translateX(-1500px);
 }
 
-.project-item.exitRight{
-	transform: translateX(1500px);
+.exitRight{
+	-webkit-transform: translateX(1500px);
+			transform: translateX(1500px);
 }
 
 .project-item .img-wrapper{
@@ -212,9 +234,17 @@
 	padding: 15px 30px;
 }
 
+.display-none{
+	display: none;
+}
+
 /*==============MEDIA QUERIES============*/
 
 @media only screen and (max-width: 850px){
+
+	.submit-project{
+		width: 90% !important;
+	}
 
 	.grid{
 		width: 100%;

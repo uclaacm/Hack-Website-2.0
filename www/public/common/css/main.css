@@ -143,7 +143,7 @@ a:hover, button:hover{
 
 .menu{
 	height: 70px;
-	width: 100vw;
+	width: 100%;
 	background: #fff;
 	box-shadow: var(--shad);
 	position: fixed;
@@ -361,6 +361,37 @@ a:hover, button:hover{
 .active .hamburg-line:nth-child(3){
 	opacity: 0;
 }
+
+.footer {
+	height: 50px;
+	width: 100%;
+	box-sizing: border-box;
+	background: white;
+	color: #888888;	
+	font-size: 0.7em;
+	font-family: var(--fam1);
+	padding: 0px 20px;
+}
+
+.footer .footer-inner .left { float: left; line-height: 50px; }
+.footer .footer-inner .right { float: right; line-height: 55px; }
+
+.footer .footer-inner span {
+	font-weight: 600;
+}
+
+.footer .footer-inner a.social-link {
+	color: inherit;;
+}
+
+.footer .footer-inner i.social-icon {
+	padding: 0px 2px;
+}
+
+.footer .footer-inner i.fa-facebook-square:hover { color: #3b5998; }
+.footer .footer-inner i.fa-github-square:hover { color: #6e5494; }
+.footer .footer-inner i.fa-instagram:hover { color: #f56040; }
+.footer .footer-inner i.fa-youtube-square:hover { color: #cd201f; }
 
 /*====================PAGE-CONTENT==================*/
 

@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/common/css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="/common/css/homepage.css"/>
+	<link rel="stylesheet" type="text/css" href="/common/css/font-awesome.min.css"/>
 
 	<link rel="shortcut icon" type="image/x-icon" href="/common/images/favicon.png" />
 </head>
@@ -35,11 +36,11 @@
 					</ul>
 				</div>
 				<div class="mobile-login">
-					<a href="/auth"><h1 class="hack-mobile-login">LOGIN</h1></a>
+					<a href=""><h1 class="hack-mobile-login">LOGIN</h1></a>
 				</div>
 			</div>
 		</div>
-		<a class="login-wrapper" href="/auth">
+		<a class="login-wrapper" href="">
 			<img src="/common/images/School-Logo-White.png"/>
 			<span>HACK LOGIN</span>
 		</a>
@@ -67,8 +68,8 @@
 			<div class="text-over">
 				<h1 class="title inactive">Move Fast.</h1>
 				<h1 class="title inactive">Build Things.</h1>
-				<div class="btn-enter inactive">
-					<a onClick="scrollToHack()">START HACKING</a>
+				<div class="btn-enter inactive" onClick="scrollToHack()">
+					<a>START HACKING</a>
 				</div>
 			</div>
 		</div>
@@ -82,11 +83,42 @@
 				<p>
 					We are a student-run organization that aims to empower UCLA students to influence their world through code. We host events for coders of all skill levels. So whether you've been to 10 hackathons, or you just learned "hello world", we're happy to have you.
 				</p>
-				<div class="btn-enter">
-					<a onClick="scrollToSchool()">MORE ON HACK SCHOOL</a>
+				<div>
+					<button class="btn-enter" onClick="scrollToSchool()">
+						<a>MORE ON HACK SCHOOL</a>
+					</button>
 				</div>
 			</div>
 			<!--<div class="bar-container"><div class="bar"></div></div>-->
+		</div>
+
+		<div class="events-list">
+				<div class="event" id="ctf">
+					<div class="event-inner">
+						<h2>Capture the Flag</h2>
+						<p>
+							A cyber security competition. Try your hand at challenges on topics such as: DoS attacks, SQL injections, cracking passwords.
+						</p>
+					</div>
+				</div>
+			
+				<div class="event" id="hoth">
+					<div class="event-inner">
+						<h2>Hack on the Hill</h2>
+						<p>
+							A quarterly 12 hour hackathon. We will have technical workshops, experienced mentors, and amazing prizes for the best hacks by the end of the day. 
+						</p>
+					</div>
+				</div>
+				
+				<div class="event" id="expo">
+					<div class="event-inner">
+						<h2>Hacker Expo</h2>
+						<p>
+							A yearly event held in the fall that is brought to you by ACM and Facebook. If you get your project featured you will have the opportunity to win prizes, get swag, and recruit with facebook for summer internships. 
+						</p>
+					</div>
+				</div>
 		</div>
 
 		<div class="school-bg inactive bg">
@@ -94,44 +126,28 @@
 				<div class="image"></div>
 			</div>
 			<div class="text-wrapper wrapper">
-				<h1 class="title">HackSchool</h1>
+				<h1 class="title">Hack School</h1>
 				<p>
-					HackSchool is a quarter-long course that gives beginners the skills they need to build and deploy their own projects. You will learn from experienced teachers, collaborate on group projects, and meet like-minded peers. Our schedule for this year is Web Development in the Fall, Android in the Winter, and iOS in the Spring.
+					Hack School is a quarter-long course that gives beginners the skills they need to build and deploy their own projects. You will learn from experienced teachers, collaborate on group projects, and meet like-minded peers. Our schedule for this year is Web Development in the Fall, Android in the Winter, and iOS in the Spring.
 				</p>
-				<div class="btn-enter">
-					<a href="/auth">SIGN UP NOW</a>
-				</div>
+				<form name="email" id="email" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+					<div class="initial">
+						<input type="text" name="email" placeholder="email address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+						<button class="btn-enter" type="submit">
+							<a>SUBSCRIBE</a>
+						</button>
+					</div>
+					<div class="success hidden">
+						<h3>You're subscribed!</h3>
+					</div>
+					<div class="failure hidden">
+						<h3>Something went wrong.</h3>
+					</div>
+				</form>
 			</div>
 		</div>
-<!--
-		<div class="events-list">
-				<div class="event" id="ctf">
-					<div class="event-title">
-						<h2>Capture the Flag</h2>
-					</div>
-					<p>
-						Ever wanted to try out real hacking? We are partnering with LUG this Spring to host a cyber security competition. You will be able to try your hand at ethical hacking by completing challenges on topics such as: DoS attacks, SQL injections, cracking passwords. The event is open to students of all skill levels.
-					</p>
-				</div>
-			
-				<div class="event" id="hoth">
-					<div class="event-title">
-						<h2>Hack on the Hill</h2>
-					</div>
-					<p>
-						Hack on the Hill is a quarterly 12 hour hackathon on your school's campus that brings together local hackers to build awesome technology. We will have technical workshops, experienced mentors, and amazing prizes for the best hacks by the end of the day. Whether you're a seasoned hackathon veteran or have never been to a hackathon before, Hack on the Hill is the best way to get involved with UCLA's hacker community.
-					</p>
-				</div>
-				
-				<div class="event" id="expo">
-					<div class="event-title">
-						<h2>Hacker Expo</h2>
-					</div>
-					<p>
-						Hacker Expo is a yearly event held in the fall that is brought to you by ACM and Facebook. It is a great place to check out cool projects that other students are working on and to meet other hackers. If you get your project featured you will have the opportunity to win prizes, get swag, and recruit with facebook for summer internships. We encourage everybody to come out and support our local hacking community!
-					</p>
-				</div>
-		</div>-->
+
+		
 		<!--<div class="see-all">
 			<a href="events">
 				<div class="button">
@@ -140,8 +156,8 @@
 			</a>
 		</div>-->
 
-		<!--<div class="community-bg">
-			<h1 class="title">Our Community</h1>
+		<div class="community-bg">
+			<!--<h1 class="title">Our Community</h1>-->
 			<p>
 				ACM Hack was rebooted in 2014 to promote the hacker community at UCLA. Our main goal is to provide educational opportunities in computer science, giving every student the chance to pick up useful industry skills, often ignored in traditional UCLA curriculum. We want to instill a hacking culture into our school's student body, and improve students' problem-solving skills. We hope by holding regular workshops, hackathons, and other events we can promote a community that will learn from one another, grow, and ultimately thrive.
 			</p>
@@ -152,10 +168,20 @@
 				<li></li>
 				<li></li>
 			</ul>
-		</div>-->
+			
+		</div>
 
-		<!--<div class="footer-bg">
-		</div>-->
+		<div class="footer">
+			<div class="footer-inner">
+				<div class="left"><span>&copy; ACM Hack.</span> All Rights Reserved.</div>
+				<div class="right">
+					<a class="social-link" href="https://www.facebook.com/groups/hackatucla/" target="_BLANK"><i class="social-icon fa fa-2x fa-facebook-square" aria-label="Facebook"></i></a>
+					<a class="social-link" href="https://github.com/uclaacm" target="_BLANK"><i class="social-icon fa fa-2x fa-github-square" aria-label="Github"></i></a>
+					<a class="social-link" href="https://www.instagram.com/uclahack/" target="_BLANK"><i class="social-icon fa fa-2x fa-instagram" aria-label="Instagram"></i></a>
+					<a class="social-link" href="https://www.youtube.com/channel/UCSUnSy6MOwYZQJt8rQiYQpg" target="_BLANK"><i class="social-icon fa fa-2x fa-youtube-square" aria-label="YouTube"></i></a>
+				</div>
+			</div>
+		</div>
 
 <script src="/common/js/homepage.js"></script>
 <script>
@@ -181,6 +207,52 @@ function scrollToSchool(){
 		var divVal = document.querySelector('.school-bg');
 		animate(divVal,600);
 }
+
+function update(httpRequest) {
+  if (httpRequest.readyState == 4) {
+    if ((httpRequest.status == 200) || (httpRequest.status == 0)) {
+    	var response = JSON.parse(httpRequest.responseText);
+    	if(response.success)
+    		document.querySelector('.success').classList.remove('hidden');
+    	else{
+    		const failure = document.querySelector('.failure');
+    		failure.children[0].innerHTML = '<h3>' + response.error + '</h3>';
+    		failure.classList.remove('hidden');
+    	}
+    		
+    } else {
+    	//will display <h3>Something went wrong.</h3>
+       document.querySelector('.failure').classList.remove('hidden');
+    }
+  }
+}
+
+function send_with_ajax(e) {
+	e.preventDefault();
+	const url = '/api/v1/mailinglist/subscribe';
+	const formInput = this.elements[0].value;
+
+	var httpRequest = new XMLHttpRequest();
+	var params = "email=" + encodeURIComponent(formInput);
+	
+	httpRequest.open("POST", url, true);
+	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	httpRequest.onreadystatechange = function() { update(httpRequest); };
+	httpRequest.onerror = function() {};
+	httpRequest.send(params);
+
+	document.querySelector('.initial').classList.add('hidden');
+}
+
+document.forms['email'].addEventListener('submit', send_with_ajax);
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-90129358-1', 'auto');
+  ga('send', 'pageview');
 
 </script>
 </body>

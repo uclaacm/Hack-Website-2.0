@@ -483,6 +483,12 @@ button span.icon{
 
 /*=================LEADERBOARD====================*/
 
+.team-profile-pic{
+	background-size: cover !important;
+	background-position: 50% !important;
+	background-repeat: none;
+}
+
 .leaderboard{
 	width: 1002px; /*for shadow*/
 	padding-left:2px;
