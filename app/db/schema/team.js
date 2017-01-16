@@ -31,6 +31,20 @@ Team.statics.findByName = function(name, callback) {
 	this.findOne({ name }, callback); 
 };
 
+Team.methods.addAttended = function(sessionNumber, userId) {
+	let sessionFound = false;
+	for (let i = 0; i < this.attendance.length; i++) {
+		if (this.attendance[i].sessionNumber === sessionNumber) {
+			sessionFound = true;
+			if (!this.attendance[i].usersAttended.includes(userId))
+				this.attendance[i].usersAttended.push(userId);
+		}
+	}
+
+	if (!sessionFound)
+		this.attendance.push({ sessionNumber: sessionNumber, usersAttended: [userId] });
+};
+
 Team.methods.getPublic = function() {
 	let team = _.pick(this, ['id', 'name', 'scores']);
 	team.members = this.members.map(member => member.getPublic());
