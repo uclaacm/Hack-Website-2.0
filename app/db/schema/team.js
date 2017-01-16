@@ -1,5 +1,7 @@
 const _ = require('underscore');
 const uuid = require('node-uuid');
+const TOTAL_ATTENDANCE = 12;
+
 let Schema = require('mongoose').Schema;
 let ObjectId = Schema.ObjectId;
 
@@ -14,7 +16,7 @@ let Team = new Schema({
 	name: { type: String, required: true },
 	members: { type: [User], required: true },
 	scores: { type: [{ sessionNumber: Number, score: Number }] },
-	attendence: { type: [Number] }
+	attendance: { type: [{ sessionNumber: Number, usersAttended: [String] }] }
 });
 
 Team.statics.getAll = function(callback) {
@@ -30,10 +32,10 @@ Team.statics.findByName = function(name, callback) {
 };
 
 Team.methods.getPublic = function() {
-	let team = _.pick(this, ['id', 'name', 'scores', 'attendence']);
+	let team = _.pick(this, ['id', 'name', 'scores']);
 	team.members = this.members.map(member => member.getPublic());
 	team.totalScore = this.scores.reduce((a,b) => a.score + b.score, 0) +
-					  this.attendence.reduce((a,b) => a + b, 0);
+					  (TOTAL_ATTENDANCE / this.members.length) * this.attendance.reduce((a,b) => a.usersAttended.length + b.usersAttended.length, 0);
 	return team;
 };
 

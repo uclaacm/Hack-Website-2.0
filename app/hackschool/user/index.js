@@ -15,11 +15,7 @@ router.get('/', (req, res) => {
 	res.json({
 		success: true,
 		error: null,
-		user: {
-			id : req.user.id,
-			name: req.user.name,
-			profilePicture: req.user.profilePicture
-		}
+		user: req.user.getPublic()
 	});
 });
 
