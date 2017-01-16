@@ -39,7 +39,7 @@ class SessionDetail extends Component{
 							{session.project && 
 							<div className="scores">
 								<p>SCORE</p>
-								<p>{session.points || 0}</p>
+								<p>{session.points || 0}/20</p>
 							</div>}
 							{/*display links only if they are not empty*/}
 							{slidesLink && <a href={session.slidesLink} target="_blank">
