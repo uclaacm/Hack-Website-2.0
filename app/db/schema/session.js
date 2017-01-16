@@ -37,7 +37,8 @@ Session.statics.findById = function(id, callback) {
 };
 
 Session.statics.findSessionForDate = function(date, callback) {
-	this.findOne({ "date.start" : { $lt : date }, "date.end" : { $gt : date } }, callback);
+	this.findOne({ "number": 2}, callback);
+	//this.findOne({ "date.start" : { $lt : date }, "date.end" : { $gt : date } }, callback);
 };
 
 Session.statics.sanitize = function(session, withId=true) {

@@ -1,46 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class SessionItem extends Component{
-
-	render(){
+export default function SessionItem(props){
 		
-		return(
-			<div className="session-item" onClick={this.props.onClickEvent}>
+	return(
+			<div className="session-item" onClick={props.onClickEvent}>
 				<div 	className="img-wrapper"
-						style={{backgroundImage: `url(${this.props.image})`}}>
+						style={{backgroundImage: `url(${props.image})`}}>
 				</div>
-				<div className="attend">
-					<div className="circle-icon">
-						<i className="fa fa-check hl" ariaHidden="true"></i>
+				{	
+					props.attendance.includes(props.number) &&
+					<div className="attend">
+						<div className="circle-icon">
+							<i className="fa fa-check hl" ariaHidden="true"></i>
+						</div>
+						<p>ATTENDED</p>
 					</div>
-					<p>ATTENDED</p>
-				</div>
+				}
 				<div className="text-wrapper">
-					<h4 className="week">Week {this.props.number}</h4>
-					<h3>{this.props.title}</h3>
+					<h4 className="week">Week {props.number}</h4>
+					<h3>{props.title}</h3>
 				</div>
 				<div className="icons">
 					{/*if the link is not available, don't show its icon*/}
 					{
-						this.props.project && this.props.slidesLink &&
+						props.project && props.slidesLink &&
 						<span>
 							<i className="fa fa-film" ariaHidden="true"></i>
 						</span>
 					}
 					{
-						this.props.project && this.props.videoLink &&
+						props.project && props.videoLink &&
 						<span>
 							<i className="fa fa-video-camera" ariaHidden="true"></i>
 						</span>
 					}
 					{
-						this.props.project && this.props.blogPostLink &&
+						props.project && props.blogPostLink &&
 						<span>
 							<i className="fa fa-thumb-tack" ariaHidden="true"></i>
 						</span>
 					}
 					{
-						this.props.project && 
+						props.project && 
 						<span className="right">
 							<i className="fa fa-plus hl" ariaHidden="true"></i>
 						</span>
@@ -48,8 +49,5 @@ class SessionItem extends Component{
 				</div>
 			</div>
 		);
-	}
 
 }
-
-export default SessionItem;

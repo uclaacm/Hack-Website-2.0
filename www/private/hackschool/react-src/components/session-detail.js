@@ -9,6 +9,16 @@ class SessionDetail extends Component{
 		const session = this.props.selectedSession;
 		if(!session)
 			return null;
+
+		let teamScore = this.props.team.team.scores
+							.find(score => score.sessionNumber == session.number);
+
+		if(!session.project)
+			teamScore = null;
+		else if(typeof teamScore == 'undefined')
+			teamScore = `0/`;
+		else
+			teamScore = `${teamScore.score}/`;
 		
 		//if no link, button will not be displayed
 		const slidesLink = typeof session.slidesLink != 'undefined';
@@ -39,7 +49,7 @@ class SessionDetail extends Component{
 							{session.project && 
 							<div className="scores">
 								<p>SCORE</p>
-								<p>{session.points || 0}/20</p>
+								<p>{teamScore}{session.points}</p>
 							</div>}
 							{/*display links only if they are not empty*/}
 							{slidesLink && <a href={session.slidesLink} target="_blank">
@@ -64,8 +74,8 @@ class SessionDetail extends Component{
 
 }
 
-function mapStateToProps({selectedSession}){
-	return {selectedSession};
+function mapStateToProps({selectedSession, team}){
+	return {selectedSession, team};
 }
 
 function mapDispatchToProps(dispatch){

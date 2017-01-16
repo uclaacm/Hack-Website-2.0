@@ -14,14 +14,14 @@ class Dialog extends Component{
 		this.render = this.render.bind(this);
 	}
 
-	incrementSlide(num, callback){
-		if(this.state.currentSlide == 2)
+	incrementSlide(num, maxSlides, callback){
+		if(this.state.currentSlide == maxSlides)
 			callback('reset-error', null);
 
 		if(this.state.currentSlide == 0 && num < 0)
 			this.props.changeDialog({active : false});
 
-		this.setState({currentSlide: this.state.currentSlide+num});
+		this.setState({currentSlide: this.state.currentSlide + num});
 	}
 
 	onFormSubmit(e){

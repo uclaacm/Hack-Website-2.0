@@ -23,7 +23,8 @@ class SessionsGrid extends Component{
 		const slidesLink = !(typeof session.slidesLink == 'undefined');
 		const videoLink = !(typeof session.videoLink == 'undefined');
 		const blogPostLink = !(typeof session.blogPostLink == 'undefined');
-		
+		const attendance = this.props.user.attendance;
+
 		return (
 			<td 	className	= "project-td"
 					key			= { session.id }>
@@ -37,7 +38,8 @@ class SessionsGrid extends Component{
 							 project 		= { session.project }
 							 slidesLink		= { slidesLink }
 							 videoLink		= { videoLink }
-							 blogPostLink	= { blogPostLink } />
+							 blogPostLink	= { blogPostLink } 
+							 attendance		= { attendance }/>
 			</td>
 		);
 	}
@@ -64,8 +66,8 @@ class SessionsGrid extends Component{
 
 }
 
-function mapStateToProps({sessions}){
-	return {sessions};
+function mapStateToProps({sessions, user}){
+	return {sessions: sessions.data, user};
 }
 
 function mapDispatchToProps(dispatch){

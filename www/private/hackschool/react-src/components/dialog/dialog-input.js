@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { triggerTeamAction } from '../../actions';
+import { triggerTeamAction, triggerSessionAction } from '../../actions';
 
 class DialogOnboardInput extends Component{
 
@@ -24,7 +24,14 @@ class DialogOnboardInput extends Component{
 		let userInput = this.state.term;
 		if(action == 'leave' && this.state.term != this.props.team.name)
 			userInput = null;
-		this.props.triggerTeamAction(action, userInput);
+
+		if(action == 'attend'){
+			this.props.triggerSessionAction(action, userInput);
+		}
+		else{
+			this.props.triggerTeamAction(action, userInput);
+		}
+		
 		this.props.onFormSubmit(e);
 	}
 
@@ -56,7 +63,7 @@ function mapStateToProps({team}){
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({triggerTeamAction}, dispatch);
+	return bindActionCreators({triggerTeamAction, triggerSessionAction}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogOnboardInput);

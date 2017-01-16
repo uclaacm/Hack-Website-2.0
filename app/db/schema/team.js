@@ -46,6 +46,7 @@ Team.methods.addAttended = function(sessionNumber, userId) {
 };
 
 Team.methods.getPublic = function() {
+    console.log(this);
 	let team = _.pick(this, ['id', 'name', 'scores']);
 	team.members = this.members.map(member => member.getPublic());
 	team.totalScore = this.scores.reduce((a,b) => a.score + b.score, 0) +

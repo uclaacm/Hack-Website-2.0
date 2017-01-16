@@ -41,10 +41,10 @@ class Dashboard extends Component{
 		return (
 			<div>
 				{ this.props.dialog.active && <DialogBox /> }
-				{this.props.currentSlide == 'sessions' && <SessionDetail />}
+				{ this.props.currentSlide == 'sessions' && <SessionDetail /> }
 				<MenuBar />
 				<Profile />
-				{currentSlide}
+				{ currentSlide }
 			</div>
 		);
 	}

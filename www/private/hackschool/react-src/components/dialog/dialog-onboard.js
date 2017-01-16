@@ -119,7 +119,7 @@ class DialogOnboard extends Dialog{
 	}
 
 	incrementSlide(num){
-		Dialog.prototype.incrementSlide.call(this, num, this.props.triggerTeamAction);
+		Dialog.prototype.incrementSlide.call(this, num, 2, this.props.triggerTeamAction);
 	}
 
 	renderFailure(){
