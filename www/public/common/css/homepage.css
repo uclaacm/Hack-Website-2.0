@@ -76,12 +76,19 @@
 			transform: rotate(45deg);
 }
 
+/*=================ANIMATION====================*/
+.locked {
+	overflow: hidden;
+}
+
 /*===================MAIN-BG====================*/
 
 .main-bg{
 	height: 100%;
 	width: 100%;
 	background-image: url('/common/images/HackSchool-gradientmap.jpg');
+	background-size: cover;
+	background-position: center;
 	opacity: 1;
 	-webkit-transition: all 0.5s ease;
     		transition: all 0.5s ease;
@@ -93,6 +100,7 @@
 
 .text-over{
 	position: absolute;
+	width: auto;
 	left: 50%;
 	top: 50%;
 	-webkit-transform: translate(-50%, -50%);
@@ -113,26 +121,394 @@
 }
 
 .btn-enter{
+	display: inline-block;
 	margin-top: 40px;
-}
-
-.btn-enter a{
-	color: var(--highlight);
-	padding: 20px;
 	border: 2px solid var(--highlight);
-
+	padding: 20px;
 	-webkit-transition: all 0.2s;
     		transition: all 0.2s;
 }
 
-.btn-enter a:hover{
+.btn-enter:hover{
+	background: var(--highlight) !important;
+	cursor: pointer;
+}
+
+.btn-enter a{
+	color: var(--highlight);
+}
+
+.btn-enter:hover a{
 	color: #fff;
-	background: var(--highlight);
+}
+/*================================WHAT-IS-HACK=====================*/
+
+.bg{
+	background: var(--grey-light);
+	overflow: hidden;
+}
+
+.bg .image-wrapper{
+	-webkit-transition: all 0.5s;
+			transition: all 0.5s;
+}
+
+.bg .text-wrapper{
+	margin-top: 5%;
+	-webkit-transition: all 1s;
+			transition: all 1s;
+}
+
+.bg .btn-enter{
+	margin-top: 20px;
+	border-radius: 3px;
+	border: 0;
+	box-shadow: var(--shad);
+	background: #fff;
+	padding: 10px;
+	padding: 10px;
+    font-size: 16px;
+}
+
+.bg h1, .bg p{
+	color: #000;
+}
+
+.bg p {
+	padding: 5px;
+}
+
+
+.hack-bg {
+	height: 100%;
+	width: 100%;
+	background-color: var(--grey-light);
+	-webkit-transition: opacity 1s;
+			transition: opacity 1s;
+}
+
+.hack-bg .text-wrapper {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	height: 450px;
+	position: absolute;
+    float: left;
+	padding: 0 50px 0 75px;
+}
+
+.hack-bg .image-wrapper {
+	height: 100%;
+	width: 50%;
+	margin-right: -10%;
+	float: right;
+	transform: skewX(-10deg);
+	overflow: hidden;
+	box-shadow: var(--shad);
+}
+
+.hack-bg .image {
+	transform: skewX(10deg);
+	height: 100%;
+	width: 100%;
+	margin-left: -15%;
+	background-image: url('/common/images/updated-hack.jpg');
+	background-size: cover;
+	background-position: right;
+}
+
+.hack-bg .bar-container {
+	height: 100%;
+	width: 15px;
+	float: right;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.hack-bg .bar-container .bar {
+	width: 100%;
+	background-color: var(--hack-purp);
+}
+
+.hack-bg.inactive .image-wrapper, .school-bg.inactive .image-wrapper{
+	-webkit-transform: translateX(-50px);
+			transform: translateX(-50px);
+}
+
+.hack-bg.inactive .text-wrapper, .school-bg.inactive .text-wrapper{
+	-webkit-transform: translateX(50px);
+			transform: translateX(50px);
+}
+
+/*================================HACKSCHOOL=====================*/
+
+.school-bg {
+	height: 100%;
+	width: 100%;
+	color: white;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: right;
+	-webkit-transition: all 1s;
+			transition: all 1s;
+}
+
+.school-bg .text-wrapper {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 60%;
+	height: 450px;
+	float: left;
+	padding: 0 100px;
+	text-align: right;
+}
+
+.school-bg .image-wrapper {
+	height: 101%;
+	width: 55%;
+	margin-left: -15%;
+	float: left;
+	transform: skewX(-10deg);
+	overflow: hidden;
+	box-shadow: var(--shad);
+}
+
+.school-bg .image {
+	transform: skewX(10deg);
+	height: 120%;
+	width: 100%;
+	margin-right: -10%;
+	background-image: url('/common/images/Hackschool.jpg');
+	background-size: cover; 
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	float: right;
+}
+
+/*form related*/
+
+#email{
+	height: 42px;
+	margin-top: 20px;
+}
+
+#email button{
+	margin-top: 0px;
+}
+
+#email input{
+	font-family: var(--fam1);
+	font-size: 16px;
+	font-weight: 300;
+    padding: 5px 5px;
+    width: 250px;
+    border: none;
+    border-bottom: 2px solid var(--highlight);
+    background: none;
+    margin-right: 20px;
+}
+
+#email input:active{
+	background: none;
+}
+
+#email > *{
+	position: absolute;
+	right: 100px;
+	-webkit-transition: opacity 0.2s ease;
+			transition: opacity 0.2s ease;
+}
+
+.initial{
+	z-index: 4;
+}
+
+.success h3, .failure h3{
+	color: var(--highlight);
+}
+
+.hidden{
+	opacity: 0;
+}
+
+/*================================EVENTS-LIST=====================*/
+
+
+.events-list {
+	width: 100%;
+	height: 200px;
+	background-color: #000;
+	overflow: hidden;
+}
+
+.event {
+	width: 33.3%;
+	height: 100%;
+	float: left;
+	background-size: cover;
+	background-position: center;
+	box-sizing: border-box;
+	text-align: center;
+	-webkit-transition: all 0.2s;
+			transition: all 0.2s;
+}
+
+.event .event-inner {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.event h2 {
+	font-size: 30px;
+	padding: 10px;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	text-shadow: 0px 1px 2px #000000;
+	color: white;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.event p {
+	display: none;
+	color: white;
+	font-size: 12px;
+	letter-spacing: 0;
+	padding: 20px;
+}
+
+.event:hover h2 { display: none; }
+.event:hover p { display: block; }
+.event:hover .event-inner { background: rgba(0,0,0,0.5); }
+
+#hoth {
+	background-image: url('/common/images/hackonthehill.png');
+}
+
+#expo {
+	background-image: url('/common/images/hackerexpo.png');
+}
+
+#ctf {
+	background-image: url('/common/images/acm.png');
+}
+/*
+.see-all {
+	width: 100%;
+	height: auto;
+	background-color: white;
+	padding: 20px 0 20px;
+}
+
+.see-all .button {
+	margin: 0 auto;
+	width: 400px;
+	height: auto;
+	padding: 20px;
+	border: 2px solid var(--hack-purp);
+	transition: 0.1s;
+}
+
+.see-all .button:hover {
+	background-color: var(--hack-purp);
+}
+.see-all .button:hover h2 {
+	color: white;
+}
+
+.see-all h2 {
+	text-align: center;
+	text-transform: uppercase;
+	color: var(--hack-purp);
+}*/
+/*================================COMMUNITY=====================*/
+
+.community-bg {
+	height: auto;
+	background: #fff;
+	padding-top: 10px;
+}
+
+.community-bg h1, .community-bg p{
+	text-align: center;;
+	padding: 40px;
+}
+
+.community-bg p{
+	text-align: left;
+    margin: 0px 10px 10px 10px;
+    font-size: 16px;
+}
+
+.carousel {
+	width: 100%;
+	height: 200px;
+	background-color: white;
+}
+
+.carousel li {
+	height: 100%;
+	width: 20%;
+	background-size: cover;
+	background-position: center;
+	float: left;
+}
+
+.carousel li:first-child {
+	background-image: url('/common/images/community1.jpg')
+}
+
+.carousel li:nth-child(2) {
+	background-image: url('/common/images/community2.jpg')
+}
+
+.carousel li:nth-child(3) {
+	background-image: url('/common/images/community3.jpg')
+}
+
+.carousel li:nth-child(4) {
+	background-image: url('/common/images/community4.jpg')
+}
+
+.carousel li:nth-child(5) {
+	background-image: url('/common/images/community5.jpg')
+}
+
+/*================================FOOTER=====================*/
+
+.footer-bg {
+	height: 80px;
+	width: 100%;
+	/*background-color: var(--hack-purp);*/
+	background: #fff;
 }
 
 /*==================MEDIA QUERIES=================*/
 
+@media only screen and (max-width: 880px) {
+	#email button {
+		margin-top: 10px;
+		display: block;
+	}
+
+	p {
+		font-size: 16px;
+	}
+}
+
 @media only screen and (max-width: 700px) {
+
+	p {
+		font-size: 14px;
+	}
 
 	.opening-logo{
 		-webkit-transform: scale(0.6);
@@ -142,4 +518,77 @@
 	.text-over{
 		margin-top: -5vh;
 	}
+
+	.btn-enter{
+		padding: 15px;
+		margin-top: 10px !important;
+	}
+
+	.btn-enter a{
+		font-size: 12px;
+	}
+
+	.bg{
+		height: 70%;
+	}
+
+	.school-bg .text-wrapper{
+		text-align: left;
+	}
+
+	.wrapper{
+		float: left;
+		width: 100%;
+	}
+
+	.text-wrapper {
+		height: auto;
+		width: 90% !important;
+		padding: 20px !important;
+		justify-content: flex-start;
+	}
+	.image-wrapper{
+		display: none;
+	}
+
+	.image{
+		height: 120%;
+		margin-left: 0;
+		margin-right: 0;
+		transform: skewY(10deg);
+		background-size: cover;
+	}
+	.events-list {
+		height: 540px;
+	}
+
+	.event:first-child{
+		border-top: 10px solid #000;
+	}
+
+	.event{
+		border-bottom: 10px solid #000;
+	}
+
+	.events-list div {
+		height: 180px;
+		width: 100%;
+	}
+
+	.initial, .success, .failure{
+		left: 20px;
+	}
+
+	.see-all .button {
+		width: 80%;
+	}
+
+	.carousel li{
+		width: 50%;
+	}
+	
+	.carousel li:nth-child(n+3){
+		width: 33.33%;
+	}
+
 }

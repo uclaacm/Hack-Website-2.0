@@ -16,6 +16,10 @@ router.route('/:sessionId?')
 	req.sessionObj = req.body && req.body.session
 	                     && typeof req.body.session === "object" ?
 						     db.Session.sanitize(req.body.session, withId=false) : null;
+	
+	// ALL remaining routes require a valid token to proceed.
+	if (!req.validToken)
+		return res.status(401).json({ success: false, error: "A valid token is needed for this request." });
 	next();
 })
 .get((req, res, next) => {
@@ -30,12 +34,6 @@ router.route('/:sessionId?')
 			sessions: err ? [] : results.map(session => db.Session.sanitize(session))
 		});
 	});
-})
-.all((req, res, next) => {
-	// ALL remaining routes require a valid token to proceed.
-	if (!req.validToken)
-		return res.status(401).json({ success: false, error: "A valid token is needed for this request." });
-	next();
 })
 .post((req, res, next) => {
 	// POST request adds a session

@@ -1,4 +1,4 @@
-import { FETCH_TEAM, CREATE_TEAM, JOIN_TEAM, LEAVE_TEAM, GET_TEAM_RANK, RESET_TEAM_ERROR } from '../actions/index';
+import { FETCH_TEAM, CREATE_TEAM, JOIN_TEAM, LEAVE_TEAM, GET_TEAM_RANK, RESET_TEAM_ERROR } from '../actions';
 
 export default (state = {team: null, rank: 'n/a', error: null, done: false}, action) => {
 	switch(action.type){

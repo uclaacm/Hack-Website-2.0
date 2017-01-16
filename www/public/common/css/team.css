@@ -17,7 +17,6 @@
 
 /*==================HEADER==================*/
 
-
 .header{
 	height: 250px;
 	width: 800px;
@@ -26,10 +25,12 @@
 
 .team-pic
 {
-    height: 250px;
-    width: 250px;
+  height: 400px;
+  width: 800px;
 	float:left;
-	background-size: cover;
+	background-size: 105%;
+	background-position: 0% 55%;
+	background-repeat: no-repeat;
 }
 
 .header > *{
@@ -37,42 +38,44 @@
 }
 
 .desc{
-    box-sizing: border-box;
-	width: 550px;
+  box-sizing: border-box;
+	width: 800px;
 	padding: 20px;
 	background: #fff;
-	height: 250px;
+	height: 200px;
+	margin-bottom: 20px;
 }
 
 .header h1{
 	font-family: var(--fam2);
 	font-weight: bold;
-	letter-spacing: 2px;
+	text-align: center;
 }
 
 .team-description{
 	font-family: var(--fam1);
 	font-size: 14px;
-    margin-top: 15px;
-    float:left;
+  padding-top: 15px;
+  float:left;
 }
 
 /*================INFO-CARDS==================*/
+.card-wrapper * {
+	box-sizing: border-box;
+}
 
 .card-wrapper{
 	margin-top: 20px;
-	overflow: auto;
 	width: 800px;
+	height: auto;
 }
 
 .card{
 	background: #fff;
 	width: 390px;
-	float: left;
-	text-align: center;
-    margin-top:20px;
+	height: auto;
 	margin-bottom: 20px;
-    padding-bottom: 20px;
+	float: left;
 }
 
 .card:first-child{
@@ -80,53 +83,60 @@
 }
 
 .title{
-	margin-top: 40px;
+	padding: 40px 0 30px;
 	font-family: var(--fam2);
-	font-weight: bold;
 	font-size: 28px;
-	letter-spacing: 5px;
+	text-align: center;
 }
 
 .member{
-	margin-top: 25px;
-	text-align: right;
+	height: 120px;
+}
+
+.image-wrapper {
+	width: 30%;
+	height: 120px;
+	float: left;
+	padding-left: 20px;
 }
 
 .profile-pic{
-	width:  80px; 
-    height: 80px;
+	width:  80px;
+  height: 80px;
 	border-radius: 50%;
-	float:left;
-	margin-left:28px;
+}
+
+.text-wrapper {
+	width: 70%;
+	height: 120px;
+	float: left;
+	padding: 0 20px 0 5px;
 }
 
 .member-name{
 	font-family: var(--fam1);
-	font-weight: 900;
+	font-weight: 700;
 	font-size: 17px;
-	margin-left: 140px;
 	text-align: left;
-	letter-spacing: 2px;
-	margin-right: 15px;
-	
-
 }
+
 .member-info{
 	font-family: var(--fam1);
-    font-weight: 500;
-	font-size: 16px;
-	margin-left: 140px;
-	margin-right: 15px;
+  font-weight: 500;
+	font-size: 14px;
 	text-align: left;
 }
 
 /*================MEDIA QUERIES==================*/
 
-@media only screen and (max-width: 850px){
+@media only screen and (max-width: 800px){
 
 	.header, .card-wrapper{
-		width: 80%;
-		margin-bottom: 20px;
+		width: 90%;
+	}
+
+	.team-pic{
+		height: 200px;
 	}
 
 	.team-pic, .desc{
@@ -136,8 +146,9 @@
 	.header, .desc{
 		height: auto;
 		overflow: auto;
+		margin-bottom: 0px;
+		box-shadow: var(--shad);
 	}
-
 	.card {
 		margin: 0 auto 20px auto !important;
 		padding: 20px;
@@ -145,4 +156,25 @@
 		width: 100%;
 	}
 
+	.member {
+		height: 200px;
+	}
+	.member div {
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+		padding: 0;
+	}
+	.member .image-wrapper {
+		height: 90px;
+	}
+	.member .text-wrapper {
+		height: 110px;
+	}
+	.member .text-wrapper > * {
+		text-align: center;
+	}
+	.spacer {
+		height: 70px;
+	}
 }

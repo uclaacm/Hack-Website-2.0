@@ -1,12 +1,14 @@
 import axios from 'axios';
 
 export const FETCH_USER = 'FETCH_USER';
-export const FETCH_SESSIONS = 'FETCH_SESSIONS';
 export const FETCH_SCOREBOARD = 'FETCH_SCOREBOARD';
 
 export const CHANGE_DIALOG = 'CHANGE_DIALOG';
 export const SELECT_SLIDE = 'SELECT_SLIDE';
 export const SELECT_SESSION = 'SELECT_SESSION';
+
+export const FETCH_SESSIONS = 'FETCH_SESSIONS';
+export const ATTEND_SESSION = 'ATTEND_SESSION';
 
 export const FETCH_TEAM = 'FETCH_TEAM';
 export const CREATE_TEAM = 'CREATE_TEAM';
@@ -27,82 +29,30 @@ export function fetchUser(url){
 
 }
 
-export function fetchSessions(url){
+export function triggerSessionAction(action, prop){
 
-	const request2 = axios.get(url);
-	const request = {
-		data:{
-			success: true,
-			error: null,
-			projects: [
-				{
-					id: 'r7truyd',
-					number: 1,
-					points: 10,
-					name: 'Introduction to Android',
-					desc: 'description uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uedescription uefhidjsh a da df fd df df adescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja ue fd description uefhidjsh fdsja uefhidjsh fda dsa fdadescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uefhidjsh fda dsa fda',
-					image: '/common/images/Android_M.jpg',
-					videoLink: 'http://youtube.com',
-					slidesLink: 'http://google.com',
-					blogPostLink: '',
-					submissionLink: ''
-				},
-				{
-					id: '7tfhgv',
-					number: 2,
-					points: 10,
-					name: 'Second Lesson on Android Long Long Long Long',
-					desc: 'description uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uedescription uefhidjsh a da df fd df df adescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja ue fd description uefhidjsh fdsja uefhidjsh fda dsa fdadescription uefhidjsh a da df fd df df a fd description uefhidjsh fdsja uefhidjsh fda dsa fda',
-					image: '/common/images/Android_M.jpg',
-					videoLink: '',
-					slidesLink: 'http://google.com',
-					blogPostLink: 'http://medium.com',
-					submissionLink: ''
-				},
-				{
-					id: '32uyiwrfgdj',
-					number: 3,
-					points: 10,
-					name: 'Project 3',
-					desc: 'description eijskfd',
-					image: '/common/images/Android_M.jpg',
-					videoLink: 'http://youtube.com',
-					slidesLink: '',
-					blogPostLink: '',
-					submissionLink: ''
-				},
-				{
-					id: '38u7ryefd',
-					number: 4,
-					points: 10,
-					name: 'Project 4',
-					desc: 'description 32urwhj',
-					image: '/common/images/Android_M.jpg',
-					videoLink: 'http://youtube.com',
-					slidesLink: '',
-					blogPostLink: '',
-					submissionLink: ''
-				},
-				{
-					id: 'h4398fdf',
-					number: 5,
-					points: 10,
-					name: 'Project 5',
-					desc: 'description 34ru8eigfdyj',
-					image: '/common/images/Android_M.jpg',
-					videoLink: '',
-					slidesLink: '',
-					blogPostLink: '',
-					submissionLink: ''
-				}]
+	switch(action){
+		case 'fetch':
+			return{
+				type: FETCH_SESSIONS,
+				payload: axios.get('/hackschool/sessions')
 			}
-	};
-
-	return{
-		type: FETCH_SESSIONS,
-		payload: request
+		case 'attend':
+			return{
+				type: ATTEND_SESSION,
+				payload: axios.post('/hackschool/sessions/attend',{
+					session: {
+						secret: prop
+					}
+				})
+			}
+		default:
+			console.error(action);
+			return{
+				type: 'error',
+				payload: null
+			}
 	}
-
 
 }
 
@@ -140,11 +90,11 @@ export function selectSession(session){
 	}
 }
 
-export function triggerTeamAction(endpoint, props){
+export function triggerTeamAction(action, prop){
 
-	const url = endpoint != 'fetch' ? `/hackschool/team/${endpoint}` : '/hackschool/team';
+	const url = action != 'fetch' ? `/hackschool/team/${action}` : '/hackschool/team';
 
-	switch(endpoint){
+	switch(action){
 		case 'fetch':
 			return{
 				type: FETCH_TEAM,
@@ -155,7 +105,7 @@ export function triggerTeamAction(endpoint, props){
 				type: CREATE_TEAM,
 				payload: axios.post(url, {
 							team: {
-								name: props
+								name: prop
 							}
 						})
 			}
@@ -165,14 +115,14 @@ export function triggerTeamAction(endpoint, props){
 				type: JOIN_TEAM,
 				payload: axios.post(url, {
 							team:{
-								id: props
+								id: prop
 							}
 						})
 			}
 		case 'leave':
-			//if props is null (incorrect name match),
+			//if prop is null (incorrect name match),
 			//simulate server response error
-			const payload = props ? axios.get(url) : {data: {error: 'wrong team name submitted'}};
+			const payload = prop ? axios.get(url) : {data: {error: 'wrong team name submitted'}};
 			return{
 				type: LEAVE_TEAM,
 				payload
@@ -186,7 +136,7 @@ export function triggerTeamAction(endpoint, props){
 				payload: null
 			}
 		default:
-			console.error(endpoint);
+			console.error(action);
 			return{
 				type: 'error',
 				payload: null

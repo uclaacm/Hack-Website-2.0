@@ -13,7 +13,7 @@ class TeamGridItem extends Component{
 			return (
 				<li key={member.id}
 					className="team-profile-pic"
-					style={{backgroundImage: `url(${member.profilePicture})`}}>
+					style={{backgroundImage: `url(${member.profilePicture.small})`}}>
 				</li>
 			);
 		});

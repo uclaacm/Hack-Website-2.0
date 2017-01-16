@@ -15,17 +15,38 @@ conf = {
     // Configure your URL and mail settings here
     production: {
         url: config.ghost.url,
-        mail: {},
+        mail: {
+			transport: 'SMTP',
+			options: {
+				service: 'Gmail',
+				auth: {
+					user: config.mail.email,
+					pass: config.mail.password
+				}
+			}
+		},
         database: {
             client: 'pg',
 			connection: config.ghost.database.uri,
-            debug: false
+            debug: false,
+			pool: {
+				min: 2,
+				max: 4
+			}
         },
-
         server: {
             host: '0.0.0.0',
             port: config.port
-        }
+        },
+		storage: {
+			active: 'ghost-s3',
+			'ghost-s3': {
+				accessKeyId: config.aws.s3.accessKey,
+				secretAccessKey: config.aws.s3.secretAccessKey,
+				bucket: 'acm-hack-ghost',
+				region: 'us-west-1'
+			}
+		}
     },
 
     // ### Development **(default)**

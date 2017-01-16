@@ -115,6 +115,7 @@ class DialogOnboard extends Component{
 						<ul className="team-members">
 							{
 								team.members.map(member => {
+									if(member.id == this.props.user.id) return;
 									return <li key={member.id}>{member.name}</li>;
 								})
 							}
@@ -163,8 +164,8 @@ class DialogOnboard extends Component{
 
 }
 
-function mapStateToProps({team}){
-	return {team};
+function mapStateToProps({team, user}){
+	return {team, user};
 }
 
 function mapDispatchToProps(dispatch){

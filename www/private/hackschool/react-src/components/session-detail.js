@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectSession } from '../actions/index';
+import { selectSession } from '../actions';
 
 class SessionDetail extends Component{
 
@@ -10,10 +10,10 @@ class SessionDetail extends Component{
 		if(!session)
 			return null;
 		
-		//if empty string, button will not be displayed
-		const slidesLink = session.slidesLink == "" ? false : true;
-		const videoLink = session.videoLink == "" ? false : true;
-		const blogPostLink = session.blogPostLink == "" ? false : true;
+		//if no project or empty string, button will not be displayed
+		const slidesLink = !session.project || session.slidesLink == "" ? false : true;
+		const videoLink = !session.project || session.videoLink == "" ? false : true;
+		const blogPostLink = !session.project || session.blogPostLink == "" ? false : true;
 
 		return (
 			<div className="session-detail-wrapper">
@@ -35,10 +35,11 @@ class SessionDetail extends Component{
 							<div className="gradient"></div>
 						</div>
 						<div className="content-right">
+							{session.project && 
 							<div className="scores">
 								<p>SCORE</p>
 								<p>{session.points}</p>
-							</div>
+							</div>}
 							{/*display links only if they are not empty*/}
 							{slidesLink && <a href={session.slidesLink}>
 								<button><span className="icon"><i className="fa fa-film" ariaHidden="true"></i></span> SLIDES</button>
