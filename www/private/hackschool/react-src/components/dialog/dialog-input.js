@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { triggerTeamAction } from '../actions';
+import { triggerTeamAction } from '../../actions';
 
 class DialogOnboardInput extends Component{
 

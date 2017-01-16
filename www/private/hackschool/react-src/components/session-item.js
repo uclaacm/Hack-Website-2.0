@@ -3,10 +3,17 @@ import React, { Component } from 'react';
 class SessionItem extends Component{
 
 	render(){
+		
 		return(
 			<div className="session-item" onClick={this.props.onClickEvent}>
 				<div 	className="img-wrapper"
 						style={{backgroundImage: `url(${this.props.image})`}}>
+				</div>
+				<div className="attend">
+					<div className="circle-icon">
+						<i className="fa fa-check hl" ariaHidden="true"></i>
+					</div>
+					<p>ATTENDED</p>
 				</div>
 				<div className="text-wrapper">
 					<h4 className="week">Week {this.props.number}</h4>
