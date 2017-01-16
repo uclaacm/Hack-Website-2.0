@@ -62,7 +62,8 @@ router.post('/attend', (req, res) => {
 					if (err) log.error("[ATTENDANCE] Database save error: %s", err_t);
 					res.json({
 						success: !err_u && !err_t,
-						error: err_u ? err_u : (err_t ? err_t : null)
+						error: err_u ? err_u : (err_t ? err_t : null),
+						sessionNumber: !err_u && !err_t ? session.number : -1
 					});
 				});
 			});
