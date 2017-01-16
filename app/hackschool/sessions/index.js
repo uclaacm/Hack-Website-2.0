@@ -54,14 +54,7 @@ router.post('/attend', (req, res) => {
 				return res.json({ success: false, error: "You have already signed into this session" });
 
 			req.user.attendance.push(session.number);
-			for (let i = 0; i < team.attendance.length; i++) {
-				if (team.attendance[i].sessionNumber === session.number) {
-					if (!team.attendance[i].usersAttended.includes(req.user.id)) {
-						team.attendance[i].usersAttended.push(req.user.id);
-						break;
-					}
-				}
-			}
+			team.addAttended(session.number, req.user.id);
 
 			req.user.save(err_u => {
 				if (err) log.error("[ATTENDANCE] Database save error: %s", err_u);
