@@ -20,9 +20,9 @@ class SessionsGrid extends Component{
 
 	renderSession(session, row, column){
 		//if the link is not available, don't show its icon
-		const slidesLink = session.slidesLink == "" ? false : true;
-		const videoLink = session.videoLink == "" ? false : true;
-		const blogPostLink = session.blogPostLink == "" ? false : true;
+		const slidesLink = !(typeof session.slidesLink == 'undefined');
+		const videoLink = !(typeof session.videoLink == 'undefined');
+		const blogPostLink = !(typeof session.blogPostLink == 'undefined');
 		
 		return (
 			<td 	className	= "project-td"
