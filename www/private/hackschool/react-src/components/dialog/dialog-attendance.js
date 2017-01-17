@@ -41,7 +41,7 @@ class DialogAttendance extends Dialog{
 			case 0:
 				return this.renderFormInput();
 			case 1:
-				if(!this.props.sessions)
+				if(!this.props.sessions.attend)
 					return <Loading message="loading..." />;
 				else if(this.props.sessions.attendSuccess)
 					return this.renderSuccess();
