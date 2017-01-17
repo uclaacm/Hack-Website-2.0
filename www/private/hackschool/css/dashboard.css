@@ -1,4 +1,6 @@
-
+body{
+	overflow-x: hidden;
+}
 .loading{
 	min-width: 300px;
 	max-width: 500px;
@@ -37,6 +39,10 @@
 	transform: translateX(-1500px);
 }
 
+.noscroll{
+	overflow: hidden;
+}
+
 /*====================DASH MENU====================*/
 
 .dashboard-menu{
@@ -53,11 +59,12 @@
 	letter-spacing: 2px;
 }
 
-.dashboard-menu p{
+.dashboard-menu a.hack-dash{
 	font-size: 12px;
 	padding: 10px 10px 10px 20px;
 	float: left;
 	font-family: var(--fam2);
+	color: #fff;
 }
 
 .dashboard-menu button{
@@ -434,7 +441,6 @@
 	top: 50%;
 	left:50%;
 	margin: -225px 0 0 -275px;
-	overflow: hidden;
 }
 
 .img-top{
@@ -478,6 +484,7 @@
 	font-size: 16px;
     height: 160px;
     overflow-y: auto;
+    padding-bottom: 20px;
 }
 
 .gradient{
@@ -623,6 +630,8 @@ button span.icon{
 
 .team-list{
 	overflow-y: auto;
+	padding-left: 15px;
+	padding-right: 25px;
 }
 
 .team-list table{
@@ -640,12 +649,12 @@ button span.icon{
 
 .team-list th:first-child,
 .team-list td:first-child{
-	width: 35px;
+	width: 40px;
 }
 
 .team-list th:nth-child(2),
 .team-list td:nth-child(2){
-	width: 230px;
+	width: 240px;
 }
 
 .team-list th:nth-child(3),
