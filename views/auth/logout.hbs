@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width" />
+	<title>ACM Hack</title>
+
+	<link rel="shortcut icon" type="image/x-icon" href="/auth/images/favicon.png" />
+
+	<style>
+
+	body{
+		background-color: #F0F0F0;
+	}
+
+	.login-box{
+		position: absolute;
+		height: 200px;
+		width: 500px;
+		padding: 30px;
+		background: #fff;
+		box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);
+		top: 50%;
+		left: 50%;
+		border-radius: 3px;
+		-webkit-transform: translate(-50%,-50%);
+				transform: translate(-50%,-50%);
+	}
+
+	.login-box > *{
+		float: left;
+	}
+
+	.col-left{
+		width: 280px;
+		padding-right: 20px;
+		text-align: center;
+	}
+
+	.divide{
+		height: 200px;
+		width: 1px;
+		background: #F0F0F0;
+	}
+
+	.col-right{
+		width: 170px;
+		margin-left: 20px;
+	}
+
+	img{
+		width: 200px;
+		float: left;
+		margin-right: 10px;
+	}
+
+	span{
+		font-family: 'Montserrat', sans-serif;
+		color: #694873;
+		font-size: 25px;
+		line-height: 50px;
+		float: left;
+	}
+
+	a.return{
+		letter-spacing: 0px;
+		color: #696969;
+		font-style: italic;
+		font-size: 14px;
+	}
+
+	a.return:hover{
+		opacity: 0.8;
+	}
+
+	a.fb-btn{
+		background: #4c69ba;
+		border: 0;
+		color: #fff;
+		font-family: "Open Sans";
+		font-size: 20px;
+		font-weight: bold;
+		border-radius: 3px;
+		border-color: #4c69ba;
+		-webkit-font-smoothing: antialiased;
+    	text-shadow: 0 -1px 0 #354c8c;
+    	cursor: pointer;
+	    display: inline-block;
+	    vertical-align: top;
+	    padding: 10px;
+	    vertical-align: center;
+	    margin: 35px 0;
+	    text-decoration: none;
+	}
+
+	svg{
+		height: 30px;
+		width: 30px;
+		float: left;
+		margin-right: 8px;
+	}
+
+	.col-right > *{
+		color: #696969;
+	}
+
+	.col-right h3{
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+	.col-right p{
+		font-size: 12px;
+	}
+
+	h3,p{
+		font-family: 'Open Sans', sans-serif;
+		margin: 0;
+	}
+
+
+	@media only screen and (max-width: 580px) {
+
+		.login-box{
+			width: 60%;
+			height: 80%;
+			overflow: auto;
+		}
+
+		.col-left{
+			width: 100%;
+		}
+
+		.col-left > *{
+			margin-bottom: 20px;
+		}
+
+		.divide{
+			display: none;
+		}
+
+		.col-right{
+			width: 100%;
+			margin: 50px 0;
+		}
+
+		svg{
+			height: 20px;
+			width: 20px;
+		}
+
+		a.fb-btn{
+			font-size: 14px;
+			width: 90%;
+		}
+
+	}
+
+	</style>
+</head>
+<body>
+
+	<div class="login-box">
+		<div class="col-left">
+			<div class="logo">
+				<img src="/auth/images/Hack.svg"/>
+			</div>
+			<div>
+				You've logged out.
+			</div>
+			<a href="/" class="return">...or return to the homepage</a>
+		</div>
+		<div class="divide"></div>
+		<div class="col-right">
+			<h3>Why do you guys need my facebook info?</h3><br/>
+			<p>ACM hack will not have access to any of your privately accessible Facebook data; we just need a method of keeping track of HackSchool students.</p>
+		</div>
+	</div>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-90129358-1', 'auto');
+  ga('send', 'pageview');
+ </script>
+</body>
+
+</html>

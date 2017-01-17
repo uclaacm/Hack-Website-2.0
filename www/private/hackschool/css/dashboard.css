@@ -1,6 +1,7 @@
 
 .loading{
-	width: 500px;
+	min-width: 300px;
+	max-width: 500px;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -15,6 +16,25 @@
 
 .dialog-box .loading h1{
 	font-size: 18px;
+}
+
+/*slides*/
+
+.slide-wrapper{
+	-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
+			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
+}
+/*
+.grid-wrapper.slide-exit{
+	transform: translateX(-1500px);
+}*/
+
+.leaderboard{
+	transform: translateX(1500px);
+}
+
+.slide-exit{
+	transform: translateX(-1500px);
 }
 
 /*====================DASH MENU====================*/
@@ -164,7 +184,7 @@
 
 .team-members .shadow{
 	left: 50%;
-    margin-left: -26px !important;
+    margin-left: -27px !important;
 }
 
 .team-members li:hover .hover-name{
@@ -266,7 +286,7 @@
 
 .grid{
 	overflow: visible;
-	margin: 50px auto 0 auto;
+	margin: 0px auto;
 }
 
 .grid tr{
@@ -313,6 +333,43 @@
 	background-size: cover;
 	background-position: 50%;
 	background-color: var(--grey-deep);
+}
+
+.attend{
+	background: var(--hack-purp);
+	width: 130px;
+	height: 20px;
+	margin-top: -40px;
+	margin-bottom: 10px;
+	color: #fff;
+	padding: 5px;
+}
+
+.attend .circle-icon{
+	background: #fff;
+	width: 16px;
+	height: 14px;
+	border-radius: 50%;
+	margin: 2px 5px;
+	text-align: center;
+	padding-top: 1px;
+}
+
+.attend .circle-icon, .attend p{
+	float: left;
+	font-size: 12px;
+}
+
+.attend .circle-icon i{
+	color: var(--hack-purp);
+	font-weight: 900;
+}
+
+.attend p{
+	font-family: var(--fam2);
+	font-size: 16px;
+	line-height: 20px;
+	letter-spacing: 1px;
 }
 
 .text-wrapper{
@@ -699,6 +756,11 @@ button.back i{
 	text-align: left;
 }
 
+.left-align h3.team-id{
+	margin: 5px 0px;
+	font-size: 10px;
+}
+
 .left-align .team-id{
 	color: var(--grey-deep);
 	margin-top: -10px;
@@ -791,10 +853,13 @@ button.back i{
 }
 
 .dialog-box .team-members li{
-	font-family: var(--fam1);
+	font-family: var(--fam2);
 	text-transform: uppercase;
 	color: #000 !important;
 	font-weight: 500;
+	margin-top: 0px;
+	letter-spacing: 2px;
+    font-size: 14px
 }
 
 .dialog-inner .team-members{
@@ -818,21 +883,21 @@ button.back i{
 
 /*====================MEDIA QUERIES====================*/
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 990px){
 	.grid td:nth-child(4){
 		margin-left: 0px;
 		margin-right: 30px;
 	}
 }
 
-@media only screen and (max-width: 760px){
+@media only screen and (max-width: 738px){
 	.grid td:nth-child(3){
 		margin-left: 0px;
 		margin-right: 30px;
 	}
 }
 
-@media only screen and (max-width:510px){
+@media only screen and (max-width:485px){
 	.grid td:nth-child(2){
 		margin-left: 0px;
 		margin-right: 30px;
