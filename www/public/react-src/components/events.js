@@ -12,7 +12,7 @@ export default function Events(){
 			<div className="col-right">
 				<div className="calendar">
 					<p>Download the full ACM Hack Winter Quarter schedule here:</p>
-					<a href="#"><button>CALENDAR</button></a>
+					<a href="https://s3-us-west-1.amazonaws.com/hack-ucla/ACM_Hack_Events.ics" target="_BLANK"><button>CALENDAR</button></a>
 				</div>
 			</div>
 		</div>

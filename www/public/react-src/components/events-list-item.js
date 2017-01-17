@@ -18,10 +18,12 @@ class EventsListItem extends Component {
 
 	getDate(date){
 		let newDate = new Date(date);
+		const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 		newDate.hour = newDate.getHours() % 12;
 		newDate.suffix = newDate.getHours() > 12 ? 'PM' : 'AM';
 		newDate.min = newDate.getMinutes() == '0' ? '00' : newDate.getMinutes();
 		newDate.month = newDate.toDateString().substr(4,4);
+		newDate.dayName = days[ newDate.getDay() ];
 		return newDate;
 	}
 
@@ -34,8 +36,7 @@ class EventsListItem extends Component {
 			<div className="events-item-wrapper">
 				<div className="time-label">
 					<p>
-						<span>{start.month.trim()}</span><br/>
-						<span className="date-number">{start.getDate()}</span>
+						<span>{start.month.trim()} {start.getDate()}</span><br/>
 					</p>
 				</div>
 				<div className="events-item">
@@ -43,10 +44,11 @@ class EventsListItem extends Component {
 						<img src={this.getImageSrc(category)}/>
 					</div>
 					<div className="info-wrapper info-default">
-						<p className="category-label">{category}</p>
-						<h1>{this.props.title}</h1>
-						<h3>{start.month} {start.hour}:{start.min} {start.suffix} - {end.hour}:{end.min} {end.suffix}</h3>
-						<h3>{this.props.location}</h3>
+						<div className="info-text-wrapper">
+							<p className="category-label">{category}</p>
+							<h1>{this.props.title}</h1>
+							<h3>{start.dayName} {start.hour}:{start.min} {start.suffix} - {end.hour}:{end.min} {end.suffix} | {this.props.location}</h3>
+						</div>
 					</div>
 					<div className="info-wrapper info-hover">
 						<h1>{this.props.tagline}</h1>

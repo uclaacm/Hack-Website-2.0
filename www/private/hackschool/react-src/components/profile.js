@@ -8,7 +8,6 @@ class Profile extends Component{
 
 	constructor(props){
 		super(props);
-
 		this.formatOtherMembers = this.formatOtherMembers.bind(this);
 	}
 
@@ -20,6 +19,9 @@ class Profile extends Component{
 			this.props.getTeamRank([...this.props.scoreboard.featured, ...this.props.scoreboard.list], this.props.team.team.id);
 	}
 
+	componentWillReceiveProps(props){
+		console.log('profile props', props)
+	}
 
 	formatOtherMembers(members){
 		//extract members that are not this user, then format
@@ -29,6 +31,10 @@ class Profile extends Component{
 										<div	className="team-profile-pic shadow"></div>
 										<div 	className="team-profile-pic"
 												style={{backgroundImage: `url(${member.profilePicture.small})`}}></div>
+										<div className="hover-name">
+											<div className="triangle-with-shadow"></div>
+											<span>{member.name}</span>
+										</div>
 									</li>);
 
 	}
@@ -42,7 +48,7 @@ class Profile extends Component{
 		const teamRanking 	= props.team 
 								? 	<div>
 										<h3>TEAM RANKING</h3>
-										<h3 className="number">{props.rank}</h3>
+										<h3 className="number">{this.props.teamRank}</h3>
 									</div>
 								: null;
 		const totalScore 	= props.team 
@@ -53,7 +59,7 @@ class Profile extends Component{
 								: null;
 
 		return(
-			<div>
+			<div className="profile-wrapper">
 				<div className="profile">
 					<div	className="profile-pic shadow"></div>
 					<div 	className="profile-pic main"
@@ -77,7 +83,7 @@ class Profile extends Component{
 }
 
 function mapStateToProps({user, team, scoreboard}){
-	return {user, team, scoreboard};
+	return {user, team, scoreboard, teamRank: team.rank};
 }
 
 function mapDispatchToProps(dispatch){

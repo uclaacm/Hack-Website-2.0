@@ -9,6 +9,7 @@ export const SELECT_SESSION = 'SELECT_SESSION';
 
 export const FETCH_SESSIONS = 'FETCH_SESSIONS';
 export const ATTEND_SESSION = 'ATTEND_SESSION';
+export const RESET_ATTEND = 'RESET_ATTEND';
 
 export const FETCH_TEAM = 'FETCH_TEAM';
 export const CREATE_TEAM = 'CREATE_TEAM';
@@ -45,6 +46,11 @@ export function triggerSessionAction(action, prop){
 						secret: prop
 					}
 				})
+			}
+		case 'reset-attend':
+			return{
+				type: RESET_ATTEND,
+				payload: null
 			}
 		default:
 			console.error(action);

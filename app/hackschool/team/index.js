@@ -4,15 +4,6 @@ const db = require('../../db');
 const log = require('../../logger');
 let router = express.Router();
 
-router.use((req, res, next) => {
-	if (!req.user || !req.user.id) {
-		log.info("[TEAMS] Unauthorized access at %s, from %s %s", new Date(), req.ip, req.headers['user-agent']);
-		return res.status(401).json({ success: false, error: "Unauthorized" });
-	}
-	
-	next();
-});
-
 router.get('/', (req, res) => {
 	if (!req.user.teamId)
 		return res.json({ success: true, error: null, team: null });
@@ -42,12 +33,8 @@ router.post('/create', (req, res) => {
 		}
 
 		if (team) return res.json({ success: false, error: "A team with that name already exists." });
-		let newTeam = new db.Team({
-			name: req.body.team.name,
-			members: [req.user],
-			scores: []
-		});
-
+		let newTeam = new db.Team({ name: req.body.team.name });
+		newTeam.addUser(req.user);
 		newTeam.save((err, updatedTeam) => {
 			if (!err) {
 				req.user.teamId = updatedTeam.id;
@@ -76,12 +63,9 @@ router.get('/leave', (req, res) => {
 		}
 
 		if (!team) return res.json({ success: false, error: "Could not find user team." });
-		for (let i = 0; i < team.members.length; i++) {
-			if (team.members[i].id === req.user.id) {
-				team.members.splice(i--, 1);
-			}
-		}
-
+		
+		team.removeUser(req.user);
+		
 		let teamAction = team.members.length === 0 ? team.remove : team.save;
 		teamAction(err => {
 			if (!err) {
@@ -113,10 +97,14 @@ router.post('/join', (req, res) => {
 
 		if (!team)
 			return res.json({ success: false, error: "No team with id '" + req.body.team.id + "' exists.", team: null });
-		
+
+		if (team.members.length >= 4)
+			return res.json({ success: false, error: "This team already has the maximum number of team members." });
+
+
 		req.user.teamId = team.id;
 		req.user.save();
-		team.members.push(req.user);
+		team.addUser(req.user);
 		team.save((err, newTeam) => {
 			if (err) log.error("[TEAMS] Team save error: %s", err);
 			res.json({

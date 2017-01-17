@@ -26,8 +26,44 @@
    0. normalize.css v3.0.3 | MIT License | git.io/normalize | (minified)
    ========================================================================== */
 
+@font-face {
+	font-family: 'Open Sans';
+	src: url('/common/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('/common/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face{
+	font-family: 'Source Code Pro';
+	src: url('/common/fonts/SourceCodePro-Regular.ttf');
+}
+
+:root{
+	--hack-purp: #694873;
+	--hack-black: #2D0B38;
+	--acc-deep: #7322B8;
+	--acc-pastel: #CEA2F4;
+
+	--grey-deep: #696969;
+	--grey-light: #F0F0F0;
+	--grey-lighter: #F8F8F8;
+	--comp-deep: #229CB8;
+	--comp-pastel: #A2E1F4;
+
+	--highlight: #FF9700;
+
+	--fam1: 'Open Sans', sans-serif;        /* Body text */
+	--fam2: 'Montserrat', sans-serif;       /* Header text */
+	--fam3: 'Source Code Pro', sans-serif;  
+
+	--shad: 0px 1px 4px 0px rgba(0,0,0,0.2);
+}
+
 html {
-    font-family: sans-serif;
+    font-family: var(--fam1);
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -64,7 +100,7 @@ svg:not(:root) { overflow: hidden; }
 figure { margin: 1em 40px; }
 hr { box-sizing: content-box; height: 0; }
 pre { overflow: auto; }
-code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
+code, kbd, pre, samp { font-family: "Source Code Pro", monospace, monospace; font-size: 1em; }
 button, input, optgroup, select, textarea {
     color: inherit;
     font: inherit;
@@ -184,9 +220,10 @@ html {
 body {
     height: 100%;
     max-height: 100%;
-    font-family: "Merriweather", serif;
-    letter-spacing: 0.01rem;
-    font-size: 1.8rem;
+    /*font-family: "Merriweather", serif;*/
+    font-family: "Open Sans", sans-serif;
+    /*letter-spacing: 0.01rem;*/
+    /*font-size: 1.8rem;*/
     line-height: 1.75em;
     color: #3A4145;
     -webkit-font-feature-settings: 'kern' 1;
@@ -211,7 +248,8 @@ h4, h5, h6 {
     color: #2E2E2E;
     line-height: 1.15em;
     margin: 0 0 0.4em 0;
-    font-family: "Open Sans", sans-serif;
+    /*font-family: "Open Sans", sans-serif;*/
+    font-family: "Montserrat", sans-serif;
     text-rendering: geometricPrecision;
 }
 
@@ -342,7 +380,8 @@ mark {
 
 code, tt {
     padding: 1px 3px;
-    font-family: Inconsolata, monospace, sans-serif;
+    font-family: "Source Code Pro", Inconsolata, monospace, sans-serif;
+    /*font-family: Inconsolata, monospace, sans-serif;*/
     font-size: 0.85em;
     white-space: pre-wrap;
     border: #E3EDF3 1px solid;
@@ -360,7 +399,8 @@ pre {
     border: #E3EDF3 1px solid;
     width: 100%;
     padding: 10px;
-    font-family: Inconsolata, monospace, sans-serif;
+    font-family: "Source Code Pro", Inconsolata, monospace, sans-serif;
+    /*font-family: Inconsolata, monospace, sans-serif;*/
     font-size: 0.9em;
     white-space: pre;
     overflow: auto;
@@ -577,6 +617,8 @@ body.nav-opened .site-wrapper {
    4. General - The main styles for the the theme
    ========================================================================== */
 
+.main-header-content { margin-top: 50px; }
+
 /* Big cover image on the home page */
 .main-header {
     position: relative;
@@ -601,6 +643,7 @@ body.nav-opened .site-wrapper {
 }
 
 .main-nav a {
+    margin-top: 50px;
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
 }
@@ -718,7 +761,7 @@ body.nav-opened .nav {
     text-align: right;
     font-size: 1.2rem;
     vertical-align: bottom;
-    color: #B8B8B8;
+    color: #C8C8C8;
     content: counter(item, lower-roman);
     counter-increment: item;
 }
@@ -753,7 +796,7 @@ body.nav-opened .nav {
 
 .nav a:link,
 .nav a:visited {
-    color: #B8B8B8;
+    color: #C8C8C8;
 }
 
 .nav li.nav-current a,
@@ -896,7 +939,7 @@ body.nav-opened .nav {
 /* When the navigation is closed */
 .nav-closed .menu-button {
     color: #fff;
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.7);
 }
 .nav-closed .menu-button:hover {
     color: #222;
@@ -905,7 +948,7 @@ body.nav-opened .nav {
 /* When the navigation is closed and there is no cover image */
 .nav-closed .no-cover .menu-button {
     border-color: #BFC8CD;
-    color: #9EABB3;
+    color: #AFBCC4;
 }
 .nav-closed .no-cover .menu-button:hover {
     border-color: #555;
@@ -958,7 +1001,8 @@ body.nav-opened .nav {
     font-size: 2rem;
     line-height: 1.5em;
     font-weight: 400;
-    font-family: "Merriweather", serif;
+    font-family: "Open Sans", sans-serif;
+    /*font-family: "Merriweather", serif;*/
     letter-spacing: 0.01rem;
     color: rgba(255,255,255,0.8);
 }
@@ -966,15 +1010,20 @@ body.nav-opened .nav {
 .no-cover.main-header {
     min-height: 160px;
     max-height: 40vh;
-    background: #f5f8fa;
+    background: var(--hack-purp);
+    /*--hack-purp: #694873;
+	--hack-black: #2D0B38;
+	--acc-deep: #7322B8;
+	--acc-pastel: #CEA2F4;*/
+    /*background: #f5f8fa;*/
 }
 
 .no-cover .page-title {
-    color: rgba(0,0,0,0.8);
+    color: rgba(255,255,255,0.8);
 }
 
 .no-cover .page-description {
-    color: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,0.5);
 }
 
 /* Add subtle load-in animation for content on the home page */
@@ -1033,7 +1082,7 @@ body.page-template .post-title {
 
 .post-excerpt p {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 1.8rem;
     line-height: 1.7em;
 }
 
@@ -1169,11 +1218,16 @@ body.page-template .post-title {
     display: none;
 }
 
+.post-content {
+    font-size: 1.8rem;
+    line-height: 1.75;
+}
+
 /* Keep images centered, and allow images wider than the main
    text column to break out. */
 .post-content img {
     display: block;
-    max-width: 126%;
+    max-width: 100%;
     height: auto;
     padding: 0.6em 0;
     /* Centers an image by (1) pushing its left edge to the
@@ -1320,7 +1374,7 @@ body.page-template .post-title {
 }
 
 .author-profile {
-    padding: 0 15px 5rem 15px;
+    padding: 50px 15px 5rem 15px;
     border-bottom: #EBF2F6 1px solid;
     text-align: center;
 }
@@ -1400,7 +1454,8 @@ body.page-template .post-title {
 /* Location, website, and link */
 .author-profile .author-meta {
     margin: 2rem 0;
-    font-family: "Merriweather", serif;
+    font-family: "Open Sans", sans-serif;
+    /*font-family: "Merriweather", serif;*/
     letter-spacing: 0.01rem;
     font-size: 1.7rem;
 }
@@ -2030,7 +2085,7 @@ body.page-template .post-title {
     }
 
     .post-excerpt p {
-        font-size: 0.85em;
+        font-size: 1.4em;
     }
 
     .page-description {

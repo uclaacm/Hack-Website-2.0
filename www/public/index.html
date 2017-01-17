@@ -8,10 +8,11 @@
 
 	<link rel="stylesheet" type="text/css" href="/common/css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="/common/css/homepage.css"/>
+	<link rel="stylesheet" type="text/css" href="/common/css/font-awesome.min.css"/>
 
 	<link rel="shortcut icon" type="image/x-icon" href="/common/images/favicon.png" />
 </head>
-<body>
+<body class="locked">
 
 	<div class="menu inactive">
 		<div class="logo">
@@ -28,27 +29,27 @@
 					<ul>
 						<li><img src="/common/images/Hack-Logo-White.png"/></li>
 						<li><a href="/">home</a></li>
-						<li><a href="/events.html">events</a></li>
-						<li><a href="">blog</a></li>
-						<li><a href="/showcase.html">showcase</a></li>
-						<li><a href="/team.html">team</a></li>
+						<li><a href="/events">events</a></li>
+						<li><a href="/blog">blog</a></li>
+						<li><a href="/showcase">showcase</a></li>
+						<li><a href="/team">team</a></li>
 					</ul>
 				</div>
 				<div class="mobile-login">
-					<a href="/auth"><h1 class="hack-mobile-login">LOGIN</h1></a>
+					<a href=""><h1 class="hack-mobile-login">LOGIN</h1></a>
 				</div>
 			</div>
 		</div>
-		<a class="login-wrapper" href="/auth">
+		<a class="login-wrapper" href="">
 			<img src="/common/images/School-Logo-White.png"/>
 			<span>HACK LOGIN</span>
 		</a>
 		<ul class="menu-inner">
 			<li class="current"><a href="/">home</a></li>
-			<li><a href="/events.html">events</a></li>
-			<li><a href="">blog</a></li>
-			<li><a href="/showcase.html">showcase</a></li>
-			<li><a href="/team.html">team</a></li>
+			<li><a href="/events">events</a></li>
+			<li><a href="/blog">blog</a></li>
+			<li><a href="/showcase">showcase</a></li>
+			<li><a href="/team">team</a></li>
 		</ul>
 	</div>
 
@@ -65,64 +66,195 @@
 
 		<div class="main-bg inactive">
 			<div class="text-over">
-				<h1 class="title inactive">MOVE FAST</h1>
-				<h1 class="title inactive">BUILD THINGS</h1>
-				<div class="btn-enter inactive">
-					<a href="">START HACKING</a>
+				<h1 class="title inactive">Move Fast.</h1>
+				<h1 class="title inactive">Build Things.</h1>
+				<div class="btn-enter inactive" onClick="scrollToHack()">
+					<a>START HACKING</a>
 				</div>
 			</div>
 		</div>
 
+		<div class="hack-bg inactive bg">
+			<div class="image-wrapper wrapper">
+				<div class="image"></div>
+			</div>
+			<div class="text-wrapper wrapper">
+				<h1 class="title">What is Hack?</h1>
+				<p>
+					We are a student-run organization that aims to empower UCLA students to influence their world through code. We host events for coders of all skill levels. So whether you've been to 10 hackathons, or you just learned "hello world", we're happy to have you.
+				</p>
+				<div>
+					<button class="btn-enter" onClick="scrollToSchool()">
+						<a>MORE ON HACK SCHOOL</a>
+					</button>
+				</div>
+			</div>
+			<!--<div class="bar-container"><div class="bar"></div></div>-->
+		</div>
+
+		<div class="events-list">
+				<div class="event" id="ctf">
+					<div class="event-inner">
+						<h2>Capture the Flag</h2>
+						<p>
+							Ever wanted to try out real hacking? We are partnering with LUG this Spring to host a cyber security competition. You will be able to try your hand at ethical hacking by completing challenges on topics such as: DoS attacks, SQL injections, password cracking. The event is open to students of all skill levels.
+
+						</p>
+					</div>
+				</div>
+			
+				<div class="event" id="hoth">
+					<div class="event-inner">
+						<h2>Hack on the Hill</h2>
+						<p>
+							Hack on the Hill is a 12 hour, beginner-friendly hackathon. There’ll be workshops, mentors, and amazing prizes for the best hacks. Whether you’re a hackathon veteran or you’ve never been to a hackathon before, Hack on the Hill is the best way to get involved with UCLA’s hacker community.
+						</p>
+					</div>
+				</div>
+				
+				<div class="event" id="expo">
+					<div class="event-inner">
+						<h2>Hacker Expo</h2>
+						<p>
+							Hacker Expo is a demo day for student projects, brought to you by ACM and Facebook. It’s a great place to check out cool projects that other students are working on and meet other hackers. If your project is featured, you will have the opportunity to win prizes, get swag, and recruit with Facebook. We encourage everybody to come out and support our local hacking community!
+						</p>
+					</div>
+				</div>
+		</div>
+
+		<div class="school-bg inactive bg">
+			<div class="image-wrapper wrapper">
+				<div class="image"></div>
+			</div>
+			<div class="text-wrapper wrapper">
+				<h1 class="title">Hack School</h1>
+				<p>
+					Hack School is a quarter-long course that gives you the skills you need to build and deploy your own projects. You will learn from experienced teachers, collaborate on group projects, and meet like-minded peers. Our schedule for this year is Web Development in the Fall, Android in the Winter, and iOS in the Spring.
+				</p>
+				<form name="email" id="email" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+					<div class="initial">
+						<input type="text" name="email" placeholder="email address" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+						<button class="btn-enter" type="submit">
+							<a>SUBSCRIBE</a>
+						</button>
+					</div>
+					<div class="success hidden">
+						<h3>You're subscribed!</h3>
+					</div>
+					<div class="failure hidden">
+						<h3>Something went wrong.</h3>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		
+		<!--<div class="see-all">
+			<a href="events">
+				<div class="button">
+				<h2>See all events</h2>
+				</div>
+			</a>
+		</div>-->
+
+		<div class="community-bg">
+			<!--<h1 class="title">Our Community</h1>-->
+			<p>
+				ACM Hack was founded in 2014 to improve the hacking community at UCLA. Our mission is to empower UCLA students to influence their world through code. Through our HackSchool program, we give students the opportunity to learn practical coding skills and build real projects. This kind of education has often been ignored in the traditional UCLA curriculum. We also host events, like Hack On The Hill, which encourage students to use their skills to solve problems on campus. We hope to create a community where students will help each other build awesome things that solve real problems.
+			</p>
+			<ul class="carousel">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			
+		</div>
+
+		<div class="footer">
+			<div class="footer-inner">
+				<div class="left"><span>&copy; ACM Hack.</span> All Rights Reserved.</div>
+				<div class="right">
+					<a class="social-link" href="https://www.facebook.com/groups/hackatucla/" target="_BLANK"><i class="social-icon fa fa-2x fa-facebook-square" aria-label="Facebook"></i></a>
+					<a class="social-link" href="https://github.com/uclaacm" target="_BLANK"><i class="social-icon fa fa-2x fa-github-square" aria-label="Github"></i></a>
+					<a class="social-link" href="https://www.instagram.com/uclahack/" target="_BLANK"><i class="social-icon fa fa-2x fa-instagram" aria-label="Instagram"></i></a>
+					<a class="social-link" href="https://www.youtube.com/channel/UCSUnSy6MOwYZQJt8rQiYQpg" target="_BLANK"><i class="social-icon fa fa-2x fa-youtube-square" aria-label="YouTube"></i></a>
+				</div>
+			</div>
+		</div>
+
+<script src="/common/js/homepage.js"></script>
 <script>
+function animate(elem,time) {
+    if( !elem) return;
+    var to = elem.offsetTop;
+    var from = window.scrollY;
+    var start = new Date().getTime(),
+        timer = setInterval(function() {
+            var step = Math.min(1,(new Date().getTime()-start)/time);
+            window.scrollTo(0,(from+step*(to-from))+1);
+            if( step == 1){ clearInterval(timer);};
+        },25);
+	window.scrollTo(0,(from+1));
+}
 
-const lines = Array.from(document.querySelectorAll('.line'));
-const logoChildren = Array.from(document.querySelectorAll('.opening-logo > *'));
+function scrollToHack(){
+		var divVal = document.querySelector('.hack-bg');
+		animate(divVal,600);
+}
 
-const menu = document.querySelector('.menu');
-const bg = document.querySelector('.main-bg');
-const text = Array.from(document.querySelectorAll('.text-over > *'));
+function scrollToSchool(){
+		var divVal = document.querySelector('.school-bg');
+		animate(divVal,600);
+}
 
-const menuMobileInner = document.querySelector('.hamburger-inner');
+function update(httpRequest) {
+  if (httpRequest.readyState == 4) {
+    if ((httpRequest.status == 200) || (httpRequest.status == 0)) {
+    	var response = JSON.parse(httpRequest.responseText);
+    	if(response.success)
+    		document.querySelector('.success').classList.remove('hidden');
+    	else{
+    		const failure = document.querySelector('.failure');
+    		failure.children[0].innerHTML = '<h3>' + response.error + '</h3>';
+    		failure.classList.remove('hidden');
+    	}
+    		
+    } else {
+    	//will display <h3>Something went wrong.</h3>
+       document.querySelector('.failure').classList.remove('hidden');
+    }
+  }
+}
 
-function toggleMenu(e){
-	this.parentElement.classList.toggle('active');
+function send_with_ajax(e) {
 	e.preventDefault();
-}
-function triggerAllAnimateIn(){
-	var stagger = 1100;
-	menu.classList.remove('inactive');
-	setTimeout(function(){
-		bg.classList.remove('inactive');
-	}, 700);
+	const url = '/api/v1/mailinglist/subscribe';
+	const formInput = this.elements[0].value;
 
-	text.forEach(function(title){
-		setTimeout(function(){
-			title.classList.remove('inactive');
-		}, stagger);
-		stagger += 300;
-	});
-}
-function rotate(transition){
-	if(transition.propertyName != 'transform')
-		return;
+	var httpRequest = new XMLHttpRequest();
+	var params = "email=" + encodeURIComponent(formInput);
+	
+	httpRequest.open("POST", url, true);
+	httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-	logoChildren.forEach(function(child){
-		child.classList.remove('inactive');
-	});
-}
-function triggerInitial(){
-	lines.forEach(function(line){
-		line.classList.remove('inactive');
-		line.addEventListener('transitionend', rotate);
-	});
+	httpRequest.onreadystatechange = function() { update(httpRequest); };
+	httpRequest.onerror = function() {};
+	httpRequest.send(params);
+
+	document.querySelector('.initial').classList.add('hidden');
 }
 
-menuMobileInner.addEventListener('click', toggleMenu);
-setTimeout(triggerInitial, 200);
-setTimeout(triggerAllAnimateIn, 1100);
+document.forms['email'].addEventListener('submit', send_with_ajax);
 
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-90129358-1', 'auto');
+  ga('send', 'pageview');
 
 </script>
 </body>
-
 </html>

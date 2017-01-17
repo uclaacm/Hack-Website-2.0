@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Dialog from './dialog';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'underscore';
-import { changeDialog } from '../actions/index';
+import { changeDialog, triggerTeamAction } from '../../actions';
 import DialogInput from './dialog-input';
-import Loading from './loading';
+import Loading from '../loading';
 
-class DialogOnboard extends Component{
+class DialogOnboard extends Dialog{
 
 	constructor(props){
 		super(props);
@@ -20,22 +22,6 @@ class DialogOnboard extends Component{
 		this.renderDefault = this.renderDefault.bind(this);
 		this.renderFormInput = this.renderFormInput.bind(this);
 		this.renderSuccess = this.renderSuccess.bind(this);
-		this.renderFailure = this.renderFailure.bind(this);
-		
-		this.incrementSlide = this.incrementSlide.bind(this);
-		this.onFormSubmit = this.onFormSubmit.bind(this);
-	}
-
-	incrementSlide(num){
-		if(this.state.currentSlide == 0 && num < 0)
-			this.props.changeDialog({active : false});
-
-		this.setState({currentSlide: this.state.currentSlide+num});
-	}
-
-	onFormSubmit(e){
-		e.preventDefault();
-		this.incrementSlide(1);
 	}
 
 	renderDefault(){
@@ -75,16 +61,6 @@ class DialogOnboard extends Component{
 			default:
 				return <div>Something went wrong...</div>;
 		}
-		
-	}
-
-	renderFailure(){
-		return (
-			<div className="dialog-inner">
-				<h3>Error:</h3>
-				<h3>{this.props.team.error}</h3>
-			</div>
-		);
 	}
 
 	renderSuccess(){
@@ -113,11 +89,7 @@ class DialogOnboard extends Component{
 						<h3><span className="hl">{team.name}</span></h3>
 						<h3>Your teammates are</h3>
 						<ul className="team-members">
-							{
-								team.members.map(member => {
-									return <li key={member.id}>{member.name}</li>;
-								})
-							}
+							{ this.formatMembers(team.members) }
 						</ul>
 						<br />
 						<button className="btn-selection" onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
@@ -146,29 +118,26 @@ class DialogOnboard extends Component{
 		}
 	}
 
+	incrementSlide(num){
+		Dialog.prototype.incrementSlide.call(this, num, 2, this.props.triggerTeamAction);
+	}
+
+	renderFailure(){
+		return Dialog.prototype.renderFailure.call(this, this.props.team.error);
+	}
+
 	render(){
-		return(
-			<div>
-				{
-					!this.props.team.team && //if haven't joined team, continue displaying back button
-					<button className="back"
-							onClick={() => this.incrementSlide(-1)}>
-							<i className="fa fa-chevron-left hl" ariaHidden="true"></i>
-					</button>
-				}
-				{this.renderSlide(this.state.currentSlide)}
-			</div>
-		);
+		return Dialog.prototype.render.call(this,!this.props.team.team); //continues back button if not in team
 	}
 
 }
 
-function mapStateToProps({team}){
-	return {team};
+function mapStateToProps({team, user}){
+	return {team, user};
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({changeDialog}, dispatch);
+	return bindActionCreators({changeDialog, triggerTeamAction}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogOnboard);
