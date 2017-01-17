@@ -19,8 +19,7 @@ class TeamList extends Component{
 								rank={i + highest} />;
 	}
 
-	render(){
-
+	render(){		
 		if (this.props.list.length != 0)
 			return (
 				<div className="team-list">

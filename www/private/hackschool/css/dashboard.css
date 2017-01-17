@@ -1,4 +1,6 @@
-
+body{
+	overflow-x: hidden;
+}
 .loading{
 	min-width: 300px;
 	max-width: 500px;
@@ -53,11 +55,12 @@
 	letter-spacing: 2px;
 }
 
-.dashboard-menu p{
+.dashboard-menu a.hack-dash{
 	font-size: 12px;
 	padding: 10px 10px 10px 20px;
 	float: left;
 	font-family: var(--fam2);
+	color: #fff;
 }
 
 .dashboard-menu button{
@@ -623,6 +626,8 @@ button span.icon{
 
 .team-list{
 	overflow-y: auto;
+	padding-left: 15px;
+	padding-right: 25px;
 }
 
 .team-list table{
@@ -640,12 +645,12 @@ button span.icon{
 
 .team-list th:first-child,
 .team-list td:first-child{
-	width: 35px;
+	width: 40px;
 }
 
 .team-list th:nth-child(2),
 .team-list td:nth-child(2){
-	width: 230px;
+	width: 240px;
 }
 
 .team-list th:nth-child(3),

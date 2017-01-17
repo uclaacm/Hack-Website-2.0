@@ -68,6 +68,7 @@
 		color: #696969;
 		font-style: italic;
 		font-size: 14px;
+		font-family: 'Open Sans';
 	}
 
 	a.return:hover{
@@ -118,6 +119,10 @@
 		margin: 0;
 	}
 
+	.logout{
+		width: 250px;
+		margin: 90px 0 30px 0;
+	}
 
 	@media only screen and (max-width: 580px) {
 
@@ -165,10 +170,8 @@
 			<div class="logo">
 				<img src="/auth/images/Hack.svg"/>
 			</div>
-			<div>
-				You've logged out.
-			</div>
-			<a href="/" class="return">...or return to the homepage</a>
+			<div class="logout"><p>You've logged out successfully.</p></div>
+			<a href="/" class="return">return to the homepage</a>
 		</div>
 		<div class="divide"></div>
 		<div class="col-right">

@@ -25,7 +25,7 @@ class MenuBar extends Component{
 	render(){
 		return (
 			<div className="dashboard-menu">
-				<p>HACKSCHOOL DASHBOARD</p>
+				<a href="" className="hack-dash">HACKSCHOOL DASHBOARD</a>
 				<a href="/auth/logout">
 					<button><i className="fa fa-power-off" ariaHidden="true"></i> SIGN OUT</button>
 				</a>
