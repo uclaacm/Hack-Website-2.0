@@ -4,7 +4,7 @@ import DialogInput from './dialog-input';
 import Loading from '../loading';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeDialog, triggerTeamAction } from '../../actions';
+import { changeDialog, triggerSessionAction } from '../../actions';
 
 class DialogAttendance extends Dialog{
 
@@ -57,13 +57,9 @@ class DialogAttendance extends Dialog{
 		}
 	}
 
-	/*incrementSlide(num){
-		Dialog.prototype.incrementSlide.call(this, num, 1, this.props.triggerTeamAction);
-	}*/
-
 	incrementSlide(num){
 		if(this.state.currentSlide == 1)
-			this.props.triggerTeamAction('reset-error', null);
+			this.props.triggerSessionAction('reset-attend', null);
 
 		if(this.state.currentSlide == 0 && num < 0)
 			this.props.changeDialog({active: false, attendance: false});
@@ -77,7 +73,6 @@ class DialogAttendance extends Dialog{
 
 	render(){
 		return Dialog.prototype.render.call(this, !this.props.sessions.attendSuccess);
-		//return <div>Attendance</div>;
 	}
 
 }
@@ -87,7 +82,7 @@ function mapStateToProps({sessions}){
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({changeDialog, triggerTeamAction}, dispatch);
+	return bindActionCreators({changeDialog, triggerSessionAction}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogAttendance);

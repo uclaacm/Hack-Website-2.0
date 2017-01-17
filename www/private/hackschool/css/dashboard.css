@@ -18,6 +18,25 @@
 	font-size: 18px;
 }
 
+/*slides*/
+
+.slide-wrapper{
+	-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
+			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
+}
+/*
+.grid-wrapper.slide-exit{
+	transform: translateX(-1500px);
+}*/
+
+.leaderboard{
+	transform: translateX(1500px);
+}
+
+.slide-exit{
+	transform: translateX(-1500px);
+}
+
 /*====================DASH MENU====================*/
 
 .dashboard-menu{
@@ -792,6 +811,10 @@ button.back i{
 	margin-top: 20px;
 }
 
+.dialog-box .team-members{
+	margin-top: 0px;
+}
+
 .team-members span, .dialog-inner span{
 	font-size: 14px;
 	letter-spacing: 2px;
@@ -856,21 +879,21 @@ button.back i{
 
 /*====================MEDIA QUERIES====================*/
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 990px){
 	.grid td:nth-child(4){
 		margin-left: 0px;
 		margin-right: 30px;
 	}
 }
 
-@media only screen and (max-width: 760px){
+@media only screen and (max-width: 738px){
 	.grid td:nth-child(3){
 		margin-left: 0px;
 		margin-right: 30px;
 	}
 }
 
-@media only screen and (max-width:510px){
+@media only screen and (max-width:485px){
 	.grid td:nth-child(2){
 		margin-left: 0px;
 		margin-right: 30px;

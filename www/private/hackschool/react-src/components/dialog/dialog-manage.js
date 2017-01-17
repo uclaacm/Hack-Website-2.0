@@ -58,18 +58,17 @@ class DialogManage extends Dialog{
 	}
 
 	renderSlide(slideNum){
+		const finalSlide = this.props.team.error
+							? this.renderFailure()
+							: this.props.team.team  ? <Loading message="loading..." />
+													: this.renderSuccess(); 
 		switch(slideNum){
 			case 0:
 				return this.renderDefault();
 			case 1:
 				return this.renderConfirm();
 			case 2: 
-				if(this.props.team.error)
-					return this.renderFailure();
-				else if(this.props.team.team) //team is not null yet, but no error
-					return <Loading message="loading..." />
-				else
-					return this.renderSuccess();
+				return finalSlide;
 
 			default:
 				return <div>Something went wrong...lmao...</div>;

@@ -8,11 +8,14 @@ export default (state = null, action) => {
 			if(!action.payload.data.success)
 				return state;
 			else{
+				console.log(action.payload.data.sessions)
 				const cols = 4;
 				return {
 				attend: null,
 				attendSuccess: false,
-				data: action.payload.data.sessions.reduce((arr, session) => {
+				data: action.payload.data.sessions
+						.sort((a, b) => a.number > b.number ? 1 : -1)
+						.reduce((arr, session) => {
 						if(!_.isEmpty(session.project)){
 							session.points = session.project.points;
 							session.slidesLink = session.project.slidesLink;

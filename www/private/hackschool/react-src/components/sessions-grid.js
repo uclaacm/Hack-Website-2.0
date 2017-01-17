@@ -18,6 +18,10 @@ class SessionsGrid extends Component{
 		this.props.selectSession(session);
 	}
 
+	componentWillReceiveProps(props){
+		console.log('component will receive in sessions', props);
+	}
+
 	renderSession(session, row, column){
 		//if the link is not available, don't show its icon
 		const slidesLink = !(typeof session.slidesLink == 'undefined');
