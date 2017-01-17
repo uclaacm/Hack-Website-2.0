@@ -41,7 +41,7 @@ class Dashboard extends Component{
 		return (
 			<div>
 				{ this.props.dialog.active && <DialogBox /> }
-				{ this.props.currentSlide == 'sessions' && <SessionDetail /> }
+				{ this.props.currentSlide == 'sessions' && this.props.selectedSession && <SessionDetail /> }
 				<MenuBar />
 				<Profile /> 
 				<div className={classes}> 
@@ -53,8 +53,8 @@ class Dashboard extends Component{
 	}
 }
 
-function mapStateToProps({dialog, user, scoreboard, currentSlide, sessions, team}){
-	return {dialog, user, scoreboard, currentSlide, sessions, team};
+function mapStateToProps({dialog, user, scoreboard, currentSlide, sessions, team, selectedSession}){
+	return {dialog, user, scoreboard, currentSlide, sessions, team, selectedSession};
 }
 
 function mapDispatchToProps(dispatch){
