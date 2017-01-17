@@ -31,6 +31,22 @@ Team.statics.findByName = function(name, callback) {
 	this.findOne({ name }, callback); 
 };
 
+Team.methods.addUser = function(user) {
+	this.members.push(user);
+	for (let i = 0; i < user.attendance.length; i++) 
+		this.addAttended(user.attendance[i], user.id);
+};
+
+Team.methods.removeUser = function(user) {
+	for (let i = 0; i < this.members.length; i++) {
+		if (this.members[i].id === user.id)
+			this.members.splice(i--, 1);
+	}
+
+	for (let i = 0; i < user.attendance.length; i++)
+		this.removeAttended(user.attendance[i], user.id);
+};
+
 Team.methods.addAttended = function(sessionNumber, userId) {
 	let sessionFound = false;
 	for (let i = 0; i < this.attendance.length; i++) {
@@ -43,6 +59,16 @@ Team.methods.addAttended = function(sessionNumber, userId) {
 
 	if (!sessionFound)
 		this.attendance.push({ sessionNumber: sessionNumber, usersAttended: [userId] });
+};
+
+Team.methods.removeAttended = function(sessionNumber, userId) {
+	for (let i = 0; i < this.attendance.length; i++) {
+		if (this.attendance[i].sessionNumber === sessionNumber) {
+			let index = this.attendance[i].usersAttended.indexOf(userId);
+			if (index !== -1)
+				this.attendance[i].usersAttended.splice(index, 1);
+		}
+	}
 };
 
 Team.methods.getPublic = function() {

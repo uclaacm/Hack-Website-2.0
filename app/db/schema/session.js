@@ -28,6 +28,14 @@ let Session = new Schema({
 	}
 }, { minimize: false });
 
+Session.pre('save', function(next) {
+	if (this.date && this.date.start)
+		this.date.start = new Date(this.date.start);
+	if (this.date && this.date.end)
+		this.date.end = new Date(this.date.end);
+	next();
+});
+
 Session.statics.getAll = function(callback) {
 	this.find({}, callback);
 };
@@ -37,8 +45,7 @@ Session.statics.findById = function(id, callback) {
 };
 
 Session.statics.findSessionForDate = function(date, callback) {
-	this.findOne({ "number": 2}, callback);
-	//this.findOne({ "date.start" : { $lt : date }, "date.end" : { $gt : date } }, callback);
+	this.findOne({ "date.start" : { $lt : new Date(date) }, "date.end" : { $gt : new Date(date) } }, callback);
 };
 
 Session.statics.sanitize = function(session, withId=true) {
