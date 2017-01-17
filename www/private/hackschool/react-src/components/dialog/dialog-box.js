@@ -20,10 +20,16 @@ class DialogBox extends Component{
 			this.props.changeDialog({onBoarding: true});
 		else
 			this.props.changeDialog({onBoarding: false});
+
+		document.querySelector('body').classList.add('noscroll');
 	}
 
 	componentWillReceiveProps(props){
 		this.setState({triggerOnboard: props.dialog.onBoarding});
+	}
+
+	componentWillUnmount(){
+		document.querySelector('body').classList.remove('noscroll');
 	}
 
 	render(){

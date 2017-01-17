@@ -5,6 +5,14 @@ import { selectSession } from '../actions';
 
 class SessionDetail extends Component{
 
+	componentWillMount(){
+		document.querySelector('body').classList.add('noscroll');
+	}
+
+	componentWillUnmount(){
+		document.querySelector('body').classList.remove('noscroll');
+	}
+
 	render(){
 		const session = this.props.selectedSession;
 		if(!session)

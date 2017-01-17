@@ -39,6 +39,10 @@ body{
 	transform: translateX(-1500px);
 }
 
+.noscroll{
+	overflow: hidden;
+}
+
 /*====================DASH MENU====================*/
 
 .dashboard-menu{
@@ -437,7 +441,6 @@ body{
 	top: 50%;
 	left:50%;
 	margin: -225px 0 0 -275px;
-	overflow: hidden;
 }
 
 .img-top{
@@ -481,6 +484,7 @@ body{
 	font-size: 16px;
     height: 160px;
     overflow-y: auto;
+    padding-bottom: 20px;
 }
 
 .gradient{
