@@ -184,7 +184,7 @@
 
 .team-members .shadow{
 	left: 50%;
-    margin-left: -26px !important;
+    margin-left: -27px !important;
 }
 
 .team-members li:hover .hover-name{
@@ -756,6 +756,11 @@ button.back i{
 	text-align: left;
 }
 
+.left-align h3.team-id{
+	margin: 5px 0px;
+	font-size: 10px;
+}
+
 .left-align .team-id{
 	color: var(--grey-deep);
 	margin-top: -10px;
@@ -811,10 +816,6 @@ button.back i{
 	margin-top: 20px;
 }
 
-.dialog-box .team-members{
-	margin-top: 0px;
-}
-
 .team-members span, .dialog-inner span{
 	font-size: 14px;
 	letter-spacing: 2px;
@@ -852,10 +853,13 @@ button.back i{
 }
 
 .dialog-box .team-members li{
-	font-family: var(--fam1);
+	font-family: var(--fam2);
 	text-transform: uppercase;
 	color: #000 !important;
 	font-weight: 500;
+	margin-top: 0px;
+	letter-spacing: 2px;
+    font-size: 14px
 }
 
 .dialog-inner .team-members{

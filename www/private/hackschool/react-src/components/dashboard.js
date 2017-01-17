@@ -36,8 +36,6 @@ class Dashboard extends Component{
 		if(!this.props.team.done)
 			return <Loading message="Retrieving team info..." />
 
-		//const currentSlide = this.props.currentSlide == 'sessions' ? <SessionsGrid /> : <Leaderboard />;
-
 		const classes = this.props.currentSlide == 'sessions' ? "slide-wrapper" : "slide-wrapper slide-exit";
 
 		return (

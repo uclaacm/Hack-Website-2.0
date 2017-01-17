@@ -11,9 +11,7 @@ class DialogAttendance extends Dialog{
 	constructor(props){
 		super(props);
 
-		this.state = {
-			currentSlide: 0
-		};
+		//this.state = {currentSlide: 0};
 
 		this.renderSlide = this.renderSlide.bind(this);
 		this.renderFormInput = this.renderFormInput.bind(this);
@@ -48,10 +46,7 @@ class DialogAttendance extends Dialog{
 				else if(this.props.sessions.attendSuccess)
 					return this.renderSuccess();
 				else
-					return (<div className="dialog-inner">
-								<h3>Error:</h3>
-								<h3>{this.props.sessions.attend}</h3>
-							</div>);
+					return this.renderFailure();
 			default:
 				return <div>Something went wrong...</div>;
 		}
@@ -61,14 +56,16 @@ class DialogAttendance extends Dialog{
 		if(this.state.currentSlide == 1)
 			this.props.triggerSessionAction('reset-attend', null);
 
-		if(this.state.currentSlide == 0 && num < 0)
+		if(this.state.currentSlide == 0 && num < 0){
+			this.props.triggerSessionAction('reset-attend', null);
 			this.props.changeDialog({active: false, attendance: false});
+		}
 
 		this.setState({currentSlide: this.state.currentSlide + num});
 	}
 
 	renderFailure(){
-		return Dialog.prototype.renderFailure.call(this, this.props.team.error);
+		return Dialog.prototype.renderFailure.call(this, this.props.sessions.attend);
 	}
 
 	render(){
