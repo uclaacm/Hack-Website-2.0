@@ -179,7 +179,7 @@ router.get('/google/callback',
 router.get('/logout', (req, res) => {
 	log.debug("[AUTH] User %s logged out", req.user.id);
 	req.logout();
-	res.redirect('/auth');
+	res.render('auth/logout');
 });
 
 module.exports = { router, authenticated, configAuth };
