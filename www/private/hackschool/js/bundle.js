@@ -2095,11 +2095,11 @@ webpackJsonp([0],{
 				var session = this.props.selectedSession;
 				if (!session) return null;
 
-				var teamScore = this.props.team.team.scores.find(function (score) {
+				var teamScore = this.props.team.team ? this.props.team.team.scores.find(function (score) {
 					return score.sessionNumber == session.number;
-				});
+				}) : null;
 
-				if (!session.project) teamScore = null;else if (typeof teamScore == 'undefined') teamScore = '0/';else teamScore = teamScore.score + '/';
+				if (!session.project) teamScore = null;else if (typeof teamScore == 'undefined' || teamScore == null) teamScore = '0/';else teamScore = teamScore.score + '/';
 
 				//if no link, button will not be displayed
 				var slidesLink = typeof session.slidesLink != 'undefined';
