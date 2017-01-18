@@ -44,9 +44,11 @@ class Dashboard extends Component{
 				{ this.props.currentSlide == 'sessions' && this.props.selectedSession && <SessionDetail /> }
 				<MenuBar />
 				<Profile /> 
-				<div className={classes}> 
-					<SessionsGrid />
-					<Leaderboard />
+				<div className="slide-outer">
+					<div className={classes}> 
+						<SessionsGrid />
+						<Leaderboard />
+					</div>
 				</div>
 			</div>
 		);

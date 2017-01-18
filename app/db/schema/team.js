@@ -72,10 +72,9 @@ Team.methods.removeAttended = function(sessionNumber, userId) {
 };
 
 Team.methods.getPublic = function() {
-    console.log(this);
 	let team = _.pick(this, ['id', 'name', 'scores']);
 	team.members = this.members.map(member => member.getPublic());
-	team.totalScore = this.scores.reduce((a,b) => a.score + b.score, 0) +
+	team.totalScore = this.scores.reduce((a,b) => a + b.score, 0) +
 					  (TOTAL_ATTENDANCE / this.members.length) * this.attendance.reduce((a,b) => a + b.usersAttended.length, 0);
 	return team;
 };
