@@ -42,8 +42,10 @@ class Profile extends Component{
 	render(){
 		const props = this.props.team;
 
+		const members = [{id: '1', name: 'First Last', profilePicture: {small: ''}},{id: '2', name: 'First Last', profilePicture: {small: ''}}, {id: '3', name: 'First Last', profilePicture: {small: ''}}, {id: '4', name: 'First Last', profilePicture: {small: ''}}, {id: '5', name: 'First Last', profilePicture: {small: ''}}, {id: '6', name: 'First Last', profilePicture: {small: ''}}]
+
 		const teamDisplay 	= props.team ? <h4 className="team">Team {props.team.name}</h4> : <h4 className="team">Not on a team</h4>
-		const teamMembers 	= props.team ? this.formatOtherMembers(props.team.members) : null;
+		const teamMembers 	= props.team ? this.formatOtherMembers(members) : null;
 
 		const teamRanking 	= props.team 
 								? 	<div>
