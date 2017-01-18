@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 			if (a.totalScore > b.totalScore) return -1;
 			if (a.totalScore < b.totalScore) return 1;
 			if (a.name < b.name) return -1;
-			if (b.name > a.name) return 1;
+			if (a.name > b.name) return 1;
 			return 0;
 		});
 
