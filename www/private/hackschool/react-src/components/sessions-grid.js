@@ -19,7 +19,7 @@ class SessionsGrid extends Component{
 	}
 
 	componentWillReceiveProps(props){
-		console.log('component will receive in sessions', props);
+		//console.log('component will receive in sessions', props);
 	}
 
 	renderSession(session, row, column){
