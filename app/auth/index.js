@@ -176,6 +176,9 @@ router.get('/google/callback',
 
 // Logout route
 router.get('/logout', (req, res) => {
+	if (!req.user)
+		return res.redirect('/auth');
+
 	log.debug("[AUTH] User %s logged out", req.user.id);
 	req.logout();
 	res.render('auth/logout');
