@@ -22,6 +22,14 @@ let Event = new Schema({
 	tagline: { type: String }
 });
 
+Event.pre('save', function(next) {
+	if (this.date && this.date.start)
+		this.date.start = new Date(this.date.start);
+	if (this.date && this.date.end)
+		this.date.end = new Date(this.date.end);
+	next();
+});
+
 Event.statics.findById = function(id, callback) {
 	this.findOne({ id }, callback);
 };

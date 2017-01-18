@@ -5,15 +5,36 @@ import { selectSession } from '../actions';
 
 class SessionDetail extends Component{
 
+	componentWillMount(){
+		document.querySelector('body').classList.add('noscroll');
+	}
+
+	componentWillUnmount(){
+		document.querySelector('body').classList.remove('noscroll');
+	}
+
 	render(){
 		const session = this.props.selectedSession;
 		if(!session)
 			return null;
+
+		let teamScore = this.props.team.team
+							? this.props.team.team.scores
+								.find(score => score.sessionNumber == session.number)
+							: null;
+
+		if(!session.project)
+			teamScore = null;
+		else if(typeof teamScore == 'undefined' || teamScore == null)
+			teamScore = `0/`;
+		else
+			teamScore = `${teamScore.score}/`;
 		
-		//if no project or empty string, button will not be displayed
-		const slidesLink = !session.project || session.slidesLink == "" ? false : true;
-		const videoLink = !session.project || session.videoLink == "" ? false : true;
-		const blogPostLink = !session.project || session.blogPostLink == "" ? false : true;
+		//if no link, button will not be displayed
+		const slidesLink = typeof session.slidesLink != 'undefined';
+		const videoLink = typeof session.videoLink != 'undefined';
+		const blogPostLink = typeof session.blogPostLink != 'undefined';
+		const submissionLink = typeof session.submissionLink != 'undefined';
 
 		return (
 			<div className="session-detail-wrapper">
@@ -38,20 +59,22 @@ class SessionDetail extends Component{
 							{session.project && 
 							<div className="scores">
 								<p>SCORE</p>
-								<p>{session.points}</p>
+								<p>{teamScore}{session.points}</p>
 							</div>}
 							{/*display links only if they are not empty*/}
-							{slidesLink && <a href={session.slidesLink}>
+							{slidesLink && <a href={session.slidesLink} target="_blank">
 								<button><span className="icon"><i className="fa fa-film" ariaHidden="true"></i></span> SLIDES</button>
 							</a>}
-							{videoLink && <a href={session.videoLink}>
+							{videoLink && <a href={session.videoLink} target="_blank">
 								<button><span className="icon"><i className="fa fa-video-camera" ariaHidden="true"></i></span> SCREENCAST</button>
 							</a>}
-							{blogPostLink && <a href={session.blogPostLink}>
+							{blogPostLink && <a href={session.blogPostLink} target="_blank">
 								<button><span className="icon"><i className="fa fa-thumb-tack" ariaHidden="true"></i></span> BLOG POST</button>
 							</a>}
 						</div>
-						<button className="btn-selection"><i className="fa fa-plus" ariaHidden="true"></i> ADD SUBMISSION</button>
+						{submissionLink && <a href={session.submissionLink} target="_blank" >
+							<button className="btn-selection"><i className="fa fa-plus" ariaHidden="true"></i> ADD SUBMISSION</button>
+						</a>}
 					</div>
 					
 				</div>
@@ -61,8 +84,8 @@ class SessionDetail extends Component{
 
 }
 
-function mapStateToProps({selectedSession}){
-	return {selectedSession};
+function mapStateToProps({selectedSession, team}){
+	return {selectedSession, team};
 }
 
 function mapDispatchToProps(dispatch){

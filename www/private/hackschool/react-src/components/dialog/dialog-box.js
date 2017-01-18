@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeDialog } from '../actions';
+import { changeDialog } from '../../actions';
 
+import DialogAttendance from './dialog-attendance';
 import DialogOnboard from './dialog-onboard';
 import DialogManage from './dialog-manage';
 
@@ -19,18 +20,27 @@ class DialogBox extends Component{
 			this.props.changeDialog({onBoarding: true});
 		else
 			this.props.changeDialog({onBoarding: false});
+
+		document.querySelector('body').classList.add('noscroll');
 	}
 
 	componentWillReceiveProps(props){
 		this.setState({triggerOnboard: props.dialog.onBoarding});
 	}
 
+	componentWillUnmount(){
+		document.querySelector('body').classList.remove('noscroll');
+	}
+
 	render(){
-		if(this.state.triggerOnboard == null){
+		if(this.state.triggerOnboard == null)
 			return null;
-		}
-			
-		const dialogBox = this.state.triggerOnboard
+
+		let dialogBox;
+		if(this.props.dialog.attendance)
+			dialogBox = <DialogAttendance />
+		else
+			dialogBox = this.state.triggerOnboard
 							? <DialogOnboard />
 							: <DialogManage />;
 		return(

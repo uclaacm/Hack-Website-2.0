@@ -127,7 +127,6 @@ let authenticated = (req, res, next) => {
  * hack school page. Otherwise, show the login form.
  */
 router.get('/', (req, res, next) => {
-	return next(); // TODO: remove this later. this stops auth from working
 	if (req.user) {
 		log.debug("[AUTH] User %s already logged in. Redirecting to Dashboard...", req.user.id);
 		return res.redirect('/hackschool');
@@ -177,9 +176,12 @@ router.get('/google/callback',
 
 // Logout route
 router.get('/logout', (req, res) => {
+	if (!req.user)
+		return res.redirect('/auth');
+
 	log.debug("[AUTH] User %s logged out", req.user.id);
 	req.logout();
-	res.redirect('/auth');
+	res.render('auth/logout');
 });
 
 module.exports = { router, authenticated, configAuth };

@@ -10,6 +10,11 @@
 
 	<style>
 
+	@font-face {
+		font-family: 'Open Sans';
+		src: url('/auth/css/OpenSans-Regular.ttf');
+	}
+
 	body{
 		background-color: #F0F0F0;
 	}
@@ -56,16 +61,11 @@
 	}
 
 	span{
-		/*font-family: 'Montserrat', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 		color: #694873;
 		font-size: 25px;
 		line-height: 50px;
-		float: left;*/
-	}
-
-	.login-btns{
-		margin-bottom: 20px;
-		overflow: auto;
+		float: left;
 	}
 
 	a.return{
@@ -80,12 +80,12 @@
 		opacity: 0.8;
 	}
 
-	a.fb-btn, a.google-btn{
+	a.fb-btn{
 		background: #4c69ba;
 		border: 0;
 		color: #fff;
 		font-family: "Open Sans";
-		font-size: 18px;
+		font-size: 20px;
 		font-weight: bold;
 		border-radius: 3px;
 		border-color: #4c69ba;
@@ -93,38 +93,18 @@
     	text-shadow: 0 -1px 0 #354c8c;
     	cursor: pointer;
 	    display: inline-block;
-	    padding: 5px 5px;
+	    vertical-align: top;
+	    padding: 10px;
 	    vertical-align: center;
-	    margin: 10px 0;
+	    margin: 35px 0;
 	    text-decoration: none;
-	    width: 260px;
-	    box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
 	}
 
-	a.google-btn{
-		background: #4285f4;
-		padding: 0px;
-		width: 270px
-	}
-
-	a.fb-btn p{
-		padding: 10px 0;
-	}
-
-	a.google-btn p{
-		padding: 15px 0;
-	}
-
-	svg, .google-btn img{
-		height: 50px;
-		width: 50px;
+	svg{
+		height: 30px;
+		width: 30px;
 		float: left;
 		margin-right: 8px;
-	}
-
-	.google-btn img{
-		height: 60px;
-		width: 60px;
 	}
 
 	.col-right > *{
@@ -144,6 +124,10 @@
 		margin: 0;
 	}
 
+	.logout{
+		width: 250px;
+		margin: 90px 0 30px 0;
+	}
 
 	@media only screen and (max-width: 580px) {
 
@@ -151,6 +135,10 @@
 			width: 60%;
 			height: 80%;
 			overflow: auto;
+		}
+
+		.logout{
+			width: auto;
 		}
 
 		.col-left{
@@ -171,23 +159,13 @@
 		}
 
 		svg{
-			height: 40px;
-			width: 40px;
+			height: 20px;
+			width: 20px;
 		}
 
-		.google-btn img{
-			height: 50px;
-			width: 50px;
-			margin-left: -5px;
-		}
-
-		a.fb-btn, a.google-btn{
-			font-size: 12px;
+		a.fb-btn{
+			font-size: 14px;
 			width: 90%;
-		}
-
-		a.google-btn{
-			padding: 0px 5px;
 		}
 
 	}
@@ -198,26 +176,11 @@
 
 	<div class="login-box">
 		<div class="col-left">
-			<!--<div class="logo">
+			<div class="logo">
 				<img src="/auth/images/Hack.svg"/>
-			</div>-->
-			<div class="login-btns">
-				<a href="/auth/facebook" class="fb-btn">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216" class="_55a2">
-							<path fill="white" d="
-					          M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9
-					          11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1
-					          11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2
-					          15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3
-					          11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path>
-						</svg><p>Login with Facebook</p>
-				</a>
-				<a href="/auth/google" class="google-btn">
-					<img src="/auth/images/btn_google_dark_focus_ios.svg" />
-					<p>Login with Google</p>
-				</a>
 			</div>
-			<a href="/" class="return">...or return to the homepage</a>
+			<div class="logout"><p>You've logged out.</p></div>
+			<a href="/" class="return">return to the homepage</a>
 		</div>
 		<div class="divide"></div>
 		<div class="col-right">

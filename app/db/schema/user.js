@@ -29,7 +29,8 @@ let User = new Schema({
 	},
 	accessToken: { type: String },
 	lastSignIn: { type: Date },
-	teamId: { type: String }
+	teamId: { type: String },
+	attendance: [Number]
 }, { minimize: false });
 
 User.statics.findById = function(id, callback) {
@@ -41,7 +42,7 @@ User.statics.findByProfileId = function(profileId, callback) {
 };
 
 User.methods.getPublic = function() {
-	return _.pick(this, ['id', 'name', 'profilePicture']);
+	return _.pick(this, ['id', 'name', 'profilePicture', 'attendance']);
 };
 
 module.exports = User;
