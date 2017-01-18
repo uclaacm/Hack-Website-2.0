@@ -4,11 +4,11 @@ import _ from 'underscore';
 export default (state = null, action) => {
 	switch(action.type){
 		case FETCH_SESSIONS:
-			console.log(action.payload.data.sessions)
+			//console.log(action.payload.data.sessions)
 			if(!action.payload.data.success)
 				return state;
 			else{
-				console.log(action.payload.data.sessions)
+				//console.log(action.payload.data.sessions)
 				const cols = 4;
 				return {
 				attend: null,
@@ -35,7 +35,7 @@ export default (state = null, action) => {
 				};
 			}
 		case ATTEND_SESSION:
-			console.log('session', state)
+			//console.log('session', state)
 			//action.payload.data.sessionNumber
 			if(action.payload.data.success){
 				return {
