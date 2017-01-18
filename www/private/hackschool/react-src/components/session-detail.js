@@ -18,12 +18,14 @@ class SessionDetail extends Component{
 		if(!session)
 			return null;
 
-		let teamScore = this.props.team.team.scores
-							.find(score => score.sessionNumber == session.number);
+		let teamScore = this.props.team.team
+							? this.props.team.team.scores
+								.find(score => score.sessionNumber == session.number)
+							: null;
 
 		if(!session.project)
 			teamScore = null;
-		else if(typeof teamScore == 'undefined')
+		else if(typeof teamScore == 'undefined' || teamScore == null)
 			teamScore = `0/`;
 		else
 			teamScore = `${teamScore.score}/`;
