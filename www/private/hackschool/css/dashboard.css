@@ -1,4 +1,6 @@
-
+body{
+	overflow-x: hidden;
+}
 .loading{
 	min-width: 300px;
 	max-width: 500px;
@@ -20,6 +22,10 @@
 
 /*slides*/
 
+.slide-outer{
+	width: 100%;
+}
+
 .slide-wrapper{
 	-webkit-transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
 			transition: all 1s cubic-bezier(0.65,-0.3, 0.36, 1.07);
@@ -37,6 +43,10 @@
 	transform: translateX(-1500px);
 }
 
+.noscroll{
+	overflow: hidden;
+}
+
 /*====================DASH MENU====================*/
 
 .dashboard-menu{
@@ -49,15 +59,20 @@
 	width: 100%;
 }
 
+.mobile{
+	display: none;
+}
+
 .dashboard-menu > *{
 	letter-spacing: 2px;
 }
 
-.dashboard-menu p{
+.dashboard-menu a.hack-dash{
 	font-size: 12px;
 	padding: 10px 10px 10px 20px;
 	float: left;
 	font-family: var(--fam2);
+	color: #fff;
 }
 
 .dashboard-menu button{
@@ -434,7 +449,6 @@
 	top: 50%;
 	left:50%;
 	margin: -225px 0 0 -275px;
-	overflow: hidden;
 }
 
 .img-top{
@@ -478,6 +492,7 @@
 	font-size: 16px;
     height: 160px;
     overflow-y: auto;
+    padding-bottom: 20px;
 }
 
 .gradient{
@@ -569,6 +584,7 @@ button span.icon{
 
 .team-list{
 	width: 640px;
+	overflow-y: auto;
 }
 
 .featured-team-list, .team-list{
@@ -620,11 +636,6 @@ button span.icon{
 }
 
 /*normal team list*/
-
-.team-list{
-	overflow-y: auto;
-}
-
 .team-list table{
 	width: 100%;
 }
@@ -632,20 +643,21 @@ button span.icon{
 .team-list thead{
 	position: absolute;
 	background: #fff;
-	padding: 20px 0px;
+	padding: 10px 0px 5px 0px;
     margin-top: -22px;
     width: 640px;
     z-index: 100;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .team-list th:first-child,
 .team-list td:first-child{
-	width: 35px;
+	width: 40px;
 }
 
 .team-list th:nth-child(2),
 .team-list td:nth-child(2){
-	width: 230px;
+	width: 240px;
 }
 
 .team-list th:nth-child(3),
@@ -883,6 +895,8 @@ button.back i{
 
 /*====================MEDIA QUERIES====================*/
 
+/*grid sessions*/
+
 @media only screen and (max-width: 990px){
 	.grid td:nth-child(4){
 		margin-left: 0px;
@@ -903,3 +917,136 @@ button.back i{
 		margin-right: 30px;
 	}
 }
+
+/*end grid sessions*/
+
+/*profile*/
+
+@media only screen and (max-width: 990px){
+
+	.profile{
+		padding: 0px;
+		padding-top: 30px;
+	}
+
+	.profile-pic{
+		height: 80px;
+		width: 80px;
+		margin: 20px 10px;
+	}
+
+	.main-profile-info{
+		margin-top: 25px;
+	}
+
+	.main-profile-info h3, .main-profile-info h4{
+		font-size: 10px;
+	}
+
+	.main-profile-info h1{
+		font-size: 24px;
+	}
+
+	.profile ul.team-members li{
+		width: 30px;
+	}
+
+	.profile .team-profile-pic{
+		height: 25px;
+    	width: 25px;
+    	margin-left: -3px !important;
+	}
+
+	.team-members .shadow{
+		margin-left: -18px !important;
+	}
+
+	.hover-name{
+		top: 40px;
+	}
+
+	/*todo: alternate UI for this*/
+	.info-right{
+		display: none;
+	}
+
+	.info-right{
+		margin-right: 0px;
+	}
+
+	.info-right > *{
+		margin-top: 0px;
+	}
+
+	.slide-outer{
+		overflow-x: hidden;
+	}
+}
+
+/*end profile*/
+
+
+/*menu*/
+
+@media only screen and (max-width: 700px){
+
+	.desktop{
+		display: none;
+	}
+
+	.mobile{
+		display: block;
+	}
+
+}
+
+/*end menu*/
+
+/*leaderboard*/
+
+@media only screen and (max-width: 1002px){ /*leaderboard width*/
+
+
+
+	.leaderboard{
+		width: auto;
+		padding: 0px;
+	}
+
+	.featured-team-list, .team-list{
+		width: 80%;
+    	margin: 20px 10%;
+    	-webkit-transform: translate(-20px);
+    			transform: translate(-20px);
+	}
+
+	.team-list{
+		overflow: auto;
+	}
+
+	.team-list thead{
+		width: auto;
+	}
+
+	.team-list thead tr{
+		margin-right: 20px;
+    	display: inline-block;
+    	position: fixed;
+    	border-bottom: 1px solid rgba(0,0,0,0.1);
+	}
+
+	.team-list tbody tr{
+		text-align: left;
+	    display: inline-block;
+	    height: 80px;
+	    margin-bottom: 10px;
+	    border-bottom: 1px solid rgba(0,0,0,0.1);
+	}
+
+	.gradient{
+		display: none;
+	}
+
+}
+
+/*end leaderboard*/

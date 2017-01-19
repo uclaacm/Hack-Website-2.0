@@ -20,7 +20,7 @@ class Profile extends Component{
 	}
 
 	componentWillReceiveProps(props){
-		console.log('profile props', props)
+		//console.log('profile props', props)
 	}
 
 	formatOtherMembers(members){

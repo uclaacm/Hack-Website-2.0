@@ -30,7 +30,7 @@ class DialogAttendance extends Dialog{
 		//if we reach here, can assume this.props.team.team is defined
 		return (
 			<div className="create-success dialog-inner">
-				<h3>Great! Input code verified.</h3>
+				<h3>Great! Input code verified. </h3>
 				<button className="btn-selection" onClick={() => this.props.changeDialog({active: false, onBoarding: false})}>BACK TO DASHBOARD</button>
 			</div>
 		);

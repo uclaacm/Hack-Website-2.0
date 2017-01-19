@@ -20,7 +20,6 @@ class TeamList extends Component{
 	}
 
 	render(){
-
 		if (this.props.list.length != 0)
 			return (
 				<div className="team-list">

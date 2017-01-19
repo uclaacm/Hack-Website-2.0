@@ -5,17 +5,27 @@ import { selectSession } from '../actions';
 
 class SessionDetail extends Component{
 
+	componentWillMount(){
+		document.querySelector('body').classList.add('noscroll');
+	}
+
+	componentWillUnmount(){
+		document.querySelector('body').classList.remove('noscroll');
+	}
+
 	render(){
 		const session = this.props.selectedSession;
 		if(!session)
 			return null;
 
-		let teamScore = this.props.team.team.scores
-							.find(score => score.sessionNumber == session.number);
+		let teamScore = this.props.team.team
+							? this.props.team.team.scores
+								.find(score => score.sessionNumber == session.number)
+							: null;
 
 		if(!session.project)
 			teamScore = null;
-		else if(typeof teamScore == 'undefined')
+		else if(typeof teamScore == 'undefined' || teamScore == null)
 			teamScore = `0/`;
 		else
 			teamScore = `${teamScore.score}/`;
