@@ -41,6 +41,10 @@ User.statics.findByProfileId = function(profileId, callback) {
 	this.findOne({ profileId }, callback);
 };
 
+User.statics.sanitizeAttendance = function(attendance) {
+	
+};
+
 User.methods.getPublic = function() {
 	return _.pick(this, ['id', 'name', 'profilePicture', 'attendance']);
 };

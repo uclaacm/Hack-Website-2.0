@@ -1,7 +1,7 @@
 const express = require('express');
 const _ = require('underscore');
-const crypto = require('../../../crypto');
-const db = require('../../../db');
+const crypto = require('../../../../crypto');
+const db = require('../../../../db');
 let router = express.Router();
 
 router.route('/:sessionId?')
