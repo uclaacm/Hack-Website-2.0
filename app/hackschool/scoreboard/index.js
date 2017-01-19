@@ -19,6 +19,10 @@ router.get('/', (req, res) => {
 			return 0;
 		});
 
+		teams[0].rank = 1;
+		for (let i = 1; i < teams.length; i++)
+			teams[i].rank = teams[i - 1].rank + (teams[i].totalScore < teams[i - 1].totalScore ? 1 : 0);
+
 		res.json({
 			success: !err,
 			error: err ? err : null,
