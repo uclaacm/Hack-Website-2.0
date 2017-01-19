@@ -90,7 +90,7 @@ Team.methods.removeScore = function(sessionNumber) {
 	}
 };
 
-Team.methods.getPublic = function(withMembers=false) {
+Team.methods.getPublic = function(withMembers=true) {
 	let team = _.pick(this, ['id', 'name', 'scores']);
 	if (withMembers)
 		team.members = this.members.map(member => member.getPublic());
