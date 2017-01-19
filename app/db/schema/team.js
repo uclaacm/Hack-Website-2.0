@@ -1,6 +1,6 @@
 const _ = require('underscore');
 const uuid = require('node-uuid');
-const TOTAL_ATTENDANCE = 12;
+const TOTAL_ATTENDANCE = 30;
 
 let Schema = require('mongoose').Schema;
 let ObjectId = Schema.ObjectId;

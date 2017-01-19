@@ -98,7 +98,7 @@ router.post('/join', (req, res) => {
 		if (!team)
 			return res.json({ success: false, error: "No team with id '" + req.body.team.id + "' exists.", team: null });
 
-		if (team.members.length >= 4)
+		if (team.members.length >= 6)
 			return res.json({ success: false, error: "This team already has the maximum number of team members." });
 
 
