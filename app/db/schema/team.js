@@ -71,9 +71,29 @@ Team.methods.removeAttended = function(sessionNumber, userId) {
 	}
 };
 
-Team.methods.getPublic = function() {
+Team.methods.addOrUpdateScore = function(sessionNumber, score) {
+	for (let i = 0; i < this.scores; i++) {
+		if (this.scores[i].sessionNumber === sessionNumber) {
+			this.scores[i].score = score;
+			return;
+		}
+	}
+
+	this.scores.push({ sessionNumber, score });
+};
+
+Team.methods.removeScore = function(sessionNumber) {
+	for (let i = 0; i < this.scores; i++) {
+		if (this.scores[i].sessionNumber === sessionNumber) {
+			this.scores.splice(i--, 1);
+		}
+	}
+};
+
+Team.methods.getPublic = function(withMembers=true) {
 	let team = _.pick(this, ['id', 'name', 'scores']);
-	team.members = this.members.map(member => member.getPublic());
+	if (withMembers)
+		team.members = this.members.map(member => member.getPublic());
 	team.totalScore = this.scores.reduce((a,b) => a + b.score, 0) +
 					  (TOTAL_ATTENDANCE / this.members.length) * this.attendance.reduce((a,b) => a + b.usersAttended.length, 0);
 	return team;
