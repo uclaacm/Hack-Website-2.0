@@ -51,7 +51,6 @@ router.post('/subscribe', (req, res) => {
 	if (!/[^@]+@[^@]+\.[^@]+/.test(req.body.email))
 		return res.json({ success: false, error: "Invalid email address." });
 
-	log.debug("Received email '%s' to subscribe to email list", req.body.email);
 	request({
 		method: "POST",
 		url: "https://" + config.mailchimp.instance + ".api.mailchimp.com/3.0/lists/" + config.mailchimp.hackListId + "/members",
