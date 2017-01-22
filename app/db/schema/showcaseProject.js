@@ -20,6 +20,7 @@ let ShowcaseProject = new Schema({
 	screenshots: { type: [String] },
 	link: { type: String, required: true },
 	title: { type: String, required: true },
+	sourceLink: { type: String },
 	technologies: { type: [String] },
 	contributors: { type: [String], required: true }
 });
@@ -29,7 +30,7 @@ ShowcaseProject.statics.findById = function(id, callback) {
 };
 
 ShowcaseProject.statics.sanitize = function(event, withId=true) {
-	let pickProperties = ['date','desc','image','screenshots','link','title','technologies','contributors'];
+	let pickProperties = ['date','desc','image','screenshots','link','sourceLink','title','technologies','contributors'];
 	if (withId) pickProperties.unshift('id');
 	return _.pick(event, pickProperties);
 };
