@@ -21,6 +21,7 @@ class Dashboard extends Component{
 	}
 
 	render() {
+		console.log('selected session', this.props.selectedSession);
 		//fetchUser not done yet
 		if(!this.props.user)
 			return <Loading message="Retrieving user info..." />

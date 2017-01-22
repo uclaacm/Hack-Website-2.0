@@ -20,6 +20,7 @@ export default (state = null, action) => {
 							session.points = session.project.points;
 							session.slidesLink = session.project.slidesLink;
 							session.videoLink = session.project.videoLink;
+							session.sourceCodeLink = session.project.sourceCodeLink;
 							session.submissionLink = session.project.submissionLink;
 							session.project = true;
 						}else session.project = false;

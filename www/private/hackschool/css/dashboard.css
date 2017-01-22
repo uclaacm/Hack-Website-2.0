@@ -574,15 +574,16 @@ button span.icon{
 
 .confirm ul li{
 	font-family: var(--fam1);
+	font-size: 14px;
 }
 
 .confirm .notice{
 	margin-top: 20px;
-	height: 144px;
+	height: 94px;
 }
 
 .confirm .notice p{
-	font-size: 12px;
+	font-size: 10px;
 	color: var(--grey-deep);
 }
 

@@ -24,9 +24,10 @@ class SessionsGrid extends Component{
 
 	renderSession(session, row, column){
 		//if the link is not available, don't show its icon
-		const slidesLink = !(typeof session.slidesLink == 'undefined');
-		const videoLink = !(typeof session.videoLink == 'undefined');
-		const blogPostLink = !(typeof session.blogPostLink == 'undefined');
+		const sourceCodeLink = typeof session.sourceCodeLink != 'undefined';
+		const slidesLink = typeof session.slidesLink != 'undefined';
+		const videoLink = typeof session.videoLink != 'undefined';
+		const blogPostLink = typeof session.blogPostLink != 'undefined';
 		const attendance = this.props.user.attendance;
 
 		return (
@@ -40,6 +41,7 @@ class SessionsGrid extends Component{
 							 image			= { session.image }
 							 onClickEvent	= { () => this.onSelect(session) }
 							 project 		= { session.project }
+							 sourceCodeLink = { sourceCodeLink }
 							 slidesLink		= { slidesLink }
 							 videoLink		= { videoLink }
 							 blogPostLink	= { blogPostLink } 
