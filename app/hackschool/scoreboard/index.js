@@ -11,17 +11,25 @@ router.get('/', (req, res) => {
 		}
 
 		teams = teams.map(team => team.getPublic());
-		teams.sort((a, b) => {
-			if (a.totalScore > b.totalScore) return -1;
-			if (a.totalScore < b.totalScore) return 1;
-			if (a.name < b.name) return -1;
-			if (a.name > b.name) return 1;
-			return 0;
-		});
 
-		teams[0].rank = 1;
-		for (let i = 1; i < teams.length; i++)
-			teams[i].rank = teams[i - 1].rank + (teams[i].totalScore < teams[i - 1].totalScore ? 1 : 0);
+		if (teams.length > 0) {
+			teams.sort((a, b) => {
+				if (a.totalScore > b.totalScore) return -1;
+				if (a.totalScore < b.totalScore) return 1;
+				if (a.name < b.name) return -1;
+				if (a.name > b.name) return 1;
+				return 0;
+			});
+	
+
+			teams[0].rank = 1;
+			for (let i = 1; i < teams.length; i++) {
+				if (teams[i].totalScore === teams[i - 1].totalScore)
+					teams[i].rank = teams[i - 1].rank
+				else
+					teams[i].rank = i + 1;
+			}
+		}
 
 		res.json({
 			success: !err,
