@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 
-// Use native ES6 promises
-mongoose.Promise = global.Promise;
+// Use bluebird promises
+mongoose.Promise = require('bluebird');
 mongoose.connect(config.database.uri);
 
 let ShowcaseProject = mongoose.model('ShowcaseProject', require('./schema/showcaseProject'));

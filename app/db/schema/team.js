@@ -20,7 +20,9 @@ let Team = new Schema({
 });
 
 Team.statics.getAll = function(callback) {
-	this.find({}, callback); 
+	if (callback)
+		return this.find({}, callback);
+	return this.find({}).exec();
 };
 
 Team.statics.findById = function(id, callback) {

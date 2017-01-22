@@ -157,7 +157,7 @@ export function getTeamRank(scoreboard, teamID){
 	return{
 		type: GET_TEAM_RANK,
 		payload: typeof match !== undefined 
-					? scoreboard.indexOf(match) + 1
+					? match.rank
 					: 'n/a'
 	}
 

@@ -24,7 +24,8 @@ let Session = new Schema({
 		points: { type: Number },
 		videoLink: { type: String },
 		slidesLink: { type: String },
-		submissionLink: { type: String }
+		submissionLink: { type: String },
+		sourceCodeLink: { type: String }
 	}
 }, { minimize: false });
 
@@ -55,7 +56,7 @@ Session.statics.sanitize = function(session, withId=true) {
 	if (session.date)
 		session.date = _.pick(session.date, ['start', 'end']);
 	if (session.project)
-		session.project = _.pick(session.project, ['points','slidesLink','videoLink','submissionLink']);
+		session.project = _.pick(session.project, ['points','slidesLink','videoLink','submissionLink','sourceCodeLink']);
 	return session;
 };
 
