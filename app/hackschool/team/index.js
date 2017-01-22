@@ -2,6 +2,8 @@ const express = require('express');
 const async = require('async');
 const db = require('../../db');
 const log = require('../../logger');
+const cache = require('../../cache');
+const config = require('../../config');
 let router = express.Router();
 
 router.get('/', (req, res) => {
@@ -32,11 +34,14 @@ router.post('/create', (req, res) => {
 			return res.status(500).json({ success: false, error: "Database error." });
 		}
 
-		if (team) return res.json({ success: false, error: "A team with that name already exists." });
+		if (team)
+			return res.json({ success: false, error: "A team with that name already exists." });
+		
 		let newTeam = new db.Team({ name: req.body.team.name });
 		newTeam.addUser(req.user);
 		newTeam.save((err, updatedTeam) => {
 			if (!err) {
+				cache.set(config.cache.keys.teamsNeedUpdate, "1");
 				req.user.teamId = updatedTeam.id;
 				req.user.save();
 			} else {
@@ -62,13 +67,13 @@ router.get('/leave', (req, res) => {
 			return res.status(500).json({ success: false, error: "Database error." });
 		}
 
-		if (!team) return res.json({ success: false, error: "Could not find user team." });
+		if (!team)
+			return res.json({ success: false, error: "Could not find user team." });
 		
 		team.removeUser(req.user);
-		
-		let teamAction = team.members.length === 0 ? team.remove : team.save;
-		teamAction(err => {
+		(team.members.length === 0 ? team.remove : team.save)(err => {
 			if (!err) {
+				cache.set(config.cache.keys.teamsNeedUpdate, "1");
 				req.user.teamId = "";
 				req.user.save();
 			} else {
@@ -101,12 +106,12 @@ router.post('/join', (req, res) => {
 		if (team.members.length >= 4)
 			return res.json({ success: false, error: "This team already has the maximum number of team members." });
 
-
 		req.user.teamId = team.id;
 		req.user.save();
 		team.addUser(req.user);
 		team.save((err, newTeam) => {
 			if (err) log.error("[TEAMS] Team save error: %s", err);
+			cache.set(config.cache.keys.teamsNeedUpdate, "1");
 			res.json({
 				success: !err,
 				error: err ? err : null,
