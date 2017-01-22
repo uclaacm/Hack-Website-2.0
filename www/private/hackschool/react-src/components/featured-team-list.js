@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TeamFeaturedItem from './team-featured-item';
+import FeaturedTeamItem from './featured-team-item';
 
 class FeaturedTeamList extends Component{
 
@@ -10,14 +10,13 @@ class FeaturedTeamList extends Component{
 		this.renderList = this.renderList.bind(this);
 	}
 
-	renderList(team, i){
-		return <TeamFeaturedItem 	key={team.id}
+	renderList(team){
+		return <FeaturedTeamItem 	key={team.id}
 									featured={true}
-									first={i==0}
 									name={team.name}
 									score={team.totalScore}
 									members={team.members}
-									rank={i+1} />;
+									rank={team.rank} />;
 	}
 
 	render(){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TeamGridItem from './team-grid-item';
+import TeamItem from './team-item';
 
 class TeamList extends Component{
 
@@ -11,12 +11,11 @@ class TeamList extends Component{
 	}
 
 	renderList(team, i){
-		const highest = 4;
-		return <TeamGridItem 	key={team.id}
-								name={team.name}
-								score={team.totalScore}
-								members={team.members}
-								rank={i + highest} />;
+		return <TeamItem 	key={team.id}
+							name={team.name}
+							score={team.totalScore}
+							members={team.members}
+							rank={team.rank} />;
 	}
 
 	render(){

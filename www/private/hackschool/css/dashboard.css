@@ -570,15 +570,24 @@ button span.icon{
 
 .confirm ul{
 	margin-top: 12px;
-	height: 230px;
 }
 
 .confirm ul li{
 	font-family: var(--fam1);
 }
 
+.confirm .notice{
+	margin-top: 20px;
+	height: 144px;
+}
+
+.confirm .notice p{
+	font-size: 12px;
+	color: var(--grey-deep);
+}
+
 .confirm .btn-selection{
-	width: 48% !important;
+	width: 49% !important;
 }
 
 .confirm .cancel{
