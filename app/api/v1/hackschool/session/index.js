@@ -62,7 +62,6 @@ router.route('/:sessionId?')
 	db.Session.findById(req.sessionId, (err, session) => {
 		if (err || !session)
 			return res.json({ success: false, error: err });
-		console.log(session, err);
 		session.update(req.sessionObj);
 		session.save((err, updatedSession) => {
 			res.json({
