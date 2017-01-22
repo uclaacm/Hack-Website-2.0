@@ -1,15 +1,12 @@
 const express = require('express');
 const db = require('../../db');
 const log = require('../../logger');
+const cache = require('../../cache');
+const config = require('../../config');
 let router = express.Router();
 
-router.get('/', (req, res) => {
-	db.Team.getAll((err, teams) => {
-		if (err) {
-			log.error("[SCOREBOARD] Database error: %s", err);
-			return res.status(500).json({ success: false, error: err, scoreboard: [] });
-		}
-
+let generateScoreboard = () => {
+	return db.Team.getAll().then(teams => {
 		teams = teams.map(team => team.getPublic());
 
 		if (teams.length > 0) {
@@ -30,11 +27,36 @@ router.get('/', (req, res) => {
 					teams[i].rank = i + 1;
 			}
 		}
+	
+		return teams;
+	});
+};
 
+router.get('/', (req, res) => {
+	cache.get(config.cache.keys.teamsNeedUpdate).then(value => {
+		if (value === "0") {
+			log.debug("[SCOREBOARD] using cached teams");
+			return cache.get(config.cache.keys.scoreboardTeams).then(teams => JSON.parse(teams));
+		} else {
+			log.debug("[SCOREBOARD] generating scoreboard");
+			cache.set(config.cache.keys.teamsNeedUpdate, "0");
+			return generateScoreboard().then(teams => {
+				cache.set(config.cache.keys.scoreboardTeams, JSON.stringify(teams));
+				return teams;
+			});
+		}
+	}).then(teams => {
 		res.json({
-			success: !err,
-			error: err ? err : null,
+			success: true,
+			error: null,
 			scoreboard: teams
+		});
+	}).catch(err => {
+		log.error("[SCOREBOARD] Error: %s", err);
+		res.status(500).json({
+			success: false,
+			error: null,
+			scoreboard: []
 		});
 	});
 });
