@@ -42,7 +42,7 @@ server.use('/auth', app.auth.router);
 server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
 
 // Expose private resources (requires authentication)
-server.use('/private', app.auth.authenticated, express.static('www/private'));
+server.use('/private', app.auth.authenticated, express.static('www/private', { maxAge: 1000*60*60*24*30 })); // 30 day expiry
 
 // Register Opbeat monitoring error handler
 if (app.config.isProduction)
