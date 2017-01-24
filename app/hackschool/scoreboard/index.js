@@ -46,18 +46,10 @@ router.get('/', (req, res) => {
 			});
 		}
 	}).then(teams => {
-		res.json({
-			success: true,
-			error: null,
-			scoreboard: teams
-		});
+		res.json({ success: true, error: null, scoreboard: teams });
 	}).catch(err => {
-		log.error("[SCOREBOARD] Error: %s", err);
-		res.status(500).json({
-			success: false,
-			error: null,
-			scoreboard: []
-		});
+		log.error("[SCOREBOARD] %s", err.message);
+		res.status(500).json({ success: false, error: null, scoreboard: [] });
 	});
 });
 
