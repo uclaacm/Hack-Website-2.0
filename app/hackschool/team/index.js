@@ -2,8 +2,6 @@ const express = require('express');
 const async = require('async');
 const db = require('../../db');
 const log = require('../../logger');
-const cache = require('../../cache');
-const config = require('../../config');
 let router = express.Router();
 
 router.get('/', (req, res) => {
@@ -41,7 +39,6 @@ router.post('/create', (req, res) => {
 		newTeam.addUser(req.user);
 		newTeam.save((err, updatedTeam) => {
 			if (!err) {
-				cache.set(config.cache.keys.teamsNeedUpdate, "1");
 				req.user.teamId = updatedTeam.id;
 				req.user.save();
 			} else {
@@ -73,7 +70,6 @@ router.get('/leave', (req, res) => {
 		team.removeUser(req.user);
 		(team.members.length === 0 ? team.remove : team.save)(err => {
 			if (!err) {
-				cache.set(config.cache.keys.teamsNeedUpdate, "1");
 				req.user.teamId = "";
 				req.user.save();
 			} else {
@@ -111,7 +107,6 @@ router.post('/join', (req, res) => {
 		team.addUser(req.user);
 		team.save((err, newTeam) => {
 			if (err) log.error("[TEAMS] Team save error: %s", err);
-			cache.set(config.cache.keys.teamsNeedUpdate, "1");
 			res.json({
 				success: !err,
 				error: err ? err : null,

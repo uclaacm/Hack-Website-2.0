@@ -1,8 +1,8 @@
 const express = require('express');
 const _ = require('underscore');
-const crypto = require('../../../../../crypto');
 const db = require('../../../../../db');
 const log = require('../../../../../logger');
+const crypto = require('../../../../../crypto');
 let router = express.Router();
 
 router.route('/:teamId?')
@@ -23,25 +23,26 @@ router.route('/:teamId?')
 })
 .get((req, res, next) => {
 	// GET request finds a team by the team ID, if given, otherwise get all teams 
-	let dbQuery = req.teamId ? { id: req.teamId } : {};
+	if (!req.teamId)
+		return res.status(400).json({ success: false, error: "Malformed request" });
 
-	db.Team.find(dbQuery).exec((err, results) => {
+	db.Team.findById(req.teamId, (err, team) => {
 		res.json({
 			success: !err,
 			error: err ? err : null,
-			numResults: results && results.length ? results.length : 0,
-			teams: err ? [] : results.map(team => team.getPublic(withMembers=false))
+			numResults: !err ? (team ? team.scores.length : 0) : 0,
+			scores: err ? [] : (team && team.scores ? team.getScores() : [])
 		});
 	});
 })
 .post((req, res, next) => {
 	// POST request adds a score
 	//   If there is a team ID or there isn't a score to post, the request is malformed
-	if (req.teamId || !req.scoreObj || !req.scoreObj.teamId || !req.scoreObj.score || !req.scoreObj.sessionNumber)
+
+	if (!req.teamId || !req.scoreObj || !req.scoreObj.score || !req.scoreObj.sessionNumber)
 		return res.status(400).json({ success: false, error: "Malformed request." });
 
-	// Create a new session with the given details (sanitized in .all)
-	db.Team.findById(req.scoreObj.teamId, (err, team) => {
+	db.Team.findById(req.teamId, (err, team) => {
 		if (err) {
 			log.error("[SCORE API] Database error: %s", err);
 			return res.status(500).json({ success: false, error: err });
@@ -51,7 +52,7 @@ router.route('/:teamId?')
 
 		team.addOrUpdateScore(req.scoreObj.sessionNumber, req.scoreObj.score, req.scoreObj.daysLate);
 		team.save((err, updatedTeam) => {
-			req.json({
+			res.json({
 				success: !err,
 				error: err ? err : null
 			});
