@@ -86,4 +86,8 @@ Session.methods.update = function(session) {
 	applyDelta(session, this);
 };
 
+Session.methods.getPublic = function() {
+	return this.constructor.sanitize(this, withId=true);
+};
+
 module.exports = Session;
