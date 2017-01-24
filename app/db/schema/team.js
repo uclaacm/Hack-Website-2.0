@@ -33,11 +33,15 @@ Team.statics.getAll = function(callback) {
 };
 
 Team.statics.findById = function(id, callback) {
-	this.findOne({ id }, callback); 
+	if (callback)
+		return this.findOne({ id }, callback);
+	return this.findOne({ id }, callback);
 };
 
 Team.statics.findByName = function(name, callback) {
-	this.findOne({ name }, callback); 
+	if (callback)
+		return this.findOne({ name }, callback);
+	return this.findOne({ name }).exec();
 };
 
 Team.methods.addUser = function(user) {

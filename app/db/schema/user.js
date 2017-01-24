@@ -34,11 +34,15 @@ let User = new Schema({
 }, { minimize: false });
 
 User.statics.findById = function(id, callback) {
-	this.findOne({ id }, callback); 
+	if (callback)
+		return this.findOne({ id }, callback); 
+	return this.findOne({ id }).exec();
 };
 
 User.statics.findByProfileId = function(profileId, callback) {
-	this.findOne({ profileId }, callback);
+	if (callback)
+		return this.findOne({ profileId }, callback);
+	return this.findOne({ id }).exec();
 };
 
 User.statics.sanitizeAttendance = function(attendance) {

@@ -31,7 +31,9 @@ Event.pre('save', function(next) {
 });
 
 Event.statics.findById = function(id, callback) {
-	this.findOne({ id }, callback);
+	if (callback)
+		return this.findOne({ id }, callback);
+	return this.findOne({ id }).exec();
 };
 
 Event.statics.sanitize = function(event, withId=true) {

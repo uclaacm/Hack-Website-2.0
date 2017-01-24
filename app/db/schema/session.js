@@ -38,15 +38,21 @@ Session.pre('save', function(next) {
 });
 
 Session.statics.getAll = function(callback) {
-	this.find({}, callback);
+	if (callback)
+		return this.find({}, callback);
+	return this.find({}).exec();
 };
 
 Session.statics.findById = function(id, callback) {
-	this.findOne({ id }, callback);
+	if (callback)
+		return this.findOne({ id }, callback);
+	return this.findOne({ id }).exec();
 };
 
 Session.statics.findSessionForDate = function(date, callback) {
-	this.findOne({ "date.start" : { $lt : new Date(date) }, "date.end" : { $gt : new Date(date) } }, callback);
+	if (callback)
+		return this.findOne({ "date.start" : { $lt : new Date(date) }, "date.end" : { $gt : new Date(date) } }, callback);
+	return this.findOne({ "date.start" : { $lt : new Date(date) }, "date.end" : { $gt : new Date(date) } }).exec();
 };
 
 Session.statics.sanitize = function(session, withId=true) {

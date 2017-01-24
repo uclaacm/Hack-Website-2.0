@@ -26,7 +26,9 @@ let ShowcaseProject = new Schema({
 });
 
 ShowcaseProject.statics.findById = function(id, callback) {
-	this.findOne({ id }, callback);
+	if (callback)	
+		return this.findOne({ id }, callback);
+	return this.findOne({ id }).exec();
 };
 
 ShowcaseProject.statics.sanitize = function(event, withId=true) {
