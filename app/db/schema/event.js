@@ -30,9 +30,7 @@ Event.pre('save', function(next) {
 	next();
 });
 
-Event.statics.findById = function(id, callback) {
-	if (callback)
-		return this.findOne({ id }, callback);
+Event.statics.findById = function(id) {
 	return this.findOne({ id }).exec();
 };
 
@@ -60,7 +58,7 @@ Event.methods.update = function(event) {
 };
 
 Event.methods.getPublic = function() {
-	return this.constructor.sanitize(this, withId=true);
+	return this.constructor.sanitize(this);
 };
 
 module.exports = Event;

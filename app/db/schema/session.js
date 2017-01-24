@@ -37,21 +37,15 @@ Session.pre('save', function(next) {
 	next();
 });
 
-Session.statics.getAll = function(callback) {
-	if (callback)
-		return this.find({}, callback);
+Session.statics.getAll = function() {
 	return this.find({}).exec();
 };
 
-Session.statics.findById = function(id, callback) {
-	if (callback)
-		return this.findOne({ id }, callback);
+Session.statics.findById = function(id) {
 	return this.findOne({ id }).exec();
 };
 
-Session.statics.findSessionForDate = function(date, callback) {
-	if (callback)
-		return this.findOne({ "date.start" : { $lt : new Date(date) }, "date.end" : { $gt : new Date(date) } }, callback);
+Session.statics.findSessionForDate = function(date) {
 	return this.findOne({ "date.start" : { $lt : new Date(date) }, "date.end" : { $gt : new Date(date) } }).exec();
 };
 
@@ -64,12 +58,6 @@ Session.statics.sanitize = function(session, withId=true) {
 	if (session.project)
 		session.project = _.pick(session.project, ['points','slidesLink','videoLink','submissionLink','sourceCodeLink']);
 	return session;
-};
-
-Session.methods.getPublic = function() {
-	let obj = this.constructor.sanitize(this);
-	delete obj.secret;
-	return obj;
 };
 
 Session.methods.update = function(session) {
@@ -87,7 +75,9 @@ Session.methods.update = function(session) {
 };
 
 Session.methods.getPublic = function() {
-	return this.constructor.sanitize(this, withId=true);
+	let obj = this.constructor.sanitize(this);
+	delete obj.secret;
+	return obj;
 };
 
 module.exports = Session;

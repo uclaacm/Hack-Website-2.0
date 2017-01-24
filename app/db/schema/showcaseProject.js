@@ -25,9 +25,7 @@ let ShowcaseProject = new Schema({
 	contributors: { type: [String], required: true }
 });
 
-ShowcaseProject.statics.findById = function(id, callback) {
-	if (callback)	
-		return this.findOne({ id }, callback);
+ShowcaseProject.statics.findById = function(id) {
 	return this.findOne({ id }).exec();
 };
 
@@ -52,7 +50,7 @@ ShowcaseProject.methods.update = function(event) {
 };
 
 ShowcaseProject.methods.getPublic = function() {
-	return this.constructor.sanitize(this, withId=true);
+	return this.constructor.sanitize(this);
 }
 
 module.exports = ShowcaseProject;
