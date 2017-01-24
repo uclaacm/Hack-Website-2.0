@@ -1,8 +1,6 @@
 const express = require('express');
 const db = require('../../db');
 const log = require('../../logger');
-const cache = require('../../cache');
-const config = require('../../config');
 let router = express.Router();
 
 router.get('/', (req, res) => {
@@ -48,7 +46,6 @@ router.post('/attend', (req, res) => {
 
 			req.user.attendance.push(session.number);
 			team.addAttended(session.number, req.user.id);
-			cache.set(config.cache.keys.teamsNeedUpdate, "1");
 
 			req.user.save(err_u => {
 				if (err) log.error("[ATTENDANCE] Database save error: %s", err_u);

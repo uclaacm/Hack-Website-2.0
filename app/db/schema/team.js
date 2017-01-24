@@ -1,3 +1,5 @@
+const cache = require('../../cache');
+const config = require('../../config');
 const _ = require('underscore');
 const uuid = require('node-uuid');
 const TOTAL_ATTENDANCE = 12;
@@ -17,6 +19,11 @@ let Team = new Schema({
 	members: { type: [User], required: true },
 	scores: { type: [{ sessionNumber: Number, score: Number }] },
 	attendance: { type: [{ sessionNumber: Number, usersAttended: [String] }] }
+});
+
+Team.pre('save', function(next) {
+	cache.set(config.cache.keys.teamsNeedUpdate, "1");
+	next();
 });
 
 Team.statics.getAll = function(callback) {
@@ -73,8 +80,12 @@ Team.methods.removeAttended = function(sessionNumber, userId) {
 	}
 };
 
-Team.methods.addOrUpdateScore = function(sessionNumber, score) {
-	for (let i = 0; i < this.scores; i++) {
+Team.methods.addOrUpdateScore = function(sessionNumber, score, daysLate) {
+	daysLate = Math.max(0, daysLate || 0);
+	let multiplier = (daysLate === 0 ? 1 : Math.max(0, (100.0-Math.pow(2, daysLate - 1))/100.0));
+	score = parseFloat(score) * multiplier;
+	for (let i = 0; i < this.scores.length; i++) {
+		console.log(this.scores[i], sessionNumber, score, daysLate);
 		if (this.scores[i].sessionNumber === sessionNumber) {
 			this.scores[i].score = score;
 			return;
@@ -85,19 +96,26 @@ Team.methods.addOrUpdateScore = function(sessionNumber, score) {
 };
 
 Team.methods.removeScore = function(sessionNumber) {
-	for (let i = 0; i < this.scores; i++) {
+	for (let i = 0; i < this.scores.length; i++) {
 		if (this.scores[i].sessionNumber === sessionNumber) {
 			this.scores.splice(i--, 1);
 		}
 	}
 };
 
+Team.methods.getScores = function() {
+	return this.scores.map(score => _.pick(score, ['sessionNumber', 'score']));
+}
+
 Team.methods.getPublic = function(withMembers=true) {
-	let team = _.pick(this, ['id', 'name', 'scores']);
-	if (withMembers)
-		team.members = this.members.map(member => member.getPublic());
-	team.totalScore = this.scores.reduce((a,b) => a + b.score, 0) +
-					  (TOTAL_ATTENDANCE / this.members.length) * this.attendance.reduce((a,b) => a + b.usersAttended.length, 0);
+	let team = {
+		id: this.id,
+		name: this.name,
+		scores: this.getScores(),
+		totalScore: this.scores.reduce((a,b) => a + b.score, 0) + (TOTAL_ATTENDANCE / this.members.length) * this.attendance.reduce((a,b) => a + b.usersAttended.length, 0)
+	};
+	
+	if (withMembers) team.members = this.members.map(member => member.getPublic());
 	return team;
 };
 
