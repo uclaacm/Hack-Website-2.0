@@ -31,11 +31,11 @@ server.use('/private',  express.static('www/private', { maxAge: 1000*60*60*24*30
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-// Use sessions
-server.use(app.session);
-
 // Hack Data API
 server.use('/api', app.api.router);
+
+// Use sessions
+server.use(app.session);
 
 // Configure authentication
 app.auth.configAuth(server);
