@@ -51,4 +51,8 @@ ShowcaseProject.methods.update = function(event) {
 	applyDelta(event, this);
 };
 
+ShowcaseProject.methods.getPublic = function() {
+	return this.constructor.sanitize(this, withId=true);
+}
+
 module.exports = ShowcaseProject;

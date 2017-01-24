@@ -59,4 +59,8 @@ Event.methods.update = function(event) {
 	applyDelta(event, this);
 };
 
+Event.methods.getPublic = function() {
+	return this.constructor.sanitize(this, withId=true);
+};
+
 module.exports = Event;
