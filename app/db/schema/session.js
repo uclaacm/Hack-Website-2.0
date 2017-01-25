@@ -1,5 +1,6 @@
 const uuid = require('node-uuid');
 const _ = require('underscore');
+const dbUtil = require('../util');
 let Schema = require('mongoose').Schema;
 let ObjectId = Schema.ObjectId;
 
@@ -60,20 +61,7 @@ Session.statics.sanitize = function(session, withId=true) {
 	return session;
 };
 
-Session.methods.update = function(session) {
-	if (!session) return;
-	let applyDelta = (delta, target) => {
-		for (let key in delta) {
-			if (delta[key].constructor === Object)
-				applyDelta(delta[key], target[key])
-			else
-				target[key] = delta[key]
-		}
-	};
-
-	applyDelta(session, this);
-};
-
+Session.methods.update = function(obj) { dbUtil.update(obj, this); }
 Session.methods.getPublic = function() {
 	let obj = this.constructor.sanitize(this);
 	delete obj.secret;

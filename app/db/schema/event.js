@@ -1,5 +1,6 @@
 const uuid = require('node-uuid');
 const _ = require('underscore');
+const dbUtil = require('../util');
 let Schema = require('mongoose').Schema;
 let ObjectId = Schema.ObjectId;
 
@@ -43,20 +44,7 @@ Event.statics.sanitize = function(event, withId=true) {
 	return event;
 };
 
-Event.methods.update = function(event) {
-	if (!event) return;
-	let applyDelta = (delta, target) => {
-		for (let key in delta) {
-			if (delta[key].constructor === Object)
-				applyDelta(delta[key], target[key])
-			else
-				target[key] = delta[key]
-		}
-	};
-	
-	applyDelta(event, this);
-};
-
+Event.methods.update = function(obj) { dbUtil.update(obj, this);}
 Event.methods.getPublic = function() {
 	return this.constructor.sanitize(this);
 };
