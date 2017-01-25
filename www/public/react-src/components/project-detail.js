@@ -16,8 +16,10 @@ class ProjectDetail extends Component{
 	formatContributors(contributors){
 		const num = contributors.length;
 		return contributors.map((person, i) => {
-			if(i < num - 1)
+			if(i < num - 2)
 				return `${person}, `;
+			else if (i == num - 2)
+				return `${person} `;
 			else if(i != 0)
 				return `and ${person}`;
 			else
