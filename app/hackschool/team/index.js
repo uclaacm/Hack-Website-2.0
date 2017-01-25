@@ -36,6 +36,7 @@ router.post('/create', (req, res) => {
 		req.user.teamId = team.id;
 		req.user.save();
 		res.json({ success: true, error: null, team: team.getPublic() });
+		return null;
 	}).catch(err => {
 		log.error("[TEAMS] %s", err.message);
 		res.json({ success: false, error: err.message });
@@ -55,6 +56,7 @@ router.get('/leave', (req, res) => {
 		req.user.teamId = "";
 		req.user.save();
 		res.json({ success: true, error: null });
+		return null;
 	}).catch(err => {
 		log.error("[TEAMS] %s", err.message);
 		res.json({ success: false, error: err.message });
@@ -69,7 +71,7 @@ router.post('/join', (req, res) => {
 
 	db.Team.findById(req.body.team.id).then(team => {
 		if (!team)
-			throw new Error("Could not find team for id '" + req.user.teamId + "'");
+			throw new Error("Could not find team for id '" + req.body.team.id + "'");
 		if (team.members.length >= 4)
 			throw new Error("This team already has the maximum number of team members");
 		req.user.teamId = team.id
