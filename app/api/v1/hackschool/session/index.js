@@ -2,6 +2,7 @@ const express = require('express');
 const _ = require('underscore');
 const crypto = require('../../../../crypto');
 const db = require('../../../../db');
+const log = require('../../../../logger');
 let router = express.Router();
 
 router.route('/:sessionId?')
@@ -26,13 +27,11 @@ router.route('/:sessionId?')
 	// GET request finds a session by the session ID, if given, otherwise get all sessions
 	let dbQuery = req.sessionId ? { id: req.sessionId } : {};
 
-	db.Session.find(dbQuery).exec((err, results) => {
-		res.json({
-			success: !err,
-			error: err ? err : null,
-			numResults: results && results.length ? results.length : 0,
-			sessions: err ? [] : results.map(session => db.Session.sanitize(session))
-		});
+	db.Session.find(dbQuery).exec().then(sessions => {
+		res.json({ success: true, error: null, numResults: sessions.length || 0, sessions: sessions.map(s => s.getPublic()) });
+	}).catch(err => {
+		log.error("[API/Hackschool/Session] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .post((req, res, next) => {
@@ -43,13 +42,12 @@ router.route('/:sessionId?')
 
 	// Create a new session with the given details (sanitized in .all)
 	let newSession = new db.Session(req.sessionObj);
-	newSession.save((err, updatedSession) => {
-		res.json({
-			success: !err,
-			error: err ? err : null,
-			session: err ? {} : db.Session.sanitize(updatedSession)
-		});
-	});
+	newSession.save().then(updatedSession => {
+		res.json({ success: true, error: null, session: updatedSession.getPublic() });
+	}).catch(err => {
+		log.error("[API/Hackschool/Session] %s", err.message);
+		res.json({ success: false, error: err.message });
+	});;
 })
 .patch((req, res, next) => {
 	// PATCH request updates an existing session
@@ -59,29 +57,27 @@ router.route('/:sessionId?')
 		return res.status(400).json({ success: false, error: "Malformed request." });
 
 	// Find the session by ID and update the field based on the given details (sanitized above)
-	db.Session.findById(req.sessionId, (err, session) => {
-		if (err || !session)
-			return res.json({ success: false, error: err });
+	db.Session.findById(req.sessionId).then(session => {
+		if (!session)
+			throw new Error("Could not find session for ID '" + req.sessionId + "'");
 		session.update(req.sessionObj);
-		session.save((err, updatedSession) => {
-			res.json({
-				success: !err,
-				error: err ? err : null,
-				session: err ? {} : db.Session.sanitize(updatedSession)
-			});
-		});
+		return session.save();
+	}).then(updatedSession => {
+		res.json({ success: true, error: null, session: updatedSession.getPublic() });
+	}).catch(err => {
+		log.error("[API/Hackschool/Session] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .delete((req, res, next) => {
 	// DELETE request deletes the indicated session (or all sessions, if none specified)
 	let dbQuery = req.sessionId ? { id: req.sessionId } : {};
 
-	db.Session.remove(dbQuery, (err, opInfo) => {
-		res.json({
-			success: !err,
-			error: err ? err : null,
-			removed: opInfo && opInfo.result && opInfo.result.n ? opInfo.result.n : 0
-		});
+	db.Session.remove(dbQuery).exec().then(opInfo => {
+		res.json({ success: true, error: null, removed: opInfo.result.n || 0 }); 
+	}).catch(err => {
+		log.error("[API/Hackschool/Session] %s", err.message);
+		res.json({ success: false, error: err.message, removed: 0 });
 	});
 });
 

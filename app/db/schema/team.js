@@ -26,18 +26,16 @@ Team.pre('save', function(next) {
 	next();
 });
 
-Team.statics.getAll = function(callback) {
-	if (callback)
-		return this.find({}, callback);
+Team.statics.getAll = function() {
 	return this.find({}).exec();
 };
 
-Team.statics.findById = function(id, callback) {
-	this.findOne({ id }, callback); 
+Team.statics.findById = function(id) {
+	return this.findOne({ id }).exec();
 };
 
-Team.statics.findByName = function(name, callback) {
-	this.findOne({ name }, callback); 
+Team.statics.findByName = function(name) {
+	return this.findOne({ name }).exec();
 };
 
 Team.methods.addUser = function(user) {

@@ -2,11 +2,8 @@ const express = require('express');
 const _ = require('underscore');
 const crypto = require('../../../crypto');
 const db = require('../../../db');
+const log = require('../../../logger');
 let router = express.Router();
-
-//TODO:
-//add support of filtering based upon category
-//add error fields to response, that is empty if the request was successful or gives a description of the error(s) if it was not.
 
 router.route('/:eventId?')
 .all((req, res, next) => {
@@ -25,13 +22,11 @@ router.route('/:eventId?')
 	// GET request finds an event by the event ID, if given, otherwise get all events
 	let dbQuery = req.eventId ? { id: req.eventId } : {};
 
-	db.Event.find(dbQuery).exec((err, results) => {
-		res.json({
-			success: !err,
-			error: err ? "Request failed: " + err : null,
-			numResults: results && results.length ? results.length : 0,
-			events: err ? [] : results.map(event => db.Event.sanitize(event))
-		});
+	db.Event.find(dbQuery).exec().then(events => {
+		res.json({ success: true, error: null, numResults: events.length || 0, events: events.map(e => e.getPublic()) }); 
+	}).catch(err => {
+		log.error("[API/Events] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .all((req, res, next) => {
@@ -44,17 +39,15 @@ router.route('/:eventId?')
 	// POST request adds and event
 	//   If there is an event ID or there isn't an event to post, the request is malformed
 	if (req.eventId || !req.event)
-		return res.status(400).json({ success: false,
-			error: "Malformed request. Please see the API docs at http://github.com/uclaacm/Hack-Website-2.0 for API details."});
+		return res.status(400).json({ success: false, error: "Malformed request." }); 
 
 	// Create a new event with the given details (sanitized in .all)
 	let newEvent = new db.Event(req.event);
-	newEvent.save((err, updatedEvent) => {
-		res.json({
-			success: !err,
-			error: err ? "Request failed: " + err : null,
-			event: err ? {} : db.Event.sanitize(updatedEvent)
-		});
+	newEvent.save().then(updatedEvent => {
+		res.json({ success: true, error: null, event: updatedEvent.getPublic() });
+	}).catch(err => {
+		log.error("[API/Events] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .patch((req, res, next) => {
@@ -62,31 +55,29 @@ router.route('/:eventId?')
 	//   If there isn't an event ID or there isn't a field description of what to update,
 	//   then the request is malformed
 	if (!req.eventId || !req.event)
-		return res.status(400).json({ success: false, error: "Malformed request. Please see the docs at http://github.com/uclaacm/Hack-Website-2.0 for API details."});
+		return res.status(400).json({ success: false, error: "Malformed request." }); 
 
 	// Find the event by ID and update the field based on the given details (sanitized in .all)
-	db.Event.findById(req.eventId, (err, event) => {
-		if (err || !event)
-			return res.json({ success: false, error: "Unable to find event by ID: " + err});
+	db.Event.findById(req.eventId).then(event => {
+		if (!event)
+			throw new Error("Unable to find event for ID '" + req.eventId + "'");
 		event.update(req.event);
-		event.save((err, updatedEvent) => {
-			res.json({
-				success: !err,
-				error: err ? "" + err : null,
-				event: err ? {} : db.Event.sanitize(updatedEvent)
-			});
-		});
+		return event.save();
+	}).then(updatedEvent => {
+		res.json({ success: true, error: null, event: updatedEvent.getPublic() });		
+	}).catch(err => {
+		log.error("[API/Events] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .delete((req, res, next) => {
 	// DELETE request deletes the indicated event (or all events, if none specified)
 	let dbQuery = req.eventId ? { id: req.eventId } : {};
-	db.Event.remove(dbQuery, (err, opInfo) => {
-		res.json({
-			success: !err,
-			error: err ? "Unable to delete requested event(s): " + err : null,
-			removed: opInfo && opInfo.result && opInfo.result.n ? opInfo.result.n : 0
-		});
+	db.Event.remove(dbQuery).exec().then(opInfo => {
+		res.json({ success: true, error: null, removed: opInfo.result.n || 0 }); 
+	}).catch(err => {
+		log.error("[API/Events] %s", err.message);
+		res.json({ success: false, error: err.message, removed: 0 });
 	});
 });
 
