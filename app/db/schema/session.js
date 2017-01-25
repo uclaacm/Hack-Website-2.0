@@ -62,9 +62,10 @@ Session.statics.sanitize = function(session, withId=true) {
 };
 
 Session.methods.update = function(obj) { dbUtil.update(obj, this); }
-Session.methods.getPublic = function() {
+Session.methods.getPublic = function(withSecret=false) {
 	let obj = this.constructor.sanitize(this);
-	delete obj.secret;
+	if (!withSecret)
+		delete obj.secret;
 	return obj;
 };
 

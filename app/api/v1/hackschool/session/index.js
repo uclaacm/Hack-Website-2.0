@@ -28,7 +28,7 @@ router.route('/:sessionId?')
 	let dbQuery = req.sessionId ? { id: req.sessionId } : {};
 
 	db.Session.find(dbQuery).exec().then(sessions => {
-		res.json({ success: true, error: null, numResults: sessions.length || 0, sessions: sessions.map(s => s.getPublic()) });
+		res.json({ success: true, error: null, numResults: sessions.length || 0, sessions: sessions.map(s => s.getPublic(withSecret=true)) });
 	}).catch(err => {
 		log.error("[API/Hackschool/Session] %s", err.message);
 		res.json({ success: false, error: err.message });
@@ -43,7 +43,7 @@ router.route('/:sessionId?')
 	// Create a new session with the given details (sanitized in .all)
 	let newSession = new db.Session(req.sessionObj);
 	newSession.save().then(updatedSession => {
-		res.json({ success: true, error: null, session: updatedSession.getPublic() });
+		res.json({ success: true, error: null, session: updatedSession.getPublic(withSecret=true) });
 	}).catch(err => {
 		log.error("[API/Hackschool/Session] %s", err.message);
 		res.json({ success: false, error: err.message });
@@ -63,7 +63,7 @@ router.route('/:sessionId?')
 		session.update(req.sessionObj);
 		return session.save();
 	}).then(updatedSession => {
-		res.json({ success: true, error: null, session: updatedSession.getPublic() });
+		res.json({ success: true, error: null, session: updatedSession.getPublic(withSecret=true) });
 	}).catch(err => {
 		log.error("[API/Hackschool/Session] %s", err.message);
 		res.json({ success: false, error: err.message });
