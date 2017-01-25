@@ -21,7 +21,7 @@ class FeaturedTeamList extends Component{
 	}
 
 	render(){
-		console.log('list', this.props.list);
+		//console.log('list', this.props.list);
 		return (
 			<div className="featured-team-list">
 				{this.props.list.map(this.renderList)}

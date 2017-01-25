@@ -1,5 +1,6 @@
 const uuid = require('node-uuid');
 const _ = require('underscore');
+const dbUtil = require('../util');
 let Schema = require('mongoose').Schema;
 let ObjectId = Schema.ObjectId;
 
@@ -24,7 +25,8 @@ let Session = new Schema({
 		points: { type: Number },
 		videoLink: { type: String },
 		slidesLink: { type: String },
-		submissionLink: { type: String }
+		submissionLink: { type: String },
+		sourceCodeLink: { type: String }
 	}
 }, { minimize: false });
 
@@ -36,16 +38,16 @@ Session.pre('save', function(next) {
 	next();
 });
 
-Session.statics.getAll = function(callback) {
-	this.find({}, callback);
+Session.statics.getAll = function() {
+	return this.find({}).exec();
 };
 
-Session.statics.findById = function(id, callback) {
-	this.findOne({ id }, callback);
+Session.statics.findById = function(id) {
+	return this.findOne({ id }).exec();
 };
 
-Session.statics.findSessionForDate = function(date, callback) {
-	this.findOne({ "date.start" : { $lt : new Date(date) }, "date.end" : { $gt : new Date(date) } }, callback);
+Session.statics.findSessionForDate = function(date) {
+	return this.findOne({ "date.start" : { $lt : new Date(date) }, "date.end" : { $gt : new Date(date) } }).exec();
 };
 
 Session.statics.sanitize = function(session, withId=true) {
@@ -55,28 +57,15 @@ Session.statics.sanitize = function(session, withId=true) {
 	if (session.date)
 		session.date = _.pick(session.date, ['start', 'end']);
 	if (session.project)
-		session.project = _.pick(session.project, ['points','slidesLink','videoLink','submissionLink']);
+		session.project = _.pick(session.project, ['points','slidesLink','videoLink','submissionLink','sourceCodeLink']);
 	return session;
 };
 
+Session.methods.update = function(obj) { dbUtil.update(obj, this); }
 Session.methods.getPublic = function() {
 	let obj = this.constructor.sanitize(this);
 	delete obj.secret;
 	return obj;
-};
-
-Session.methods.update = function(session) {
-	if (!session) return;
-	let applyDelta = (delta, target) => {
-		for (let key in delta) {
-			if (delta[key].constructor === Object)
-				applyDelta(delta[key], target[key])
-			else
-				target[key] = delta[key]
-		}
-	};
-
-	applyDelta(session, this);
 };
 
 module.exports = Session;

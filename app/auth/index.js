@@ -20,17 +20,11 @@ let configAuth = (server) => {
 		// If found, updated the access token and continue authentication
 		// If not found, create the user and continue authentication
 		log.debug("[AUTH] Received profile from Facebook: %j", profile);
-		db.User.findByProfileId(profile.id, (err, user) => {
-			if (err) {
-				log.error("[AUTH] Database error: %s", err);
-				return callack(err, null);
-			}
-
+		db.User.findByProfileId(profile.id).then(user => {
 			if (!user) {
 				log.info("[AUTH] User for ID %s not found, creating new user...", profile.id);
 				user = new db.User({
 					profileId: profile.id,
-					accessToken: accessToken,
 					email: profile.emails && profile.emails.length > 0 && profile.emails[0].value ? profile.emails[0].value : null,
 					name: profile.name.givenName + ' ' + profile.name.familyName,
 					profilePicture: {
@@ -43,11 +37,12 @@ let configAuth = (server) => {
 
 			user.lastSignIn = new Date();
 			user.accessToken = accessToken;
-			user.save(err => {
-				if (err)
-					log.error("[AUTH] Database save error: %s", err);
-				callback(err, user);
-			});
+			return user.save();
+		}).then(user => {
+			callback(null, user);
+		}).catch(err => {
+			log.error("[AUTH] %s", err.message);
+			callback(err, null);
 		});
 	}));
 
@@ -60,13 +55,8 @@ let configAuth = (server) => {
 		// Find the use by google profile id
 		// If found, updated the access token and continue authentication
 		// If not found, create the user and continue authentication
-		log.debug("[AUTH] Received profile from Gacebook: %j", profile);
-		db.User.findByProfileId(profile.id, (err, user) => {
-			if (err) {
-				log.error("[AUTH] Database error: %s", err);
-				return callack(err, null);
-			}
-
+		log.debug("[AUTH] Received profile from Google: %j", profile);
+		db.User.findByProfileId(profile.id).then(user => {
 			if (!user) {
 				log.info("[AUTH] User for ID %s not found, creating new user...", profile.id);
 				let photoAvailable = profile.photos && profile.photos.length > 0 && profile.photos[0].value;
@@ -86,13 +76,13 @@ let configAuth = (server) => {
 
 			user.lastSignIn = new Date();
 			user.accessToken = accessToken;
-			user.save(err => {
-				if (err)
-					log.error("[AUTH] Database save error: %s", err);
-				callback(err, user);
-			});
+			return user.save();
+		}).then(user => {
+			callback(null, user);
+		}).catch(err => {
+			log.error("[AUTH] %s", err.message);
+			callback(err, null);
 		});
-		
 	}));
 
 	// Serializing users: a user is represented by their ID
@@ -103,9 +93,7 @@ let configAuth = (server) => {
 	// Deserializing users: lookup a user by id (how we serialized) and find the 
 	//   rest of the user info
 	passport.deserializeUser((id, done) => {
-		db.User.findById(id, (err, user) => {
-			done(err, user);
-		});
+		return db.User.findById(id).then(user => done(null, user)).catch(err => done(err, null));
 	});
 
 	// Let the express server use the passport.
@@ -115,11 +103,9 @@ let configAuth = (server) => {
 
 // middleware to determine whether a user is authenticated
 let authenticated = (req, res, next) => {
-	if (req.user) {
-		next();
-	} else {
-		res.redirect('/auth');
-	}
+	if (req.user) 
+		return next();
+	res.redirect('/auth');
 };
 
 /* 
@@ -153,7 +139,7 @@ router.get('/facebook/callback',
 	},
 	(err, req, res, next) => {
 		// failure - relogin
-		log.error("[AUTH] Error logging in. %j, %s, %s, %s", err, req.body, req.params, req.query);
+		log.error("[AUTH] Error logging in. %j, %j, %j, %j", err, req.body, req.params, req.query);
 		res.redirect('/auth');
 	}
 );
@@ -169,7 +155,7 @@ router.get('/google/callback',
 	},
 	(err, req, res, next) => {
 		// failure - relogin
-		log.error("[AUTH] Error logging in. %j, %s, %s, %s", err, req.body, req.params, req.query);
+		log.error("[AUTH] Error logging in. %j, %j, %j, %j", err, req.body, req.params, req.query);
 		res.redirect('/auth');
 	}
 );
