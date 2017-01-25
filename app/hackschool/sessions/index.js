@@ -19,14 +19,9 @@ router.post('/attend', (req, res) => {
 		return res.json({ success: false, error: "You must be in a team to record your attendance" });
 
 	let date = new Date();
-	let options = {
-		weekday: "long", year: "numeric", month: "short",
-		day: "numeric", hour: "2-digit", minute: "2-digit"
-	};
-
 	db.Session.findSessionForDate(date).then(session => {
 		if (!session)
-			throw new Error("No session found for date: " + date.toLocaleDateString('en-US', options));
+			throw new Error("No ongoing session found. Make sure to login during the session");
 		if (session.secret.toLowerCase() !== req.body.session.secret.toLowerCase())
 			throw new Error("Wrong attendance code: " + req.body.session.secret);
 		if (req.user.attendance.includes(session.number))
@@ -44,8 +39,8 @@ router.post('/attend', (req, res) => {
 			});
 		});
 	}).catch(err => {
-		log.error("[ATTENDANCE] %s", err.toString());
-		res.json({ success: false, error: err.toString() });
+		log.error("[ATTENDANCE] %s", err.message)
+		res.json({ success: false, error: err.message });
 	});
 });
 
