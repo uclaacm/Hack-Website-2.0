@@ -48,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-		<a class="login-wrapper" href="/login">
+		<a class="login-wrapper" href="/auth">
 			<img src="/common/images/School-Logo-White.png"/>
 			<span>HACK LOGIN</span>
 		</a>
@@ -85,6 +85,18 @@
     <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
     {{!-- The main JavaScript file for Casper --}}
     <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
+	
+	{{!-- Add JS for navigation bar --}}
+	<script>
+	const menuMobileInner = document.querySelector('.hamburger-inner');
+
+	function toggleMenu(e){
+		this.parentElement.classList.toggle('active');
+		e.preventDefault();
+	}
+
+	menuMobileInner.addEventListener('click', toggleMenu);
+	</script>
 
 </body>
 </html>

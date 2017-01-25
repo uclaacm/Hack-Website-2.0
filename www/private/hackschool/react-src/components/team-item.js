@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TeamGridItem extends Component{
+class TeamItem extends Component{
 
 	constructor(props){
 		super(props);
@@ -40,4 +40,4 @@ class TeamGridItem extends Component{
 
 }
 
-export default TeamGridItem;
+export default TeamItem;

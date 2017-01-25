@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TeamFeaturedItem extends Component{
+class FeaturedTeamItem extends Component{
 
 	constructor(props){
 		super(props);
@@ -49,4 +49,4 @@ class TeamFeaturedItem extends Component{
 
 }
 
-export default TeamFeaturedItem;
+export default FeaturedTeamItem;

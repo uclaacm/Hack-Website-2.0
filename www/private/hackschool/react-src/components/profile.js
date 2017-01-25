@@ -19,10 +19,6 @@ class Profile extends Component{
 			this.props.getTeamRank([...this.props.scoreboard.featured, ...this.props.scoreboard.list], this.props.team.team.id);
 	}
 
-	componentWillReceiveProps(props){
-		//console.log('profile props', props)
-	}
-
 	formatOtherMembers(members){
 		//extract members that are not this user, then format
 		return members

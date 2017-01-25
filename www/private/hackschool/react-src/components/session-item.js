@@ -23,6 +23,12 @@ export default function SessionItem(props){
 				<div className="icons">
 					{/*if the link is not available, don't show its icon*/}
 					{
+						props.project && props.sourceCodeLink &&
+						<span>
+							<i className="fa fa-code" ariaHidden="true"></i>
+						</span>
+					}
+					{
 						props.project && props.slidesLink &&
 						<span>
 							<i className="fa fa-film" ariaHidden="true"></i>
