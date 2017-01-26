@@ -22,20 +22,23 @@ router.route('/:teamId?')
 	next();
 })
 .get((req, res, next) => {
-	// GET request finds a team by the team ID, if given, otherwise get all teams 
+	// GET request finds a team by the team ID and get its scores
 	if (!req.teamId)
 		return res.status(400).json({ success: false, error: "Malformed request" });
 
-	db.Team.findById(req.teamId).then(projects => {
-		res.json({ success: true, error: null, scores: scores.map(s => s.getPublic()) });
+	db.Team.findById(req.teamId).then(team => {
+		if (!team)
+			throw new Error("No team found for ID '" + req.teamId + "'");
+
+		res.json({ success: true, error: null, scores: team.getScores() });
 	}).catch(err => {
 		log.error("[API/Hackschool/Team/Score] %s", err.message);
 		res.json({ success: false, error: err.message });
 	});
 })
 .post((req, res, next) => {
-	// POST request adds a score
-	//   If there is a team ID or there isn't a score to post, the request is malformed
+	// POST request adds or updates a score
+	//   If there isn't a team ID or there isn't a score to post, the request is malformed
 	if (!req.teamId || !req.scoreObj || !req.scoreObj.score || !req.scoreObj.sessionNumber)
 		return res.status(400).json({ success: false, error: "Malformed request." });
 

@@ -80,10 +80,8 @@ Team.methods.removeAttended = function(sessionNumber, userId) {
 
 Team.methods.addOrUpdateScore = function(sessionNumber, score, daysLate) {
 	daysLate = Math.max(0, daysLate || 0);
-	let multiplier = (daysLate === 0 ? 1 : Math.max(0, (100.0-Math.pow(2, daysLate - 1))/100.0));
-	score = parseFloat(score) * multiplier;
+	score = Math.max(0, score - ((daysLate <= 0) ? 0 : Math.pow(2, daysLate - 1)));
 	for (let i = 0; i < this.scores.length; i++) {
-		console.log(this.scores[i], sessionNumber, score, daysLate);
 		if (this.scores[i].sessionNumber === sessionNumber) {
 			this.scores[i].score = score;
 			return;
