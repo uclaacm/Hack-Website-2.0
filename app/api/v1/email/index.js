@@ -9,11 +9,6 @@ const Email = db.Email
 let router = express.Router();
 
 router.route('/')
-.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-})
 .all((req, res, next) => {
 	req.validToken = req.body && req.body.token && crypto.verifyToken(req.body.token);
 	req.validToken = req.validToken || (req.query && req.query.token && crypto.verifyToken(req.query.token));
