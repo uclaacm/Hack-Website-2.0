@@ -229,6 +229,11 @@ a:hover, button:hover{
 	margin-left: 8vw;
 	text-transform: uppercase;
 	color: #fff;
+	list-style: none;
+}
+
+.hamburg-over ul li {
+	padding-bottom: 15px;
 }
 
 .hamburg-over a{
