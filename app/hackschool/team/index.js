@@ -62,6 +62,7 @@ router.get('/leave', (req, res) => {
 		res.json({ success: true, error: null });
 		return null;
 	}).catch(err => {
+		log.error("[TEAMS] %s", err.stack);
 		log.error("[TEAMS] %s", err.message);
 		res.json({ success: false, error: err.message });
 	});
