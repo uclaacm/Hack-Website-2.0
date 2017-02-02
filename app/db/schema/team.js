@@ -45,9 +45,12 @@ Team.methods.addUser = function(user) {
 };
 
 Team.methods.removeUser = function(user) {
+	console.log("--> in remove");
 	for (let i = 0; i < this.members.length; i++) {
-		if (this.members[i].id === user.id)
+		if (this.members[i].id === user.id) {
+			console.log("found user at index", i);
 			this.members.splice(i--, 1);
+		}
 	}
 
 	for (let i = 0; i < user.attendance.length; i++)
@@ -69,11 +72,14 @@ Team.methods.addAttended = function(sessionNumber, userId) {
 };
 
 Team.methods.removeAttended = function(sessionNumber, userId) {
+	console.log("remove attended for session", sessionNumber, "user id", userId);
 	for (let i = 0; i < this.attendance.length; i++) {
 		if (this.attendance[i].sessionNumber === sessionNumber) {
 			let index = this.attendance[i].usersAttended.indexOf(userId);
-			if (index !== -1)
+			if (index !== -1) {
+				console.log("user attended session, removing obj index", i, "elem", index);
 				this.attendance[i].usersAttended.splice(index, 1);
+			}
 		}
 	}
 };
