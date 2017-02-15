@@ -2,6 +2,7 @@ const express = require('express');
 const _ = require('underscore');
 const crypto = require('../../../crypto');
 const db = require('../../../db');
+const log = require('../../../logger');
 let router = express.Router();
 
 router.route('/:projectId?')
@@ -21,13 +22,11 @@ router.route('/:projectId?')
 	// GET request finds a project by the project ID, if given, otherwise get all projects
 	let dbQuery = req.projectId ? { id: req.projectId } : {};
 
-	db.ShowcaseProject.find(dbQuery).exec((err, results) => {
-		res.json({
-			success: !err,
-			error: err ? "Unable to find project(s) by ID: " + err : null,
-			numResults: results && results.length ? results.length : 0,
-			projects: err ? [] : results.map(project => db.ShowcaseProject.sanitize(project))
-		});
+	db.ShowcaseProject.find(dbQuery).exec().then(projects => {
+		res.json({ success: true, error: null, numResults: projects.length || 0, projects: projects.map(p => p.getPublic()) });
+	}).catch(err => {
+		log.error("[API/Showcase] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .all((req, res, next) => {
@@ -44,12 +43,11 @@ router.route('/:projectId?')
 
 	// Create a new project with the given details (sanitized in .all)
 	let newShowcaseProject = new db.ShowcaseProject(req.project);
-	newShowcaseProject.save((err, updatedShowcaseProject) => {
-		res.json({
-			success: !err,
-			error: err ? "Unable to create project: " + err : null,
-			project: err ? {} : db.ShowcaseProject.sanitize(updatedShowcaseProject)
-		});
+	newShowcaseProject.save().then(updatedProject => {
+		res.json({ success: true, error: null, project: updatedProject.getPublic() });
+	}).catch(err => {
+		log.error("[API/Showcase] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .patch((req, res, next) => {
@@ -60,29 +58,27 @@ router.route('/:projectId?')
 		return res.status(400).json({ success: false, error: "Malformed request." });
 
 	// Find the project by ID and update the field based on the given details (sanitized above)
-	db.ShowcaseProject.findById(req.projectId, (err, project) => {
-		if (err || !project)
-			return res.json({ success: false, error: "Unable to find project by ID: " + err});
+	db.ShowcaseProject.findById(req.projectId).then(project => {
+		if (!project)
+			throw new Error("Could not find project for ID '" + req.projectId + "'");
 		project.update(req.project);
-		project.save((err, updatedShowcaseProject) => {
-			res.json({
-				success: !err,
-				error: err ? err : null,
-				project: err ? {} : db.ShowcaseProject.sanitize(updatedShowcaseProject)
-			});
-		});
+		return project.save();
+	}).then(updatedProject => {
+		res.json({ success: true, error: null, project: updatedProject.getPublic() });
+	}).catch(err => {
+		log.error("[API/Showcase] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .delete((req, res, next) => {
 	// DELETE request deletes the indicated project (or all projects, if none specified)
 	let dbQuery = req.projectId ? { id: req.projectId } : {};
 
-	db.ShowcaseProject.remove(dbQuery, (err, opInfo) => {
-		res.json({
-			success: !err,
-			error: err ? "Unable to delete project by ID: " + err : null,
-			removed: opInfo && opInfo.result && opInfo.result.n ? opInfo.result.n : 0
-		});
+	db.ShowcaseProject.remove(dbQuery).exec().then(opInfo => {
+		res.json({ success: true, error: null, removed: opInfo.result.n || 0 }); 
+	}).catch(err => {
+		log.error("[API/Showcase] %s", err.message);
+		res.json({ success: false, error: err.message, removed: 0 });
 	});
 });
 

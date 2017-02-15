@@ -1,8 +1,8 @@
 const express = require('express');
 const _ = require('underscore');
-const crypto = require('../../../../../crypto');
 const db = require('../../../../../db');
 const log = require('../../../../../logger');
+const crypto = require('../../../../../crypto');
 let router = express.Router();
 
 router.route('/:teamId?')
@@ -22,40 +22,37 @@ router.route('/:teamId?')
 	next();
 })
 .get((req, res, next) => {
-	// GET request finds a team by the team ID, if given, otherwise get all teams 
-	let dbQuery = req.teamId ? { id: req.teamId } : {};
+	// GET request finds a team by the team ID and get its scores
+	if (!req.teamId)
+		return res.status(400).json({ success: false, error: "Malformed request" });
 
-	db.Team.find(dbQuery).exec((err, results) => {
-		res.json({
-			success: !err,
-			error: err ? err : null,
-			numResults: results && results.length ? results.length : 0,
-			teams: err ? [] : results.map(team => team.getPublic(withMembers=false))
-		});
+	db.Team.findById(req.teamId).then(team => {
+		if (!team)
+			throw new Error("No team found for ID '" + req.teamId + "'");
+
+		res.json({ success: true, error: null, scores: team.getScores() });
+	}).catch(err => {
+		log.error("[API/Hackschool/Team/Score] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .post((req, res, next) => {
-	// POST request adds a score
-	//   If there is a team ID or there isn't a score to post, the request is malformed
-	if (req.teamId || !req.scoreObj || !req.scoreObj.teamId || !req.scoreObj.score || !req.scoreObj.sessionNumber)
+	// POST request adds or updates a score
+	//   If there isn't a team ID or there isn't a score to post, the request is malformed
+	if (!req.teamId || !req.scoreObj || !req.scoreObj.score || !req.scoreObj.sessionNumber)
 		return res.status(400).json({ success: false, error: "Malformed request." });
 
-	// Create a new session with the given details (sanitized in .all)
-	db.Team.findById(req.scoreObj.teamId, (err, team) => {
-		if (err) {
-			log.error("[SCORE API] Database error: %s", err);
-			return res.status(500).json({ success: false, error: err });
-		}
-		
-		if (!team) return res.json({ success: false, error: "No such team" });
+	db.Team.findById(req.teamId).then(team => {
+		if (!team)
+			throw new Error("No team found for ID '" + req.teamId + "'");
 
 		team.addOrUpdateScore(req.scoreObj.sessionNumber, req.scoreObj.score, req.scoreObj.daysLate);
-		team.save((err, updatedTeam) => {
-			req.json({
-				success: !err,
-				error: err ? err : null
-			});
-		});
+		return team.save();
+	}).then(updatedTeam => {
+		res.json({ success: true, error: null });
+	}).catch(err => {
+		log.error("[API/Hackschool/Team/Score] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 })
 .delete((req, res, next) => {
@@ -63,21 +60,17 @@ router.route('/:teamId?')
 	if (!req.teamId || !req.scoreObj.sessionNumber)
 		return res.json({ success: false, error: "Malformed request" });
 		
-	db.Team.findById(req.teamId, (err, team) => {
-		if (err) {
-			log.error("[SCORE API] Database error: %s", err);
-			return res.status(500).json({ success: false, error: err });
-		}
-		
-		if (!team) return res.json({ success: false, error: "No such team" });
-		
-		team.removeScore(req.scoreObj.sessionNumber)
-		team.save((err, updatedTeam) => {
-			res.json({
-				success: !err,
-				error: err ? err : null
-			});
-		});
+	db.Team.findById(req.teamId).then(team => {
+		if (!team)
+			throw new Error("No team found for ID '" + req.teamId + "'");
+
+		team.removeScore(req.scoreObj.sessionNumber);
+		return team.save();
+	}).then(updatedTeam => {
+		res.json({ success: true, error: null });
+	}).catch(err => {
+		log.error("[API/Hackschool/Team/Score] %s", err.message);
+		res.json({ success: false, error: err.message });
 	});
 });
 

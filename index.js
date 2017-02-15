@@ -24,15 +24,18 @@ server.set('view engine', 'hbs');
 // Expose public resources
 server.use(express.static('www/public', { extensions: ['html'], maxAge: 1000*60*60*24*30 })); // 30 day expiry
 
+// Expose private resources
+server.use('/private',  express.static('www/private', { maxAge: 1000*60*60*24*30 })); // 30 day expiry
+
 // Parse urlencoded and json POST data
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-// Use sessions
-server.use(app.session);
-
 // Hack Data API
 server.use('/api', app.api.router);
+
+// Use sessions
+server.use(app.session);
 
 // Configure authentication
 app.auth.configAuth(server);
@@ -40,9 +43,6 @@ server.use('/auth', app.auth.router);
 
 // Hack School routes (requires authentication)
 server.use('/hackschool', app.auth.authenticated, app.hackschool.router);
-
-// Expose private resources (requires authentication)
-server.use('/private', app.auth.authenticated, express.static('www/private', { maxAge: 1000*60*60*24*30 })); // 30 day expiry
 
 // Register Opbeat monitoring error handler
 if (app.config.isProduction)

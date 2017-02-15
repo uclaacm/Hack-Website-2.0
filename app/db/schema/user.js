@@ -33,16 +33,12 @@ let User = new Schema({
 	attendance: [Number]
 }, { minimize: false });
 
-User.statics.findById = function(id, callback) {
-	this.findOne({ id }, callback); 
+User.statics.findById = function(id) {
+	return this.findOne({ id }).exec();
 };
 
-User.statics.findByProfileId = function(profileId, callback) {
-	this.findOne({ profileId }, callback);
-};
-
-User.statics.sanitizeAttendance = function(attendance) {
-	
+User.statics.findByProfileId = function(profileId) {
+	return this.findOne({ profileId }).exec();
 };
 
 User.methods.getPublic = function() {
