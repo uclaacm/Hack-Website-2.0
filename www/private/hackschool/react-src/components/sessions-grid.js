@@ -9,7 +9,6 @@ class SessionsGrid extends Component{
 	constructor(props){
 		super(props);
 
-		this.renderRow = this.renderRow.bind(this);
 		this.renderSession = this.renderSession.bind(this);
 		this.onSelect = this.onSelect.bind(this);
 	}
@@ -18,11 +17,8 @@ class SessionsGrid extends Component{
 		this.props.selectSession(session);
 	}
 
-	componentWillReceiveProps(props){
-		//console.log('component will receive in sessions', props);
-	}
-
-	renderSession(session, row, column){
+	//TODO: TEST THIS
+	renderSession(session, i){
 		//if the link is not available, don't show its icon
 		const sourceCodeLink = typeof session.sourceCodeLink != 'undefined';
 		const slidesLink = typeof session.slidesLink != 'undefined';
@@ -31,11 +27,7 @@ class SessionsGrid extends Component{
 		const attendance = this.props.user.attendance;
 
 		return (
-			<td 	className	= "project-td"
-					key			= { session.id }>
-				
-				<SessionItem row 			= { row }
-							 col 			= { column }
+				<SessionItem key			= { session.id }
 							 title			= { session.name }
 							 number			= { session.number }
 							 image			= { session.image }
@@ -46,26 +38,15 @@ class SessionsGrid extends Component{
 							 videoLink		= { videoLink }
 							 blogPostLink	= { blogPostLink } 
 							 attendance		= { attendance }/>
-			</td>
-		);
-	}
-
-	renderRow(row, rowNum){
-		return (
-			<tr className="row" key={`row-${row[0].id}`} >
-				{row.map((proj, colNum) => this.renderSession(proj, rowNum, colNum%4))}
-			</tr>
 		);
 	}
 
 	render(){
 		return (
 			<div className="grid-wrapper">
-				<table className="grid">
-					<tbody>
-						{this.props.sessions.map((row, rowNum) => this.renderRow(row, rowNum))}
-					</tbody>
-				</table>
+				<div className="grid">
+					{this.props.sessions.map((item, i) => this.renderSession(item, i))}
+				</div>
 			</div>
 		);
 	}
