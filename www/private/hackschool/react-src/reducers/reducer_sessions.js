@@ -15,7 +15,7 @@ export default (state = null, action) => {
 				attendSuccess: false,
 				data: action.payload.data.sessions
 						.sort((a, b) => a.number > b.number ? 1 : -1)
-				/*		.reduce((arr, session) => {
+						.reduce((arr, session) => {
 						if(!_.isEmpty(session.project)){
 							session.points = session.project.points;
 							session.slidesLink = session.project.slidesLink;
@@ -25,14 +25,14 @@ export default (state = null, action) => {
 							session.project = true;
 						}else session.project = false;
 
-						if(arr.length == 0 || arr[arr.length-1].length >= cols)
-							arr.push([session]);
-						else
-							arr[arr.length-1].push(session);
+						//if(arr.length == 0 || arr[arr.length-1].length >= cols)
+						//	arr.push([session]);
+						//else
+							arr.push(session);
 						
 						return arr;
 
-					}, [])*/
+					}, [])
 				};
 			}
 		case ATTEND_SESSION:
