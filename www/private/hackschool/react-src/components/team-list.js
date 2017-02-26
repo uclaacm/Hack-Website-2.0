@@ -19,27 +19,42 @@ class TeamList extends Component{
 	}
 
 	render(){
-		if (this.props.list.length != 0)
+		//if (this.props.list.length != 0)
+		const list = [
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
+			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2}
+		];
+
 			return (
 				<div className="team-list">
 					<div className="gradient"></div>
-						<table>
-							<thead>
-								<tr>
-									<th></th>
-									<th>MEMBERS</th>
-									<th>TEAM NAME</th>
-									<th>POINTS</th>
-								</tr>
-								</thead>
-							<tbody>
-							{this.props.list.map(this.renderList)}
-							</tbody>
-						</table>
-					</div>
+					<table>
+						<thead>
+							<tr className="header">
+								<th></th>
+								<th>MEMBERS</th>
+								<th>TEAM NAME</th>
+								<th>POINTS</th>
+							</tr>
+							</thead>
+						<tbody>
+						{/*this.props.*/list.map(this.renderList)}
+						</tbody>
+					</table>
+				</div>
 			);
 
-		return null;
+		//return null;
 	}
 
 }
