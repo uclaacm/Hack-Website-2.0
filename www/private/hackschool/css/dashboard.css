@@ -702,9 +702,12 @@ button span.icon{
 	width: 40px;
 }
 
-.team-list th:nth-child(2),
+.team-list th:nth-child(2){
+	width: 200px;
+}
+
 .team-list td:nth-child(2){
-	width: 28%;
+	width: 38%;
 }
 
 .team-list th:nth-child(3),
@@ -1003,7 +1006,7 @@ button.back i{
 	}
 
 	.slide-outer{
-		overflow-x: hidden;
+		overflow: hidden;
 	}
 }
 
