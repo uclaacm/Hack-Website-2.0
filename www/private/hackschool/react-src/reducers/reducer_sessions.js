@@ -15,7 +15,7 @@ export default (state = null, action) => {
 				attendSuccess: false,
 				data: action.payload.data.sessions
 						.sort((a, b) => a.number > b.number ? 1 : -1)
-						.reduce((arr, session) => {
+				/*		.reduce((arr, session) => {
 						if(!_.isEmpty(session.project)){
 							session.points = session.project.points;
 							session.slidesLink = session.project.slidesLink;
@@ -32,7 +32,7 @@ export default (state = null, action) => {
 						
 						return arr;
 
-					}, [])
+					}, [])*/
 				};
 			}
 		case ATTEND_SESSION:

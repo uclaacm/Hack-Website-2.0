@@ -208,6 +208,7 @@ body{
 
 .hover-name{
 	position: absolute;
+	pointer-events: none;
 	opacity: 0;
 	background: #fff;
 	border-radius: 3px;
@@ -302,6 +303,7 @@ body{
 .grid{
 	overflow: visible;
 	margin: 0px auto;
+	width: 80%;
 }
 
 .grid tr{
@@ -328,6 +330,9 @@ body{
 	border-radius: 3px;
 	box-shadow: var(--shad);
 	overflow: hidden;
+	width: 220px;
+	display: inline-block;
+	margin: 15px;
 	-webkit-transition: all 0.1s;
 			transition: all 0.1s;
 }
@@ -621,7 +626,6 @@ button span.icon{
 
 .featured-team-list{
 	width: 260px;
-	height: 446px;
 	margin: 0px 20px 50px 0px;
 }
 
@@ -631,7 +635,7 @@ button span.icon{
 }
 
 .featured-team-list, .team-list{
-	height: 450px;
+	height: 500px;
 }
 
 /*featured team list*/
@@ -640,7 +644,7 @@ button span.icon{
 	text-align: center;
 	border-bottom: 1px solid var(--grey-light);
 	padding: 10px 0;
-	height: 140px;
+	min-height: 140px;
 }
 
 .team-item-featured:nth-child(3){
@@ -700,7 +704,7 @@ button span.icon{
 
 .team-list th:nth-child(2),
 .team-list td:nth-child(2){
-	width: 240px;
+	width: 28%;
 }
 
 .team-list th:nth-child(3),
@@ -720,6 +724,8 @@ button span.icon{
 
 .team-list tbody{
 	transform: translateY(50px);
+	display: block;
+	padding-bottom: 30px;
 }
 
 .team-list th{
@@ -730,6 +736,7 @@ button span.icon{
 .team-list tr{
 	text-align: left;
 	height: 30px;
+	padding: 10px 0px;
 }
 
 .team-list td{
@@ -748,7 +755,7 @@ tr.team-item .team-profile-pic{
 
 .team-list .gradient{
 	height: 60px;
-	margin-top: 410px;
+	margin-top: 460px;
     width: 640px;
     background: rgba(255,255,255,0);
     background: -webkit-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); 
@@ -937,32 +944,6 @@ button.back i{
 }
 
 /*====================MEDIA QUERIES====================*/
-
-/*grid sessions*/
-
-@media only screen and (max-width: 990px){
-	.grid td:nth-child(4){
-		margin-left: 0px;
-		margin-right: 30px;
-	}
-}
-
-@media only screen and (max-width: 738px){
-	.grid td:nth-child(3){
-		margin-left: 0px;
-		margin-right: 30px;
-	}
-}
-
-@media only screen and (max-width:485px){
-	.grid td:nth-child(2){
-		margin-left: 0px;
-		margin-right: 30px;
-	}
-}
-
-/*end grid sessions*/
-
 /*profile*/
 
 @media only screen and (max-width: 990px){
@@ -1049,8 +1030,6 @@ button.back i{
 
 @media only screen and (max-width: 1002px){ /*leaderboard width*/
 
-
-
 	.leaderboard{
 		width: auto;
 		padding: 0px;
@@ -1082,6 +1061,7 @@ button.back i{
 		text-align: left;
 	    display: inline-block;
 	    height: 80px;
+	    width: 100%;
 	    margin-bottom: 10px;
 	    border-bottom: 1px solid rgba(0,0,0,0.1);
 	}
