@@ -19,8 +19,7 @@ class TeamList extends Component{
 	}
 
 	render(){
-		//if (this.props.list.length != 0)
-		const list = [
+		/*const list = [
 			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
 			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2},
 			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
@@ -33,8 +32,9 @@ class TeamList extends Component{
 			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2},
 			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 1},
 			{key: 1, name: 'team name', score: 50, members: [{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}},{profilePicture: {small: 'https://graph.facebook.com/1824232974501604/picture?width=250'}}], rank: 2}
-		];
+		];*/
 
+		if (this.props.list.length != 0)
 			return (
 				<div className="team-list">
 					<div className="gradient"></div>
@@ -48,13 +48,13 @@ class TeamList extends Component{
 							</tr>
 							</thead>
 						<tbody>
-						{/*this.props.*/list.map(this.renderList)}
+						{this.props.list.map(this.renderList)}
 						</tbody>
 					</table>
 				</div>
 			);
 
-		//return null;
+		return null;
 	}
 
 }
