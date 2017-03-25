@@ -1,5 +1,6 @@
 const express = require('express');
 const async = require('async');
+const util = require('util');
 const db = require('../../db');
 const log = require('../../logger');
 let router = express.Router();
@@ -53,8 +54,15 @@ router.get('/leave', (req, res) => {
 		log.debug("found team: %j", team);
 		log.debug("user requested: %j", req.user);
 		team.removeUser(req.user);
+
 		log.debug("post-remove: %j", team);
-		return (team.members.length === 0 ? team.remove : team.save)();
+		let t = (team.members.length === 0 ? team.remove : team.save);
+		util.inspect(t, { depth: 3 });
+		let r = t();
+		console.log("-----");
+		util.inspect(r, { depth: 3 });
+		return r;
+		//return (team.members.length === 0 ? team.remove : team.save)();
 	}).then((arg) => {
 		log.debug("successfully reached here, with arg %j", arg);
 		req.user.teamId = "";
