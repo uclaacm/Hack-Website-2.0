@@ -57,10 +57,10 @@ router.get('/leave', (req, res) => {
 
 		log.debug("post-remove: %j", team);
 		let t = (team.members.length === 0 ? team.remove : team.save);
-		util.inspect(t, { depth: 3 });
+		console.log(util.inspect(t, { depth: 3 }));
 		let r = t();
 		console.log("-----");
-		util.inspect(r, { depth: 3 });
+		console.log(util.inspect(r, { depth: 3 }));
 		return r;
 		//return (team.members.length === 0 ? team.remove : team.save)();
 	}).then((arg) => {
