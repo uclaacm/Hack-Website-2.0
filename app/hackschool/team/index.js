@@ -30,7 +30,7 @@ router.post('/create', (req, res) => {
 		if (team)
 			throw new Error("A team with name '" + req.body.team.name + "' already exists");
 		let newTeam = new db.Team({ name: req.body.team.name });
-		req.user.teamId = team.id;
+		req.user.teamId = newTeam.id;
 		newTeam.addUser(req.user);
 		return newTeam.save();
 	}).then(team => {
