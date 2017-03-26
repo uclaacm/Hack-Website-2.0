@@ -1,5 +1,6 @@
 const express = require('express');
 const async = require('async');
+const util = require('util');
 const db = require('../../db');
 const log = require('../../logger');
 let router = express.Router();
@@ -50,13 +51,9 @@ router.get('/leave', (req, res) => {
 	db.Team.findById(req.user.teamId).then(team => {
 		if (!team)
 			throw new Error("Could not find team for id '" + req.user.teamId + "'");
-		log.debug("found team: %j", team);
-		log.debug("user requested: %j", req.user);
 		team.removeUser(req.user);
-		log.debug("post-remove: %j", team);
 		return (team.members.length === 0 ? team.remove : team.save)();
 	}).then((arg) => {
-		log.debug("successfully reached here, with arg %j", arg);
 		req.user.teamId = "";
 		req.user.save();
 		res.json({ success: true, error: null });
