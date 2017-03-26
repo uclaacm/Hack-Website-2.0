@@ -51,20 +51,9 @@ router.get('/leave', (req, res) => {
 	db.Team.findById(req.user.teamId).then(team => {
 		if (!team)
 			throw new Error("Could not find team for id '" + req.user.teamId + "'");
-		log.debug("found team: %j", team);
-		log.debug("user requested: %j", req.user);
 		team.removeUser(req.user);
-
-		log.debug("post-remove: %j", team);
-		let t = (team.members.length === 0 ? team.remove : team.save);
-		console.log(util.inspect(t, { depth: 3 }));
-		let r = t();
-		console.log("-----");
-		console.log(util.inspect(r, { depth: 3 }));
-		return r;
-		//return (team.members.length === 0 ? team.remove : team.save)();
+		return (team.members.length === 0 ? team.remove : team.save)();
 	}).then((arg) => {
-		log.debug("successfully reached here, with arg %j", arg);
 		req.user.teamId = "";
 		req.user.save();
 		res.json({ success: true, error: null });

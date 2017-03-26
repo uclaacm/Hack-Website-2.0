@@ -26,6 +26,11 @@ Team.pre('save', function(next) {
 	next();
 });
 
+Team.pre('remove', function(next) {
+	cache.set(config.cache.keys.teamsNeedUpdate, "1");
+	next();
+});
+
 Team.statics.getAll = function() {
 	return this.find({}).exec();
 };
