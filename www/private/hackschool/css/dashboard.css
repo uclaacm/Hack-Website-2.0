@@ -301,6 +301,9 @@ body{
 }
 
 .grid{
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 	overflow: visible;
 	margin: 0px auto;
 	width: 80%;
@@ -326,6 +329,7 @@ body{
 }
 
 .session-item{
+	flex: 0 0 220px;
 	background: #fff;
 	border-radius: 3px;
 	box-shadow: var(--shad);
