@@ -191,10 +191,10 @@ input[type=checkbox].checkbox:checked + .custom-check label{
 	align-items: center;
 	height: 220px !important;
 }
-
+/*
 .events-item:hover .info-wrapper{
 	transform: translateY(-100%);
-}
+}*/
 
 .events-item .info-hover{
 	cursor: pointer;

@@ -7,7 +7,7 @@ export default () => {
 			url: '/common/images/Hack-Logo-Purple.png'
 		},
 		{
-			name: 'Hack School',
+			name: 'Hack Camp',
 			url: '/common/images/School-Logo-Purple.png'
 		},
 		{
