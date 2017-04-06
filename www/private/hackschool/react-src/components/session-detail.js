@@ -50,6 +50,8 @@ class SessionDetail extends Component{
 
 		return (
 			<div className="session-detail-wrapper">
+				<div className="session-overlay-clickable" 
+					onClick={() => this.props.selectSession(null)}></div>
 				<button className="back"
 					onClick={() => this.props.selectSession(null)}>
 						<i className="fa fa-chevron-left hl" ariaHidden="true"></i>
@@ -98,7 +100,7 @@ class SessionDetail extends Component{
 								<li><i className="fa fa-check" ariaHidden="true"></i> You are submitting only 1 zip file per team</li>
 								<li><i className="fa fa-check" ariaHidden="true"></i> You are <strong>not</strong> making multiple submissions</li>
 								<li><i className="fa fa-check" ariaHidden="true"></i> You have provided your team name & team ID in a text file</li>
-								<li><i className="fa fa-check" ariaHidden="true"></i> You have included the contents of your entire <strong>Android</strong> project</li>
+								<li><i className="fa fa-check" ariaHidden="true"></i> You have included the contents of your entire <strong>iOS</strong> project</li>
 								<li><i className="fa fa-check" ariaHidden="true"></i> You have only done <strong>either</strong> the exercises or project, <strong>not both</strong></li>
 								<li><i className="fa fa-check" ariaHidden="true"></i> If you have done the exercises, they should all be in <strong>one project</strong></li>
 							</ul>
