@@ -438,12 +438,19 @@ body{
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	background: rgba(46, 12, 56, 0.7);
 	z-index: 1000;
+}
+
+.session-overlay-clickable{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: rgba(46, 12, 56, 0.7);
 }
 
 .session-detail-wrapper button.back{
 	position: absolute;
+	z-index: 12;
 	margin: 20px;
 	background: #fff;
 	width: 50px;
