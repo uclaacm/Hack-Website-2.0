@@ -15,8 +15,8 @@ server.use(compression());
 server.use(morgan('dev'));
 
 // Start the Ghost blog component
-if (process.env.NODE_ENV === "production")
-	app.ghost(server);
+// if (process.env.NODE_ENV === "production")
+// 	app.ghost(server);
 
 // Set the view engine to handlebars
 server.set('view engine', 'hbs');

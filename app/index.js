@@ -2,7 +2,7 @@ module.exports = {
 	api: require('./api'),
 	auth: require('./auth'),
 	cache: require('./cache'),
-	ghost: require('./ghost'),
+	// ghost: require('./ghost'),
 	config: require('./config'),
 	logger: require('./logger'),
 	session: require('./session'),
