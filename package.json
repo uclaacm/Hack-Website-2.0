@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "The UCLA ACM Hack Website",
   "main": "index.js",
-  "engines": {
-    "node": ">=6.9.0 <=6.9.2"
-  },
   "scripts": {
     "start": "node index",
     "test": "mocha",
@@ -24,6 +21,8 @@
   },
   "homepage": "https://github.com/hackucla/Hack-Website-2.0#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "https://registry.npmjs.org/babel-loader/-/babel-loader-6.4.1.tgz",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.1.18",
     "chai": "^3.5.0",
