@@ -5,7 +5,6 @@
 - [Hack-Website-2.0](#hack-website-20)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
-    - [Installation](#installation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -14,53 +13,47 @@
 The UCLA ACM Hack website revamp.
 
 
-
 ### Prerequisites
 
-You must have Node.js >=6.9.0 <=6.9.2, Redis, and MongoDB installed.
+You must have Docker installed. 
 
-To update your Node version, follow the instructions [here](https://davidwalsh.name/upgrade-nodejs).
+* For Mac users:
+  1. Install [Homebrew](https://brew.sh/) if you haven't already. 
+  2. `brew install docker`
+  3. `brew install docker-compose`
+  4. `brew install node`
+  5. `make build`
 
-Visit the [MongoDB docs](https://docs.mongodb.com/v3.0/tutorial/install-mongodb-on-os-x/) to install MongoDB.
-
-See the [Redis Docs](https://redis.io/download) to install Redis
-
+* For windows users:
+  1. Go to https://docs.docker.com/docker-for-windows/install/ to install Docker.
+      * For an older more stable version: 
+    https://download.docker.com/win/stable/13620/Docker%20for%20Windows%20Installer.exe
+  2. Go to https://docs.docker.com/compose/install/#install-compose to install Docker Compose.
+  3. Go to https://nodejs.org/en/download/ to install node.js
+  4. `make build`
 
 
 ### Setup
 
-Make sure the mongo server is running
-
 ```shell
-$ mongod --dbpath ~/.mongodb
+$ make up
 ```
 
-In another window, make sure the redis server is running
+In another window, to enter the alpine shell:
 
 ```Bash
-$ redis-server
+$ make ash
 ```
 
-
-
-### Installation
-
-Installing the website by cloning this repository and running:
-
-```shell
-$ npm install
-$ npm run webpack-production
-```
-Then start the website:
+To enable hot-reloading with webpack:
 
 ```Bash
-$ npm start
+# npm run webpack
 ```
 
 
 
 ### Notes
 
-- Everytime you pull from the repository, make sure to run `npm install` incase any of the dependencies have changed.
 - If the data stored in the Mongo database is not particularly important to you, to prevent schema conflicts from causing confusing problems, reset the database by running `npm run reset-database`
 - Redis is an **in-memory database**. If you shutdown your computer or kill the redis server, sessions will not persist. If you need to shut down your computer or restart the redis server *and* want the data in the database to be restored the next time, make sure to run the command `redis-cli shutdown` to safely shutdown the server.
