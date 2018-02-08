@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: {
@@ -6,12 +7,12 @@ module.exports = {
     'www/private/hackschool/js/bundle': './www/private/hackschool/react-src/index.js'
   },
   output: {
-    path: './',
+    path: path.resolve(__dirname, './'),
     filename: '[name].js'
   },
   watch: true,
   module: {
-    loaders: [{
+    rules: [{
       exclude: /node_modules/,
       loader: 'babel-loader',
       query: {
@@ -20,7 +21,7 @@ module.exports = {
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   plugins: [
       new webpack.optimize.CommonsChunkPlugin({
