@@ -3,8 +3,8 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    'www/public/common/js/bundle': './www/public/react-src/index.js',
-    'www/private/hackschool/js/bundle': './www/private/hackschool/react-src/index.js'
+    'www/public/common/js/bundle': './www/public/src/index.js',
+    'www/private/hackschool/js/bundle': './www/private/hackschool/src/index.js'
   },
   output: {
     path: path.resolve(__dirname, './'),
