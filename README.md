@@ -48,7 +48,7 @@ $ make ash
 To enable hot-reloading with webpack:
 
 ```Bash
-# npm run webpack
+# npm run dev
 ```
 
 
