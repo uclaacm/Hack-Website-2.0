@@ -35,17 +35,19 @@ You must have Docker installed.
 
 ### Setup
 
+Run the following to get your server up at `localhost:5000`
+
 ```shell
 $ make up
 ```
 
-In another window, to enter the alpine shell:
+In another terminal window or tab (`CMD+T` for Mac or `CTRL+T` for PC), run the following to enter the alpine shell:
 
 ```Bash
 $ make ash
 ```
 
-To enable hot-reloading with webpack:
+Once you're in the alphine shell, run the following to enable hot-reloading with webpack:
 
 ```Bash
 # npm run dev
