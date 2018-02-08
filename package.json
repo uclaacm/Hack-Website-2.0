@@ -7,6 +7,7 @@
     "start": "node index",
     "test": "mocha",
     "webpack": "node ./node_modules/webpack/bin/webpack.js",
+    "dev": "webpack-dev-server --progress --color",
     "webpack-production": "NODE_ENV=production node ./node_modules/webpack/bin/webpack.js --progress -p",
     "reset-database": "scripts/reset-database"
   },
@@ -30,7 +31,7 @@
     "mocha": "^3.2.0",
     "should": "^11.1.2",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^1.14.0"
+    "webpack-dev-server": "^1.16.5"
   },
   "dependencies": {
     "async": "^2.1.4",

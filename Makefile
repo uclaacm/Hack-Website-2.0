@@ -1,5 +1,8 @@
+ash-running:
+	docker-compose exec web /bin/ash
+
 ash:
-	docker exec -it $(shell docker ps | grep "hackwebsite20_web" | tr -s ' ' | cut -d' ' -f1) /bin/ash
+	docker run -v "$(shell pwd):/app" -it hackwebsite20_web /bin/ash
 
 up:
 	docker-compose up
