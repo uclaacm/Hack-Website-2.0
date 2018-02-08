@@ -48,16 +48,16 @@ if (env === "production") {
 	config.aws.s3.secretAccessKey = process.env.AWS_S3_SECRET_ACCESS_KEY;
 } else {
 	config.port = 5000;
-	config.host = "http://localhost:" + config.port;
+	config.host = "http://0.0.0.0:" + config.port;
 	config.numCPUs = require('os').cpus().length;
 	
 	config.session.secret = "77ea260f6918c0d8c3b6c35514d3b1a4fc69f01adbf7d2412611de97c3f0f2dc";
-	config.session.uri = "redis://127.0.0.1:6379/0";
+	config.session.uri = `redis://${process.env.REDIS_URI || '127.0.0.1'}/0`;
 	
-	config.database.uri = "mongodb://127.0.0.1:27017/acm-hack-db";
+	config.database.uri = `mongodb://${process.env.MONGODB_URI || '127.0.0.1:27017'}/${process.env.MONGODB_NAME || 'acm-hack-db'}`;
 	config.ghost.database.uri = "postgres://localhost/acm-hack-dev-db";
 	
-	config.cache.uri = "redis://127.0.0.1:6379/0";
+	config.cache.uri = config.session.uri;
 	config.cache.keys = keys.cache;
 
 	config.facebook.clientId = "242266409533449";

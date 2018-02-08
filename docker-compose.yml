@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo:3.7
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:4-alpine
+
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    restart: on-failure
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+      - ./app:/app/app
+      - ./www:/app/www
+    environment:
+      - REDIS_URI=redis
+      - MONGODB_URI=mongo
+      - MONGODB_NAME=acm-hack-db
+
+volumes:
+  mongo_data:

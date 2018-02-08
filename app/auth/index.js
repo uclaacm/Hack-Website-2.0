@@ -12,7 +12,7 @@ let configAuth = (server) => {
 	passport.use(new FacebookStrategy({
 		clientID: config.facebook.clientId,
 		clientSecret: config.facebook.secret,
-		callbackURL: config.host + '/auth/facebook/callback',
+		callbackURL: 'http://localhost:5000/auth/facebook/callback',
 		profileFields: ['id', 'name', 'emails'],
 		enableProof: true
 	}, (accessToken, refreshToken, profile, callback) => {
@@ -50,7 +50,7 @@ let configAuth = (server) => {
 	passport.use(new GoogleStrategy({
 		clientID: config.google.clientId,
 		clientSecret: config.google.secret,
-		callbackURL: config.host + '/auth/google/callback'
+		callbackURL: 'http://localhost:5000/auth/google/callback'
 	}, (accessToken, refreshToken, profile, callback) => {
 		// Find the use by google profile id
 		// If found, updated the access token and continue authentication
