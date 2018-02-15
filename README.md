@@ -25,10 +25,10 @@ You must have Docker installed.
   5. `make build`
 
 * For windows users:
-  1. Go to https://docs.docker.com/docker-for-windows/install/ to install Docker.
-      * For an older more stable version: 
-    https://download.docker.com/win/stable/13620/Docker%20for%20Windows%20Installer.exe
-  2. Go to https://docs.docker.com/compose/install/#install-compose to install Docker Compose.
+  1. Install Docker
+      * Windows 10 Pro: https://docs.docker.com/docker-for-windows/install/
+      * Windows 10 Home and below: https://docs.docker.com/toolbox/toolbox_install_windows/
+  2. If you have Windows 10 Pro and don't have `docker-compose` yet, go to https://docs.docker.com/compose/install/#install-compose to install Docker Compose.
   3. Go to https://nodejs.org/en/download/ to install node.js
   4. `make build`
 
