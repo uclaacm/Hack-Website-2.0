@@ -22,7 +22,9 @@ You must have Docker installed.
   2. `brew install docker`
   3. `brew install docker-compose`
   4. `brew install node`
-  5. `make build`
+  5. `brew install yarn`
+  6. `yarn install`
+  7. `make build`
 
 * For windows users:
   1. Go to https://docs.docker.com/docker-for-windows/install/ to install Docker.
@@ -30,8 +32,9 @@ You must have Docker installed.
     https://download.docker.com/win/stable/13620/Docker%20for%20Windows%20Installer.exe
   2. Go to https://docs.docker.com/compose/install/#install-compose to install Docker Compose.
   3. Go to https://nodejs.org/en/download/ to install node.js
-  4. `make build`
-
+  4. Go to https://yarnpkg.com/lang/en/docs/install/ to install yarn
+  5. `yarn install`
+  6. `make build`
 
 ### Setup
 
@@ -41,19 +44,11 @@ Run the following to get your server up at `localhost:5000`
 $ make up
 ```
 
-In another terminal window or tab (`CMD+T` for Mac or `CTRL+T` for PC), run the following to enter the alpine shell:
+In another terminal window, run the following to enable hot-reloading with webpack:
 
 ```Bash
-$ make ash
+# yarn run webpack
 ```
-
-Once you're in the alphine shell, run the following to enable hot-reloading with webpack:
-
-```Bash
-# npm run dev
-```
-
-
 
 ### Notes
 
