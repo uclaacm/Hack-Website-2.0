@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node index",
     "test": "mocha",
-    "webpack": "node ./node_modules/webpack/bin/webpack.js",
-    "dev": "webpack-dev-server --progress --color",
+    "webpack": "./node_modules/webpack/bin/webpack.js",
     "webpack-production": "NODE_ENV=production node ./node_modules/webpack/bin/webpack.js --progress -p",
     "reset-database": "scripts/reset-database"
   },
@@ -30,8 +29,8 @@
     "chai-http": "^3.0.0",
     "mocha": "^3.2.0",
     "should": "^11.1.2",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^1.16.5"
+    "webpack": "https://registry.npmjs.org/webpack/-/webpack-3.10.0.tgz",
+    "webpack-cli": "^2.0.10"
   },
   "dependencies": {
     "async": "^2.1.4",
