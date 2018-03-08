@@ -47,7 +47,7 @@ $ make up
 In another terminal window, run the following to enable hot-reloading with webpack:
 
 ```Bash
-# yarn run webpack
+$ yarn run webpack
 ```
 
 ### Notes
